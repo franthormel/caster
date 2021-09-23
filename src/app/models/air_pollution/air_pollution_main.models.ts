@@ -1,10 +1,10 @@
 /**
  * Based on [Air Quality Index (CAQI)](https://en.wikipedia.org/wiki/Air_quality_index#CAQI)
- * - 1 = Good
- * - 2 = Fair
- * - 3 = Moderate
- * - 4 = Poor
- * - 5 = Very Poor
+ * * 1 means `Good`
+ * * 2 means `Fair`
+ * * 3 means `Moderate`
+ * * 4 means `Poor`
+ * * 5 means `Very Poor`
  */
 export interface AirPollutionMain {
   aqi: number;
