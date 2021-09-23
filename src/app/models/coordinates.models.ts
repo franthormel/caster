@@ -1,5 +1,5 @@
 /**
- * Information about latitude and longitude at [Geographic coordinate system](https://en.wikipedia.org/wiki/Geographic_coordinate_system)
+ * Coordinates from the specified location (latitude, longitude)
  */
 export interface Coordinates {
   latitude: number;
