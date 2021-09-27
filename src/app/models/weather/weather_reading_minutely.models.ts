@@ -1,5 +1,8 @@
-import { WeatherDateTime } from './weather_datetime.models';
-
-export interface WeatherReadingMinutely extends WeatherDateTime {
+/**
+ * * `dt` Time, Unix, UTC (seconds)
+ * * `precipitation` Precipitation volume, mm
+ */
+export interface WeatherReadingMinutely {
+  dt: number;
   precipitation: number;
 }
