@@ -1,0 +1,16 @@
+html,
+body {
+  font-family: Montserrat;
+  margin: 0;
+}
+html {
+  background: url("/assets/bg/light.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.font-weight-extra-bold {
+  font-weight: 800;
+}

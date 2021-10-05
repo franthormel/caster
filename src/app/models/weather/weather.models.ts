@@ -1,8 +1,8 @@
-import { WeatherReadingMinutely } from './weather_reading_minutely.models';
-import { WeatherReadingCurrent } from './weather_reading_current.models';
-import { WeatherReadingHourly } from './weather_reading_hourly.models';
-import { WeatherReadingDaily } from './weather_reading_daily.models';
-import { WeatherAlert } from './weather_alert.models';
+import { WeatherReadingMinutely } from './weather-reading-minutely.models';
+import { WeatherReadingCurrent } from './weather-reading-current.models';
+import { WeatherReadingHourly } from './weather-reading-hourly.models';
+import { WeatherReadingDaily } from './weather-reading-daily.models';
+import { WeatherAlert } from './weather-alert.models';
 import { Coordinates } from '../coordinates.models';
 
 /**

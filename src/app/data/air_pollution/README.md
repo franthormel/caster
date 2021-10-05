@@ -1,1 +1,0 @@
-### The files in this folder are taken using the [Air Pollution API](https://openweathermap.org/api/air-pollution) forecast.
