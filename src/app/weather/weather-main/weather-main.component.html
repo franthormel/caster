@@ -1,0 +1,11 @@
+<app-weather-toolbar [mode]="mode" (modeChangeEvent)="changeMode($event)"></app-weather-toolbar>
+<ng-container *ngIf="loading">
+    <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+</ng-container>
+<ng-container *ngIf="!loading">
+    <div class="padding-content">
+        <app-weather-current *ngIf="isCurrent"></app-weather-current>
+        <app-weather-hourly *ngIf="isHourly"></app-weather-hourly>
+        <app-weather-daily *ngIf="isDaily"></app-weather-daily>
+    </div>
+</ng-container>

@@ -11,11 +11,11 @@ export class WeatherDataService {
 
   /**
    * Returns previously collected weather data
-   * @param index Name of file (1 to 9)
+   * @param index Name of file (1 to 3)
    * @returns Observable<Object>
    */
   localFileWeatherData(index: number = 1): Observable<Weather> {
-    return this.httpClient.get<Weather>(`assets/data/weather/${index}.json`, {
+    return this.httpClient.get<Weather>(`/assets/data/weather/${index}.json`, {
       responseType: 'json',
     });
   }

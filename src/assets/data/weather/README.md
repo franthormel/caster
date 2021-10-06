@@ -1,1 +1,0 @@
-### The files in this folder are taken using the [One Call API](https://openweathermap.org/api/one-call-api)

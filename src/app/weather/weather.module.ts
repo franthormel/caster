@@ -4,21 +4,30 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { WeatherRoutingModule } from './weather-routing.module';
 import { WeatherCurrentComponent } from './weather-current/weather-current.component';
-import { WeatherAlertDialogComponent } from './weather-alert-dialog/weather-alert-dialog.component';
 import { WeatherToolbarComponent } from './weather-toolbar/weather-toolbar.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatListModule } from '@angular/material/list';
 
 import { WeatherDataService } from './weather-data.service';
+import { WeatherAlertComponent } from './weather-alert/weather-alert.component';
+import { WeatherHourlyComponent } from './weather-hourly/weather-hourly.component';
+import { WeatherDailyComponent } from './weather-daily/weather-daily.component';
+import { WeatherMainComponent } from './weather-main/weather-main.component';
 
 @NgModule({
   declarations: [
     WeatherCurrentComponent,
-    WeatherAlertDialogComponent,
     WeatherToolbarComponent,
+    WeatherAlertComponent,
+    WeatherHourlyComponent,
+    WeatherDailyComponent,
+    WeatherMainComponent,
   ],
   imports: [
     CommonModule,
@@ -26,8 +35,11 @@ import { WeatherDataService } from './weather-data.service';
     WeatherRoutingModule,
     MatButtonModule,
     MatIconModule,
+    MatProgressBarModule,
     MatToolbarModule,
     MatTooltipModule,
+    MatMenuModule,
+    MatListModule,
   ],
   providers: [WeatherDataService],
 })

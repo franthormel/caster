@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WeatherAlertDialogComponent } from './weather-alert-dialog.component';
+import { WeatherAlertComponent } from './weather-alert.component';
 
-describe('WeatherAlertDialogComponent', () => {
-  let component: WeatherAlertDialogComponent;
-  let fixture: ComponentFixture<WeatherAlertDialogComponent>;
+describe('WeatherAlertComponent', () => {
+  let component: WeatherAlertComponent;
+  let fixture: ComponentFixture<WeatherAlertComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WeatherAlertDialogComponent ]
+      declarations: [ WeatherAlertComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WeatherAlertDialogComponent);
+    fixture = TestBed.createComponent(WeatherAlertComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

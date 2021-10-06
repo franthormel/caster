@@ -4,7 +4,7 @@ body {
   margin: 0;
 }
 html {
-  background: url("/assets/bg/light.jpg") no-repeat center center fixed;
+  background: url("/assets/images/background/light.jpg") no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -13,4 +13,8 @@ html {
 
 .font-weight-extra-bold {
   font-weight: 800;
+}
+
+.padding-content {
+  padding: 1vh 1vw;
 }
