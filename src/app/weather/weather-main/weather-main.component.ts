@@ -5,6 +5,9 @@ import { WeatherReadingType } from 'src/app/models/weather/weather.enums';
 import { Observable } from 'rxjs';
 import { WeatherState } from '../weather.reducer';
 import { Store } from '@ngrx/store';
+import { WeatherAlert } from 'src/app/models/weather/weather-alert.models';
+import { MatDialog } from '@angular/material/dialog';
+import { WeatherAlertComponent } from '../weather-alert/weather-alert.component';
 
 @Component({
   selector: 'app-weather-main',
@@ -19,7 +22,8 @@ export class WeatherMainComponent implements OnInit {
 
   constructor(
     private weatherDataService: WeatherDataService,
-    private store: Store<{ weather: WeatherState }>
+    private store: Store<{ weather: WeatherState }>,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +55,21 @@ export class WeatherMainComponent implements OnInit {
     });
   }
 
+  /**
+   * Data used for `mat-dialog`
+   */
+  get alerts(): WeatherAlert[] | undefined {
+    return this.data?.alerts;
+  }
+
+  /**
+   * Used by `app-weather-toolbar` to determine
+   * whether to show/hide the alert button icon
+   */
+  get alertsCount(): number | undefined {
+    return this.alerts?.length;
+  }
+
   get isCurrent(): boolean {
     return this.mode === WeatherReadingType.Current;
   }
@@ -61,5 +80,11 @@ export class WeatherMainComponent implements OnInit {
 
   get isDaily(): boolean {
     return this.mode === WeatherReadingType.Daily;
+  }
+
+  showAlertDialog() {
+    this.dialog.open(WeatherAlertComponent, {
+      data: this.alerts,
+    });
   }
 }

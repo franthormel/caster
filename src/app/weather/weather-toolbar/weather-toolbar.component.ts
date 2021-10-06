@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { WeatherReadingType } from 'src/app/models/weather/weather.enums';
@@ -11,6 +11,8 @@ import { WeatherState } from '../weather.reducer';
   styleUrls: ['./weather-toolbar.component.css'],
 })
 export class WeatherToolbarComponent implements OnInit {
+  @Input() alertCount : number | undefined;
+  @Output() alertEvent = new EventEmitter<void>();
   weatherState$: Observable<WeatherState> | undefined;
   mode: WeatherReadingType | undefined;
 
@@ -57,5 +59,9 @@ export class WeatherToolbarComponent implements OnInit {
 
   _changeMode(value: WeatherReadingType) {
     this.store.dispatch(weatherChangeMode({ mode: value }));
+  }
+
+  showAlert() {
+    this.alertEvent.emit();
   }
 }

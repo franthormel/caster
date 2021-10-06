@@ -10,17 +10,21 @@ import { WeatherToolbarComponent } from './weather-toolbar/weather-toolbar.compo
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
+import { MatBadgeModule } from '@angular/material/badge'; 
+import { MatChipsModule } from '@angular/material/chips'; 
 
 import { WeatherDataService } from './weather-data.service';
 import { WeatherAlertComponent } from './weather-alert/weather-alert.component';
 import { WeatherHourlyComponent } from './weather-hourly/weather-hourly.component';
 import { WeatherDailyComponent } from './weather-daily/weather-daily.component';
 import { WeatherMainComponent } from './weather-main/weather-main.component';
+import { WeatherAlertContentComponent } from './weather-alert-content/weather-alert-content.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +34,7 @@ import { WeatherMainComponent } from './weather-main/weather-main.component';
     WeatherHourlyComponent,
     WeatherDailyComponent,
     WeatherMainComponent,
+    WeatherAlertContentComponent,
   ],
   imports: [
     CommonModule,
@@ -40,9 +45,12 @@ import { WeatherMainComponent } from './weather-main/weather-main.component';
     MatIconModule,
     MatProgressBarModule,
     MatToolbarModule,
+    MatDialogModule,
     MatTooltipModule,
     MatMenuModule,
     MatListModule,
+    MatBadgeModule,
+    MatChipsModule,
   ],
   providers: [WeatherDataService],
 })
