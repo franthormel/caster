@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { weatherKey, weatherReducer } from './weather.reducer';
 
 import { WeatherRoutingModule } from './weather-routing.module';
 import { WeatherCurrentComponent } from './weather-current/weather-current.component';
@@ -33,6 +35,7 @@ import { WeatherMainComponent } from './weather-main/weather-main.component';
     CommonModule,
     HttpClientModule,
     WeatherRoutingModule,
+    StoreModule.forFeature(weatherKey, weatherReducer),
     MatButtonModule,
     MatIconModule,
     MatProgressBarModule,

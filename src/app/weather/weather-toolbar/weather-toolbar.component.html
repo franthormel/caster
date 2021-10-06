@@ -10,14 +10,14 @@
     <button mat-icon-button matTooltip="Refresh data">
         <mat-icon>refresh</mat-icon>
     </button>
-    <button mat-icon-button [matMenuTriggerFor]="menu"  matTooltip="Change mode">
+    <button mat-icon-button [matMenuTriggerFor]="menuWeatherMode" matTooltip="Change mode">
         <mat-icon>more_vert</mat-icon>
     </button>
-    <mat-menu #menu="matMenu">
+    <mat-menu #menuWeatherMode="matMenu">
         <mat-selection-list [multiple]="false">
-            <mat-list-option (click)="current()">Current</mat-list-option>
-            <mat-list-option (click)="hourly()">Hourly</mat-list-option>
-            <mat-list-option (click)="daily()">Daily</mat-list-option>
+            <mat-list-option (click)="changeToCurrent()" [selected]="isCurrent">Current</mat-list-option>
+            <mat-list-option (click)="changeToHourly()" [selected]="isHourly">Hourly</mat-list-option>
+            <mat-list-option (click)="changeToDaily()" [selected]="isDaily">Daily</mat-list-option>
         </mat-selection-list>
     </mat-menu>
 </mat-toolbar>

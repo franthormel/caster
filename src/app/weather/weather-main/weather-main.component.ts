@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Weather } from 'src/app/models/weather/weather.models';
 import { WeatherDataService } from '../weather-data.service';
 import { WeatherReadingType } from 'src/app/models/weather/weather.enums';
+import { Observable } from 'rxjs';
+import { WeatherState } from '../weather.reducer';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-weather-main',
@@ -9,21 +12,38 @@ import { WeatherReadingType } from 'src/app/models/weather/weather.enums';
   styleUrls: ['./weather-main.component.css'],
 })
 export class WeatherMainComponent implements OnInit {
-  mode: WeatherReadingType = WeatherReadingType.Current;
+  weatherState$: Observable<WeatherState> | undefined;
+  mode: WeatherReadingType | undefined;
   loading: boolean | undefined;
   data: Weather | undefined;
 
-  constructor(private weatherDataService: WeatherDataService) {}
+  constructor(
+    private weatherDataService: WeatherDataService,
+    private store: Store<{ weather: WeatherState }>
+  ) {}
 
   ngOnInit(): void {
-    this.loading = true;
+    // Initialize weather state
+    this.weatherState$ = this.store.select('weather');
+
+    // Weather mode
+    this.weatherState$.subscribe({
+      next: (state) => {
+        this.mode = state.mode;
+      },
+      error: (e) => {
+        console.error('Weather state error', e);
+      },
+    });
+
+    // Static weather data
     this.weatherDataService.localFileWeatherData().subscribe({
       next: (data) => {
+        this.loading = true;
         this.data = data;
       },
       error: (e) => {
-        // TODO: Display this as a mat-dialog
-        console.error('Error occured', e);
+        console.error('Weather static data error', e);
       },
       complete: () => {
         this.loading = false;
@@ -41,9 +61,5 @@ export class WeatherMainComponent implements OnInit {
 
   get isDaily(): boolean {
     return this.mode === WeatherReadingType.Daily;
-  }
-
-  changeMode(value: WeatherReadingType) {
-    this.mode = value;
   }
 }

@@ -1,29 +1,61 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { WeatherReadingType } from 'src/app/models/weather/weather.enums';
+import { weatherChangeMode } from '../weather.actions';
+import { WeatherState } from '../weather.reducer';
 
 @Component({
   selector: 'app-weather-toolbar',
   templateUrl: './weather-toolbar.component.html',
   styleUrls: ['./weather-toolbar.component.css'],
 })
-export class WeatherToolbarComponent {
-  @Input() mode: WeatherReadingType | undefined;
-  @Output() modeChangeEvent = new EventEmitter<WeatherReadingType>();
+export class WeatherToolbarComponent implements OnInit {
+  weatherState$: Observable<WeatherState> | undefined;
+  mode: WeatherReadingType | undefined;
 
-  current() {
-    this.modeChange(WeatherReadingType.Current);
+  constructor(private store: Store<{ weather: WeatherState }>) {}
+
+  ngOnInit() {
+    // Initialize weather state
+    this.weatherState$ = this.store.select('weather');
+
+    // Weather mode
+    this.weatherState$.subscribe({
+      next: (state) => {
+        this.mode = state.mode;
+      },
+      error: (e) => {
+        console.error('Weather state error', e);
+      },
+    });
   }
 
-  hourly() {
-    this.modeChange(WeatherReadingType.Hourly);
+  get isCurrent(): boolean {
+    return this.mode === WeatherReadingType.Current;
   }
 
-  daily() {
-    this.modeChange(WeatherReadingType.Daily);
+  get isHourly(): boolean {
+    return this.mode === WeatherReadingType.Hourly;
   }
 
-  modeChange(value: WeatherReadingType) {
-    this.mode = value;
-    this.modeChangeEvent.emit(value);
+  get isDaily(): boolean {
+    return this.mode === WeatherReadingType.Daily;
+  }
+
+  changeToCurrent() {
+    this._changeMode(WeatherReadingType.Current);
+  }
+
+  changeToHourly() {
+    this._changeMode(WeatherReadingType.Hourly);
+  }
+
+  changeToDaily() {
+    this._changeMode(WeatherReadingType.Daily);
+  }
+
+  _changeMode(value: WeatherReadingType) {
+    this.store.dispatch(weatherChangeMode({ mode: value }));
   }
 }
