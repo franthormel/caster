@@ -1,20 +1,21 @@
-<!--Sender name & event-->
-<h1 mat-dialog-title>
-    {{alert.event}} from {{alert.sender_name}}
-</h1>
+<div class="padding-content">
+    <!--Sender name & event-->
+    <h1>
+        {{alert.event}} from {{alert.sender_name}}
+    </h1>
 
-<!--Start & end-->
-<h3><From:> {{convertTime(alert.start)}}</h3>
-<h3>To: {{convertTime(alert.end)}}</h3>
+    <!--Start & end-->
+    <h3>
+        <span>{{convertTime(alert.start)}} — {{convertTime(alert.end)}}</span>
+    </h3>
 
+    <!--Description-->
+    <p *ngFor="let line of descriptionLines">
+        {{line}}<br />
+    </p>
 
-<!--Description-->
-<p>{{alert.description}}</p>
-
-<!--Tags-->
-<mat-chip-list id="alert-chip-list">
-    <mat-chip *ngFor="let tag of alert.tags" selected>{{tag}}</mat-chip>
-</mat-chip-list>
-
-<mat-divider></mat-divider>
-
+    <!--Tags-->
+    <mat-chip-list id="alert-chip-list">
+        <mat-chip *ngFor="let tag of alert.tags" selected>{{tag}}</mat-chip>
+    </mat-chip-list>
+</div>

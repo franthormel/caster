@@ -17,4 +17,12 @@ export class WeatherAlertContentComponent {
   convertTime(time: number): string {
     return new Date(time * 1000).toUTCString();
   }
+
+  /**
+   * Formats the raw text to an
+   * array of strings to be easily read
+   */
+  get descriptionLines() : string[] {
+    return this.alert.description.split('\r\n');
+  }
 }

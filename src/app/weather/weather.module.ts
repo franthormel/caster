@@ -18,6 +18,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge'; 
 import { MatChipsModule } from '@angular/material/chips'; 
+import { MatTabsModule } from '@angular/material/tabs'; 
 
 import { WeatherDataService } from './weather-data.service';
 import { WeatherAlertComponent } from './weather-alert/weather-alert.component';
@@ -51,6 +52,7 @@ import { WeatherAlertContentComponent } from './weather-alert-content/weather-al
     MatListModule,
     MatBadgeModule,
     MatChipsModule,
+    MatTabsModule,
   ],
   providers: [WeatherDataService],
 })
