@@ -1,20 +1,20 @@
-<mat-toolbar color="primary" class="mat-elevation-z2">
+<mat-toolbar class="mat-elevation-z2" color="primary">
     <!--Menu & title-->
     <button mat-icon-button>
         <mat-icon>menu</mat-icon>
     </button>
-    <span class="font-weight-extra-bold">Weather</span>
+    <span class="text-extra-bold">Weather</span>
     <span class="toolbar-spacer"></span>
     <!--Actions-->
     <ng-container *ngIf="alertCount">
         <button mat-icon-button matTooltip="Alerts from weather warning systems" (click)="showAlert()">
-            <mat-icon [matBadge]="alertCount" matBadgeColor="warn" color="warn">warning</mat-icon>
+            <mat-icon matBadgeColor="warn" color="warn" [matBadge]="alertCount">warning</mat-icon>
         </button>
     </ng-container>
     <button mat-icon-button matTooltip="Refresh data">
         <mat-icon>refresh</mat-icon>
     </button>
-    <button mat-icon-button [matMenuTriggerFor]="menuWeatherMode" matTooltip="Change mode">
+    <button mat-icon-button matTooltip="Change mode" [matMenuTriggerFor]="menuWeatherMode">
         <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menuWeatherMode="matMenu">

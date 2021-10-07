@@ -18,12 +18,15 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge'; 
 import { MatChipsModule } from '@angular/material/chips'; 
+import { MatExpansionModule } from '@angular/material/expansion'; 
 
 import { WeatherDataService } from './weather-data.service';
 import { WeatherAlertComponent } from './weather-alert/weather-alert.component';
 import { WeatherHourlyComponent } from './weather-hourly/weather-hourly.component';
 import { WeatherDailyComponent } from './weather-daily/weather-daily.component';
 import { WeatherMainComponent } from './weather-main/weather-main.component';
+import { WeatherAlertSingleComponent } from './weather-alert-single/weather-alert-single.component';
+import { WeatherAlertMultipleComponent } from './weather-alert-multiple/weather-alert-multiple.component';
 import { WeatherAlertContentComponent } from './weather-alert-content/weather-alert-content.component';
 
 @NgModule({
@@ -34,6 +37,8 @@ import { WeatherAlertContentComponent } from './weather-alert-content/weather-al
     WeatherHourlyComponent,
     WeatherDailyComponent,
     WeatherMainComponent,
+    WeatherAlertSingleComponent,
+    WeatherAlertMultipleComponent,
     WeatherAlertContentComponent,
   ],
   imports: [
@@ -51,6 +56,7 @@ import { WeatherAlertContentComponent } from './weather-alert-content/weather-al
     MatListModule,
     MatBadgeModule,
     MatChipsModule,
+    MatExpansionModule,
   ],
   providers: [WeatherDataService],
 })

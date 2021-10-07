@@ -1,21 +1,10 @@
-<div class="padding-content">
-    <!--Sender name & event-->
-    <h1>
-        {{alert.event}} from {{alert.sender_name}}
-    </h1>
-
-    <!--Start & end-->
-    <h3>
-        <span>{{convertTime(alert.start)}} — {{convertTime(alert.end)}}</span>
-    </h3>
-
-    <!--Description-->
-    <p *ngFor="let line of descriptionLines">
-        {{line}}<br />
-    </p>
-
-    <!--Tags-->
-    <mat-chip-list id="alert-chip-list">
-        <mat-chip *ngFor="let tag of alert.tags" selected>{{tag}}</mat-chip>
-    </mat-chip-list>
-</div>
+<!--Description-->
+<!--Lines that are FULLY CAPITALIZED are styled in bold-->
+<p *ngFor="let line of descriptionLines(alert)"
+    [ngClass]="line === line.toUpperCase() ? 'mat-body-strong' : 'mat-body'">
+    {{line}}
+</p><br />
+<!--Tags if any-->
+<mat-chip-list [tabIndex]="-1">
+    <mat-chip *ngFor="let tag of alert.tags" selected>{{tag}}</mat-chip>
+</mat-chip-list>

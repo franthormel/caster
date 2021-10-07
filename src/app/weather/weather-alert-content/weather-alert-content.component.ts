@@ -10,19 +10,10 @@ export class WeatherAlertContentComponent {
   @Input() alert!: WeatherAlert;
 
   /**
-   * Converts Epoch to UTC string
-   * @param time UTC seconds
-   * @returns UTC string
-   */
-  convertTime(time: number): string {
-    return new Date(time * 1000).toUTCString();
-  }
-
-  /**
    * Formats the raw text to an
    * array of strings to be easily read
    */
-  get descriptionLines() : string[] {
-    return this.alert.description.split('\r\n');
+  descriptionLines(alert: WeatherAlert): string[] {
+    return alert.description.split('\r\n');
   }
 }

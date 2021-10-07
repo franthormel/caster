@@ -16,14 +16,15 @@ import { WeatherAlertComponent } from '../weather-alert/weather-alert.component'
 })
 export class WeatherMainComponent implements OnInit {
   weatherState$: Observable<WeatherState> | undefined;
+  weatherData$: Observable<Weather> | undefined;
   mode: WeatherReadingType | undefined;
   loading: boolean | undefined;
   data: Weather | undefined;
 
   constructor(
-    private weatherDataService: WeatherDataService,
+    public dialog: MatDialog,
     private store: Store<{ weather: WeatherState }>,
-    public dialog: MatDialog
+    private weatherDataService: WeatherDataService
   ) {}
 
   ngOnInit(): void {
@@ -41,7 +42,9 @@ export class WeatherMainComponent implements OnInit {
     });
 
     // Static weather data
-    this.weatherDataService.localFileWeatherData().subscribe({
+    this.weatherData$ = this.weatherDataService.localFileWeatherData(1);
+
+    this.weatherData$.subscribe({
       next: (data) => {
         this.loading = true;
         this.data = data;

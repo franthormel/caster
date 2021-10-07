@@ -11,7 +11,7 @@ export class WeatherDataService {
 
   /**
    * Returns previously collected weather data
-   * @param index Name of file (1 to 3)
+   * @param index Name of file (1 to 3). Defaults to 1.
    * @returns Observable<Object>
    */
   localFileWeatherData(index: number = 1): Observable<Weather> {

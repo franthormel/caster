@@ -4,10 +4,6 @@
 
 export const environment = {
   production: false,
-  defaultCoordinates: {
-    latitude: 10.363584881346945,
-    longitude: 123.91563404657425,
-  },
 };
 
 /*

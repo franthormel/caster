@@ -1,10 +1,12 @@
-<h2 mat-dialog-title>Weather Alerts</h2>
+<h1 mat-dialog-title class="mat-title">{{title}}</h1>
 <mat-dialog-content class="mat-typography">
-    <ng-container *ngFor="let alert of alerts; index as i">
-        <app-weather-alert-content [alert]="alert"></app-weather-alert-content>
-        <mat-divider *ngIf="!isNotLast(i)"></mat-divider>
+    <ng-container *ngIf="!multipleAlerts">
+        <app-weather-alert-single [alert]="alerts[0]"></app-weather-alert-single>
+    </ng-container>
+    <ng-container *ngIf="multipleAlerts">
+        <app-weather-alert-multiple [alerts]="alerts"></app-weather-alert-multiple>
     </ng-container>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-raised-button color="warn" [mat-dialog-close]="true">UNDERSTOOD</button>
+    <button mat-raised-button matDialogClose color="warn">UNDERSTOOD</button>
 </mat-dialog-actions>

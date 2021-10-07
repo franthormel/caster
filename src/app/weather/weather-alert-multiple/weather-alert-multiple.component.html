@@ -1,0 +1,16 @@
+<mat-accordion>
+    <!--Expand the first panel-->
+    <mat-expansion-panel *ngFor="let alert of alerts; index as i" [expanded]="i === 0">
+        <mat-expansion-panel-header>
+            <!--Sender & event-->
+            <mat-panel-title class="mat-subheading-2">
+                {{alert.event}} from {{alert.sender_name}}
+            </mat-panel-title>
+            <!--Timerange-->
+            <mat-panel-description class="mat-subheading-1">
+                {{convertTime(alert.start)}} — {{convertTime(alert.end)}}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <app-weather-alert-content [alert]="alert"></app-weather-alert-content>
+    </mat-expansion-panel>
+</mat-accordion>
