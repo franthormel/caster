@@ -9,4 +9,8 @@ import { WeatherAlert } from 'src/app/models/weather/weather-alert.models';
 })
 export class WeatherAlertComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public alerts: WeatherAlert[]) {}
+
+  isNotLast(index: number) : boolean {
+    return index === this.alerts.length - 1;
+  }
 }
