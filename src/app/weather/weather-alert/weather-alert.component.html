@@ -1,10 +1,8 @@
 <h2 mat-dialog-title>Weather Alerts</h2>
 <mat-dialog-content class="mat-typography">
-    <mat-tab-group>
-        <mat-tab *ngFor="let alert of alerts; index as i" label="Alert #{{i + 1}}">
-            <app-weather-alert-content [alert]="alert"></app-weather-alert-content>
-        </mat-tab>
-    </mat-tab-group>
+    <ng-container *ngFor="let alert of alerts">
+        <app-weather-alert-content [alert]="alert"></app-weather-alert-content>
+    </ng-container>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-raised-button color="warn" [mat-dialog-close]="true">UNDERSTOOD</button>
