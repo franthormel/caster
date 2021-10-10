@@ -1,4 +1,4 @@
-import { Coordinates } from '../coordinates.models';
+import { Coordinates } from './coordinates.models';
 import { AirPollutionReading } from './air-pollution-reading.models';
 
 /**

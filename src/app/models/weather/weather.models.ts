@@ -3,7 +3,6 @@ import { WeatherReadingCurrent } from './weather-reading-current.models';
 import { WeatherReadingHourly } from './weather-reading-hourly.models';
 import { WeatherReadingDaily } from './weather-reading-daily.models';
 import { WeatherAlert } from './weather-alert.models';
-import { Coordinates } from '../coordinates.models';
 
 /**
  * * `coords` Data received individual properties: `lat` and `lon` but use `Coordinates` instead
@@ -16,7 +15,8 @@ import { Coordinates } from '../coordinates.models';
  * * `daily` Daily forecast weather data *(1 week)*
  */
 export interface Weather {
-  coordinates: Coordinates;
+  lat: number;
+  lon: number;
   timezone: string;
   timezone_offset: number;
   current: WeatherReadingCurrent;
