@@ -6,6 +6,7 @@ import { WeatherAlertComponent } from '../weather-alert/weather-alert.component'
 import { WeatherData } from 'src/app/models/weather/weather-data.models';
 import { WeatherReadingType } from 'src/app/models/weather/weather.enums';
 import { WeatherAlert } from 'src/app/models/weather/weather-alert.models';
+import { Geolocation } from 'src/app/models/geolocation/geolocation.models';
 
 import { WeatherDataService } from '../weather-data.service';
 

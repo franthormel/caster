@@ -2,10 +2,11 @@
 <ng-container *ngIf="loading">
     <mat-progress-bar color="accent" mode="indeterminate"></mat-progress-bar>
 </ng-container>
-<ng-container *ngIf="weatherData$ | async">
+<ng-container *ngIf="weather">
     <div class="padding-content">
-        <app-weather-current *ngIf="isCurrent"></app-weather-current>
-        <app-weather-hourly *ngIf="isHourly"></app-weather-hourly>
-        <app-weather-daily *ngIf="isDaily"></app-weather-daily>
+        <app-weather-current *ngIf="isCurrent" [weatherCurrent]="weather.current" [weatherMinutely]="weather.minutely">
+        </app-weather-current>
+        <app-weather-hourly *ngIf="isHourly" [weatherHour]="weather.hourly"></app-weather-hourly>
+        <app-weather-daily *ngIf="isDaily" [weatherDay]="weather.daily"></app-weather-daily>
     </div>
 </ng-container>
