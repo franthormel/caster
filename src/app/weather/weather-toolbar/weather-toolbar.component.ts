@@ -14,7 +14,8 @@ import { WeatherModeState } from '../weather.reducer';
   styleUrls: ['./weather-toolbar.component.css'],
 })
 export class WeatherToolbarComponent implements OnInit {
-  @Input() alertCount: number | undefined;
+  @Input() alertCount: number | undefined = 0;
+  @Input() loading : boolean | undefined = true;
   @Output() alertEvent = new EventEmitter<void>();
 
   weatherModeState$: Observable<WeatherModeState> | undefined;

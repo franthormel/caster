@@ -8,6 +8,6 @@ import { WeatherReadingMinutely } from '../../models/weather/weather-reading-min
   styleUrls: ['./weather-current.component.css'],
 })
 export class WeatherCurrentComponent {
-  @Input() weatherCurrent! : WeatherReadingCurrent;
+  @Input() weatherCurrent : WeatherReadingCurrent | undefined;
   @Input() weatherMinutely : WeatherReadingMinutely[] | undefined;
 }

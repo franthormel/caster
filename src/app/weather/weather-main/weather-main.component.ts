@@ -10,7 +10,8 @@ import { Geolocation } from 'src/app/models/geolocation/geolocation.models';
 
 import { WeatherDataService } from '../weather-data.service';
 
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 import { Store } from '@ngrx/store';
 import { WeatherModeState } from '../weather.reducer';
@@ -23,8 +24,10 @@ import { WeatherModeState } from '../weather.reducer';
 export class WeatherMainComponent implements OnInit {
   weatherModeState$: Observable<WeatherModeState> | undefined;
   weatherData$: Observable<WeatherData> | undefined;
+  geolocationsData$: Observable<Geolocation[]> | undefined;
 
   mode: WeatherReadingType | undefined;
+  geolocations: Geolocation[] | undefined;
   weather: WeatherData | undefined;
   loading: boolean | undefined;
 
@@ -42,16 +45,36 @@ export class WeatherMainComponent implements OnInit {
     });
 
     // Static weather data
+    this.loading = true;
     this.weatherData$ = this.weatherDataService.localFileWeather();
+    this.geolocationsData$ = this.weatherDataService.localFileGeolocation();
+    const dataCollection$ = forkJoin([
+      this.weatherData$,
+      this.geolocationsData$,
+    ]);
 
     this.weatherData$.subscribe({
       next: (data) => {
-        this.loading = true;
         this.weather = data;
       },
       error: (e) => {
         console.error('Weather static data error', e);
       },
+    });
+
+    this.geolocationsData$.subscribe({
+      next: (data) => {
+        this.geolocations = data;
+      },
+      error: (e) => {
+        console.error('Geolocations static data error', e);
+      },
+    });
+
+    // Once all necessary data are loaded
+    // toggle the `loading` variable accordingly
+    dataCollection$.subscribe({
+      next: (data) => {},
       complete: () => {
         this.loading = false;
       },

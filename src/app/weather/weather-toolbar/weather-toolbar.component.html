@@ -6,7 +6,7 @@
     <span class="text-extra-bold">Weather</span>
     <span class="toolbar-spacer"></span>
     <!--Actions-->
-    <ng-container *ngIf="alertCount">
+    <ng-container *ngIf="!loading && alertCount">
         <button mat-icon-button matTooltip="Alerts from weather warning systems" (click)="showAlert()">
             <mat-icon matBadgeColor="warn" color="warn" [matBadge]="alertCount">warning</mat-icon>
         </button>

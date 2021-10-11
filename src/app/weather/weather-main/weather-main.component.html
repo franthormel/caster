@@ -1,8 +1,9 @@
-<app-weather-toolbar (alertEvent)="showAlertDialog()" [alertCount]="alertsCount"></app-weather-toolbar>
+<app-weather-toolbar (alertEvent)="showAlertDialog()" [alertCount]="alertsCount" [loading]="loading">
+</app-weather-toolbar>
 <ng-container *ngIf="loading">
     <mat-progress-bar color="accent" mode="indeterminate"></mat-progress-bar>
 </ng-container>
-<ng-container *ngIf="weather">
+<ng-container *ngIf="!loading && weather">
     <div class="padding-content">
         <app-weather-current *ngIf="isCurrent" [weatherCurrent]="weather.current" [weatherMinutely]="weather.minutely">
         </app-weather-current>

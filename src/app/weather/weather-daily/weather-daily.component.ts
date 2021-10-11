@@ -7,5 +7,5 @@ import { WeatherReadingDaily } from 'src/app/models/weather/weather-reading-dail
   styleUrls: ['./weather-daily.component.css'],
 })
 export class WeatherDailyComponent {
-  @Input() weatherDay!: WeatherReadingDaily[];
+  @Input() weatherDay: WeatherReadingDaily[] | undefined;
 }

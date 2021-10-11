@@ -7,5 +7,5 @@ import { WeatherReadingHourly } from 'src/app/models/weather/weather-reading-hou
   styleUrls: ['./weather-hourly.component.css'],
 })
 export class WeatherHourlyComponent {
-  @Input() weatherHour!: WeatherReadingHourly[];
+  @Input() weatherHour: WeatherReadingHourly[] | undefined;
 }
