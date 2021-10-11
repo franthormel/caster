@@ -5,8 +5,8 @@ import { WeatherReadingType } from 'src/app/models/weather/weather.enums';
 import { Observable } from 'rxjs';
 
 import { Store } from '@ngrx/store';
-import { weatherModeChange } from '../weather.actions';
-import { WeatherModeState } from '../weather.reducer';
+import { AppState } from 'src/app/app-state.reducers';
+import { weatherModeUpdate } from 'src/app/app-state.actions';
 
 @Component({
   selector: 'app-weather-toolbar',
@@ -15,20 +15,20 @@ import { WeatherModeState } from '../weather.reducer';
 })
 export class WeatherToolbarComponent implements OnInit {
   @Input() alertCount: number | undefined = 0;
-  @Input() loading : boolean | undefined = true;
+  @Input() loading: boolean | undefined = true;
   @Output() alertEvent = new EventEmitter<void>();
 
-  weatherModeState$: Observable<WeatherModeState> | undefined;
+  appState$: Observable<AppState> | undefined;
 
   mode: WeatherReadingType | undefined;
 
-  constructor(private store: Store<{ weatherMode: WeatherModeState }>) {}
+  constructor(private store: Store<{ appState: AppState }>) {}
 
   ngOnInit() {
-    this.weatherModeState$ = this.store.select('weatherMode');
+    this.appState$ = this.store.select('appState');
 
-    this.weatherModeState$.subscribe((state) => {
-      this.mode = state.mode;
+    this.appState$.subscribe((state) => {
+      this.mode = state.weatherMode;
     });
   }
 
@@ -57,7 +57,7 @@ export class WeatherToolbarComponent implements OnInit {
   }
 
   _changeMode(value: WeatherReadingType) {
-    this.store.dispatch(weatherModeChange({ mode: value }));
+    this.store.dispatch(weatherModeUpdate({ mode: value }));
   }
 
   showAlert() {

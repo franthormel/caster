@@ -14,7 +14,7 @@ import { Observable, forkJoin } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 import { Store } from '@ngrx/store';
-import { WeatherModeState } from '../weather.reducer';
+import { AppState } from 'src/app/app-state.reducers';
 
 @Component({
   selector: 'app-weather-main',
@@ -22,7 +22,7 @@ import { WeatherModeState } from '../weather.reducer';
   styleUrls: ['./weather-main.component.css'],
 })
 export class WeatherMainComponent implements OnInit {
-  weatherModeState$: Observable<WeatherModeState> | undefined;
+  appState$: Observable<AppState> | undefined;
   weatherData$: Observable<WeatherData> | undefined;
   geolocationsData$: Observable<Geolocation[]> | undefined;
 
@@ -33,15 +33,15 @@ export class WeatherMainComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private store: Store<{ weatherMode: WeatherModeState }>,
+    private store: Store<{ appState: AppState }>,
     private weatherDataService: WeatherDataService
   ) {}
 
   ngOnInit(): void {
-    this.weatherModeState$ = this.store.select('weatherMode');
+    this.appState$ = this.store.select('appState');
 
-    this.weatherModeState$.subscribe((state) => {
-      this.mode = state.mode;
+    this.appState$.subscribe((state) => {
+      this.mode = state.weatherMode;
     });
 
     // Static weather data

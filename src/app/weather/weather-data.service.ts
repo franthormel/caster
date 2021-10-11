@@ -4,8 +4,8 @@ import { Injectable, OnInit } from '@angular/core';
 import { Geolocation } from '../models/geolocation/geolocation.models';
 import { WeatherData } from 'src/app/models/weather/weather-data.models';
 
-import { StaticDataState } from '../static-data.reducers';
 import { Store } from '@ngrx/store';
+import { AppState } from '../app-state.reducers';
 
 import { Observable } from 'rxjs';
 
@@ -13,19 +13,19 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class WeatherDataService implements OnInit {
-  staticDataState$: Observable<StaticDataState> | undefined;
+  appState$: Observable<AppState> | undefined;
   file: number | undefined;
 
   constructor(
     private httpClient: HttpClient,
-    private store: Store<{ data: StaticDataState }>
+    private store: Store<{ appState: AppState }>
   ) {}
 
   ngOnInit(): void {
-    this.staticDataState$ = this.store.select('data');
+    this.appState$ = this.store.select('appState');
 
-    this.staticDataState$.subscribe((state) => {
-      this.file = state.file;
+    this.appState$.subscribe((state) => {
+      this.file = state.staticFile;
     });
   }
 

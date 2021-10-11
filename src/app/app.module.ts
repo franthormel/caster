@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { staticDataReducer } from './static-data.reducers';
+import { appStateReducer } from './app-state.reducers';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,7 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({ data: staticDataReducer }),
+    StoreModule.forRoot({ appState: appStateReducer }),
     StoreDevtoolsModule.instrument({}),
   ],
   bootstrap: [AppComponent],
