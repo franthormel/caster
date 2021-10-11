@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app-state.reducers';
 import { weatherModeUpdate } from 'src/app/app-state.actions';
+import { WeatherModeService } from '../weather-mode.service';
 
 @Component({
   selector: 'app-weather-toolbar',
@@ -22,7 +23,10 @@ export class WeatherToolbarComponent implements OnInit {
 
   mode: WeatherReadingType | undefined;
 
-  constructor(private store: Store<{ appState: AppState }>) {}
+  constructor(
+    private store: Store<{ appState: AppState }>,
+    public weatherModeService: WeatherModeService
+  ) {}
 
   ngOnInit() {
     this.appState$ = this.store.select('appState');
@@ -30,18 +34,6 @@ export class WeatherToolbarComponent implements OnInit {
     this.appState$.subscribe((state) => {
       this.mode = state.weatherMode;
     });
-  }
-
-  get isCurrent(): boolean {
-    return this.mode === WeatherReadingType.Current;
-  }
-
-  get isHourly(): boolean {
-    return this.mode === WeatherReadingType.Hourly;
-  }
-
-  get isDaily(): boolean {
-    return this.mode === WeatherReadingType.Daily;
   }
 
   changeToCurrent() {

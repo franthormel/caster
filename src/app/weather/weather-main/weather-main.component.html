@@ -5,9 +5,11 @@
 </ng-container>
 <ng-container *ngIf="!loading && weather">
     <div class="padding-content">
-        <app-weather-current *ngIf="isCurrent" [weatherCurrent]="weather.current" [weatherMinutely]="weather.minutely">
+        <app-weather-current *ngIf="weatherModeService.isCurrent(mode)" [weatherCurrent]="weather.current"
+            [weatherMinutely]="weather.minutely">
         </app-weather-current>
-        <app-weather-hourly *ngIf="isHourly" [weatherHour]="weather.hourly"></app-weather-hourly>
-        <app-weather-daily *ngIf="isDaily" [weatherDay]="weather.daily"></app-weather-daily>
+        <app-weather-hourly *ngIf="weatherModeService.isHourly(mode)" [weatherHour]="weather.hourly">
+        </app-weather-hourly>
+        <app-weather-daily *ngIf="weatherModeService.isDaily(mode)" [weatherDay]="weather.daily"></app-weather-daily>
     </div>
 </ng-container>

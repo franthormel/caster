@@ -11,10 +11,10 @@ import { Geolocation } from 'src/app/models/geolocation/geolocation.models';
 import { WeatherDataService } from '../weather-data.service';
 
 import { Observable, forkJoin } from 'rxjs';
-import { delay } from 'rxjs/operators';
 
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app-state.reducers';
+import { WeatherModeService } from '../weather-mode.service';
 
 @Component({
   selector: 'app-weather-main',
@@ -34,7 +34,8 @@ export class WeatherMainComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private store: Store<{ appState: AppState }>,
-    private weatherDataService: WeatherDataService
+    private weatherDataService: WeatherDataService,
+    public weatherModeService: WeatherModeService
   ) {}
 
   ngOnInit(): void {
@@ -94,18 +95,6 @@ export class WeatherMainComponent implements OnInit {
    */
   get alertsCount(): number | undefined {
     return this.alerts?.length;
-  }
-
-  get isCurrent(): boolean {
-    return this.mode === WeatherReadingType.Current;
-  }
-
-  get isHourly(): boolean {
-    return this.mode === WeatherReadingType.Hourly;
-  }
-
-  get isDaily(): boolean {
-    return this.mode === WeatherReadingType.Daily;
   }
 
   showAlertDialog() {

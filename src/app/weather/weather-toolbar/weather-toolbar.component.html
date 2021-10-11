@@ -19,9 +19,12 @@
     </button>
     <mat-menu #menuWeatherMode="matMenu">
         <mat-selection-list [multiple]="false">
-            <mat-list-option (click)="changeToCurrent()" [selected]="isCurrent">Current</mat-list-option>
-            <mat-list-option (click)="changeToHourly()" [selected]="isHourly">Hourly</mat-list-option>
-            <mat-list-option (click)="changeToDaily()" [selected]="isDaily">Daily</mat-list-option>
+            <mat-list-option (click)="changeToCurrent()" [selected]="weatherModeService.isCurrent(mode)">Current
+            </mat-list-option>
+            <mat-list-option (click)="changeToHourly()" [selected]="weatherModeService.isHourly(mode)">Hourly
+            </mat-list-option>
+            <mat-list-option (click)="changeToDaily()" [selected]="weatherModeService.isDaily(mode)">Daily
+            </mat-list-option>
         </mat-selection-list>
     </mat-menu>
 </mat-toolbar>
