@@ -14,7 +14,7 @@ import { WeatherAlert } from './weather-alert.models';
  * * `hourly` Hourly forecast weather data *(47 hours)*
  * * `daily` Daily forecast weather data *(1 week)*
  */
-export interface Weather {
+export interface WeatherData {
   lat: number;
   lon: number;
   timezone: string;

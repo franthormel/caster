@@ -1,27 +1,27 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { weatherChangeMode } from './weather.actions';
+import { weatherModeChange } from './weather.actions';
 import { WeatherReadingType } from '../models/weather/weather.enums';
 
-export const weatherKey = 'weather';
+export const weatherModeKey = 'weatherMode';
 
-export interface WeatherState {
+export interface WeatherModeState {
   mode: WeatherReadingType;
 }
 
-export const weatherState: WeatherState = {
+export const weatherModeState: WeatherModeState = {
   mode: WeatherReadingType.Current,
 };
 
-const _weatherReducer = createReducer(
-  weatherState,
-  on(weatherChangeMode, (state, { mode }) => ({
+const _weatherModeReducer = createReducer(
+  weatherModeState,
+  on(weatherModeChange, (state, { mode }) => ({
     mode: mode,
   }))
 );
 
-export function weatherReducer(
-  state: WeatherState | undefined,
+export function weatherModeReducer(
+  state: WeatherModeState | undefined,
   action: Action
 ) {
-  return _weatherReducer(state, action);
+  return _weatherModeReducer(state, action);
 }

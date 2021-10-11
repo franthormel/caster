@@ -1,13 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Weather } from 'src/app/models/weather/weather.models';
-import { WeatherDataService } from '../weather-data.service';
-import { WeatherReadingType } from 'src/app/models/weather/weather.enums';
-import { Observable } from 'rxjs';
-import { WeatherState } from '../weather.reducer';
-import { Store } from '@ngrx/store';
-import { WeatherAlert } from 'src/app/models/weather/weather-alert.models';
 import { MatDialog } from '@angular/material/dialog';
+
 import { WeatherAlertComponent } from '../weather-alert/weather-alert.component';
+
+import { WeatherData } from 'src/app/models/weather/weather-data.models';
+import { WeatherReadingType } from 'src/app/models/weather/weather.enums';
+import { WeatherAlert } from 'src/app/models/weather/weather-alert.models';
+
+import { WeatherDataService } from '../weather-data.service';
+
+import { Observable } from 'rxjs';
+
+import { Store } from '@ngrx/store';
+import { WeatherModeState } from '../weather.reducer';
 
 @Component({
   selector: 'app-weather-main',
@@ -15,39 +20,33 @@ import { WeatherAlertComponent } from '../weather-alert/weather-alert.component'
   styleUrls: ['./weather-main.component.css'],
 })
 export class WeatherMainComponent implements OnInit {
-  weatherState$: Observable<WeatherState> | undefined;
-  weatherData$: Observable<Weather> | undefined;
+  weatherModeState$: Observable<WeatherModeState> | undefined;
+  weatherData$: Observable<WeatherData> | undefined;
+
   mode: WeatherReadingType | undefined;
+  weather: WeatherData | undefined;
   loading: boolean | undefined;
-  data: Weather | undefined;
 
   constructor(
     public dialog: MatDialog,
-    private store: Store<{ weather: WeatherState }>,
+    private store: Store<{ weatherMode: WeatherModeState }>,
     private weatherDataService: WeatherDataService
   ) {}
 
   ngOnInit(): void {
-    // Initialize weather state
-    this.weatherState$ = this.store.select('weather');
+    this.weatherModeState$ = this.store.select('weatherMode');
 
-    // Weather mode
-    this.weatherState$.subscribe({
-      next: (state) => {
-        this.mode = state.mode;
-      },
-      error: (e) => {
-        console.error('Weather state error', e);
-      },
+    this.weatherModeState$.subscribe((state) => {
+      this.mode = state.mode;
     });
 
     // Static weather data
-    this.weatherData$ = this.weatherDataService.localFileWeatherData(1);
+    this.weatherData$ = this.weatherDataService.localFileWeather();
 
     this.weatherData$.subscribe({
       next: (data) => {
         this.loading = true;
-        this.data = data;
+        this.weather = data;
       },
       error: (e) => {
         console.error('Weather static data error', e);
@@ -62,7 +61,7 @@ export class WeatherMainComponent implements OnInit {
    * Data used for `mat-dialog`
    */
   get alerts(): WeatherAlert[] | undefined {
-    return this.data?.alerts;
+    return this.weather?.alerts;
   }
 
   /**
