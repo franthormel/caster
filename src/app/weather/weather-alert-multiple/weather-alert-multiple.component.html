@@ -8,9 +8,9 @@
             </mat-panel-title>
             <!--Timerange-->
             <mat-panel-description class="mat-subheading-1">
-                {{convertTime(alert.start)}} — {{convertTime(alert.end)}}
+                {{timeDescription(alert)}}
             </mat-panel-description>
         </mat-expansion-panel-header>
-        <app-weather-alert-content [alert]="alert"></app-weather-alert-content>
+        <app-weather-alert-content [alert]="alert" [showAlertTimeRange]="false"></app-weather-alert-content>
     </mat-expansion-panel>
 </mat-accordion>

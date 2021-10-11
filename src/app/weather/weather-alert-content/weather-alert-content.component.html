@@ -1,3 +1,7 @@
+<ng-container *ngIf="showAlertTimeRange">
+    <h3>Duration: {{timeDescription}}</h3>
+</ng-container>
+
 <!--Description-->
 <!--Lines that are FULLY CAPITALIZED are styled in bold-->
 <p *ngFor="let line of descriptionLines(alert)"

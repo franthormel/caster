@@ -28,6 +28,7 @@ import { WeatherMainComponent } from './weather-main/weather-main.component';
 import { WeatherAlertSingleComponent } from './weather-alert-single/weather-alert-single.component';
 import { WeatherAlertMultipleComponent } from './weather-alert-multiple/weather-alert-multiple.component';
 import { WeatherAlertContentComponent } from './weather-alert-content/weather-alert-content.component';
+import { EpochConverterService } from './epoch-converter.service';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,6 @@ import { WeatherAlertContentComponent } from './weather-alert-content/weather-al
     MatChipsModule,
     MatExpansionModule,
   ],
-  providers: [WeatherDataService],
+  providers: [WeatherDataService, EpochConverterService],
 })
 export class WeatherModule {}

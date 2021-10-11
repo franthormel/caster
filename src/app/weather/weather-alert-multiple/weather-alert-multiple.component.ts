@@ -1,4 +1,7 @@
 import { Component, Input } from '@angular/core';
+
+import { EpochConverterService } from '../epoch-converter.service';
+
 import { WeatherAlert } from 'src/app/models/weather/weather-alert.models';
 
 @Component({
@@ -9,13 +12,9 @@ import { WeatherAlert } from 'src/app/models/weather/weather-alert.models';
 export class WeatherAlertMultipleComponent {
   @Input() alerts!: WeatherAlert[];
 
-  /**
-   * Converts Epoch to UTC string
-   * @param time UTC seconds
-   * @returns UTC string
-   */
-  convertTime(time: number): string {
-    const date = new Date(time * 1000);
-    return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+  constructor(private epochConverter: EpochConverterService) {}
+
+  timeDescription(alert: WeatherAlert): string {
+    return this.epochConverter.alertTimeRange(alert);
   }
 }
