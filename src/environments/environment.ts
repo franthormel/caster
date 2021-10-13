@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  staticDataUrl: '/assets/data/',
+  assetsDataUrl: '/assets/data/',
+  assetsIcons: '/assets/images/icons/'
 };
 
 /*
