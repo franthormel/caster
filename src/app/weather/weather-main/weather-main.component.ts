@@ -1,20 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
-import { WeatherAlertComponent } from '../weather-alert/weather-alert.component';
-
-import { WeatherData } from 'src/app/models/weather/weather-data.models';
-import { WeatherReadingType } from 'src/app/models/weather/weather.enums';
-import { WeatherAlert } from 'src/app/models/weather/weather-alert.models';
-import { Geolocation } from 'src/app/models/geolocation/geolocation.models';
-
-import { WeatherDataService } from '../weather-data.service';
-
 import { Observable, forkJoin } from 'rxjs';
 
-import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/app-state.reducers';
+import { WeatherAlertComponent } from '../weather-alert/weather-alert.component';
+
+import { WeatherData } from '../../models/weather/weather-data.models';
+import { WeatherAlert } from '../../models/weather/weather-alert.models';
+import { Geolocation } from '../../models/geolocation/geolocation.models';
+
 import { WeatherModeService } from '../weather-mode.service';
+import { WeatherDataService } from '../weather-data.service';
 
 @Component({
   selector: 'app-weather-main',
@@ -22,33 +18,26 @@ import { WeatherModeService } from '../weather-mode.service';
   styleUrls: ['./weather-main.component.css'],
 })
 export class WeatherMainComponent implements OnInit {
-  appState$: Observable<AppState> | undefined;
   weatherData$: Observable<WeatherData> | undefined;
   geolocationsData$: Observable<Geolocation[]> | undefined;
 
-  mode: WeatherReadingType | undefined;
   geolocations: Geolocation[] | undefined;
   weather: WeatherData | undefined;
   loading: boolean | undefined;
 
   constructor(
     public dialog: MatDialog,
-    private store: Store<{ appState: AppState }>,
     private weatherDataService: WeatherDataService,
     public weatherModeService: WeatherModeService
   ) {}
 
   ngOnInit(): void {
-    this.appState$ = this.store.select('appState');
-
-    this.appState$.subscribe((state) => {
-      this.mode = state.weatherMode;
-    });
-
     // Static weather data
     this.loading = true;
+
     this.weatherData$ = this.weatherDataService.localFileWeather();
     this.geolocationsData$ = this.weatherDataService.localFileGeolocation();
+
     const dataCollection$ = forkJoin([
       this.weatherData$,
       this.geolocationsData$,
@@ -80,6 +69,13 @@ export class WeatherMainComponent implements OnInit {
         this.loading = false;
       },
     });
+  }
+
+  /**
+   * Geolocation data for child components
+   */
+  get geolocation(): Geolocation | undefined {
+    return this.geolocations ? this.geolocations[0] : undefined;
   }
 
   /**

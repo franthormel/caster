@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
-import { StoreModule } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-
 
 import { WeatherRoutingModule } from './weather-routing.module';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,7 +15,6 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatExpansionModule } from '@angular/material/expansion';
 
-import { WeatherDataService } from './weather-data.service';
 import { WeatherCurrentComponent } from './weather-current/weather-current.component';
 import { WeatherToolbarComponent } from './weather-toolbar/weather-toolbar.component';
 import { WeatherAlertComponent } from './weather-alert/weather-alert.component';
@@ -27,10 +24,13 @@ import { WeatherMainComponent } from './weather-main/weather-main.component';
 import { WeatherAlertSingleComponent } from './weather-alert-single/weather-alert-single.component';
 import { WeatherAlertMultipleComponent } from './weather-alert-multiple/weather-alert-multiple.component';
 import { WeatherAlertContentComponent } from './weather-alert-content/weather-alert-content.component';
-import { EpochConverterService } from './epoch-converter.service';
 import { WeatherContentTopLeftComponent } from './weather-content-top-left/weather-content-top-left.component';
 import { WeatherContentTopRightComponent } from './weather-content-top-right/weather-content-top-right.component';
 import { WeatherContentTopComponent } from './weather-content-top/weather-content-top.component';
+
+import { EpochConverterService } from './epoch-converter.service';
+import { WeatherDataService } from './weather-data.service';
+import { WeatherModeService } from './weather-mode.service';
 
 @NgModule({
   declarations: [
@@ -63,6 +63,6 @@ import { WeatherContentTopComponent } from './weather-content-top/weather-conten
     MatChipsModule,
     MatExpansionModule,
   ],
-  providers: [WeatherDataService, EpochConverterService],
+  providers: [EpochConverterService, WeatherDataService, WeatherModeService],
 })
 export class WeatherModule {}

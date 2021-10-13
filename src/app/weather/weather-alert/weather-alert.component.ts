@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { WeatherAlert } from 'src/app/models/weather/weather-alert.models';
+
+import { WeatherAlert } from '../../models/weather/weather-alert.models';
 
 @Component({
   selector: 'app-weather-alert',

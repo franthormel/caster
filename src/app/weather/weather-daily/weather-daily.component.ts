@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { WeatherReadingDaily } from 'src/app/models/weather/weather-reading-daily.models';
+
+import { WeatherReadingDaily } from '../../models/weather/weather-reading-daily.models';
+import { Geolocation } from '../../models/geolocation/geolocation.models';
 
 @Component({
   selector: 'app-weather-daily',
@@ -8,4 +10,5 @@ import { WeatherReadingDaily } from 'src/app/models/weather/weather-reading-dail
 })
 export class WeatherDailyComponent {
   @Input() weatherDay: WeatherReadingDaily[] | undefined;
+  @Input() geolocation: Geolocation | undefined;
 }

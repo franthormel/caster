@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { WeatherAlert } from 'src/app/models/weather/weather-alert.models';
+
+import { WeatherAlert } from '../../models/weather/weather-alert.models';
+
 import { EpochConverterService } from '../epoch-converter.service';
 
 @Component({

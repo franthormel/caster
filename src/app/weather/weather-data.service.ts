@@ -1,27 +1,29 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { Geolocation } from '../models/geolocation/geolocation.models';
-import { WeatherData } from 'src/app/models/weather/weather-data.models';
+import { WeatherData } from '../models/weather/weather-data.models';
+import { environment } from '../../environments/environment';
 
-import { Store } from '@ngrx/store';
 import { AppState } from '../app-state.reducers';
-
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class WeatherDataService implements OnInit {
+export class WeatherDataService {
   appState$: Observable<AppState> | undefined;
   file: number | undefined;
 
   constructor(
     private httpClient: HttpClient,
     private store: Store<{ appState: AppState }>
-  ) {}
+  ) {
+    this.fileIndex();
+  }
 
-  ngOnInit(): void {
+  fileIndex() {
     this.appState$ = this.store.select('appState');
 
     this.appState$.subscribe((state) => {
@@ -31,14 +33,13 @@ export class WeatherDataService implements OnInit {
 
   /**
    * Returns previously collected weather data
-   * @param index Name of file (1 to 3).
    * @returns Observable<Weather>
    */
-  localFileWeather(index?: number): Observable<WeatherData> {
+  localFileWeather(): Observable<WeatherData> {
     const file = this.file ? this.file : 1;
 
     return this.httpClient.get<WeatherData>(
-      `/assets/data/weather/${file}.json`,
+      `${environment.staticDataUrl}weather/${file}.json`,
       {
         responseType: 'json',
       }
@@ -47,14 +48,13 @@ export class WeatherDataService implements OnInit {
 
   /**
    * Returns previously collected geolocation data
-   * @param index Name of file (1 to 3).
    * @returns Observable<Geolocation>
    */
-  localFileGeolocation(index?: number): Observable<Geolocation[]> {
+  localFileGeolocation(): Observable<Geolocation[]> {
     const file = this.file ? this.file : 1;
 
     return this.httpClient.get<Geolocation[]>(
-      `/assets/data/geolocations/${file}.json`,
+      `${environment.staticDataUrl}geolocations/${file}.json`,
       {
         responseType: 'json',
       }
