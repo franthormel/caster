@@ -6,6 +6,7 @@ import { WeatherReadingHourly } from '../../models/weather/weather-reading-hourl
 import { WeatherReadingMinutely } from '../../models/weather/weather-reading-minutely.models';
 
 import { WeatherModeService } from '../weather-mode.service';
+import { EpochConverterService } from '../epoch-converter.service';
 
 @Component({
   selector: 'app-weather-content-top-right',
@@ -18,5 +19,29 @@ export class WeatherContentTopRightComponent {
   @Input() weatherHourly: WeatherReadingHourly | undefined;
   @Input() weatherDaily: WeatherReadingDaily | undefined;
 
-  constructor(public weatherModeService: WeatherModeService) {}
+  constructor(
+    public weatherModeService: WeatherModeService,
+    private epochConverterService: EpochConverterService
+  ) {}
+
+  // Getters for displaying time
+
+  /**
+   * Date time for `WeatherReadingCurrent` NOT current time.
+   */
+  get timeCurrent(): string {
+    return this.epochConverterService.convertToTime(this.weatherCurrent?.dt);
+  }
+
+  get timeCurrentSunrise(): string {
+    return this.epochConverterService.convertToTime(
+      this.weatherCurrent?.sunrise
+    );
+  }
+
+  get timeCurrentSunset(): string {
+    return this.epochConverterService.convertToTime(
+      this.weatherCurrent?.sunset
+    );
+  }
 }

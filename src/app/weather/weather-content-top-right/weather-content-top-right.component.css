@@ -1,4 +1,10 @@
-.space-between {
-  justify-content: space-between;
+.flexbox {
   display: flex;
+  justify-content: space-between;
+}
+
+.flexbox-contents {
+  align-self: end;
+  margin-left: 1vw;
+  text-align: right;
 }
