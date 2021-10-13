@@ -39,7 +39,7 @@ export class WeatherDataService {
     const file = this.file ? this.file : 1;
 
     return this.httpClient.get<WeatherData>(
-      `${environment.staticDataUrl}weather/${file}.json`,
+      `${environment.assetsDataUrl}weather/${file}.json`,
       {
         responseType: 'json',
       }
@@ -54,7 +54,7 @@ export class WeatherDataService {
     const file = this.file ? this.file : 1;
 
     return this.httpClient.get<Geolocation[]>(
-      `${environment.staticDataUrl}geolocations/${file}.json`,
+      `${environment.assetsDataUrl}geolocations/${file}.json`,
       {
         responseType: 'json',
       }

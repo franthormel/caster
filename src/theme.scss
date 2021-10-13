@@ -170,3 +170,24 @@ $dark-theme: mat.define-dark-theme(
 .theme-dark {
   @include mat.all-component-colors($dark-theme);
 }
+
+// Custom text colors
+.dark-text {
+  color: #f7fbfc;
+}
+.dark-warn {
+  color: mat.get-color-from-palette($palette-tart-orange, "500");
+}
+
+.light-text,
+.light-accent,
+.dark-primary {
+  color: mat.get-color-from-palette($palette-fogra29, "700");
+}
+.light-primary,
+.dark-accent {
+  color: mat.get-color-from-palette($palette-corn, "500");
+}
+.light-warn {
+  color: mat.get-color-from-palette($palette-rosso-corsa, "500");
+}

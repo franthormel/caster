@@ -22,6 +22,7 @@ import { WeatherCondition } from './weather-condition.models';
  * * `wind_speed` Wind speed. Units – default: metre/sec
  */
 export interface WeatherReading {
+  dt: number;
   clouds: number;
   dew_point: number;
   feels_like: number | ReadingDailyFeelsLike;
