@@ -19,7 +19,7 @@ export interface AppState {
 
 export const appState: AppState = {
   staticFile: 1,
-  weatherMode: WeatherReadingType.Current,
+  weatherMode: WeatherReadingType.Hourly,
   weatherIndexDaily: 0,
   weatherIndexHourly: 0,
 };

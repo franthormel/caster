@@ -1,9 +1,37 @@
-<div class="space-between">
-    <app-weather-content-top-left [geolocation]="geolocation"></app-weather-content-top-left>
-    <app-weather-content-top-right 
-        [weatherCurrent]="weatherCurrent"
-        [weatherMinutely]="weatherMinutely"
-        [weatherHourly]="weatherHourly"
-        [weatherDaily]="weatherDaily">
-    </app-weather-content-top-right>
+<div class="flexbox">
+    <!--Location (Left)-->
+    <p class="flexbox-contents-left">{{geolocationDisplay}}</p>
+
+    <!--Date time & controls if any (Right)-->
+    <!--Current-->
+    <div *ngIf="weatherModeService.isCurrent && weatherCurrent" class="flexbox">
+        <div class="flexbox-contents-right">
+            <p aria-label="Weather's time">{{timeCurrent}}</p>
+        </div>
+        <div class="flexbox-contents-right">
+            <mat-icon svgIcon="sunrise" color="accent" aria-label="Sunrise"></mat-icon>
+            <p aria-label="Sunrise time">{{timeCurrentSunrise}}</p>
+        </div>
+        <div class="flexbox-contents-right">
+            <mat-icon svgIcon="sunset" color="accent" aria-label=" Sunset"></mat-icon>
+            <p aria-label="Sunset time">{{timeCurrentSunset}}</p>
+        </div>
+    </div>
+
+    <!--Hourly-->
+    <div *ngIf="weatherModeService.isHourly && weatherHourly">
+        <button mat-icon-button aria-label="Previous hourly weather">
+            <mat-icon color="accent">chevron_left</mat-icon>
+        </button>
+        Hi
+        <button mat-icon-button aria-label="Next hourly weather">
+            <mat-icon color="accent">chevron_right</mat-icon>
+        </button>
+    </div>
+
+    <!--Daily-->
+    <div *ngIf="weatherModeService.isDaily && weatherDaily">
+        <p>DISPLAY DT + Sunrise & icon + Sunset & icon + /br + moon_phase & icon + moon_rise & icon + moon_set & icon
+        </p>
+    </div>
 </div>

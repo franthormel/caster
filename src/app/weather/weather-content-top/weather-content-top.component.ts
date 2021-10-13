@@ -6,6 +6,9 @@ import { WeatherReadingHourly } from '../../models/weather/weather-reading-hourl
 import { WeatherReadingMinutely } from '../../models/weather/weather-reading-minutely.models';
 import { Geolocation } from '../../models/geolocation/geolocation.models';
 
+import { WeatherModeService } from '../weather-mode.service';
+import { EpochConverterService } from '../epoch-converter.service';
+
 @Component({
   selector: 'app-weather-content-top',
   templateUrl: './weather-content-top.component.html',
@@ -17,4 +20,34 @@ export class WeatherContentTopComponent {
   @Input() weatherHourly: WeatherReadingHourly | undefined;
   @Input() weatherDaily: WeatherReadingDaily | undefined;
   @Input() geolocation: Geolocation | undefined;
+
+  constructor(
+    public weatherModeService: WeatherModeService,
+    private epochConverterService: EpochConverterService
+  ) {}
+
+  /**
+   * Date time for `WeatherReadingCurrent` NOT current time.
+   */
+  get geolocationDisplay(): string {
+    return this.geolocation
+      ? `${this.geolocation.name}, ${this.geolocation.country}`
+      : '';
+  }
+
+  get timeCurrent(): string {
+    return this.epochConverterService.convertToTime(this.weatherCurrent?.dt);
+  }
+
+  get timeCurrentSunrise(): string {
+    return this.epochConverterService.convertToTime(
+      this.weatherCurrent?.sunrise
+    );
+  }
+
+  get timeCurrentSunset(): string {
+    return this.epochConverterService.convertToTime(
+      this.weatherCurrent?.sunset
+    );
+  }
 }
