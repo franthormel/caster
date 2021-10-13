@@ -1,3 +1,9 @@
-<p *ngIf="weatherModeService.isCurrent">DISPLAY DT + Sunrise & icon + Sunset & icon</p>
-<p *ngIf="weatherModeService.isHourly">DISPLAY icon & chevron_left + Today | Tomorrow & time + icon & chevron_right</p>
-<p *ngIf="weatherModeService.isDaily">DISPLAY DT + Sunrise & icon + Sunset & icon + /br + moon_phase & icon + moon_rise & icon + moon_set & icon</p>
+<div *ngIf="weatherModeService.isCurrent && weatherCurrent">
+    <p>DISPLAY DT + Sunrise & icon + Sunset & icon</p>
+</div>
+<div *ngIf="weatherModeService.isHourly && weatherHourly">
+    <p>DISPLAY icon & chevron_left + Today | Tomorrow & time + icon & chevron_right</p>
+</div>
+<div *ngIf="weatherModeService.isDaily && weatherDaily">
+    <p>DISPLAY DT + Sunrise & icon + Sunset & icon + /br + moon_phase & icon + moon_rise & icon + moon_set & icon</p>
+</div>

@@ -11,6 +11,7 @@ import { Geolocation } from '../../models/geolocation/geolocation.models';
 
 import { WeatherModeService } from '../weather-mode.service';
 import { WeatherDataService } from '../weather-data.service';
+import { WeatherReadingCurrent } from 'src/app/models/weather/weather-reading-current.models';
 
 @Component({
   selector: 'app-weather-main',

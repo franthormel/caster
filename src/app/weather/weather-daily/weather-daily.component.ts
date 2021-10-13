@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { WeatherReadingDaily } from '../../models/weather/weather-reading-daily.models';
 import { Geolocation } from '../../models/geolocation/geolocation.models';
@@ -9,6 +9,11 @@ import { Geolocation } from '../../models/geolocation/geolocation.models';
   styleUrls: ['./weather-daily.component.css'],
 })
 export class WeatherDailyComponent {
-  @Input() weatherDay: WeatherReadingDaily[] | undefined;
+  @Input() weatherDaily: WeatherReadingDaily[] | undefined;
   @Input() geolocation: Geolocation | undefined;
+
+  get weatherDay(): WeatherReadingDaily | undefined {
+    //TODO Instead of using '0', fetch the actual index from the store
+    return this.weatherDaily ? this.weatherDaily[0] : undefined;
+  }
 }

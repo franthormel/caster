@@ -1,4 +1,9 @@
 <div class="space-between">
-    <app-weather-content-top-left></app-weather-content-top-left>
-    <app-weather-content-top-right></app-weather-content-top-right>
+    <app-weather-content-top-left [geolocation]="geolocation"></app-weather-content-top-left>
+    <app-weather-content-top-right 
+        [weatherCurrent]="weatherCurrent"
+        [weatherMinutely]="weatherMinutely"
+        [weatherHourly]="weatherHourly"
+        [weatherDaily]="weatherDaily">
+    </app-weather-content-top-right>
 </div>
