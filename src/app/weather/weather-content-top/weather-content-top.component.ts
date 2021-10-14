@@ -77,17 +77,17 @@ export class WeatherContentTopComponent implements OnInit {
   }
 
   // CURRENT
-  get timeCurrent(): string {
+  get currentTime(): string {
     return this.epochConverterService.convertToTime(
       this.weatherData.current.dt
     );
   }
-  get timeCurrentSunrise(): string {
+  get currentSunriseTime(): string {
     return this.epochConverterService.convertToTime(
       this.weatherData.current.sunrise
     );
   }
-  get timeCurrentSunset(): string {
+  get currentSunsetTime(): string {
     return this.epochConverterService.convertToTime(
       this.weatherData.current.sunset
     );
@@ -101,7 +101,7 @@ export class WeatherContentTopComponent implements OnInit {
     return this.indexHourly < environment.maxHourly - 1;
   }
 
-  get timeHourly(): string {
+  get hourlyTime(): string {
     const pointWeather = this.weatherHourlyTimestamp();
     const compareWeather = this.weatherHourlyTimestamp(this.indexHourly);
 

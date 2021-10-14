@@ -6,40 +6,68 @@
     <!--Current-->
     <div *ngIf="showCurrent" class="flexbox">
         <div class="flexbox-contents-right">
-            <p aria-label="Weather's time">{{timeCurrent}}</p>
+            <p aria-label="Weather's time">{{currentTime}}</p>
         </div>
         <div class="flexbox-contents-right">
             <mat-icon svgIcon="sunrise" color="accent" aria-label="Sunrise"></mat-icon>
-            <p aria-label="Sunrise time">{{timeCurrentSunrise}}</p>
+            <p aria-label="Sunrise time">{{currentSunriseTime}}</p>
         </div>
         <div class="flexbox-contents-right">
             <mat-icon svgIcon="sunset" color="accent" aria-label=" Sunset"></mat-icon>
-            <p aria-label="Sunset time">{{timeCurrentSunset}}</p>
+            <p aria-label="Sunset time">{{currentSunsetTime}}</p>
         </div>
     </div>
 
     <!--Hourly-->
-    <div *ngIf="showHourly">
-        <button mat-icon-button 
-                aria-label="Previous hour" 
-                matToolTip="Previous hour" 
+    <div *ngIf="showHourly" class="flexbox">
+        <div class="flexbox-contents-right">
+            <button mat-icon-button 
+                aria-label="Previous hour"
+                matToolTip="Previous hour"
                 (click)="hourlyPrevious()"
                 [disabled]="!canHourlyGoBackward">
-            <mat-icon color="accent">chevron_left</mat-icon>
-        </button>
-        {{timeHourly}}
-        <button mat-icon-button 
+                <mat-icon color="accent">chevron_left</mat-icon>
+            </button>
+            {{hourlyTime}}
+            <button mat-icon-button 
                 aria-label="Next hour" 
                 matTooltip="Next hour" 
-                (click)="hourlyNext()" 
+                (click)="hourlyNext()"
                 [disabled]="!canHourlyGoForward">
-            <mat-icon color="accent">chevron_right</mat-icon>
-        </button>
+                <mat-icon color="accent">chevron_right</mat-icon>
+            </button>
+        </div>
     </div>
 
     <!--Daily-->
-    <div *ngIf="showDaily">
-        <p>DISPLAY DT + Sunrise & icon + Sunset & icon + /br + moon_phase & icon + moon_rise & icon + moon_set & icon
-        </p>
+    <div *ngIf="showDaily" class="flexbox">
+        <div class="flexbox-block">
+            <div class="flexbox">
+                <div class="flexbox-contents-right">
+                    <p aria-label="Weather's time">timeDaily</p>
+                </div>
+                <div class="flexbox-contents-right">
+                    <mat-icon svgIcon="sunrise" color="accent" aria-label="Sunrise time"></mat-icon>
+                    <p aria-label="Sunrise time">timeDailySunrise</p>
+                </div>
+                <div class="flexbox-contents-right">
+                    <mat-icon svgIcon="sunset" color="accent" aria-label=" Sunset time"></mat-icon>
+                    <p aria-label="Sunset time">timeDailySunset</p>
+                </div>
+            </div>
+            <div class="flexbox">
+                <div class="flexbox-contents-right">
+                    <p aria-label="Moon phase">dailyMoonphase</p>
+                </div>
+                <div class="flexbox-contents-right">
+                    <mat-icon svgIcon="moonrise" color="accent" aria-label="Moon rise time"></mat-icon>
+                    <p aria-label="Moon rise time">timeDailyMoonrise</p>
+                </div>
+                <div class="flexbox-contents-right">
+                    <mat-icon svgIcon="moonset" color="accent" aria-label=" Moon set time"></mat-icon>
+                    <p aria-label="Moon set time">timeDailyMoonset</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
