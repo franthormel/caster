@@ -5,6 +5,8 @@ import { WeatherAlert } from '../models/weather/weather-alert.models';
   providedIn: 'root',
 })
 export class EpochConverterService {
+  readonly daySeconds = 8.64e4;
+
   /**
    * Returns `Date` object given seconds
    * @param seconds number

@@ -12,19 +12,18 @@
 
 <!--Content-->
 <!--TODO If there is no weather data, notify user by either using snackbar or dialog-->
-<ng-container *ngIf="!loading && weather && geolocation">
+<ng-container *ngIf="!loading && weatherData && geolocation">
     <div class="padding-content">
         <app-weather-current *ngIf="weatherModeService.isCurrent" 
-            [weatherCurrent]="weather.current"
-            [weatherMinutely]="weather.minutely"
+            [weatherData]="weatherData"
             [geolocation]="geolocation">
         </app-weather-current>
         <app-weather-hourly *ngIf="weatherModeService.isHourly" 
-            [weatherHourly]="weather.hourly"
+            [weatherData]="weatherData"
             [geolocation]="geolocation">
         </app-weather-hourly>
         <app-weather-daily *ngIf="weatherModeService.isDaily" 
-            [weatherDaily]="weather.daily"
+            [weatherData]="weatherData"
             [geolocation]="geolocation">
         </app-weather-daily>
     </div>

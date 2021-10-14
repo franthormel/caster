@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { WeatherReadingCurrent } from '../../models/weather/weather-reading-current.models';
-import { WeatherReadingMinutely } from '../../models/weather/weather-reading-minutely.models';
+import { WeatherData } from '../../models/weather/weather-data.models';
 import { Geolocation } from '../../models/geolocation/geolocation.models';
 
 @Component({
@@ -10,7 +9,6 @@ import { Geolocation } from '../../models/geolocation/geolocation.models';
   styleUrls: ['./weather-current.component.css'],
 })
 export class WeatherCurrentComponent {
-  @Input() weatherCurrent: WeatherReadingCurrent | undefined;
-  @Input() weatherMinutely: WeatherReadingMinutely[] | undefined;
+  @Input() weatherData: WeatherData | undefined;
   @Input() geolocation: Geolocation | undefined;
 }

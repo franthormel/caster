@@ -4,7 +4,7 @@
 
     <!--Date time & controls if any (Right)-->
     <!--Current-->
-    <div *ngIf="weatherModeService.isCurrent && weatherCurrent" class="flexbox">
+    <div *ngIf="showCurrent" class="flexbox">
         <div class="flexbox-contents-right">
             <p aria-label="Weather's time">{{timeCurrent}}</p>
         </div>
@@ -19,7 +19,7 @@
     </div>
 
     <!--Hourly-->
-    <div *ngIf="weatherModeService.isHourly && weatherHourly">
+    <div *ngIf="showHourly">
         <button mat-icon-button aria-label="Previous hourly weather">
             <mat-icon color="accent">chevron_left</mat-icon>
         </button>
@@ -30,7 +30,7 @@
     </div>
 
     <!--Daily-->
-    <div *ngIf="weatherModeService.isDaily && weatherDaily">
+    <div *ngIf="showDaily">
         <p>DISPLAY DT + Sunrise & icon + Sunset & icon + /br + moon_phase & icon + moon_rise & icon + moon_set & icon
         </p>
     </div>

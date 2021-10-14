@@ -23,7 +23,7 @@ export class WeatherMainComponent implements OnInit {
   geolocationsData$: Observable<Geolocation[]> | undefined;
 
   geolocations: Geolocation[] | undefined;
-  weather: WeatherData | undefined;
+  weatherData: WeatherData | undefined;
   loading: boolean | undefined;
 
   constructor(
@@ -46,7 +46,7 @@ export class WeatherMainComponent implements OnInit {
 
     this.weatherData$.subscribe({
       next: (data) => {
-        this.weather = data;
+        this.weatherData = data;
       },
       error: (e) => {
         console.error('Weather static data error', e);
@@ -83,7 +83,7 @@ export class WeatherMainComponent implements OnInit {
    * Data used for `mat-dialog`
    */
   get alerts(): WeatherAlert[] | undefined {
-    return this.weather?.alerts;
+    return this.weatherData?.alerts;
   }
 
   /**
