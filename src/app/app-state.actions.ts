@@ -13,7 +13,9 @@ export const weatherIndexDailyUpdate = createAction(
   "[Weather Index] Daily's Update",
   props<{ index: number }>()
 );
-export const weatherIndexHourlyUpdate = createAction(
-  "[Weather Index] Hourly's Update",
-  props<{ index: number }>()
+export const weatherIndexHourlyIncrement = createAction(
+  '[Weather Index] Increment Hourly'
+);
+export const weatherIndexHourlyDecrement = createAction(
+  '[Weather Index] Decrement Hourly'
 );

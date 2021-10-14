@@ -10,11 +10,6 @@ import { Geolocation } from '../../models/geolocation/geolocation.models';
   styleUrls: ['./weather-daily.component.css'],
 })
 export class WeatherDailyComponent {
-  @Input() weatherData: WeatherData | undefined;
-  @Input() geolocation: Geolocation | undefined;
-
-  get weatherDay(): WeatherReadingDaily | undefined {
-    //TODO Instead of using '0', fetch the actual index from the store
-    return this.weatherData?.daily ? this.weatherData.daily[0] : undefined;
-  }
+  @Input() weatherData!: WeatherData;
+  @Input() geolocation!: Geolocation;
 }

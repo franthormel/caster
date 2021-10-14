@@ -13,17 +13,17 @@ import { AppState } from '../app-state.reducers';
   providedIn: 'root',
 })
 export class WeatherDataService {
-  appState$: Observable<AppState> | undefined;
+  appState$!: Observable<AppState>;
   file: number | undefined;
 
   constructor(
     private httpClient: HttpClient,
     private store: Store<{ appState: AppState }>
   ) {
-    this.fileIndex();
+    this.initializeFileIndex();
   }
 
-  fileIndex() {
+  initializeFileIndex() {
     this.appState$ = this.store.select('appState');
 
     this.appState$.subscribe((state) => {

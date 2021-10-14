@@ -9,6 +9,6 @@ import { Geolocation } from '../../models/geolocation/geolocation.models';
   styleUrls: ['./weather-current.component.css'],
 })
 export class WeatherCurrentComponent {
-  @Input() weatherData: WeatherData | undefined;
-  @Input() geolocation: Geolocation | undefined;
+  @Input() weatherData!: WeatherData;
+  @Input() geolocation!: Geolocation;
 }

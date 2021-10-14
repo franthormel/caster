@@ -20,11 +20,19 @@
 
     <!--Hourly-->
     <div *ngIf="showHourly">
-        <button mat-icon-button aria-label="Previous hourly weather">
+        <button mat-icon-button 
+                aria-label="Previous hour" 
+                matToolTip="Previous hour" 
+                (click)="hourlyPrevious()"
+                [disabled]="!canHourlyGoBackward">
             <mat-icon color="accent">chevron_left</mat-icon>
         </button>
-        Hi
-        <button mat-icon-button aria-label="Next hourly weather">
+        {{timeHourly}}
+        <button mat-icon-button 
+                aria-label="Next hour" 
+                matTooltip="Next hour" 
+                (click)="hourlyNext()" 
+                [disabled]="!canHourlyGoForward">
             <mat-icon color="accent">chevron_right</mat-icon>
         </button>
     </div>

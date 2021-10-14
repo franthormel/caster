@@ -10,15 +10,15 @@ import { WeatherReadingType } from '../models/weather/weather.enums';
   providedIn: 'root',
 })
 export class WeatherModeService {
-  appState$: Observable<AppState> | undefined;
+  appState$!: Observable<AppState>;
 
   mode: WeatherReadingType | undefined;
 
   constructor(private store: Store<{ appState: AppState }>) {
-    this.fileIndex();
+    this.initializeWeatherMode();
   }
 
-  fileIndex() {
+  initializeWeatherMode() {
     this.appState$ = this.store.select('appState');
 
     this.appState$.subscribe((state) => {

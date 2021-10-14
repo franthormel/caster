@@ -10,5 +10,6 @@
 }
 
 .flexbox-contents-left {
+  display: flex;
   align-self: flex-start;
 }
