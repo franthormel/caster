@@ -2,19 +2,18 @@
     <!--Location (Left)-->
     <p class="flexbox-contents-left">{{geolocationDisplay}}</p>
 
-    <!--Date time & controls if any (Right)-->
     <!--Current-->
     <div *ngIf="showCurrent" class="flexbox">
         <div class="flexbox-contents-right">
-            <p aria-label="Weather's time">{{currentTime}}</p>
+            <p aria-label="Weather's time">{{timeCurrent}}</p>
         </div>
         <div class="flexbox-contents-right">
             <mat-icon svgIcon="sunrise" color="accent" aria-label="Sunrise"></mat-icon>
-            <p aria-label="Sunrise time">{{currentSunriseTime}}</p>
+            <p aria-label="Sunrise time">{{timeCurrentSunrise}}</p>
         </div>
         <div class="flexbox-contents-right">
             <mat-icon svgIcon="sunset" color="accent" aria-label=" Sunset"></mat-icon>
-            <p aria-label="Sunset time">{{currentSunsetTime}}</p>
+            <p aria-label="Sunset time">{{timeCurrentSunset}}</p>
         </div>
     </div>
 
@@ -28,7 +27,7 @@
                 [disabled]="!canHourlyGoBackward">
                 <mat-icon color="accent">chevron_left</mat-icon>
             </button>
-            {{hourlyTime}}
+            {{timeHourly}}
             <button mat-icon-button 
                 aria-label="Next hour" 
                 matTooltip="Next hour" 
@@ -44,28 +43,29 @@
         <div class="flexbox-block">
             <div class="flexbox">
                 <div class="flexbox-contents-right">
-                    <p aria-label="Weather's time">timeDaily</p>
+                    <p aria-label="Weather's time">{{timeDaily}}</p>
                 </div>
                 <div class="flexbox-contents-right">
                     <mat-icon svgIcon="sunrise" color="accent" aria-label="Sunrise time"></mat-icon>
-                    <p aria-label="Sunrise time">timeDailySunrise</p>
+                    <p aria-label="Sunrise time">{{timeDailySunrise}}</p>
                 </div>
                 <div class="flexbox-contents-right">
                     <mat-icon svgIcon="sunset" color="accent" aria-label=" Sunset time"></mat-icon>
-                    <p aria-label="Sunset time">timeDailySunset</p>
+                    <p aria-label="Sunset time">{{timeDailySunset}}</p>
                 </div>
             </div>
             <div class="flexbox">
                 <div class="flexbox-contents-right">
-                    <p aria-label="Moon phase">dailyMoonphase</p>
+                    <mat-icon [svgIcon]="dailyMoonphaseIcon" color="warn" aria-label="Sunrise time"></mat-icon>
+                    <p aria-label="Moon phase">{{dailyMoonphase}}</p>
                 </div>
                 <div class="flexbox-contents-right">
                     <mat-icon svgIcon="moonrise" color="accent" aria-label="Moon rise time"></mat-icon>
-                    <p aria-label="Moon rise time">timeDailyMoonrise</p>
+                    <p aria-label="Moon rise time">{{timeDailyMoonrise}}</p>
                 </div>
                 <div class="flexbox-contents-right">
                     <mat-icon svgIcon="moonset" color="accent" aria-label=" Moon set time"></mat-icon>
-                    <p aria-label="Moon set time">timeDailyMoonset</p>
+                    <p aria-label="Moon set time">{{timeDailyMoonset}}</p>
                 </div>
             </div>
         </div>

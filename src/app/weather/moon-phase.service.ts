@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
+import { MOON_ICONS } from '../data/moon-phase/icons.data';
+import { MOON_DESCRIPTIONS } from '../data/moon-phase/descriptions.data';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MoonPhaseService {
   /**
-   * Categorizes moon phase. Used for moon icons and `moonPhaseText()`
+   * Categorizes moon phase.
    * @param value Decimal value (0 to 1)
    * @returns number
    */
-  moonPhaseIndex(value: number): number {
+  private _index(value: number): number {
     let index: number = -1;
 
     if (value === 0 || value === 1) {
@@ -34,43 +36,23 @@ export class MoonPhaseService {
   }
 
   /**
-   * Moon phase description.
-   * Derive `value` param using `moonPhaseindex()`
-   * @param value Integral number (1 to 8)
+   * Returns moon phase description.
+   * Moon phase. 0 and 1 are 'new moon', 0.25 is 'first quarter moon', 0.5 is 'full moon' and 0.75 is 'last quarter moon'. The periods in between are called 'waxing
+   * crescent', 'waxing gibous', 'waning gibous', and 'waning crescent',
+   * respectively.
+   * @param value Decimal value (0 to 1)
    * @returns string
    */
-  moonPhaseText(value: number): string {
-    let text: string;
+  description(value: number): string {
+    return MOON_DESCRIPTIONS[this._index(value)];
+  }
 
-    switch (value) {
-      case 0:
-        text = 'New moon';
-        break;
-      case 1:
-        text = 'Waxing crescent';
-        break;
-      case 2:
-        text = 'First quarter';
-        break;
-      case 3:
-        text = 'Waxing gibbous';
-        break;
-      case 4:
-        text = 'Full moon';
-        break;
-      case 5:
-        text = 'Waning gibbous';
-        break;
-      case 6:
-        text = 'Last quarter';
-        break;
-      case 7:
-        text = 'Waning crescent';
-        break;
-      default:
-        text = 'Undefined';
-    }
-
-    return text;
+  /**
+   * Returns string to be used for SVG `mat-icon`
+   * @param value Decimal value (0 to 1)
+   * @returns string
+   */
+  icon(value: number): string {
+    return MOON_ICONS[this._index(value)];
   }
 }
