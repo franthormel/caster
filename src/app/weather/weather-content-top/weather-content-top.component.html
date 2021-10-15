@@ -1,19 +1,43 @@
-<div class="flexbox">
-    <!--Location (Left)-->
-    <p class="flexbox-contents-left">{{geolocationDisplay}}</p>
+<div class="flexbox flexbox-main">
+    <!--LEFT-->
+    <!--Location-->
+    <p class="flexbox-contents-left"
+       aria-label="Location"
+       matTooltip="Location">
+       {{geolocationDisplay}}
+    </p>
 
+    <!--RIGHT-->
     <!--Current-->
     <div *ngIf="showCurrent" class="flexbox">
+        <!--Time-->
         <div class="flexbox-contents-right">
-            <p aria-label="Weather's time">{{timeCurrent}}</p>
+            <p aria-label="Current time" 
+               matTooltip="Current time">
+               {{timeCurrent}}
+            </p>
         </div>
+        <!--Sunrise-->
         <div class="flexbox-contents-right">
-            <mat-icon svgIcon="sunrise" color="accent" aria-label="Sunrise"></mat-icon>
-            <p aria-label="Sunrise time">{{timeCurrentSunrise}}</p>
+            <mat-icon svgIcon="sunrise" 
+                      color="accent" 
+                      aria-label="Sunrise icon">
+            </mat-icon>
+            <p aria-label="Sunrise time" 
+               matTooltip="Sunrise time">
+               {{timeCurrentSunrise}}
+            </p>
         </div>
+        <!--Sunset-->
         <div class="flexbox-contents-right">
-            <mat-icon svgIcon="sunset" color="accent" aria-label=" Sunset"></mat-icon>
-            <p aria-label="Sunset time">{{timeCurrentSunset}}</p>
+            <mat-icon svgIcon="sunset" 
+                      color="accent" 
+                      aria-label="Sunset icon">
+            </mat-icon>
+            <p aria-label="Sunset time" 
+               matTooltip="Sunset time">
+               {{timeCurrentSunset}}
+            </p>
         </div>
     </div>
 
@@ -21,53 +45,110 @@
     <div *ngIf="showHourly" class="flexbox">
         <div class="flexbox-contents-right">
             <button mat-icon-button 
-                aria-label="Previous hour"
-                matToolTip="Previous hour"
-                (click)="hourlyPrevious()"
-                [disabled]="!canHourlyGoBackward">
-                <mat-icon color="accent">chevron_left</mat-icon>
-            </button>
-            {{timeHourly}}
+                    aria-label="Previous hour button" 
+                    matToolTip="Previous hour"
+                    (click)="hourlyPrevious()">
+                <mat-icon color="accent"
+                          aria-label="Previous icon">
+                    chevron_left
+                </mat-icon>
+            </button>                
             <button mat-icon-button 
-                aria-label="Next hour" 
-                matTooltip="Next hour" 
-                (click)="hourlyNext()"
-                [disabled]="!canHourlyGoForward">
-                <mat-icon color="accent">chevron_right</mat-icon>
+                    aria-label="Next hour button"
+                    matTooltip="Next hour"
+                    (click)="hourlyNext()">
+                <mat-icon color="accent"
+                          aria-label="Next icon">
+                    chevron_right
+                </mat-icon>
             </button>
+            <p aria-label="Hour time" 
+               matTooltip="Hour time">         
+               {{timeHourly}}
+            </p>
         </div>
     </div>
 
     <!--Daily-->
     <div *ngIf="showDaily" class="flexbox">
-        <div class="flexbox-block">
-            <div class="flexbox">
-                <div class="flexbox-contents-right">
-                    <p aria-label="Weather's time">{{timeDaily}}</p>
-                </div>
-                <div class="flexbox-contents-right">
-                    <mat-icon svgIcon="sunrise" color="accent" aria-label="Sunrise time"></mat-icon>
-                    <p aria-label="Sunrise time">{{timeDailySunrise}}</p>
-                </div>
-                <div class="flexbox-contents-right">
-                    <mat-icon svgIcon="sunset" color="accent" aria-label=" Sunset time"></mat-icon>
-                    <p aria-label="Sunset time">{{timeDailySunset}}</p>
-                </div>
-            </div>
-            <div class="flexbox">
-                <div class="flexbox-contents-right">
-                    <mat-icon [svgIcon]="dailyMoonphaseIcon" color="warn" aria-label="Sunrise time"></mat-icon>
-                    <p aria-label="Moon phase">{{dailyMoonphase}}</p>
-                </div>
-                <div class="flexbox-contents-right">
-                    <mat-icon svgIcon="moonrise" color="accent" aria-label="Moon rise time"></mat-icon>
-                    <p aria-label="Moon rise time">{{timeDailyMoonrise}}</p>
-                </div>
-                <div class="flexbox-contents-right">
-                    <mat-icon svgIcon="moonset" color="accent" aria-label=" Moon set time"></mat-icon>
-                    <p aria-label="Moon set time">{{timeDailyMoonset}}</p>
-                </div>
-            </div>
+        <!--Time-->
+        <div class="flexbox-contents-right">
+            <button mat-icon-button 
+                    aria-label="Previous day button" 
+                    matTooltip="Previous day"
+                    (click)="dailyPrevious()">
+                <mat-icon color="accent"
+                          aria-label="Previous icon">
+                    chevron_left
+                </mat-icon>
+            </button>
+            <button mat-icon-button 
+                    aria-label="Next day button" 
+                    matTooltip="Next day"
+                    (click)="dailyNext()">
+                <mat-icon color="accent"
+                          aria-label="Next icon">
+                    chevron_right
+                </mat-icon>
+            </button>
+            <p aria-label="Day time" 
+               matTooltip="Day time">
+               {{timeDaily}}
+            </p>
+        </div>
+        <!--Sunrise-->
+        <div class="flexbox-contents-right">
+            <mat-icon svgIcon="sunrise" 
+                      color="accent" 
+                      aria-label="Sunrise icon">
+            </mat-icon>
+            <p aria-label="Sunrise time"
+               matTooltip="Sunrise time">
+               {{timeDailySunrise}}
+            </p>
+        </div>
+        <!--Sunset-->
+        <div class="flexbox-contents-right">
+            <mat-icon svgIcon="sunset" 
+                      color="accent" 
+                      aria-label="Sunset icon">
+            </mat-icon>
+            <p aria-label="Sunset time"
+               matTooltip="Sunrise time">
+               {{timeDailySunset}}
+            </p>
+        </div>
+        <!--Moon phase-->
+        <div class="flexbox-contents-right">
+            <mat-icon [svgIcon]="dailyMoonphaseIcon" 
+                      aria-label="Moon phase icon">
+            </mat-icon>
+            <p aria-label="Moon phase"
+               matTooltip="Moon phase">
+               {{dailyMoonphase}}
+            </p>
+        </div>
+        <!--Moon rise-->
+        <div class="flexbox-contents-right">
+            <mat-icon svgIcon="moonrise" 
+                      color="accent" 
+                      aria-label="Moon rise icon">
+            </mat-icon>
+            <p aria-label="Moon rise time"
+               matTooltip="Moon rise time">
+               {{timeDailyMoonrise}}
+            </p>
+        </div>
+        <!--Moon set-->
+        <div class="flexbox-contents-right">
+            <mat-icon svgIcon="moonset"
+                      color="accent"
+                      aria-label=" Moon set icon">
+            </mat-icon>
+            <p aria-label="Moon set time"
+               matTooltip="Moon set time">
+               {{timeDailyMoonset}}
+            </p>
         </div>
     </div>
 </div>

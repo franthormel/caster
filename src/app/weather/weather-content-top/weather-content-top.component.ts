@@ -11,10 +11,7 @@ import { EpochConverterService } from '../epoch-converter.service';
 import { MoonPhaseService } from '../moon-phase.service';
 
 import { AppState } from '../../app-state.reducers';
-import {
-  weatherIndexHourlyIncrement,
-  weatherIndexHourlyDecrement,
-} from '../../app-state.actions';
+import * as actions from '../../app-state.actions';
 import { WeatherReadingDaily } from 'src/app/models/weather/weather-reading-daily.models';
 
 @Component({
@@ -97,10 +94,10 @@ export class WeatherContentTopComponent implements OnInit {
   }
 
   // HOURLY
-  get canHourlyGoBackward(): boolean {
+  private get canHourlyGoBackward(): boolean {
     return this.indexHourly >= 1;
   }
-  get canHourlyGoForward(): boolean {
+  private get canHourlyGoForward(): boolean {
     return this.indexHourly < environment.maxHourly - 1;
   }
 
@@ -116,16 +113,47 @@ export class WeatherContentTopComponent implements OnInit {
   }
 
   hourlyPrevious() {
-    this.store.dispatch(weatherIndexHourlyDecrement());
+    if (this.canHourlyGoBackward) {
+      this.store.dispatch(actions.weatherIndexHourlyDecrement());
+    }
   }
 
   hourlyNext() {
-    this.store.dispatch(weatherIndexHourlyIncrement());
+    if (this.canHourlyGoForward) {
+      this.store.dispatch(actions.weatherIndexHourlyIncrement());
+    }
   }
 
   // DISPLAY
+  private get canDailyGoBackward(): boolean {
+    return this.indexDaily >= 1;
+  }
+  private get canDailyGoForward(): boolean {
+    return this.indexDaily < environment.maxDaily - 1;
+  }
+
   get currentWeatherDaily(): WeatherReadingDaily {
     return this.weatherData.daily[this.indexDaily];
+  }
+
+  get weatherDailyMaxDate(): Date {
+    console.log(this.weatherData.daily[0].dt);
+    return this.epochConverterService.convertToDate(
+      this.weatherData.daily[0].dt
+    );
+  }
+
+  get weatherDailyMinDate(): Date {
+    const weatherDaily = this.weatherData.daily;
+    const last = weatherDaily.length - 1;
+    console.log(weatherDaily[last].dt);
+    return this.epochConverterService.convertToDate(weatherDaily[last].dt);
+  }
+
+  get weatherDailySelectedDate(): Date {
+    return this.epochConverterService.convertToDate(
+      this.currentWeatherDaily.dt
+    );
   }
 
   get timeDaily(): string {
@@ -164,6 +192,18 @@ export class WeatherContentTopComponent implements OnInit {
     return this.epochConverterService.convertToTime(
       this.currentWeatherDaily.moonset
     );
+  }
+
+  dailyPrevious() {
+    if (this.canDailyGoBackward) {
+      this.store.dispatch(actions.weatherIndexDailyDecrement());
+    }
+  }
+
+  dailyNext() {
+    if (this.canDailyGoForward) {
+      this.store.dispatch(actions.weatherIndexDailyIncrement());
+    }
   }
 
   // Helpers

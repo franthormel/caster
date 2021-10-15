@@ -12,7 +12,6 @@ import * as appStateActions from './app-state.actions';
  * * `weatherIndexHourly` Current index of hourly weather data. Helps user in picking up where they left off.
  * * `weatherIndexDaily` Current index of daily weather data.  Helps user in picking up where they left off.
  */
-// Shape
 export interface AppState {
   staticFile: number;
   weatherMode: WeatherReadingType;
@@ -31,42 +30,38 @@ export const appState: AppState = {
 // Reducer definitions
 const _appStateReducer = createReducer(
   appState,
-  on(
-    appStateActions.staticFileUpdate,
-    (state, { file }): AppState => ({
-      ...state,
-      staticFile: file,
-    })
-  ),
-  on(
-    appStateActions.weatherModeUpdate,
-    (state, { mode }): AppState => ({
-      ...state,
-      weatherMode: mode,
-    })
-  ),
 
-  on(
-    appStateActions.weatherIndexDailyUpdate,
-    (state, { index }): AppState => ({
-      ...state,
-      weatherIndexDaily: index,
-    })
-  ),
-  on(
-    appStateActions.weatherIndexHourlyIncrement,
-    (state): AppState => ({
-      ...state,
-      weatherIndexHourly: state.weatherIndexHourly + 1,
-    })
-  ),
-  on(
-    appStateActions.weatherIndexHourlyDecrement,
-    (state): AppState => ({
-      ...state,
-      weatherIndexHourly: state.weatherIndexHourly - 1,
-    })
-  )
+  // Static files
+  on(appStateActions.staticFileUpdate, (state, { file }) => ({
+    ...state,
+    staticFile: file,
+  })),
+
+  // Weather mode
+  on(appStateActions.weatherModeUpdate, (state, { mode }) => ({
+    ...state,
+    weatherMode: mode,
+  })),
+
+  // Weather index daily
+  on(appStateActions.weatherIndexDailyIncrement, (state) => ({
+    ...state,
+    weatherIndexDaily: state.weatherIndexDaily + 1,
+  })),
+  on(appStateActions.weatherIndexDailyDecrement, (state) => ({
+    ...state,
+    weatherIndexDaily: state.weatherIndexDaily - 1,
+  })),
+
+  // Weather index hourly
+  on(appStateActions.weatherIndexHourlyIncrement, (state) => ({
+    ...state,
+    weatherIndexHourly: state.weatherIndexHourly + 1,
+  })),
+  on(appStateActions.weatherIndexHourlyDecrement, (state) => ({
+    ...state,
+    weatherIndexHourly: state.weatherIndexHourly - 1,
+  }))
 );
 
 export function appStateReducer(state: AppState | undefined, action: Action) {

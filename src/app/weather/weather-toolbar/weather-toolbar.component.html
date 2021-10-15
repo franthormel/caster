@@ -1,7 +1,8 @@
 <mat-toolbar class="mat-elevation-z2" color="primary">
 
     <!--Menu & title-->
-    <button mat-icon-button>
+    <button mat-icon-button
+            aria-label="Menu icon">
         <mat-icon>menu</mat-icon>
     </button>
     <span class="text-extra-bold">Weather</span>
@@ -9,18 +10,30 @@
 
     <!--Action Alert (if any)-->
     <ng-container *ngIf="!loading && alertCount">
-        <button mat-icon-button matTooltip="Alerts from weather warning systems" (click)="showAlert()">
-            <mat-icon matBadgeColor="warn" color="warn" [matBadge]="alertCount">warning</mat-icon>
+        <button mat-icon-button 
+                aria-label="Alerts icon"
+                matTooltip="Alerts from weather warning systems" 
+                (click)="showAlert()">
+            <mat-icon matBadgeColor="warn"
+                      color="warn" 
+                      [matBadge]="alertCount">
+                warning
+            </mat-icon>
         </button>
     </ng-container>
 
     <!--Action Refresh-->
-    <button mat-icon-button matTooltip="Refresh data">
+    <button mat-icon-button 
+            aria-label="Refresh icon"
+            matTooltip="Refresh data">
         <mat-icon>refresh</mat-icon>
     </button>
 
     <!--Action Menu-->
-    <button mat-icon-button matTooltip="Change mode" [matMenuTriggerFor]="menuWeatherMode">
+    <button mat-icon-button 
+            aria-label="Change mode icon"
+            matTooltip="Change mode" 
+            [matMenuTriggerFor]="menuWeatherMode">
         <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menuWeatherMode="matMenu">

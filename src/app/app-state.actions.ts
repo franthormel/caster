@@ -9,9 +9,11 @@ export const staticFileUpdate = createAction(
   '[Static Data] File Update',
   props<{ file: number }>()
 );
-export const weatherIndexDailyUpdate = createAction(
-  "[Weather Index] Daily's Update",
-  props<{ index: number }>()
+export const weatherIndexDailyIncrement = createAction(
+  '[Weather Index] Increment Daily'
+);
+export const weatherIndexDailyDecrement = createAction(
+  '[Weather Index] Decrement Daily'
 );
 export const weatherIndexHourlyIncrement = createAction(
   '[Weather Index] Increment Hourly'

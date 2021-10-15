@@ -6,14 +6,12 @@ import { WeatherReadingHourly } from '../models/weather/weather-reading-hourly.m
   providedIn: 'root',
 })
 export class EpochConverterService {
-  readonly daySeconds = 8.64e4;
-
   /**
    * Returns `Date` object given seconds
    * @param seconds number
    * @returns Date
    */
-  _convertSecondsToDate(seconds: number | undefined): Date {
+  convertToDate(seconds: number | undefined): Date {
     if (seconds) {
       return new Date(seconds * 1000);
     }
@@ -26,7 +24,7 @@ export class EpochConverterService {
    * @returns string
    */
   convertToTime(time: number | undefined): string {
-    return this._convertSecondsToDate(time).toLocaleTimeString();
+    return this.convertToDate(time).toLocaleTimeString();
   }
 
   /**
@@ -34,8 +32,8 @@ export class EpochConverterService {
    * @param time UTC seconds
    * @returns string
    */
-  convertToDateTime(time: number): string {
-    const date = this._convertSecondsToDate(time);
+  convertToDateTime(time: number | undefined): string {
+    const date = this.convertToDate(time);
     return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
   }
 
@@ -63,8 +61,9 @@ export class EpochConverterService {
    * @returns number
    */
   offsetDays(point: number, compare: number, offset: number = 0): number {
-    const zPoint = Math.floor((point + offset) / this.daySeconds);
-    const zCompare = Math.floor((compare + offset) / this.daySeconds);
+    const daySeconds = 8.64e4;
+    const zPoint = Math.floor((point + offset) / daySeconds);
+    const zCompare = Math.floor((compare + offset) / daySeconds);
 
     return zPoint - zCompare;
   }
