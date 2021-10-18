@@ -1,7 +1,4 @@
-<app-weather-toolbar 
-    (alertEvent)="showAlertDialog()" 
-    [alertCount]="alertsCount" 
-    [loading]="loading">
+<app-weather-toolbar (alertEvent)="showAlertDialog()" [alertCount]="alertsCount" [loading]="loading">
 </app-weather-toolbar>
 
 <ng-container *ngIf="loading">
@@ -10,18 +7,10 @@
 
 <!--TODO If there is no weather data, notify user by either using snackbar or dialog-->
 <ng-container *ngIf="!loading && weatherData && geolocation">
-    <div class="padding-content">
-        <app-weather-current *ngIf="weatherModeService.isCurrent" 
-                             [weatherData]="weatherData"
-                             [geolocation]="geolocation">
-        </app-weather-current>
-        <app-weather-hourly *ngIf="weatherModeService.isHourly" 
-                            [weatherData]="weatherData"
-                            [geolocation]="geolocation">
-        </app-weather-hourly>
-        <app-weather-daily *ngIf="weatherModeService.isDaily" 
-                           [weatherData]="weatherData"
-                           [geolocation]="geolocation">
-        </app-weather-daily>
-    </div>
+    <app-weather-current *ngIf="weatherMode.isCurrent" [weatherData]="weatherData" [geolocation]="geolocation">
+    </app-weather-current>
+    <app-weather-hourly *ngIf="weatherMode.isHourly" [weatherData]="weatherData" [geolocation]="geolocation">
+    </app-weather-hourly>
+    <app-weather-daily *ngIf="weatherMode.isDaily" [weatherData]="weatherData" [geolocation]="geolocation">
+    </app-weather-daily>
 </ng-container>

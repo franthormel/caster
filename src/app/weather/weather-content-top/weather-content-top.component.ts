@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { WeatherData } from '../../models/weather/weather-data.models';
 import { WeatherReadingHourly } from '../../models/weather/weather-reading-hourly.models';
+import { WeatherReadingDaily } from 'src/app/models/weather/weather-reading-daily.models';
 import { Geolocation } from '../../models/geolocation/geolocation.models';
 import { WeatherModeService } from '../weather-mode.service';
 import { EpochConverterService } from '../epoch-converter.service';
@@ -12,7 +13,6 @@ import { MoonPhaseService } from '../moon-phase.service';
 
 import { AppState } from '../../app-state.reducers';
 import * as actions from '../../app-state.actions';
-import { WeatherReadingDaily } from 'src/app/models/weather/weather-reading-daily.models';
 
 @Component({
   selector: 'app-weather-content-top',
@@ -29,9 +29,9 @@ export class WeatherContentTopComponent implements OnInit {
   indexDaily!: number;
 
   constructor(
-    private epochConverterService: EpochConverterService,
-    private moonphaseService: MoonPhaseService,
-    private weatherModeService: WeatherModeService,
+    private epochConverter: EpochConverterService,
+    private moonphase: MoonPhaseService,
+    private weatherMode: WeatherModeService,
     private store: Store<{ appState: AppState }>
   ) {}
 
@@ -49,27 +49,23 @@ export class WeatherContentTopComponent implements OnInit {
   }
 
   get showCurrent(): boolean {
-    return (
-      this.weatherModeService.isCurrent &&
-      this.weatherData.current !== undefined
-    );
+    return this.weatherMode.isCurrent && this.weatherData.current !== undefined;
   }
   get showHourly(): boolean {
     return (
-      this.weatherModeService.isHourly &&
+      this.weatherMode.isHourly &&
       this.weatherData.hourly !== undefined &&
       this.weatherData.hourly.length > 0
     );
   }
   get showDaily(): boolean {
     return (
-      this.weatherModeService.isDaily &&
+      this.weatherMode.isDaily &&
       this.weatherData.daily !== undefined &&
       this.weatherData.daily.length > 0
     );
   }
 
-  // LOCATION
   get formattedLocation(): string {
     return this.geolocation
       ? `${this.geolocation.name}, ${this.geolocation.country}`
@@ -78,19 +74,13 @@ export class WeatherContentTopComponent implements OnInit {
 
   // CURRENT
   get currentTime(): string {
-    return this.epochConverterService.convertToTime(
-      this.weatherData.current.dt
-    );
+    return this.epochConverter.convertToTime(this.weatherData.current.dt);
   }
   get currentTimeSunrise(): string {
-    return this.epochConverterService.convertToTime(
-      this.weatherData.current.sunrise
-    );
+    return this.epochConverter.convertToTime(this.weatherData.current.sunrise);
   }
   get currentTimeSunset(): string {
-    return this.epochConverterService.convertToTime(
-      this.weatherData.current.sunset
-    );
+    return this.epochConverter.convertToTime(this.weatherData.current.sunset);
   }
 
   // HOURLY
@@ -137,21 +127,17 @@ export class WeatherContentTopComponent implements OnInit {
   }
 
   get weatherDailyMaxDate(): Date {
-    return this.epochConverterService.convertToDate(
-      this.weatherData.daily[0].dt
-    );
+    return this.epochConverter.convertToDate(this.weatherData.daily[0].dt);
   }
 
   get weatherDailyMinDate(): Date {
     const dailyWeathers = this.weatherData.daily;
     const lastIndex = dailyWeathers.length - 1;
-    return this.epochConverterService.convertToDate(dailyWeathers[lastIndex].dt);
+    return this.epochConverter.convertToDate(dailyWeathers[lastIndex].dt);
   }
 
   get weatherDailySelectedDate(): Date {
-    return this.epochConverterService.convertToDate(
-      this.currentDailyWeather.dt
-    );
+    return this.epochConverter.convertToDate(this.currentDailyWeather.dt);
   }
 
   get dailyTime(): string {
@@ -162,34 +148,26 @@ export class WeatherContentTopComponent implements OnInit {
   }
 
   get dailyTimeSunrise(): string {
-    return this.epochConverterService.convertToTime(
-      this.currentDailyWeather.sunrise
-    );
+    return this.epochConverter.convertToTime(this.currentDailyWeather.sunrise);
   }
   get dailyTimeSunset(): string {
-    return this.epochConverterService.convertToTime(
-      this.currentDailyWeather.sunset
-    );
+    return this.epochConverter.convertToTime(this.currentDailyWeather.sunset);
   }
 
   get dailyMoonphaseIcon(): string {
-    return this.moonphaseService.icon(this.currentDailyWeather.moon_phase);
+    return this.moonphase.icon(this.currentDailyWeather.moon_phase);
   }
 
   get dailyMoonphase(): string {
-    return this.moonphaseService.description(
+    return this.moonphase.description(
       this.currentDailyWeather.moon_phase
     );
   }
   get dailyTimeMoonrise(): string {
-    return this.epochConverterService.convertToTime(
-      this.currentDailyWeather.moonrise
-    );
+    return this.epochConverter.convertToTime(this.currentDailyWeather.moonrise);
   }
   get dailyTimeMoonset(): string {
-    return this.epochConverterService.convertToTime(
-      this.currentDailyWeather.moonset
-    );
+    return this.epochConverter.convertToTime(this.currentDailyWeather.moonset);
   }
 
   dailyPrevious() {
@@ -211,25 +189,19 @@ export class WeatherContentTopComponent implements OnInit {
    * @param compare UTC seconds
    * @returns string
    */
-  displayDateTime(
-    display: number,
-    point: number,
-    compare: number
-  ): string {
-    const offset = this.epochConverterService.offsetDays(
+  displayDateTime(display: number, point: number, compare: number): string {
+    const offset = this.epochConverter.offsetDays(
       point,
       compare,
       this.weatherData.timezone_offset
     );
 
     if (offset === 0) {
-      return `Today ${this.epochConverterService.convertToTime(display)}`;
+      return `Today ${this.epochConverter.convertToTime(display)}`;
     } else if (offset === -1) {
-      return `Tomorrow ${this.epochConverterService.convertToTime(
-        display
-      )}`;
+      return `Tomorrow ${this.epochConverter.convertToTime(display)}`;
     } else {
-      return this.epochConverterService.convertToDateTime(display);
+      return this.epochConverter.convertToDateTime(display);
     }
   }
 }

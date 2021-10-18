@@ -12,7 +12,7 @@ export class WeatherToolbarComponent {
   @Input() loading: boolean | undefined = true;
   @Output() alertEvent = new EventEmitter<void>();
 
-  constructor(public weatherModeService: WeatherModeService) {}
+  constructor(public weatherMode: WeatherModeService) {}
 
   showAlert() {
     this.alertEvent.emit();

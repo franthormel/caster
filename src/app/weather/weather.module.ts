@@ -28,6 +28,7 @@ import { WeatherAlertSingleComponent } from './weather-alert-single/weather-aler
 import { WeatherAlertMultipleComponent } from './weather-alert-multiple/weather-alert-multiple.component';
 import { WeatherAlertContentComponent } from './weather-alert-content/weather-alert-content.component';
 import { WeatherContentTopComponent } from './weather-content-top/weather-content-top.component';
+import { WeatherContentMainComponent } from './weather-content-main/weather-content-main.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { WeatherContentTopComponent } from './weather-content-top/weather-conten
     WeatherAlertMultipleComponent,
     WeatherAlertContentComponent,
     WeatherContentTopComponent,
+    WeatherContentMainComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,56 @@
+.main {
+  background-color: #ffffff50;
+}
+
+.main-contents {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-contents-side {
+  width: 15%;
+}
+
+.main-contents-middle {
+  width: 40%;
+}
+
+.main-contents-side-contents {
+  padding-bottom: 1%;
+}
+
+.main-contents-side-right {
+  text-align: right;
+}
+
+.icon-text {
+  display: inline-flex;
+  align-items: center;
+}
+
+.text-semibold {
+  font-weight: 600;
+}
+
+.text-bold {
+  font-weight: 700;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.main-temperature {
+  margin: 0;
+  font-size: 144px;
+}
+
+.main-feels-like {
+  margin: 0;
+  margin-right: 16px;
+}
+
+.main-weather {
+  margin: 0;
+  font-size: 24px;
+}

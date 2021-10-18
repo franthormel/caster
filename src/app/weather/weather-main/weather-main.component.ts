@@ -29,7 +29,7 @@ export class WeatherMainComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private weatherDataService: WeatherDataService,
-    public weatherModeService: WeatherModeService
+    public weatherMode: WeatherModeService
   ) {}
 
   ngOnInit(): void {

@@ -7,6 +7,7 @@ export const environment = {
   assetsDataUrl: '/assets/data/',
   assetsIcons: '/assets/images/icons/',
   assetsIconsMoon: '/assets/images/icons/moon/light/',
+  assetsIconsWeather: '/assets/images/icons/weather/',
   // Total of 47 hourly forecasts ~ 2 days
   maxHourly: 47,
   // Total of 7 daily forecasts ~ 1 week

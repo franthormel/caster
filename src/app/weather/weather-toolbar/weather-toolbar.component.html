@@ -4,7 +4,7 @@
             aria-label="Menu icon">
         <mat-icon>menu</mat-icon>
     </button>
-    <span class="text-extra-bold">Weather</span>
+    <span class="text-extrabold">Weather</span>
     <span class="toolbar-spacer"></span>
 
     <!--Action Alert (if any)-->
@@ -38,18 +38,18 @@
     <mat-menu #menuWeatherMode="matMenu">
         <mat-selection-list [multiple]="false">
             <mat-list-option 
-                (click)="weatherModeService.changeToCurrent()" 
-                [selected]="weatherModeService.isCurrent">
+                (click)="weatherMode.changeToCurrent()" 
+                [selected]="weatherMode.isCurrent">
                 Current
             </mat-list-option>
             <mat-list-option 
-                (click)="weatherModeService.changeToHourly()" 
-                [selected]="weatherModeService.isHourly">
+                (click)="weatherMode.changeToHourly()" 
+                [selected]="weatherMode.isHourly">
                 Hourly
             </mat-list-option>
             <mat-list-option 
-                (click)="weatherModeService.changeToDaily()" 
-                [selected]="weatherModeService.isDaily">
+                (click)="weatherMode.changeToDaily()" 
+                [selected]="weatherMode.isDaily">
                 Daily
             </mat-list-option>
         </mat-selection-list>

@@ -3,8 +3,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
 
 import { environment } from '../environments/environment';
+
 import { ICONS } from './data/icons/icons.data';
 import { ICONS_MOON } from './data/icons/icons-moon.data';
+import { ICONS_WEATHER } from './data/icons/icons-weather.data';
 
 @Component({
   selector: 'app-root',
@@ -22,28 +24,57 @@ export class AppComponent implements OnInit {
   }
 
   registerSvgIcons() {
-    // Icons use regular names as filenames, while ...
+    this.registerGeneralIcons();
+    this.registerMoonIcons();
+    this.registerWeatherIcons();
+  }
+
+  registerGeneralIcons() {
     for (const icon of ICONS) {
       this.iconRegistry.addSvgIcon(
         icon,
-        this.sanitizer.bypassSecurityTrustResourceUrl(this.assetsIconUrl(icon))
+        this.sanitizer.bypassSecurityTrustResourceUrl(this.fetchIconAsset(icon))
       );
     }
+  }
 
-    // ... moon icons use numbers as file names
+  // Name of icons is according to its moonphase while the filename
+  // associated with that moonphase is its chronological order within
+  // the lunar cycle
+  // TODO Prepare for light/dark theme
+  registerMoonIcons() {
     for (const i in ICONS_MOON) {
       this.iconRegistry.addSvgIcon(
         ICONS_MOON[i],
-        this.sanitizer.bypassSecurityTrustResourceUrl(this.assetsMoonIconUrl(i))
+        this.sanitizer.bypassSecurityTrustResourceUrl(
+          this.fetchIconAssetMoon(i)
+        )
       );
     }
   }
 
-  private assetsIconUrl(filename: string): string {
+  // Uses weather condition codes as names as described from OpenWeatherMap
+  // TODO Prepare for light/dark theme
+  registerWeatherIcons() {
+    for (const icon of ICONS_WEATHER) {
+      this.iconRegistry.addSvgIcon(
+        icon,
+        this.sanitizer.bypassSecurityTrustResourceUrl(
+          this.fetchIconAssetWeather(icon)
+        )
+      );
+    }
+  }
+
+  fetchIconAsset(filename: string): string {
     return `${environment.assetsIcons}${filename}.svg`;
   }
 
-  private assetsMoonIconUrl(filename: string): string {
+  fetchIconAssetMoon(filename: string): string {
     return `${environment.assetsIconsMoon}${filename}.svg`;
+  }
+
+  fetchIconAssetWeather(filename: string): string {
+    return `${environment.assetsIconsWeather}${filename}.svg`;
   }
 }

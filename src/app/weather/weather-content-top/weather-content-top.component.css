@@ -1,20 +1,20 @@
-.flexbox {
+.top {
   display: flex;
   justify-content: space-between;
 }
 
-.flexbox-main {
+.top-main {
   height: 6rem;
   width: 100%;
 }
 
-.flexbox-contents-right {
+.top-contents-right {
   align-self: end;
   margin-left: 1rem;
   text-align: right;
 }
 
-.flexbox-contents-left {
+.top-contents-left {
   align-self: end;
   text-align: left;
 }
