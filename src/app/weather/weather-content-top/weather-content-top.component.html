@@ -1,10 +1,9 @@
 <div class="flexbox flexbox-main">
     <!--LEFT-->
-    <!--Location-->
     <p class="flexbox-contents-left"
        aria-label="Location"
        matTooltip="Location">
-       {{geolocationDisplay}}
+       {{formattedLocation}}
     </p>
 
     <!--RIGHT-->
@@ -14,7 +13,7 @@
         <div class="flexbox-contents-right">
             <p aria-label="Current time" 
                matTooltip="Current time">
-               {{timeCurrent}}
+               {{currentTime}}
             </p>
         </div>
         <!--Sunrise-->
@@ -25,7 +24,7 @@
             </mat-icon>
             <p aria-label="Sunrise time" 
                matTooltip="Sunrise time">
-               {{timeCurrentSunrise}}
+               {{currentTimeSunrise}}
             </p>
         </div>
         <!--Sunset-->
@@ -36,7 +35,7 @@
             </mat-icon>
             <p aria-label="Sunset time" 
                matTooltip="Sunset time">
-               {{timeCurrentSunset}}
+               {{currentTimeSunset}}
             </p>
         </div>
     </div>
@@ -47,7 +46,7 @@
             <button mat-icon-button 
                     aria-label="Previous hour button" 
                     matToolTip="Previous hour"
-                    (click)="hourlyPrevious()">
+                    (click)="previousHourlyWeather()">
                 <mat-icon color="accent"
                           aria-label="Previous icon">
                     chevron_left
@@ -56,7 +55,7 @@
             <button mat-icon-button 
                     aria-label="Next hour button"
                     matTooltip="Next hour"
-                    (click)="hourlyNext()">
+                    (click)="nextHourlyWeather()">
                 <mat-icon color="accent"
                           aria-label="Next icon">
                     chevron_right
@@ -64,13 +63,67 @@
             </button>
             <p aria-label="Hour time" 
                matTooltip="Hour time">         
-               {{timeHourly}}
+               {{hourlyTime}}
             </p>
         </div>
     </div>
 
     <!--Daily-->
     <div *ngIf="showDaily" class="flexbox">
+        <!--Sunrise-->
+        <div class="flexbox-contents-right">
+            <mat-icon svgIcon="sunrise" 
+                      color="accent" 
+                      aria-label="Sunrise icon">
+            </mat-icon>
+            <p aria-label="Sunrise time"
+               matTooltip="Sunrise time">
+               {{dailyTimeSunrise}}
+            </p>
+        </div>
+        <!--Sunset-->
+        <div class="flexbox-contents-right">
+            <mat-icon svgIcon="sunset" 
+                      color="accent" 
+                      aria-label="Sunset icon">
+            </mat-icon>
+            <p aria-label="Sunset time"
+               matTooltip="Sunrise time">
+               {{dailyTimeSunset}}
+            </p>
+        </div>
+        <!--Moon phase-->
+        <div class="flexbox-contents-right">
+            <mat-icon [svgIcon]="dailyMoonphaseIcon" 
+                      aria-label="Moon phase icon">
+            </mat-icon>
+            <p aria-label="Moon phase"
+               matTooltip="Moon phase">
+               {{dailyMoonphase}}
+            </p>
+        </div>
+        <!--Moon rise-->
+        <div class="flexbox-contents-right">
+            <mat-icon svgIcon="moonrise" 
+                      color="accent" 
+                      aria-label="Moon rise icon">
+            </mat-icon>
+            <p aria-label="Moon rise time"
+               matTooltip="Moon rise time">
+               {{dailyTimeMoonrise}}
+            </p>
+        </div>
+        <!--Moon set-->
+        <div class="flexbox-contents-right">
+            <mat-icon svgIcon="moonset"
+                      color="accent"
+                      aria-label=" Moon set icon">
+            </mat-icon>
+            <p aria-label="Moon set time"
+               matTooltip="Moon set time">
+               {{dailyTimeMoonset}}
+            </p>
+        </div>
         <!--Time-->
         <div class="flexbox-contents-right">
             <button mat-icon-button 
@@ -93,61 +146,7 @@
             </button>
             <p aria-label="Day time" 
                matTooltip="Day time">
-               {{timeDaily}}
-            </p>
-        </div>
-        <!--Sunrise-->
-        <div class="flexbox-contents-right">
-            <mat-icon svgIcon="sunrise" 
-                      color="accent" 
-                      aria-label="Sunrise icon">
-            </mat-icon>
-            <p aria-label="Sunrise time"
-               matTooltip="Sunrise time">
-               {{timeDailySunrise}}
-            </p>
-        </div>
-        <!--Sunset-->
-        <div class="flexbox-contents-right">
-            <mat-icon svgIcon="sunset" 
-                      color="accent" 
-                      aria-label="Sunset icon">
-            </mat-icon>
-            <p aria-label="Sunset time"
-               matTooltip="Sunrise time">
-               {{timeDailySunset}}
-            </p>
-        </div>
-        <!--Moon phase-->
-        <div class="flexbox-contents-right">
-            <mat-icon [svgIcon]="dailyMoonphaseIcon" 
-                      aria-label="Moon phase icon">
-            </mat-icon>
-            <p aria-label="Moon phase"
-               matTooltip="Moon phase">
-               {{dailyMoonphase}}
-            </p>
-        </div>
-        <!--Moon rise-->
-        <div class="flexbox-contents-right">
-            <mat-icon svgIcon="moonrise" 
-                      color="accent" 
-                      aria-label="Moon rise icon">
-            </mat-icon>
-            <p aria-label="Moon rise time"
-               matTooltip="Moon rise time">
-               {{timeDailyMoonrise}}
-            </p>
-        </div>
-        <!--Moon set-->
-        <div class="flexbox-contents-right">
-            <mat-icon svgIcon="moonset"
-                      color="accent"
-                      aria-label=" Moon set icon">
-            </mat-icon>
-            <p aria-label="Moon set time"
-               matTooltip="Moon set time">
-               {{timeDailyMoonset}}
+               {{dailyTime}}
             </p>
         </div>
     </div>

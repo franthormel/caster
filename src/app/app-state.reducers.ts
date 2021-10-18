@@ -38,7 +38,7 @@ const _appStateReducer = createReducer(
   })),
 
   // Weather mode
-  on(appStateActions.weatherModeUpdate, (state, { mode }) => ({
+  on(appStateActions.updateWeatherMode, (state, { mode }) => ({
     ...state,
     weatherMode: mode,
   })),

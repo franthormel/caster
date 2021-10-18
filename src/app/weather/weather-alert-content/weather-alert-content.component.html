@@ -1,13 +1,15 @@
+<!--Subtitle-->
 <ng-container *ngIf="showAlertTimeRange">
     <h3>Duration: {{timeDescription}}</h3>
 </ng-container>
 
-<!--Description-->
-<!--Lines that are FULLY CAPITALIZED are styled in bold-->
-<p *ngFor="let line of descriptionLines(alert)"
-    [ngClass]="line === line.toUpperCase() ? 'mat-body-strong' : 'mat-body'">
-    {{line}}
-</p><br />
+<!--Content-->
+<p *ngFor="let line of alertLines"
+   [ngClass]="lineIsCapitalized(line) ? 'mat-body-strong' : 'mat-body'">
+   {{line}}
+</p>
+<br />
+
 <!--Tags if any-->
 <mat-chip-list [tabIndex]="-1">
     <mat-chip *ngFor="let tag of alert.tags" selected>{{tag}}</mat-chip>

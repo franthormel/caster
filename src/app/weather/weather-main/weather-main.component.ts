@@ -33,17 +33,24 @@ export class WeatherMainComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Static weather data
+    this.initData();
+  }
+
+  initData() {
     this.loading = true;
 
+    const dataCollection$ = this.initThenCombineData();
+
+    dataCollection$.subscribe({
+      complete: () => {
+        this.loading = false;
+      },
+    });
+  }
+
+  initThenCombineData(): Observable<[WeatherData, Geolocation[]]> {
     this.weatherData$ = this.weatherDataService.localFileWeather();
     this.geolocationsData$ = this.weatherDataService.localFileGeolocation();
-
-    const dataCollection$ = forkJoin([
-      this.weatherData$,
-      this.geolocationsData$,
-    ]);
-
     this.weatherData$.subscribe({
       next: (data) => {
         this.weatherData = data;
@@ -62,34 +69,17 @@ export class WeatherMainComponent implements OnInit {
       },
     });
 
-    // Once all necessary data are loaded
-    // toggle the `loading` variable accordingly
-    dataCollection$.subscribe({
-      next: (data) => {},
-      complete: () => {
-        this.loading = false;
-      },
-    });
+    return forkJoin([this.weatherData$, this.geolocationsData$]);
   }
 
-  /**
-   * Geolocation data for child components
-   */
   get geolocation(): Geolocation | undefined {
     return this.geolocations ? this.geolocations[0] : undefined;
   }
 
-  /**
-   * Data used for `mat-dialog`
-   */
   get alerts(): WeatherAlert[] | undefined {
     return this.weatherData?.alerts;
   }
 
-  /**
-   * Used by `app-weather-toolbar` to determine
-   * whether to show/hide the alert button icon
-   */
   get alertsCount(): number | undefined {
     return this.alerts?.length;
   }

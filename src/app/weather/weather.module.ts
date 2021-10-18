@@ -29,10 +29,6 @@ import { WeatherAlertMultipleComponent } from './weather-alert-multiple/weather-
 import { WeatherAlertContentComponent } from './weather-alert-content/weather-alert-content.component';
 import { WeatherContentTopComponent } from './weather-content-top/weather-content-top.component';
 
-import { EpochConverterService } from './epoch-converter.service';
-import { WeatherDataService } from './weather-data.service';
-import { WeatherModeService } from './weather-mode.service';
-
 @NgModule({
   declarations: [
     WeatherCurrentComponent,
@@ -65,6 +61,5 @@ import { WeatherModeService } from './weather-mode.service';
     MatFormFieldModule,
     MatNativeDateModule,
   ],
-  providers: [EpochConverterService, WeatherDataService, WeatherModeService],
 })
 export class WeatherModule {}

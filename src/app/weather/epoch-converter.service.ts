@@ -1,16 +1,11 @@
 import { Injectable } from '@angular/core';
 import { WeatherAlert } from '../models/weather/weather-alert.models';
-import { WeatherReadingHourly } from '../models/weather/weather-reading-hourly.models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EpochConverterService {
-  /**
-   * Returns `Date` object given seconds
-   * @param seconds number
-   * @returns Date
-   */
+  
   convertToDate(seconds: number | undefined): Date {
     if (seconds) {
       return new Date(seconds * 1000);
@@ -18,20 +13,10 @@ export class EpochConverterService {
     return new Date(0);
   }
 
-  /**
-   * Returns locale time string given UTC seconds
-   * @param time UTC seconds
-   * @returns string
-   */
   convertToTime(time: number | undefined): string {
     return this.convertToDate(time).toLocaleTimeString();
   }
 
-  /**
-   * Returns local date and time string given UTC seconds
-   * @param time UTC seconds
-   * @returns string
-   */
   convertToDateTime(time: number | undefined): string {
     const date = this.convertToDate(time);
     return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
@@ -49,14 +34,13 @@ export class EpochConverterService {
   }
 
   /**
-   * Returns a number comparing the offset of days from `point`
    * * Returns 2 if `point` is 2 days ahead of `compare` (2 days ago)
    * * Returns 1 if `point` is 1 day ahead of `compare` (Yesterday)
    * * Returns 0 if both `point` and `compare` are on the same day (Today)
    * * Returns -1 if `point` is 1 day behind of `compare` (Tomorrow)
    * * Returns -2 if `point` is 2 days behind of `compare` (2 days from now/today)
-   * @param point UTC time in seconds as point of comparison
-   * @param compare UTC time in seconds used for comparison
+   * @param point UTC seconds
+   * @param compare UTC seconds
    * @param offset Timezone's offset in seconds (defaults to 0)
    * @returns number
    */

@@ -1,4 +1,4 @@
-export const MOON_ICONS: string[] = [
+export const ICONS_MOON: string[] = [
   'newMoon',
   'waxingCrescent',
   'firstQuarter',

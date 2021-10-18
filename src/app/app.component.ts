@@ -3,7 +3,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
 
 import { environment } from '../environments/environment';
-import { MOON_ICONS } from './data/moon-phase/icons.data';
+import { ICONS } from './data/icons/icons.data';
+import { ICONS_MOON } from './data/icons/icons-moon.data';
 
 @Component({
   selector: 'app-root',
@@ -20,51 +21,29 @@ export class AppComponent implements OnInit {
     this.registerSvgIcons();
   }
 
-  // Place custom SVG icons here
   registerSvgIcons() {
-    // Sun
-    this.iconRegistry.addSvgIcon(
-      'sunrise',
-      this.sanitizer.bypassSecurityTrustResourceUrl(
-        this.assetsIconUrl('sunrise')
-      )
-    );
-    this.iconRegistry.addSvgIcon(
-      'sunset',
-      this.sanitizer.bypassSecurityTrustResourceUrl(
-        this.assetsIconUrl('sunset')
-      )
-    );
-
-    // Moon
-    this.iconRegistry.addSvgIcon(
-      'moonrise',
-      this.sanitizer.bypassSecurityTrustResourceUrl(
-        this.assetsIconUrl('moonrise')
-      )
-    );
-    this.iconRegistry.addSvgIcon(
-      'moonset',
-      this.sanitizer.bypassSecurityTrustResourceUrl(
-        this.assetsIconUrl('moonset')
-      )
-    );
-    // Moonphases
-    for (const i in MOON_ICONS) {
+    // Icons use regular names as filenames, while ...
+    for (const icon of ICONS) {
       this.iconRegistry.addSvgIcon(
-        MOON_ICONS[i],
-        this.sanitizer.bypassSecurityTrustResourceUrl(
-          this.assetsMoonIconUrl(i)
-        )
-      )
+        icon,
+        this.sanitizer.bypassSecurityTrustResourceUrl(this.assetsIconUrl(icon))
+      );
+    }
+
+    // ... moon icons use numbers as file names
+    for (const i in ICONS_MOON) {
+      this.iconRegistry.addSvgIcon(
+        ICONS_MOON[i],
+        this.sanitizer.bypassSecurityTrustResourceUrl(this.assetsMoonIconUrl(i))
+      );
     }
   }
 
-  assetsIconUrl(filename: string): string {
+  private assetsIconUrl(filename: string): string {
     return `${environment.assetsIcons}${filename}.svg`;
   }
 
-  assetsMoonIconUrl(filename: string): string {
-    return `${environment.assetsIcons}moon/light/${filename}.svg`;
+  private assetsMoonIconUrl(filename: string): string {
+    return `${environment.assetsIconsMoon}${filename}.svg`;
   }
 }

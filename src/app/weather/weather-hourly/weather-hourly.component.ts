@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 
-import { WeatherReadingHourly } from '../../models/weather/weather-reading-hourly.models';
 import { WeatherData } from '../../models/weather/weather-data.models';
 import { Geolocation } from '../../models/geolocation/geolocation.models';
 

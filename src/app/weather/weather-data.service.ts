@@ -20,10 +20,10 @@ export class WeatherDataService {
     private httpClient: HttpClient,
     private store: Store<{ appState: AppState }>
   ) {
-    this.initializeFileIndex();
+    this.initFile();
   }
 
-  initializeFileIndex() {
+  initFile() {
     this.appState$ = this.store.select('appState');
 
     this.appState$.subscribe((state) => {
@@ -31,10 +31,6 @@ export class WeatherDataService {
     });
   }
 
-  /**
-   * Returns previously collected weather data
-   * @returns Observable<Weather>
-   */
   localFileWeather(): Observable<WeatherData> {
     const file = this.file ? this.file : 1;
 
@@ -46,10 +42,6 @@ export class WeatherDataService {
     );
   }
 
-  /**
-   * Returns previously collected geolocation data
-   * @returns Observable<Geolocation>
-   */
   localFileGeolocation(): Observable<Geolocation[]> {
     const file = this.file ? this.file : 1;
 

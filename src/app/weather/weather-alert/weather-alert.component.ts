@@ -22,12 +22,7 @@ export class WeatherAlertComponent {
     }
     return 'Weather Alerts';
   }
-
-  /**
-   * Used to determine which type of
-   * component will be used when displaying
-   * alert(s) as a `mat-dialog-content`
-   */
+  
   get multipleAlerts(): boolean {
     return this.alerts.length > 1;
   }

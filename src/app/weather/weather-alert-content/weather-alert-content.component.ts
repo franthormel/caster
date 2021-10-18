@@ -19,11 +19,11 @@ export class WeatherAlertContentComponent {
     return this.epochConverter.alertTimeRange(this.alert);
   }
 
-  /**
-   * Formats the raw text to an
-   * array of strings to be easily read
-   */
-  descriptionLines(alert: WeatherAlert): string[] {
-    return alert.description.split('\r\n');
+  get alertLines(): string[] {
+    return this.alert.description.split('\r\n');
+  }
+
+  lineIsCapitalized(line: string): boolean {
+    return line === line.toUpperCase();
   }
 }
