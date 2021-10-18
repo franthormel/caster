@@ -10,7 +10,7 @@ import { appStateReducer } from './app-state.reducers';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { EpochConverterService } from './weather/epoch-converter.service';
+import { EpochConverterService } from './shared/epoch-converter.service';
 import { WeatherDataService } from './weather/weather-data.service';
 import { WeatherModeService } from './weather/weather-mode.service';
 import { MoonPhaseService } from './weather/moon-phase.service';

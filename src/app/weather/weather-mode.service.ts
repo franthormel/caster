@@ -11,15 +11,15 @@ import { AppState } from '../app-state.reducers';
   providedIn: 'root',
 })
 export class WeatherModeService {
-  appState$!: Observable<AppState>;
+  private appState$!: Observable<AppState>;
 
-  mode: WeatherReadingType | undefined;
+  private mode: WeatherReadingType | undefined;
 
   constructor(private store: Store<{ appState: AppState }>) {
     this.initWeatherMode();
   }
 
-  initWeatherMode() {
+  private initWeatherMode() {
     this.appState$ = this.store.select('appState');
 
     this.appState$.subscribe((state) => {

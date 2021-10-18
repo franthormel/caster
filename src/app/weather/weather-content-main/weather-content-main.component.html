@@ -3,41 +3,41 @@
         <div class="content-padding main-contents-side">
             <div class="main-contents-side-contents">
                 <p class="text-semibold">Cloudiness</p>
-                <p>89%</p>
+                <p>{{cloudiness}}%</p>
             </div>
             <div class="main-contents-side-contents">
                 <p class="text-semibold">Pressure</p>
-                <p>1012 hPa</p>
+                <p>{{pressure}} hPa</p>
             </div>
             <div class="main-contents-side-contents">
                 <p class="text-semibold">Humidity</p>
-                <p>84%</p>
+                <p>{{humidity}}%</p>
             </div>
         </div>
         <div class="content-padding main-contents-middle">
             <div class="text-center">
                 <div>
-                    <p class="text-bold main-temperature">26°</p>
+                    <p class="text-bold main-temperature">{{temperature}}°</p>
                 </div>
                 <div class=" icon-text main-weather">
-                    <p class="main-feels-like">Feels like 27</p>
-                    <mat-icon svgIcon="">storm</mat-icon>
-                    <p>Overcast Clouds</p>
+                    <p class="main-feels-like">Feels like {{feelsLike}}</p>
+                    <mat-icon [svgIcon]="weatherIcon"></mat-icon>
+                    <p class="main-weather-condition">{{weatherDescription}}</p>
                 </div>
             </div>
         </div>
         <div class="content-padding main-contents-side main-contents-side-right">
             <div class="main-contents-side-contents">
                 <p class="text-semibold">Wind Speed</p>
-                <p>2.53 m/s</p>
+                <p>{{windSpeed}} m/s</p>
             </div>
             <div class="main-contents-side-contents">
-                <p class="text-semibold">Pressure</p>
-                <p>350°</p>
+                <p class="text-semibold">Wind Direction</p>
+                <p>{{windDirection}}°</p>
             </div>
-            <div class="main-contents-side-contents">
-                <p class="text-semibold">Humidity</p>
-                <p>3.17 m/s</p>
+            <div *ngIf="windGustIsPresent" class="main-contents-side-contents">
+                <p class="text-semibold">Wind Gust</p>
+                <p>{{windGust}} m/s</p>
             </div>
         </div>
     </div>

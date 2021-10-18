@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { EpochConverterService } from '../epoch-converter.service';
+import { EpochConverterService } from '../../shared/epoch-converter.service';
 
 import { WeatherAlert } from '../../models/weather/weather-alert.models';
 

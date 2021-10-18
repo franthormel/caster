@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 import { WeatherAlert } from '../../models/weather/weather-alert.models';
 
-import { EpochConverterService } from '../epoch-converter.service';
+import { EpochConverterService } from '../../shared/epoch-converter.service';
 
 @Component({
   selector: 'app-weather-alert-content',

@@ -54,3 +54,7 @@
   margin: 0;
   font-size: 24px;
 }
+
+.main-weather-condition {
+  margin-left: 4px;
+}

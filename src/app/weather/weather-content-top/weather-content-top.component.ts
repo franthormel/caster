@@ -8,7 +8,7 @@ import { WeatherReadingHourly } from '../../models/weather/weather-reading-hourl
 import { WeatherReadingDaily } from 'src/app/models/weather/weather-reading-daily.models';
 import { Geolocation } from '../../models/geolocation/geolocation.models';
 import { WeatherModeService } from '../weather-mode.service';
-import { EpochConverterService } from '../epoch-converter.service';
+import { EpochConverterService } from '../../shared/epoch-converter.service';
 import { MoonPhaseService } from '../moon-phase.service';
 
 import { AppState } from '../../app-state.reducers';
@@ -24,7 +24,6 @@ export class WeatherContentTopComponent implements OnInit {
   @Input() geolocation!: Geolocation;
 
   appState$!: Observable<AppState>;
-
   indexHourly!: number;
   indexDaily!: number;
 
