@@ -38,6 +38,7 @@ export class WeatherContentTopComponent implements OnInit {
     this.initIndexes();
   }
 
+  // TODO Consider moving this to a service, since `weather-content-main` also uses this
   initIndexes() {
     this.appState$ = this.store.select('appState');
 
@@ -158,9 +159,7 @@ export class WeatherContentTopComponent implements OnInit {
   }
 
   get dailyMoonphase(): string {
-    return this.moonphase.description(
-      this.currentDailyWeather.moon_phase
-    );
+    return this.moonphase.description(this.currentDailyWeather.moon_phase);
   }
   get dailyTimeMoonrise(): string {
     return this.epochConverter.convertToTime(this.currentDailyWeather.moonrise);
