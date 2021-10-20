@@ -19,25 +19,9 @@
   padding-bottom: 1%;
 }
 
-.main-contents-side-right {
-  text-align: right;
-}
-
 .icon-text {
   display: inline-flex;
   align-items: center;
-}
-
-.text-semibold {
-  font-weight: 600;
-}
-
-.text-bold {
-  font-weight: 700;
-}
-
-.text-center {
-  text-align: center;
 }
 
 .main-temperature {

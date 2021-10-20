@@ -1,60 +1,41 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Component, Input } from '@angular/core';
 
-import { AppState } from '../../app-state.reducers';
-
-import { WeatherData } from '../../models/weather/weather-data.models';
-import { ReadingDailyTemperature } from '../../models/weather/reading-daily-temperature.models';
 import { ReadingDailyFeelsLike } from '../../models/weather/reading-daily-feelslike.models';
-import { WeatherReading } from 'src/app/models/weather/weather-reading.models';
+import { ReadingDailyTemperature } from '../../models/weather/reading-daily-temperature.models';
+import { WeatherData } from '../../models/weather/weather-data.models';
+import { WeatherCondition } from '../../models/weather/weather-condition.models';
+import { WeatherReading } from '../../models/weather/weather-reading.models';
+
+import { StringFormatterService } from '../../shared/string-formatter.service';
 import { TemperatureConverterService } from '../temperature-converter.service';
 import { WeatherModeService } from '../weather-mode.service';
-import { StringFormatterService } from 'src/app/shared/string-formatter.service';
-import { WeatherCondition } from 'src/app/models/weather/weather-condition.models';
+import { WeatherStateIndexerService } from '../weather-state-indexer.service';
 
 @Component({
   selector: 'app-weather-content-main',
   templateUrl: './weather-content-main.component.html',
   styleUrls: ['./weather-content-main.component.css'],
 })
-export class WeatherContentMainComponent implements OnInit {
+export class WeatherContentMainComponent {
   @Input() weatherData!: WeatherData;
-
-  appState$!: Observable<AppState>;
-  indexHourly!: number;
-  indexDaily!: number;
 
   constructor(
     private stringFormatter: StringFormatterService,
     private temperatureConverter: TemperatureConverterService,
     private weatherMode: WeatherModeService,
-    private store: Store<{ appState: AppState }>
+    private weatherStateIndexer: WeatherStateIndexerService
   ) {}
 
-  ngOnInit() {
-    this.initIndexes();
-  }
-
-  // TODO Consider moving this to a service, since `weather-content-top` also uses this
-  initIndexes() {
-    this.appState$ = this.store.select('appState');
-
-    this.appState$.subscribe((state) => {
-      this.indexHourly = state.weatherIndexHourly;
-      this.indexDaily = state.weatherIndexDaily;
-    });
-  }
-
+  // TODO: Duplicated from `weather-content-bottom`
   private get weatherReading(): WeatherReading {
     let weather!: WeatherReading;
 
     if (this.weatherMode.isCurrent) {
       weather = this.weatherData.current;
     } else if (this.weatherMode.isHourly) {
-      weather = this.weatherData.hourly[this.indexHourly];
+      weather = this.weatherData.hourly[this.weatherStateIndexer.indexHourly];
     } else if (this.weatherMode.isDaily) {
-      weather = this.weatherData.daily[this.indexDaily];
+      weather = this.weatherData.daily[this.weatherStateIndexer.indexDaily];
     }
 
     return weather;

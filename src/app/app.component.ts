@@ -38,10 +38,11 @@ export class AppComponent implements OnInit {
     }
   }
 
-  // Name of icons is according to its moonphase while the filename
-  // associated with that moonphase is its chronological order within
-  // the lunar cycle
   // TODO Prepare for light/dark theme
+  /**
+   *  Name of icons is according to its moonphase while the filename associated
+   *  with that moonphase is its chronological order within the lunar cycle
+   */
   registerMoonIcons() {
     for (const i in ICONS_MOON) {
       this.iconRegistry.addSvgIcon(
@@ -53,8 +54,9 @@ export class AppComponent implements OnInit {
     }
   }
 
-  // Uses weather condition codes as names as described from OpenWeatherMap
-  // TODO Prepare for light/dark theme
+  /**
+   * Uses weather condition codes as names as described from OpenWeatherMap
+   */
   registerWeatherIcons() {
     for (const icon of ICONS_WEATHER) {
       this.iconRegistry.addSvgIcon(

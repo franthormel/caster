@@ -14,3 +14,29 @@ html {
 .content-padding {
   padding: 9px 16px;
 }
+
+.text-semibold {
+  font-weight: 600;
+}
+
+.text-bold {
+  font-weight: 700;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+@for $i from 1 to 12 {
+  .margin-left-r#{$i} {
+    margin-left: #{$i * 10}px;
+  }
+
+  .margin-right-r#{$i} {
+    margin-right: #{$i * 10}px;
+  }
+}

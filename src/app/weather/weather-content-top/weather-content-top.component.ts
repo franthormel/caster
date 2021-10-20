@@ -1,15 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
+
 import { WeatherData } from '../../models/weather/weather-data.models';
 import { WeatherReadingHourly } from '../../models/weather/weather-reading-hourly.models';
-import { WeatherReadingDaily } from 'src/app/models/weather/weather-reading-daily.models';
+import { WeatherReadingDaily } from '../../models/weather/weather-reading-daily.models';
 import { Geolocation } from '../../models/geolocation/geolocation.models';
-import { WeatherModeService } from '../weather-mode.service';
-import { EpochConverterService } from '../../shared/epoch-converter.service';
+
 import { MoonPhaseService } from '../moon-phase.service';
+import { EpochConverterService } from '../../shared/epoch-converter.service';
+import { WeatherModeService } from '../weather-mode.service';
+import { WeatherStateIndexerService } from '../weather-state-indexer.service';
 
 import { AppState } from '../../app-state.reducers';
 import * as actions from '../../app-state.actions';
@@ -19,38 +21,22 @@ import * as actions from '../../app-state.actions';
   templateUrl: './weather-content-top.component.html',
   styleUrls: ['./weather-content-top.component.css'],
 })
-export class WeatherContentTopComponent implements OnInit {
+export class WeatherContentTopComponent {
   @Input() weatherData!: WeatherData;
   @Input() geolocation!: Geolocation;
-
-  appState$!: Observable<AppState>;
-  indexHourly!: number;
-  indexDaily!: number;
 
   constructor(
     private epochConverter: EpochConverterService,
     private moonphase: MoonPhaseService,
     private weatherMode: WeatherModeService,
-    private store: Store<{ appState: AppState }>
+    private store: Store<{ appState: AppState }>,
+    private weatherStateIndexer: WeatherStateIndexerService
   ) {}
-
-  ngOnInit() {
-    this.initIndexes();
-  }
-
-  // TODO Consider moving this to a service, since `weather-content-main` also uses this
-  initIndexes() {
-    this.appState$ = this.store.select('appState');
-
-    this.appState$.subscribe((state) => {
-      this.indexHourly = state.weatherIndexHourly;
-      this.indexDaily = state.weatherIndexDaily;
-    });
-  }
 
   get showCurrent(): boolean {
     return this.weatherMode.isCurrent && this.weatherData.current !== undefined;
   }
+
   get showHourly(): boolean {
     return (
       this.weatherMode.isHourly &&
@@ -58,6 +44,7 @@ export class WeatherContentTopComponent implements OnInit {
       this.weatherData.hourly.length > 0
     );
   }
+
   get showDaily(): boolean {
     return (
       this.weatherMode.isDaily &&
@@ -76,23 +63,25 @@ export class WeatherContentTopComponent implements OnInit {
   get currentTime(): string {
     return this.epochConverter.convertToTime(this.weatherData.current.dt);
   }
+
   get currentTimeSunrise(): string {
     return this.epochConverter.convertToTime(this.weatherData.current.sunrise);
   }
+  
   get currentTimeSunset(): string {
     return this.epochConverter.convertToTime(this.weatherData.current.sunset);
   }
 
   // HOURLY
   private get canHourlyGoBackward(): boolean {
-    return this.indexHourly >= 1;
+    return this.weatherStateIndexer.indexHourly >= 1;
   }
   private get canHourlyGoForward(): boolean {
-    return this.indexHourly < environment.maxHourly - 1;
+    return this.weatherStateIndexer.indexHourly < environment.maxHourly - 1;
   }
 
   get currentHourlyWeather(): WeatherReadingHourly {
-    return this.weatherData.hourly[this.indexHourly];
+    return this.weatherData.hourly[this.weatherStateIndexer.indexHourly];
   }
 
   get hourlyTime(): string {
@@ -116,14 +105,14 @@ export class WeatherContentTopComponent implements OnInit {
 
   // DAILY
   private get canDailyGoBackward(): boolean {
-    return this.indexDaily >= 1;
+    return this.weatherStateIndexer.indexDaily >= 1;
   }
   private get canDailyGoForward(): boolean {
-    return this.indexDaily < environment.maxDaily - 1;
+    return this.weatherStateIndexer.indexDaily < environment.maxDaily - 1;
   }
 
   get currentDailyWeather(): WeatherReadingDaily {
-    return this.weatherData.daily[this.indexDaily];
+    return this.weatherData.daily[this.weatherStateIndexer.indexDaily];
   }
 
   get weatherDailyMaxDate(): Date {

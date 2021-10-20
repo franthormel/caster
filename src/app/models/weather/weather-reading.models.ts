@@ -1,3 +1,4 @@
+import { HourlyChance } from './hourly-chance.models';
 import { ReadingDailyFeelsLike } from './reading-daily-feelslike.models';
 import { ReadingDailyTemperature } from './reading-daily-temperature.models';
 import { WeatherCondition } from './weather-condition.models';
@@ -27,8 +28,8 @@ export interface WeatherReading {
   dew_point: number;
   feels_like: number | ReadingDailyFeelsLike;
   humidity: number;
-  rain?: number;
-  snow?: number;
+  rain?: number | HourlyChance;
+  snow?: number | HourlyChance;
   pop?: number;
   pressure: number;
   sunrise?: number;

@@ -1,1 +1,30 @@
-<p>weather-content-bottom works!</p>
+<section class="content-padding bottom">
+    <div class="bottom">
+        <div *ngIf="snowIsPresent" class="margin-right-r2">
+            <p class="text-bold">Snow</p>
+            <p>{{snow}} mm</p>
+        </div>
+        <div *ngIf="rainIsPresent" class="margin-right-r2">
+            <p class="text-bold">Rain</p>
+            <p>{{rain}} mm</p>
+        </div>
+        <div class="margin-right-r2">
+            <p class="text-bold">{{precipitationTitle}}</p>
+            <p>{{precipitation}}</p>
+        </div>
+    </div>
+    <div class="bottom text-align-right">
+        <div class="margin-left-r2">
+            <p class="text-bold">Dew point</p>
+            <p>{{dewPoint}}°</p>
+        </div>
+        <div class="margin-left-r2">
+            <p class="text-bold">UVI</p>
+            <p>{{uvi}}</p>
+        </div>
+        <div *ngIf="visibilityIsPresent" class="margin-left-r2">
+            <p class="text-bold">Visibility</p>
+            <p>{{visibility}}</p>
+        </div>
+    </div>
+</section>
