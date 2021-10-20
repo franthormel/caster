@@ -7,10 +7,9 @@
 
 <!--TODO If there is no weather data, notify user by either using snackbar or dialog-->
 <ng-container *ngIf="!loading && weatherData && geolocation">
-    <app-weather-current *ngIf="weatherMode.isCurrent" [weatherData]="weatherData" [geolocation]="geolocation">
-    </app-weather-current>
-    <app-weather-hourly *ngIf="weatherMode.isHourly" [weatherData]="weatherData" [geolocation]="geolocation">
-    </app-weather-hourly>
-    <app-weather-daily *ngIf="weatherMode.isDaily" [weatherData]="weatherData" [geolocation]="geolocation">
-    </app-weather-daily>
+    <app-weather-content-top [geolocation]="geolocation" [weatherData]="weatherData">
+    </app-weather-content-top>
+    <app-weather-content-main [weatherData]="weatherData">
+    </app-weather-content-main>
+    <app-weather-content-bottom></app-weather-content-bottom>
 </ng-container>

@@ -18,31 +18,27 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field'; 
 import { MatNativeDateModule } from '@angular/material/core';
 
-import { WeatherCurrentComponent } from './weather-current/weather-current.component';
 import { WeatherToolbarComponent } from './weather-toolbar/weather-toolbar.component';
 import { WeatherAlertComponent } from './weather-alert/weather-alert.component';
-import { WeatherHourlyComponent } from './weather-hourly/weather-hourly.component';
-import { WeatherDailyComponent } from './weather-daily/weather-daily.component';
 import { WeatherMainComponent } from './weather-main/weather-main.component';
 import { WeatherAlertSingleComponent } from './weather-alert-single/weather-alert-single.component';
 import { WeatherAlertMultipleComponent } from './weather-alert-multiple/weather-alert-multiple.component';
 import { WeatherAlertContentComponent } from './weather-alert-content/weather-alert-content.component';
 import { WeatherContentTopComponent } from './weather-content-top/weather-content-top.component';
 import { WeatherContentMainComponent } from './weather-content-main/weather-content-main.component';
+import { WeatherContentBottomComponent } from './weather-content-bottom/weather-content-bottom.component';
 
 @NgModule({
   declarations: [
-    WeatherCurrentComponent,
     WeatherToolbarComponent,
     WeatherAlertComponent,
-    WeatherHourlyComponent,
-    WeatherDailyComponent,
     WeatherMainComponent,
     WeatherAlertSingleComponent,
     WeatherAlertMultipleComponent,
     WeatherAlertContentComponent,
     WeatherContentTopComponent,
     WeatherContentMainComponent,
+    WeatherContentBottomComponent,
   ],
   imports: [
     CommonModule,
