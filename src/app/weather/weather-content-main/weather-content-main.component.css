@@ -13,6 +13,8 @@
 
 .main-contents-middle {
   width: 40%;
+  margin: auto;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .main-contents-side-contents {
@@ -22,21 +24,16 @@
 .icon-text {
   display: inline-flex;
   align-items: center;
+  font-size: 1.6em;
+}
+
+.main-feels-like {
+  margin-right: 24px;
 }
 
 .main-temperature {
   margin: 0;
-  font-size: 144px;
-}
-
-.main-feels-like {
-  margin: 0;
-  margin-right: 24px;
-}
-
-.main-weather {
-  margin: 0;
-  font-size: 24px;
+  font-size: 9.8em;
 }
 
 .main-weather-condition {
