@@ -16,10 +16,24 @@
         </div>
         <div class="content-padding weather-content-main-contents-middle">
             <div class="text-align-center">
-                <div>
-                    <p class=" text-f700 weather-content-main-temperature">{{temperature}}°</p>
+                <div class="weather-content-main-contents-middle-upper">
+                    <div *ngIf="showTemperatureOrFeelsLikeDetails"
+                        class="margin-right-z2 align-self-center text-align-right">
+                        <!--NOTE Min max is available only for ReadingDetailTemperature-->
+                        <!--TODO Make it available to switch between reading daily temperature OR feels_like-->
+                        <ng-container *ngIf="showMinMaxDetails">
+                            <p><span class="text-f600 margin-right-z2">Min</span>{{min}}</p>
+                            <p><span class="text-f600 margin-right-z2">Max</span>{{max}}</p>
+                        </ng-container>
+                        <p><span class="text-f600 margin-right-z2">Morning</span>{{morning}}</p>
+                        <p><span class="text-f600 margin-right-z2">Evening</span>{{evening}}</p>
+                        <p><span class="text-f600 margin-right-z2">Night</span>{{night}}</p>
+                    </div>
+                    <div class="align-self-center">
+                        <p class=" text-f700 weather-content-main-temperature">{{temperature}}°</p>
+                    </div>
                 </div>
-                <div class="weather-content-main-icon-text">
+                <div class="weather-content-main-contents-middle-lower">
                     <p class="margin-right-z2" matTooltip="Human perception of weather">Feels like {{feelsLike}}</p>
                     <mat-icon [svgIcon]="weatherIcon"></mat-icon>
                     <p class="margin-left-z1">{{weatherDescription}}</p>

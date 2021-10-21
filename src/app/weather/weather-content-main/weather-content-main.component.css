@@ -2,6 +2,11 @@
   background-color: #ffffff50;
 }
 
+.weather-content-main-contents-middle-upper {
+  display: flex;
+  justify-content: center;
+}
+
 .weather-content-main-contents {
   display: flex;
   justify-content: space-between;
@@ -22,7 +27,7 @@
   font-size: 9.8em;
 }
 
-.weather-content-main-icon-text {
+.weather-content-main-contents-middle-lower {
   display: inline-flex;
   align-items: center;
   font-size: 1.6em;

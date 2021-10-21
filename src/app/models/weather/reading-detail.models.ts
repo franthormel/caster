@@ -5,7 +5,7 @@
  * * `eve` Evening temperature.
  * * `night` Night temperature.
  */
-export interface ReadingDaily {
+export interface ReadingDetail {
   day: number;
   night: number;
   eve: number;
