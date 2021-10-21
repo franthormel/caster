@@ -1,12 +1,13 @@
 <!--Subtitle-->
 <ng-container *ngIf="showAlertTimeRange">
-    <h3>Duration: {{timeDescription}}</h3>
+    <h4>Duration: {{timeDescription}}</h4>
 </ng-container>
 
+
 <!--Content-->
-<p *ngFor="let line of alertLines"
-   [ngClass]="lineIsCapitalized(line) ? 'mat-body-strong' : 'mat-body'">
-   {{line}}
+<br />
+<p *ngFor="let line of alertLines" [ngClass]="{'text-f600': lineIsCapitalized(line)}">
+    {{line}}
 </p>
 <br />
 

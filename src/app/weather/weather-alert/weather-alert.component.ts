@@ -10,11 +10,7 @@ import { WeatherAlert } from '../../models/weather/weather-alert.models';
 })
 export class WeatherAlertComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public alerts: WeatherAlert[]) {}
-
-  /**
-   * If there are multiple alerts use a generic title
-   * Otherwise, use the single alert's event and sender's name
-   */
+  
   get title(): string {
     if (!this.multipleAlerts) {
       const alert = this.alerts[0];
@@ -22,7 +18,7 @@ export class WeatherAlertComponent {
     }
     return 'Weather Alerts';
   }
-  
+
   get multipleAlerts(): boolean {
     return this.alerts.length > 1;
   }

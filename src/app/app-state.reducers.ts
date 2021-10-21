@@ -1,7 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { environment } from '../environments/environment';
-
 import { WeatherReadingType } from './models/weather/weather.enums';
 
 import * as appStateActions from './app-state.actions';

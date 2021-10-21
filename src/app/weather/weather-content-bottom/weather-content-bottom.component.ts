@@ -1,8 +1,7 @@
 import { Component, Input } from '@angular/core';
 
-import { WeatherData } from 'src/app/models/weather/weather-data.models';
-
 import { HourlyChance } from '../../models/weather/hourly-chance.models';
+import { WeatherData } from '../../models/weather/weather-data.models';
 import { WeatherReading } from '../../models/weather/weather-reading.models';
 
 import { TemperatureConverterService } from '../temperature-converter.service';
@@ -23,7 +22,6 @@ export class WeatherContentBottomComponent {
     private weatherMode: WeatherModeService
   ) {}
 
-  // TODO: Duplicated from `weather-content-main`
   private get weatherReading(): WeatherReading {
     let weather!: WeatherReading;
 
@@ -125,8 +123,10 @@ export class WeatherContentBottomComponent {
 
     if (visibility && visibility > 1000) {
       return `${Math.trunc(visibility / 1000)} km`;
-    } else {
+    } else if (visibility) {
       return `${visibility} m`;
     }
+
+    return '';
   }
 }

@@ -1,5 +1,5 @@
-<h1 mat-dialog-title class="mat-title">{{title}}</h1>
-<mat-dialog-content class="mat-typography">
+<span mat-dialog-title class="mat-title">{{title}}</span>
+<mat-dialog-content>
     <ng-container *ngIf="!multipleAlerts">
         <app-weather-alert-single [alert]="alerts[0]"></app-weather-alert-single>
     </ng-container>
@@ -8,5 +8,5 @@
     </ng-container>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-raised-button matDialogClose color="warn">UNDERSTOOD</button>
+    <button mat-raised-button matDialogClose color="warn">Understood</button>
 </mat-dialog-actions>

@@ -26,7 +26,6 @@ export class WeatherContentMainComponent {
     private weatherStateIndexer: WeatherStateIndexerService
   ) {}
 
-  // TODO: Duplicated from `weather-content-bottom`
   private get weatherReading(): WeatherReading {
     let weather!: WeatherReading;
 

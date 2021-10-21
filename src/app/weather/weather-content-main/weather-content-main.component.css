@@ -1,41 +1,29 @@
-.main {
+.weather-content-main {
   background-color: #ffffff50;
 }
 
-.main-contents {
+.weather-content-main-contents {
   display: flex;
   justify-content: space-between;
 }
 
-.main-contents-side {
+.weather-content-main-contents-side {
   width: 15%;
 }
 
-.main-contents-middle {
+.weather-content-main-contents-middle {
   width: 40%;
   margin: auto;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 }
 
-.main-contents-side-contents {
-  padding-bottom: 1%;
-}
-
-.icon-text {
-  display: inline-flex;
-  align-items: center;
-  font-size: 1.6em;
-}
-
-.main-feels-like {
-  margin-right: 24px;
-}
-
-.main-temperature {
+.weather-content-main-temperature {
   margin: 0;
   font-size: 9.8em;
 }
 
-.main-weather-condition {
-  margin-left: 4px;
+.weather-content-main-icon-text {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.6em;
 }

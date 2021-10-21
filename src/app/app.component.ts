@@ -23,13 +23,13 @@ export class AppComponent implements OnInit {
     this.registerSvgIcons();
   }
 
-  registerSvgIcons() {
+  private registerSvgIcons() {
     this.registerGeneralIcons();
     this.registerMoonIcons();
     this.registerWeatherIcons();
   }
 
-  registerGeneralIcons() {
+  private registerGeneralIcons() {
     for (const icon of ICONS) {
       this.iconRegistry.addSvgIcon(
         icon,
@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
    *  Name of icons is according to its moonphase while the filename associated
    *  with that moonphase is its chronological order within the lunar cycle
    */
-  registerMoonIcons() {
+  private registerMoonIcons() {
     for (const i in ICONS_MOON) {
       this.iconRegistry.addSvgIcon(
         ICONS_MOON[i],
@@ -57,7 +57,7 @@ export class AppComponent implements OnInit {
   /**
    * Uses weather condition codes as names as described from OpenWeatherMap
    */
-  registerWeatherIcons() {
+  private registerWeatherIcons() {
     for (const icon of ICONS_WEATHER) {
       this.iconRegistry.addSvgIcon(
         icon,
@@ -68,15 +68,15 @@ export class AppComponent implements OnInit {
     }
   }
 
-  fetchIconAsset(filename: string): string {
+  private fetchIconAsset(filename: string): string {
     return `${environment.assetsIcons}${filename}.svg`;
   }
 
-  fetchIconAssetMoon(filename: string): string {
+  private fetchIconAssetMoon(filename: string): string {
     return `${environment.assetsIconsMoon}${filename}.svg`;
   }
 
-  fetchIconAssetWeather(filename: string): string {
+  private fetchIconAssetWeather(filename: string): string {
     return `${environment.assetsIconsWeather}${filename}.svg`;
   }
 }

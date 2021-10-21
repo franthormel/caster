@@ -12,7 +12,6 @@ import { AppState } from '../app-state.reducers';
 })
 export class WeatherModeService {
   private appState$!: Observable<AppState>;
-
   private mode: WeatherReadingType | undefined;
 
   constructor(private store: Store<{ appState: AppState }>) {
@@ -39,10 +38,6 @@ export class WeatherModeService {
     return this.mode === WeatherReadingType.Daily;
   }
 
-  private changeMode(value: WeatherReadingType) {
-    this.store.dispatch(updateWeatherMode({ mode: value }));
-  }
-
   changeToCurrent() {
     this.changeMode(WeatherReadingType.Current);
   }
@@ -53,5 +48,9 @@ export class WeatherModeService {
 
   changeToDaily() {
     this.changeMode(WeatherReadingType.Daily);
+  }
+
+  private changeMode(value: WeatherReadingType) {
+    this.store.dispatch(updateWeatherMode({ mode: value }));
   }
 }

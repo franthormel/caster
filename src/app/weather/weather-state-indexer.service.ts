@@ -8,21 +8,28 @@ import { AppState } from '../app-state.reducers';
   providedIn: 'root',
 })
 export class WeatherStateIndexerService {
-  appState$!: Observable<AppState>;
-
-  indexHourly!: number;
-  indexDaily!: number;
+  private appState$!: Observable<AppState>;
+  private _indexHourly!: number;
+  private _indexDaily!: number;
 
   constructor(private store: Store<{ appState: AppState }>) {
     this.initIndexes();
   }
 
-  initIndexes() {
+  private initIndexes() {
     this.appState$ = this.store.select('appState');
 
     this.appState$.subscribe((state) => {
-      this.indexHourly = state.weatherIndexHourly;
-      this.indexDaily = state.weatherIndexDaily;
+      this._indexHourly = state.weatherIndexHourly;
+      this._indexDaily = state.weatherIndexDaily;
     });
+  }
+
+  get indexHourly(): number {
+    return this._indexHourly;
+  }
+
+  get indexDaily(): number {
+    return this._indexDaily;
   }
 }

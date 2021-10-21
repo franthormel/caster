@@ -3,6 +3,8 @@ body {
   font-family: Montserrat;
   margin: 0;
 }
+
+// TODO Prepare for light/dark theme
 html {
   background: url("/assets/images/background/light.jpg") no-repeat fixed;
   -webkit-background-size: cover;
@@ -15,14 +17,6 @@ html {
   padding: 9px 16px;
 }
 
-.text-semibold {
-  font-weight: 600;
-}
-
-.text-bold {
-  font-weight: 700;
-}
-
 .text-align-center {
   text-align: center;
 }
@@ -31,12 +25,34 @@ html {
   text-align: right;
 }
 
-@for $i from 1 to 12 {
-  .margin-left-r#{$i} {
+.margin-none {
+  margin: 0;
+}
+
+// Font-weights
+@for $i from 1 through 9 {
+  $weight: $i * 100;
+
+  .text-f#{$weight} {
+    font-weight: $weight;
+  }
+}
+
+// Margins
+@for $i from 1 through 6 {
+  .margin-top-z#{$i} {
+    margin-top: #{$i * 10}px;
+  }
+
+  .margin-left-z#{$i} {
     margin-left: #{$i * 10}px;
   }
 
-  .margin-right-r#{$i} {
+  .margin-bottom-z#{$i} {
+    margin-bottom: #{$i * 10}px;
+  }
+
+  .margin-right-z#{$i} {
     margin-right: #{$i * 10}px;
   }
 }

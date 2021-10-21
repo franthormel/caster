@@ -1,42 +1,42 @@
-<div class="main">
-    <div class="main-contents">
-        <div class="content-padding main-contents-side">
-            <div class="main-contents-side-contents">
-                <p class="text-semibold">Cloudiness</p>
+<div class="weather-content-main">
+    <div class="weather-content-main-contents">
+        <div class="content-padding weather-content-main-contents-side">
+            <div class="margin-bottom-z3">
+                <p class="text-f600">Cloudiness</p>
                 <p>{{cloudiness}}%</p>
             </div>
-            <div class="main-contents-side-contents">
-                <p class="text-semibold">Pressure</p>
+            <div class="margin-bottom-z3">
+                <p class="text-f600">Pressure</p>
                 <p>{{pressure}} hPa</p>
             </div>
-            <div class="main-contents-side-contents">
-                <p class="text-semibold">Humidity</p>
+            <div class="margin-bottom-z3">
+                <p class="text-f600">Humidity</p>
                 <p>{{humidity}}%</p>
             </div>
         </div>
-        <div class="content-padding main-contents-middle">
+        <div class="content-padding weather-content-main-contents-middle">
             <div class="text-align-center">
                 <div>
-                    <p class=" text-bold main-temperature">{{temperature}}°</p>
+                    <p class=" text-f700 weather-content-main-temperature">{{temperature}}°</p>
                 </div>
-                <div class="icon-text">
-                    <p class="main-feels-like">Feels like {{feelsLike}}</p>
+                <div class="weather-content-main-icon-text">
+                    <p class="margin-right-z2">Feels like {{feelsLike}}</p>
                     <mat-icon [svgIcon]="weatherIcon"></mat-icon>
-                    <p class="main-weather-condition">{{weatherDescription}}</p>
+                    <p class="margin-left-z1">{{weatherDescription}}</p>
                 </div>
             </div>
         </div>
-        <div class="content-padding main-contents-side text-align-right">
-            <div class="main-contents-side-contents">
-                <p class="text-semibold">Wind Speed</p>
+        <div class="content-padding weather-content-main-contents-side text-align-right">
+            <div class="margin-bottom-z3">
+                <p class="text-f600">Wind Speed</p>
                 <p>{{windSpeed}} m/s</p>
             </div>
-            <div class="main-contents-side-contents">
-                <p class="text-semibold">Wind Direction</p>
+            <div class="margin-bottom-z3">
+                <p class="text-f600">Wind Direction</p>
                 <p>{{windDirection}}°</p>
             </div>
-            <div *ngIf="windGustIsPresent" class="main-contents-side-contents">
-                <p class="text-semibold">Wind Gust</p>
+            <div *ngIf="windGustIsPresent" class="margin-bottom-z3">
+                <p class="text-f600">Wind Gust</p>
                 <p>{{windGust}} m/s</p>
             </div>
         </div>

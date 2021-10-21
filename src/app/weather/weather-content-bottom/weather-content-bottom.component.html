@@ -1,29 +1,29 @@
-<section class="content-padding bottom">
-    <div class="bottom">
-        <div *ngIf="snowIsPresent" class="margin-right-r2">
-            <p class="text-bold">Snow</p>
+<section class="content-padding weather-content-bottom">
+    <div class="weather-content-bottom">
+        <div *ngIf="snowIsPresent" class="margin-right-z3">
+            <p class="text-f600">Snow</p>
             <p>{{snow}} mm</p>
         </div>
-        <div *ngIf="rainIsPresent" class="margin-right-r2">
-            <p class="text-bold">Rain</p>
+        <div *ngIf="rainIsPresent" class="margin-right-z3">
+            <p class="text-f600">Rain</p>
             <p>{{rain}} mm</p>
         </div>
-        <div class="margin-right-r2">
-            <p class="text-bold">{{precipitationTitle}}</p>
+        <div class="margin-right-z3">
+            <p class="text-f600">{{precipitationTitle}}</p>
             <p>{{precipitation}}</p>
         </div>
     </div>
-    <div class="bottom text-align-right">
-        <div class="margin-left-r2">
-            <p class="text-bold">Dew point</p>
+    <div class="weather-content-bottom text-align-right">
+        <div class="margin-left-z3">
+            <p class="text-f600">Dew point</p>
             <p>{{dewPoint}}°</p>
         </div>
-        <div class="margin-left-r2">
-            <p class="text-bold">UVI</p>
+        <div class="margin-left-z3">
+            <p class="text-f600">UVI</p>
             <p>{{uvi}}</p>
         </div>
-        <div *ngIf="visibilityIsPresent" class="margin-left-r2">
-            <p class="text-bold">Visibility</p>
+        <div *ngIf="visibilityIsPresent" class="margin-left-z3">
+            <p class="text-f600">Visibility</p>
             <p>{{visibility}}</p>
         </div>
     </div>
