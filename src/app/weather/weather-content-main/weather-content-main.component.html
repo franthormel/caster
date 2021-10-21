@@ -6,7 +6,7 @@
                 <p>{{cloudiness}}%</p>
             </div>
             <div class="margin-bottom-z3">
-                <p class="text-f600">Pressure</p>
+                <p class="text-f600" matTooltip="Atmospheric pressure on the sea level">Pressure</p>
                 <p>{{pressure}} hPa</p>
             </div>
             <div class="margin-bottom-z3">
@@ -20,7 +20,7 @@
                     <p class=" text-f700 weather-content-main-temperature">{{temperature}}°</p>
                 </div>
                 <div class="weather-content-main-icon-text">
-                    <p class="margin-right-z2">Feels like {{feelsLike}}</p>
+                    <p class="margin-right-z2" matTooltip="Human perception of weather">Feels like {{feelsLike}}</p>
                     <mat-icon [svgIcon]="weatherIcon"></mat-icon>
                     <p class="margin-left-z1">{{weatherDescription}}</p>
                 </div>

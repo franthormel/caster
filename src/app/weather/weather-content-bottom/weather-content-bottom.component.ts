@@ -36,24 +36,44 @@ export class WeatherContentBottomComponent {
     return weather;
   }
 
+  get snowIsPresent(): boolean {
+    return this.weatherReading.snow !== undefined;
+  }
+
+  get snowTooltip(): string {
+    const text = 'Snow volume';
+
+    if (!this.weatherMode.isDaily) {
+      return `${text} for the last hour`;
+    }
+
+    return text;
+  }
+
   get snow(): number {
     return this.weatherMode.isDaily
       ? (this.weatherReading.snow as number)
       : (this.weatherReading.snow as HourlyChance)['1h'];
   }
 
-  get snowIsPresent(): boolean {
-    return this.weatherReading.snow !== undefined;
+  get rainIsPresent(): boolean {
+    return this.weatherReading.rain !== undefined;
+  }
+
+  get rainTooltip(): string {
+    const text = 'Rain volume';
+
+    if (!this.weatherMode.isDaily) {
+      return `${text} for the last hour`;
+    }
+
+    return text;
   }
 
   get rain(): number {
     return this.weatherMode.isDaily
       ? (this.weatherReading.rain as number)
       : (this.weatherReading.rain as HourlyChance)['1h'];
-  }
-
-  get rainIsPresent(): boolean {
-    return this.weatherReading.rain !== undefined;
   }
 
   get precipitationTitle(): string {
@@ -64,6 +84,14 @@ export class WeatherContentBottomComponent {
     }
 
     return title;
+  }
+
+  get precipitationTooltip(): string {
+    if (this.weatherMode.isCurrent) {
+      return 'Precipitation volume';
+    } else {
+      return 'Probability of precipitation';
+    }
   }
 
   /**
@@ -105,6 +133,18 @@ export class WeatherContentBottomComponent {
     return this.temperatureConverter.convertKelvinToCelsius(
       this.weatherReading.dew_point
     );
+  }
+
+  get uviTooltip(): string {
+    const text = 'UV Index';
+
+    if (this.weatherMode.isCurrent) {
+      return `Current ${text}`;
+    } else if (this.weatherMode.isDaily) {
+      return `The maximum value of ${text} for the day`;
+    } else {
+      return `${text}`;
+    }
   }
 
   get uvi(): number {
