@@ -33,10 +33,30 @@ export class WeatherContentTopComponent {
     private weatherStateIndexer: WeatherStateIndexerService
   ) {}
 
+  get formattedLocation(): string {
+    return this.geolocation
+      ? `${this.geolocation.name}, ${this.geolocation.country}`
+      : '';
+  }
+
+  // CURRENT
   get showCurrent(): boolean {
     return this.weatherMode.isCurrent && this.weatherData.current !== undefined;
   }
 
+  get currentTime(): string {
+    return this.epochConverter.convertToTime(this.weatherData.current.dt);
+  }
+
+  get currentTimeSunrise(): string {
+    return this.epochConverter.convertToTime(this.weatherData.current.sunrise);
+  }
+
+  get currentTimeSunset(): string {
+    return this.epochConverter.convertToTime(this.weatherData.current.sunset);
+  }
+
+  // HOURLY
   get showHourly(): boolean {
     return (
       this.weatherMode.isHourly &&
@@ -45,56 +65,14 @@ export class WeatherContentTopComponent {
     );
   }
 
-  get showDaily(): boolean {
-    return (
-      this.weatherMode.isDaily &&
-      this.weatherData.daily !== undefined &&
-      this.weatherData.daily.length > 0
-    );
-  }
-
-  get formattedLocation(): string {
-    return this.geolocation
-      ? `${this.geolocation.name}, ${this.geolocation.country}`
-      : '';
-  }
-
-  // CURRENT
-  get currentTime(): string {
-    return this.epochConverter.convertToTime(this.weatherData.current.dt);
-  }
-
-  get currentTimeSunrise(): string {
-    return this.epochConverter.convertToTime(this.weatherData.current.sunrise);
-  }
-  
-  get currentTimeSunset(): string {
-    return this.epochConverter.convertToTime(this.weatherData.current.sunset);
-  }
-
-  // HOURLY
-  private get canHourlyGoBackward(): boolean {
-    return this.weatherStateIndexer.indexHourly >= 1;
-  }
-  private get canHourlyGoForward(): boolean {
-    return this.weatherStateIndexer.indexHourly < environment.maxHourly - 1;
-  }
-
-  get currentHourlyWeather(): WeatherReadingHourly {
-    return this.weatherData.hourly[this.weatherStateIndexer.indexHourly];
-  }
-
-  get hourlyTime(): string {
-    const pointTime = this.weatherData.hourly[0].dt;
-    const compareTime = this.currentHourlyWeather.dt;
-
-    return this.displayDateTime(compareTime, pointTime, compareTime);
-  }
-
   previousHourlyWeather() {
     if (this.canHourlyGoBackward) {
       this.store.dispatch(actions.weatherIndexHourlyDecrement());
     }
+  }
+
+  private get canHourlyGoBackward(): boolean {
+    return this.weatherStateIndexer.indexHourly >= 1;
   }
 
   nextHourlyWeather() {
@@ -103,42 +81,31 @@ export class WeatherContentTopComponent {
     }
   }
 
-  // DAILY
-  private get canDailyGoBackward(): boolean {
-    return this.weatherStateIndexer.indexDaily >= 1;
-  }
-  private get canDailyGoForward(): boolean {
-    return this.weatherStateIndexer.indexDaily < environment.maxDaily - 1;
+  private get canHourlyGoForward(): boolean {
+    return this.weatherStateIndexer.indexHourly < environment.maxHourly - 1;
   }
 
-  get currentDailyWeather(): WeatherReadingDaily {
-    return this.weatherData.daily[this.weatherStateIndexer.indexDaily];
-  }
-
-  get weatherDailyMaxDate(): Date {
-    return this.epochConverter.convertToDate(this.weatherData.daily[0].dt);
-  }
-
-  get weatherDailyMinDate(): Date {
-    const dailyWeathers = this.weatherData.daily;
-    const lastIndex = dailyWeathers.length - 1;
-    return this.epochConverter.convertToDate(dailyWeathers[lastIndex].dt);
-  }
-
-  get weatherDailySelectedDate(): Date {
-    return this.epochConverter.convertToDate(this.currentDailyWeather.dt);
-  }
-
-  get dailyTime(): string {
-    const pointTime = this.weatherData.daily[0].dt;
-    const compareTime = this.currentDailyWeather.dt;
+  get hourlyTime(): string {
+    const pointTime = this.weatherData.hourly[0].dt;
+    const compareTime =
+      this.weatherData.hourly[this.weatherStateIndexer.indexHourly].dt;
 
     return this.displayDateTime(compareTime, pointTime, compareTime);
+  }
+
+  // DAILY
+  get showDaily(): boolean {
+    return (
+      this.weatherMode.isDaily &&
+      this.weatherData.daily !== undefined &&
+      this.weatherData.daily.length > 0
+    );
   }
 
   get dailyTimeSunrise(): string {
     return this.epochConverter.convertToTime(this.currentDailyWeather.sunrise);
   }
+
   get dailyTimeSunset(): string {
     return this.epochConverter.convertToTime(this.currentDailyWeather.sunset);
   }
@@ -150,9 +117,11 @@ export class WeatherContentTopComponent {
   get dailyMoonphase(): string {
     return this.moonphase.description(this.currentDailyWeather.moon_phase);
   }
+
   get dailyTimeMoonrise(): string {
     return this.epochConverter.convertToTime(this.currentDailyWeather.moonrise);
   }
+
   get dailyTimeMoonset(): string {
     return this.epochConverter.convertToTime(this.currentDailyWeather.moonset);
   }
@@ -163,10 +132,29 @@ export class WeatherContentTopComponent {
     }
   }
 
+  private get canDailyGoBackward(): boolean {
+    return this.weatherStateIndexer.indexDaily >= 1;
+  }
+
   dailyNext() {
     if (this.canDailyGoForward) {
       this.store.dispatch(actions.weatherIndexDailyIncrement());
     }
+  }
+
+  private get canDailyGoForward(): boolean {
+    return this.weatherStateIndexer.indexDaily < environment.maxDaily - 1;
+  }
+
+  get dailyTime(): string {
+    const pointTime = this.weatherData.daily[0].dt;
+    const compareTime = this.currentDailyWeather.dt;
+
+    return this.displayDateTime(compareTime, pointTime, compareTime);
+  }
+
+  private get currentDailyWeather(): WeatherReadingDaily {
+    return this.weatherData.daily[this.weatherStateIndexer.indexDaily];
   }
 
   /**
@@ -176,7 +164,11 @@ export class WeatherContentTopComponent {
    * @param compare UTC seconds
    * @returns string
    */
-  displayDateTime(display: number, point: number, compare: number): string {
+  private displayDateTime(
+    display: number,
+    point: number,
+    compare: number
+  ): string {
     const offset = this.epochConverter.offsetDays(
       point,
       compare,

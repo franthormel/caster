@@ -11,7 +11,6 @@ import { Geolocation } from '../../models/geolocation/geolocation.models';
 
 import { WeatherModeService } from '../weather-mode.service';
 import { WeatherDataService } from '../weather-data.service';
-import { WeatherReadingCurrent } from 'src/app/models/weather/weather-reading-current.models';
 
 @Component({
   selector: 'app-weather-main',
@@ -36,7 +35,7 @@ export class WeatherMainComponent implements OnInit {
     this.initData();
   }
 
-  initData() {
+  private initData() {
     this.loading = true;
 
     const dataCollection$ = this.initThenCombineData();
@@ -48,7 +47,7 @@ export class WeatherMainComponent implements OnInit {
     });
   }
 
-  initThenCombineData(): Observable<[WeatherData, Geolocation[]]> {
+  private initThenCombineData(): Observable<[WeatherData, Geolocation[]]> {
     this.weatherData$ = this.weatherDataService.localFileWeather();
     this.geolocationsData$ = this.weatherDataService.localFileGeolocation();
     this.weatherData$.subscribe({
@@ -72,21 +71,21 @@ export class WeatherMainComponent implements OnInit {
     return forkJoin([this.weatherData$, this.geolocationsData$]);
   }
 
-  get geolocation(): Geolocation | undefined {
-    return this.geolocations ? this.geolocations[0] : undefined;
-  }
-
-  get alerts(): WeatherAlert[] | undefined {
-    return this.weatherData?.alerts;
+  showAlertDialog() {
+    this.dialog.open(WeatherAlertComponent, {
+      data: this.alerts,
+    });
   }
 
   get alertsCount(): number | undefined {
     return this.alerts?.length;
   }
 
-  showAlertDialog() {
-    this.dialog.open(WeatherAlertComponent, {
-      data: this.alerts,
-    });
+  get geolocation(): Geolocation | undefined {
+    return this.geolocations ? this.geolocations[0] : undefined;
+  }
+
+  get alerts(): WeatherAlert[] | undefined {
+    return this.weatherData?.alerts;
   }
 }

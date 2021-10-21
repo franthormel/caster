@@ -26,20 +26,6 @@ export class WeatherContentMainComponent {
     private weatherStateIndexer: WeatherStateIndexerService
   ) {}
 
-  private get weatherReading(): WeatherReading {
-    let weather!: WeatherReading;
-
-    if (this.weatherMode.isCurrent) {
-      weather = this.weatherData.current;
-    } else if (this.weatherMode.isHourly) {
-      weather = this.weatherData.hourly[this.weatherStateIndexer.indexHourly];
-    } else if (this.weatherMode.isDaily) {
-      weather = this.weatherData.daily[this.weatherStateIndexer.indexDaily];
-    }
-
-    return weather;
-  }
-
   get cloudiness(): number {
     return this.weatherReading.clouds;
   }
@@ -52,14 +38,6 @@ export class WeatherContentMainComponent {
     return this.weatherReading.humidity;
   }
 
-  private temperatureBasedOnMode(weather: WeatherReading): number {
-    if (this.weatherMode.isDaily) {
-      return (weather.temp as ReadingDailyTemperature).day;
-    }
-
-    return weather.temp as number;
-  }
-
   get temperature(): number {
     const weather = this.weatherReading;
     let temperature = this.temperatureBasedOnMode(weather);
@@ -69,12 +47,12 @@ export class WeatherContentMainComponent {
     return temperature;
   }
 
-  private feelsLikeBasedOnMode(weather: WeatherReading): number {
+  private temperatureBasedOnMode(weather: WeatherReading): number {
     if (this.weatherMode.isDaily) {
-      return (weather.feels_like as ReadingDailyFeelsLike).day;
+      return (weather.temp as ReadingDailyTemperature).day;
     }
 
-    return weather.feels_like as number;
+    return weather.temp as number;
   }
 
   get feelsLike(): number {
@@ -86,8 +64,12 @@ export class WeatherContentMainComponent {
     return feelsLike;
   }
 
-  private get weatherCondition(): WeatherCondition {
-    return this.weatherReading.weather[0];
+  private feelsLikeBasedOnMode(weather: WeatherReading): number {
+    if (this.weatherMode.isDaily) {
+      return (weather.feels_like as ReadingDailyFeelsLike).day;
+    }
+
+    return weather.feels_like as number;
   }
 
   get weatherIcon(): string {
@@ -98,6 +80,10 @@ export class WeatherContentMainComponent {
     return this.stringFormatter.capitalizeFirstLetter(
       this.weatherCondition.description
     );
+  }
+
+  private get weatherCondition(): WeatherCondition {
+    return this.weatherReading.weather[0];
   }
 
   get windSpeed(): number {
@@ -114,5 +100,19 @@ export class WeatherContentMainComponent {
 
   get windGust(): number {
     return this.weatherReading.wind_gust as number;
+  }
+
+  private get weatherReading(): WeatherReading {
+    let weather!: WeatherReading;
+
+    if (this.weatherMode.isCurrent) {
+      weather = this.weatherData.current;
+    } else if (this.weatherMode.isHourly) {
+      weather = this.weatherData.hourly[this.weatherStateIndexer.indexHourly];
+    } else if (this.weatherMode.isDaily) {
+      weather = this.weatherData.daily[this.weatherStateIndexer.indexDaily];
+    }
+
+    return weather;
   }
 }

@@ -22,20 +22,6 @@ export class WeatherContentBottomComponent {
     private weatherMode: WeatherModeService
   ) {}
 
-  private get weatherReading(): WeatherReading {
-    let weather!: WeatherReading;
-
-    if (this.weatherMode.isCurrent) {
-      weather = this.weatherData.current;
-    } else if (this.weatherMode.isHourly) {
-      weather = this.weatherData.hourly[this.weatherStateIndexer.indexHourly];
-    } else if (this.weatherMode.isDaily) {
-      weather = this.weatherData.daily[this.weatherStateIndexer.indexDaily];
-    }
-
-    return weather;
-  }
-
   get snowIsPresent(): boolean {
     return this.weatherReading.snow !== undefined;
   }
@@ -76,6 +62,14 @@ export class WeatherContentBottomComponent {
       : (this.weatherReading.rain as HourlyChance)['1h'];
   }
 
+  get precipitationTooltip(): string {
+    if (this.weatherMode.isCurrent) {
+      return 'Precipitation volume';
+    } else {
+      return 'Probability of precipitation';
+    }
+  }
+
   get precipitationTitle(): string {
     const title = 'Precipitation';
 
@@ -86,14 +80,6 @@ export class WeatherContentBottomComponent {
     return title;
   }
 
-  get precipitationTooltip(): string {
-    if (this.weatherMode.isCurrent) {
-      return 'Precipitation volume';
-    } else {
-      return 'Probability of precipitation';
-    }
-  }
-
   /**
    * Precipitation is measured as a probability for the daily and hourly
    * forecasts, while current weather uses volume.
@@ -102,14 +88,6 @@ export class WeatherContentBottomComponent {
     return this.weatherMode.isCurrent
       ? this.currentPrecipitation
       : this.dailyOrHourlyPrecipitation;
-  }
-
-  private get dailyOrHourlyPrecipitation(): string {
-    const precipitationChance = this.weatherReading.pop
-      ? Math.trunc(this.weatherReading.pop * 100)
-      : 0;
-
-    return `${precipitationChance}%`;
   }
 
   private get currentPrecipitation(): string {
@@ -127,6 +105,14 @@ export class WeatherContentBottomComponent {
     }
 
     return `${precipitationVolume} mm`;
+  }
+
+  private get dailyOrHourlyPrecipitation(): string {
+    const precipitationChance = this.weatherReading.pop
+      ? Math.trunc(this.weatherReading.pop * 100)
+      : 0;
+
+    return `${precipitationChance}%`;
   }
 
   get dewPoint(): number {
@@ -168,5 +154,19 @@ export class WeatherContentBottomComponent {
     }
 
     return '';
+  }
+
+  private get weatherReading(): WeatherReading {
+    let weather!: WeatherReading;
+
+    if (this.weatherMode.isCurrent) {
+      weather = this.weatherData.current;
+    } else if (this.weatherMode.isHourly) {
+      weather = this.weatherData.hourly[this.weatherStateIndexer.indexHourly];
+    } else if (this.weatherMode.isDaily) {
+      weather = this.weatherData.daily[this.weatherStateIndexer.indexDaily];
+    }
+
+    return weather;
   }
 }
