@@ -1,0 +1,20 @@
+@use "../../weather" as weather;
+
+.weather-top {
+  @include weather.horizontally-apart;
+  height: 6rem;
+}
+
+.weather-top-parent {
+  @include weather.padding-hv;
+  @include weather.text-no-select;
+}
+
+.weather-top-right {
+  @include weather.align-end-text-align(right);
+  @include weather.margin-side(left, 3);
+}
+
+.weather-top-left {
+  @include weather.align-end-text-align;
+}

@@ -1,0 +1,64 @@
+@use "../../weather" as weather;
+
+@mixin main-side {
+  @include weather.padding-hv;
+  width: 15%;
+}
+
+.weather-main-parent {
+  @include weather.text-no-select;
+  background-color: #ffffff50;
+}
+
+.weather-main {
+  @include weather.horizontally-apart;
+}
+
+.weather-main-left {
+  @include main-side;
+}
+
+.weather-main-right {
+  @include main-side;
+  @include weather.padding-hv;
+  @include weather.text-align(right);
+}
+
+.weather-main-middle {
+  @include weather.padding-hv;
+  width: 40%;
+  margin: auto;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+}
+
+.weather-main-readings {
+  @include weather.display;
+  @include weather.justify-content(center);
+}
+
+.weather-main-details {
+  @include weather.margin-side(right, 2);
+  @include weather.align-self(center);
+  @include weather.text-align(right);
+}
+
+.weather-main-details-heading {
+  @include weather.font-weight(600);
+  @include weather.margin-side(right, 2);
+}
+
+.weather-main-details:hover {
+  cursor: pointer;
+}
+
+.weather-main-conditions {
+  @include weather.display(inline-flex);
+  align-items: center;
+  font-size: 1.6em;
+}
+
+.weather-main-temperature {
+  @include weather.font-weight(700);
+  font-size: 9.8em;
+  margin: 0;
+}

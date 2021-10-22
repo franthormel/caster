@@ -20,7 +20,7 @@ import * as actions from '../../app-state.actions';
 @Component({
   selector: 'app-weather-content-main',
   templateUrl: './weather-content-main.component.html',
-  styleUrls: ['./weather-content-main.component.css'],
+  styleUrls: ['./weather-content-main.component.scss'],
 })
 export class WeatherContentMainComponent implements OnInit {
   @Input() weatherData!: WeatherData;

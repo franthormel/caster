@@ -1,0 +1,16 @@
+@use "../../weather" as weather;
+
+.weather-bottom {
+  @include weather.padding-hv;
+  @include weather.text-no-select;
+  @include weather.horizontally-apart;
+}
+
+.weather-bottom-left {
+  @include weather.horizontally-apart;
+}
+
+.weather-bottom-right {
+  @include weather.horizontally-apart;
+  @include weather.text-align(right);
+}

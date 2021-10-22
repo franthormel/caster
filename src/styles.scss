@@ -1,3 +1,5 @@
+@use "./app/weather" as weather;
+
 html,
 body {
   font-family: Montserrat;
@@ -13,59 +15,48 @@ html {
   background-size: cover;
 }
 
-.content-padding {
-  padding: 2vh 2vw;
-}
-
-.text-align-center {
-  text-align: center;
-}
-
-.text-align-right {
-  text-align: right;
-}
-
-.text-align-justify {
-  text-align: justify;
-}
-
 .text-underline {
   text-decoration-line: underline;
 }
 
+.content-padding {
+  @include weather.padding-hv;
+}
+
+.text-align-center {
+  @include weather.text-align(center);
+}
+
+.text-align-right {
+  @include weather.text-align(right);
+}
+
+.text-align-justify {
+  @include weather.text-align(justify);
+}
+
 .align-self-center {
-  align-self: center;
+  @include weather.align-self(center);
 }
 
 .text-unselectable {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  @include weather.text-no-select;
 }
 
-// Font-weights
 @for $i from 6 through 8 {
   $weight: $i * 100;
 
   .text-f#{$weight} {
-    font-weight: $weight;
+    @include weather.font-weight($weight);
   }
 }
 
-// Margins
 @for $i from 1 through 3 {
-  .margin-left-z#{$i} {
-    margin-left: #{$i * 10}px;
-  }
+  $sides: left, bottom, right;
 
-  .margin-bottom-z#{$i} {
-    margin-bottom: #{$i * 10}px;
-  }
-
-  .margin-right-z#{$i} {
-    margin-right: #{$i * 10}px;
+  @each $side in $sides {
+    .margin-#{$side}-z#{$i} {
+      @include weather.margin-side($side, $i);
+    }
   }
 }

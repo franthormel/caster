@@ -18,7 +18,7 @@ import * as actions from '../../app-state.actions';
 @Component({
   selector: 'app-weather-content-top',
   templateUrl: './weather-content-top.component.html',
-  styleUrls: ['./weather-content-top.component.css'],
+  styleUrls: ['./weather-content-top.component.scss'],
 })
 export class WeatherContentTopComponent {
   @Input() weatherData!: WeatherData;

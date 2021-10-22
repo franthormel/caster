@@ -1,0 +1,51 @@
+@mixin display($display: flex) {
+  display: $display;
+}
+
+@mixin justify-content($justify: baseline) {
+  justify-content: $justify;
+}
+
+@mixin horizontally-apart {
+  @include display;
+  @include justify-content(space-between);
+}
+
+@mixin font-weight($weight: 400) {
+  font-weight: $weight;
+}
+
+@mixin text-align($align: left) {
+  text-align: $align;
+}
+
+// TODO No default value
+@mixin align-end-text-align($align: left) {
+  @include align-self(end);
+  @include text-align($align);
+}
+
+@mixin margin-side($side, $i) {
+  margin-#{$side}: #{$i * 10}px;
+}
+
+@mixin text-no-select {
+  $select: none;
+
+  -webkit-touch-callout: $select;
+  -webkit-user-select: $select;
+  -khtml-user-select: $select;
+  -moz-user-select: $select;
+  -ms-user-select: $select;
+  user-select: $select;
+}
+
+@mixin padding-hv {
+  $value: 2;
+
+  padding: #{$value}vh #{$value}vw;
+}
+
+@mixin align-self($align: auto) {
+  align-self: $align;
+}

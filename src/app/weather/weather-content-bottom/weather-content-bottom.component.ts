@@ -11,7 +11,7 @@ import { WeatherStateIndexerService } from '../weather-state-indexer.service';
 @Component({
   selector: 'app-weather-content-bottom',
   templateUrl: './weather-content-bottom.component.html',
-  styleUrls: ['./weather-content-bottom.component.css'],
+  styleUrls: ['./weather-content-bottom.component.scss'],
 })
 export class WeatherContentBottomComponent {
   @Input() weatherData!: WeatherData;
