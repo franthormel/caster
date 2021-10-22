@@ -1,15 +1,18 @@
 import { createAction, props } from '@ngrx/store';
 
-import { WeatherReadingType } from './models/weather/weather.enums';
-
-export const updateWeatherMode = createAction(
-  '[Weather] Mode Update',
-  props<{ mode: WeatherReadingType }>()
-);
+import {
+  WeatherReadingMode,
+  WeatherDailyDetailViewMode,
+} from './models/weather/weather.enums';
 
 export const staticFileUpdate = createAction(
   '[Static Data] File Update',
   props<{ file: number }>()
+);
+
+export const weatherDetailViewTypeUpdate = createAction(
+  '[Weather Detail View Type] Update',
+  props<{ mode: WeatherDailyDetailViewMode }>()
 );
 
 export const weatherIndexDailyIncrement = createAction(
@@ -26,4 +29,9 @@ export const weatherIndexHourlyIncrement = createAction(
 
 export const weatherIndexHourlyDecrement = createAction(
   '[Weather Index] Decrement Hourly'
+);
+
+export const weatherModeUpdate = createAction(
+  '[Weather] Mode Update',
+  props<{ mode: WeatherReadingMode }>()
 );

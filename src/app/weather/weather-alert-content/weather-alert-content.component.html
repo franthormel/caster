@@ -1,17 +1,14 @@
-<!--Subtitle-->
 <ng-container *ngIf="showAlertTimeRange">
     <h4>Duration: {{timeDescription}}</h4>
 </ng-container>
 
 
-<!--Content-->
 <br />
 <p *ngFor="let line of alertLines" [ngClass]="{'text-f600': lineIsCapitalized(line)}">
     {{line}}
 </p>
 <br />
 
-<!--Tags if any-->
 <mat-chip-list [tabIndex]="-1">
     <mat-chip *ngFor="let tag of alert.tags" selected>{{tag}}</mat-chip>
 </mat-chip-list>

@@ -1,6 +1,10 @@
-export enum WeatherReadingType {
+export enum WeatherReadingMode {
   Current,
-  Minutely,
   Hourly,
   Daily,
+}
+
+export enum WeatherDailyDetailViewMode {
+  Temperature,
+  FeelsLike,
 }

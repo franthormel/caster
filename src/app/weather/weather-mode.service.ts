@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { WeatherReadingType } from '../models/weather/weather.enums';
+import { WeatherReadingMode } from '../models/weather/weather.enums';
 
-import { updateWeatherMode } from '../app-state.actions';
+import { weatherModeUpdate } from '../app-state.actions';
 import { AppState } from '../app-state.reducers';
 
 @Injectable({
@@ -12,7 +12,7 @@ import { AppState } from '../app-state.reducers';
 })
 export class WeatherModeService {
   private appState$!: Observable<AppState>;
-  private mode: WeatherReadingType | undefined;
+  private mode: WeatherReadingMode | undefined;
 
   constructor(private store: Store<{ appState: AppState }>) {
     this.initWeatherMode();
@@ -27,30 +27,30 @@ export class WeatherModeService {
   }
 
   get isCurrent(): boolean {
-    return this.mode === WeatherReadingType.Current;
+    return this.mode === WeatherReadingMode.Current;
   }
 
   get isHourly(): boolean {
-    return this.mode === WeatherReadingType.Hourly;
+    return this.mode === WeatherReadingMode.Hourly;
   }
 
   get isDaily(): boolean {
-    return this.mode === WeatherReadingType.Daily;
+    return this.mode === WeatherReadingMode.Daily;
   }
 
   changeToCurrent() {
-    this.changeMode(WeatherReadingType.Current);
+    this.changeMode(WeatherReadingMode.Current);
   }
 
   changeToHourly() {
-    this.changeMode(WeatherReadingType.Hourly);
+    this.changeMode(WeatherReadingMode.Hourly);
   }
 
   changeToDaily() {
-    this.changeMode(WeatherReadingType.Daily);
+    this.changeMode(WeatherReadingMode.Daily);
   }
 
-  private changeMode(value: WeatherReadingType) {
-    this.store.dispatch(updateWeatherMode({ mode: value }));
+  private changeMode(value: WeatherReadingMode) {
+    this.store.dispatch(weatherModeUpdate({ mode: value }));
   }
 }

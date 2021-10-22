@@ -7,7 +7,6 @@ import { WeatherRoutingModule } from './weather-routing.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -16,8 +15,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatFormFieldModule } from '@angular/material/form-field'; 
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatRippleModule } from '@angular/material/core';
 
 import { WeatherToolbarComponent } from './weather-toolbar/weather-toolbar.component';
 import { WeatherAlertComponent } from './weather-alert/weather-alert.component';
@@ -56,9 +54,7 @@ import { WeatherContentBottomComponent } from './weather-content-bottom/weather-
     MatBadgeModule,
     MatChipsModule,
     MatExpansionModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatNativeDateModule,
+    MatRippleModule,
   ],
 })
 export class WeatherModule {}

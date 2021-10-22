@@ -1,4 +1,4 @@
-<div class="weather-content-main">
+<div class="weather-content-main text-unselectable">
     <div class="weather-content-main-contents">
         <div class="content-padding weather-content-main-contents-side">
             <div class="margin-bottom-z3">
@@ -17,11 +17,13 @@
         <div class="content-padding weather-content-main-contents-middle">
             <div class="text-align-center">
                 <div class="weather-content-main-contents-middle-upper">
-                    <div *ngIf="showTemperatureOrFeelsLikeDetails"
-                        class="margin-right-z2 align-self-center text-align-right">
-                        <!--NOTE Min max is available only for ReadingDetailTemperature-->
-                        <!--TODO Make it available to switch between reading daily temperature OR feels_like-->
-                        <ng-container *ngIf="showMinMaxDetails">
+                    <div *ngIf="showDailyDetailReading" 
+                        matRipple 
+                        [matRippleUnbounded]="true"
+                        class="margin-right-z2 align-self-center text-align-right" 
+                        id="weather-content-main-details"
+                        (click)="changeDailyDetailViewMode()">
+                        <ng-container *ngIf="dailyDetailReadingModeIsTemperature">
                             <p><span class="text-f600 margin-right-z2">Min</span>{{min}}</p>
                             <p><span class="text-f600 margin-right-z2">Max</span>{{max}}</p>
                         </ng-container>
@@ -30,11 +32,18 @@
                         <p><span class="text-f600 margin-right-z2">Night</span>{{night}}</p>
                     </div>
                     <div class="align-self-center">
-                        <p class=" text-f700 weather-content-main-temperature">{{temperature}}°</p>
+                        <p class="text-f700 weather-content-main-temperature"
+                            [ngClass]="{'text-underline': underlineTemperature}">
+                            {{temperature}}°
+                        </p>
                     </div>
                 </div>
                 <div class="weather-content-main-contents-middle-lower">
-                    <p class="margin-right-z2" matTooltip="Human perception of weather">Feels like {{feelsLike}}</p>
+                    <p class="margin-right-z2" 
+                       matTooltip="Human perception of weather"
+                       [ngClass]="{'text-underline': underlineFeelsLike}">
+                       Feels like {{feelsLike}}
+                    </p>
                     <mat-icon [svgIcon]="weatherIcon"></mat-icon>
                     <p class="margin-left-z1">{{weatherDescription}}</p>
                 </div>

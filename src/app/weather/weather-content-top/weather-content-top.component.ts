@@ -4,7 +4,6 @@ import { Store } from '@ngrx/store';
 import { environment } from '../../../environments/environment';
 
 import { WeatherData } from '../../models/weather/weather-data.models';
-import { WeatherReadingHourly } from '../../models/weather/weather-reading-hourly.models';
 import { WeatherReadingDaily } from '../../models/weather/weather-reading-daily.models';
 import { Geolocation } from '../../models/geolocation/geolocation.models';
 

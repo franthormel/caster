@@ -1,32 +1,48 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { ReadingDetailFeelsLike } from '../../models/weather/reading-detail-feels-like.models';
 import { ReadingDetailTemperature } from '../../models/weather/reading-detail-temperature.models';
 import { WeatherData } from '../../models/weather/weather-data.models';
 import { WeatherCondition } from '../../models/weather/weather-condition.models';
 import { WeatherReading } from '../../models/weather/weather-reading.models';
+import { WeatherDailyDetailViewMode } from '../../models/weather/weather.enums';
 
 import { StringFormatterService } from '../../shared/string-formatter.service';
 import { TemperatureConverterService } from '../temperature-converter.service';
 import { WeatherModeService } from '../weather-mode.service';
 import { WeatherStateIndexerService } from '../weather-state-indexer.service';
 
+import { AppState } from '../../app-state.reducers';
+import * as actions from '../../app-state.actions';
+
 @Component({
   selector: 'app-weather-content-main',
   templateUrl: './weather-content-main.component.html',
   styleUrls: ['./weather-content-main.component.css'],
 })
-export class WeatherContentMainComponent {
+export class WeatherContentMainComponent implements OnInit {
   @Input() weatherData!: WeatherData;
 
-  dailyDetailsTemperature: boolean = true;
+  private appState$!: Observable<AppState>;
+  private mode!: WeatherDailyDetailViewMode;
 
   constructor(
+    private store: Store<{ appState: AppState }>,
     private stringFormatter: StringFormatterService,
     private temperatureConverter: TemperatureConverterService,
     private weatherMode: WeatherModeService,
     private weatherStateIndexer: WeatherStateIndexerService
   ) {}
+
+  ngOnInit() {
+    this.appState$ = this.store.select('appState');
+
+    this.appState$.subscribe((state) => {
+      this.mode = state.weatherDetailViewMode;
+    });
+  }
 
   get cloudiness(): number {
     return this.weatherReading.clouds;
@@ -40,18 +56,38 @@ export class WeatherContentMainComponent {
     return this.weatherReading.humidity;
   }
 
-  get showTemperatureOrFeelsLikeDetails(): boolean {
+  get showDailyDetailReading(): boolean {
     return this.weatherMode.isDaily;
   }
 
-  get showMinMaxDetails(): boolean {
-    // TODO Make it available to switch between reading daily temperature OR feels_like
-    return true;
+  changeDailyDetailViewMode() {
+    if (this.dailyDetailReadingModeIsTemperature) {
+      this.updateStateDailyDetailViewMode(WeatherDailyDetailViewMode.FeelsLike);
+    } else if (this.dailyDetailReadingModeIsFeelsLike) {
+      this.updateStateDailyDetailViewMode(
+        WeatherDailyDetailViewMode.Temperature
+      );
+    }
+  }
+
+  get dailyDetailReadingModeIsTemperature(): boolean {
+    return this.mode === WeatherDailyDetailViewMode.Temperature;
+  }
+
+  private updateStateDailyDetailViewMode(mode: WeatherDailyDetailViewMode) {
+    this.store.dispatch(
+      actions.weatherDetailViewTypeUpdate({
+        mode: mode,
+      })
+    );
+  }
+
+  private get dailyDetailReadingModeIsFeelsLike(): boolean {
+    return this.mode === WeatherDailyDetailViewMode.FeelsLike;
   }
 
   get min(): number {
-    if (this.weatherMode.isDaily) {
-      // TODO Make it available to switch between reading daily temperature OR feels_like
+    if (this.showDailyDetailReading) {
       const reading = this.weatherReading.temp as ReadingDetailTemperature;
 
       return this.temperatureConverter.convertKelvinToCelsius(reading.min);
@@ -61,8 +97,7 @@ export class WeatherContentMainComponent {
   }
 
   get max(): number {
-    if (this.weatherMode.isDaily) {
-      // TODO Make it available to switch between reading daily temperature OR feels_like
+    if (this.showDailyDetailReading) {
       const reading = this.weatherReading.temp as ReadingDetailTemperature;
 
       return this.temperatureConverter.convertKelvinToCelsius(reading.max);
@@ -72,8 +107,7 @@ export class WeatherContentMainComponent {
   }
 
   get morning(): number {
-    if (this.showTemperatureOrFeelsLikeDetails) {
-      // TODO Make it available to switch between reading daily temperature OR feels_like
+    if (this.showDailyDetailReading) {
       const reading = this.weatherReading.temp as ReadingDetailTemperature;
 
       return this.temperatureConverter.convertKelvinToCelsius(reading.morn);
@@ -83,8 +117,7 @@ export class WeatherContentMainComponent {
   }
 
   get evening(): number {
-    if (this.showTemperatureOrFeelsLikeDetails) {
-      // TODO Make it available to switch between reading daily temperature OR feels_like
+    if (this.showDailyDetailReading) {
       const reading = this.weatherReading.temp as ReadingDetailTemperature;
 
       return this.temperatureConverter.convertKelvinToCelsius(reading.eve);
@@ -94,15 +127,19 @@ export class WeatherContentMainComponent {
   }
 
   get night(): number {
-    if (this.showTemperatureOrFeelsLikeDetails) {
-      // TODO Make it available to switch between reading daily temperature OR feels_like
+    if (this.showDailyDetailReading) {
       const reading = this.weatherReading.temp as ReadingDetailTemperature;
 
-      console.log(reading);
       return this.temperatureConverter.convertKelvinToCelsius(reading.night);
     }
 
     return -1;
+  }
+
+  get underlineTemperature(): boolean {
+    return (
+      this.showDailyDetailReading && this.dailyDetailReadingModeIsTemperature
+    );
   }
 
   get temperature(): number {
@@ -137,6 +174,12 @@ export class WeatherContentMainComponent {
     }
 
     return weather.feels_like as number;
+  }
+
+  get underlineFeelsLike(): boolean {
+    return (
+      this.showDailyDetailReading && this.dailyDetailReadingModeIsFeelsLike
+    );
   }
 
   get weatherIcon(): string {

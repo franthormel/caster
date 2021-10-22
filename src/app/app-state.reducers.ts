@@ -1,28 +1,27 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { WeatherReadingType } from './models/weather/weather.enums';
+import {
+  WeatherReadingMode,
+  WeatherDailyDetailViewMode,
+} from './models/weather/weather.enums';
 
 import * as appStateActions from './app-state.actions';
 
-/**
- * * `file` Name of file to be used for static data presentation.
- * * `mode` Current mode of weather display (index, hourly, daily). See `WeatherReadingType`
- * * `weatherIndexHourly` Current index of hourly weather data. Helps user in picking up where they left off.
- * * `weatherIndexDaily` Current index of daily weather data.  Helps user in picking up where they left off.
- */
 export interface AppState {
   staticFile: number;
-  weatherMode: WeatherReadingType;
+  weatherMode: WeatherReadingMode;
   weatherIndexDaily: number;
   weatherIndexHourly: number;
+  weatherDetailViewMode: WeatherDailyDetailViewMode;
 }
 
 // Initial
 export const appState: AppState = {
   staticFile: 1,
-  weatherMode: WeatherReadingType.Current,
+  weatherMode: WeatherReadingMode.Daily,
   weatherIndexDaily: 0,
   weatherIndexHourly: 0,
+  weatherDetailViewMode: WeatherDailyDetailViewMode.Temperature,
 };
 
 // Reducer definitions
@@ -36,7 +35,7 @@ const _appStateReducer = createReducer(
   })),
 
   // Weather mode
-  on(appStateActions.updateWeatherMode, (state, { mode }) => ({
+  on(appStateActions.weatherModeUpdate, (state, { mode }) => ({
     ...state,
     weatherMode: mode,
   })),
@@ -59,6 +58,12 @@ const _appStateReducer = createReducer(
   on(appStateActions.weatherIndexHourlyDecrement, (state) => ({
     ...state,
     weatherIndexHourly: state.weatherIndexHourly - 1,
+  })),
+
+  // Weather daily detail
+  on(appStateActions.weatherDetailViewTypeUpdate, (state, { mode }) => ({
+    ...state,
+    weatherDetailViewMode: mode,
   }))
 );
 

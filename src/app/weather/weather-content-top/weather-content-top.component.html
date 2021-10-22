@@ -1,23 +1,18 @@
-<div class="content-padding">
+<div class="content-padding text-unselectable">
     <div class="weather-content-top margin-top-z2">
-        <!--LEFT-->
         <p class="weather-content-top-contents-left"
            aria-label="Location"
            matTooltip="Location">
            {{formattedLocation}}
         </p>
     
-        <!--RIGHT-->
-        <!--Current-->
         <div *ngIf="showCurrent" class="weather-content-top">
-            <!--Time-->
             <div class="weather-content-top-contents-right">
                 <p aria-label="Current time" 
                    matTooltip="Current time">
                    {{currentTime}}
                 </p>
             </div>
-            <!--Sunrise-->
             <div class="weather-content-top-contents-right">
                 <mat-icon svgIcon="sunrise" 
                           color="accent" 
@@ -28,7 +23,6 @@
                    {{currentTimeSunrise}}
                 </p>
             </div>
-            <!--Sunset-->
             <div class="weather-content-top-contents-right">
                 <mat-icon svgIcon="sunset" 
                           color="accent" 
@@ -41,7 +35,6 @@
             </div>
         </div>
     
-        <!--Hourly-->
         <div *ngIf="showHourly" class="weather-content-top">
             <div class="weather-content-top-contents-right">
                 <button mat-icon-button 
@@ -69,9 +62,7 @@
             </div>
         </div>
     
-        <!--Daily-->
         <div *ngIf="showDaily" class="weather-content-top">
-            <!--Sunrise-->
             <div class="weather-content-top-contents-right">
                 <mat-icon svgIcon="sunrise" 
                           color="accent" 
@@ -82,7 +73,6 @@
                    {{dailyTimeSunrise}}
                 </p>
             </div>
-            <!--Sunset-->
             <div class="weather-content-top-contents-right">
                 <mat-icon svgIcon="sunset" 
                           color="accent" 
@@ -93,7 +83,6 @@
                    {{dailyTimeSunset}}
                 </p>
             </div>
-            <!--Moon phase-->
             <div class="weather-content-top-contents-right">
                 <mat-icon [svgIcon]="dailyMoonphaseIcon" 
                           aria-label="Moon phase icon">
@@ -103,7 +92,6 @@
                    {{dailyMoonphase}}
                 </p>
             </div>
-            <!--Moon rise-->
             <div class="weather-content-top-contents-right">
                 <mat-icon svgIcon="moonrise" 
                           color="accent" 
@@ -114,7 +102,6 @@
                    {{dailyTimeMoonrise}}
                 </p>
             </div>
-            <!--Moon set-->
             <div class="weather-content-top-contents-right">
                 <mat-icon svgIcon="moonset"
                           color="accent"
@@ -125,7 +112,6 @@
                    {{dailyTimeMoonset}}
                 </p>
             </div>
-            <!--Time-->
             <div class="weather-content-top-contents-right">
                 <button mat-icon-button 
                         aria-label="Previous day button" 
