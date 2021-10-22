@@ -1,6 +1,7 @@
 .weather-content-top {
   display: flex;
   justify-content: space-between;
+  height: 6rem;
 }
 
 .weather-content-top-contents-right {

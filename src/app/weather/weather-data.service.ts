@@ -14,7 +14,7 @@ import { AppState } from '../app-state.reducers';
 })
 export class WeatherDataService {
   private appState$!: Observable<AppState>;
-  private file: number | undefined;
+  private file!: number;
 
   constructor(
     private httpClient: HttpClient,
@@ -32,10 +32,8 @@ export class WeatherDataService {
   }
 
   localFileWeather(): Observable<WeatherData> {
-    const file = this.file ? this.file : 1;
-
     return this.httpClient.get<WeatherData>(
-      `${environment.assetsDataUrl}weather/${file}.json`,
+      `${environment.assetsDataUrl}weather/${this.file}.json`,
       {
         responseType: 'json',
       }
@@ -43,10 +41,8 @@ export class WeatherDataService {
   }
 
   localFileGeolocation(): Observable<Geolocation[]> {
-    const file = this.file ? this.file : 1;
-
     return this.httpClient.get<Geolocation[]>(
-      `${environment.assetsDataUrl}geolocations/${file}.json`,
+      `${environment.assetsDataUrl}geolocations/${this.file}.json`,
       {
         responseType: 'json',
       }

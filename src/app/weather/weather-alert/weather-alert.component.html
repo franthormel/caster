@@ -1,5 +1,5 @@
-<span mat-dialog-title class="mat-title">{{title}}</span>
-<mat-dialog-content>
+<span mat-dialog-title>{{title}}</span>
+<mat-dialog-content class="padding-bottom-p1">
     <ng-container *ngIf="!multipleAlerts">
         <app-weather-alert-single [alert]="alerts[0]"></app-weather-alert-single>
     </ng-container>

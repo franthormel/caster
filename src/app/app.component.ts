@@ -41,7 +41,7 @@ export class AppComponent implements OnInit {
   // TODO Prepare for light/dark theme
   /**
    *  Name of icons is according to its moonphase while the filename associated
-   *  with that moonphase is its chronological order within the lunar cycle
+   *  with that moonphase is its cardinal order within the lunar cycle
    */
   private registerMoonIcons() {
     for (const i in ICONS_MOON) {

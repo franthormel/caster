@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-
 import { Observable, forkJoin } from 'rxjs';
 
 import { WeatherAlertComponent } from '../weather-alert/weather-alert.component';
