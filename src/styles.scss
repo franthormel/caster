@@ -1,5 +1,3 @@
-@use "./app/weather" as weather;
-
 html,
 body {
   font-family: Montserrat;
@@ -15,40 +13,23 @@ html {
   background-size: cover;
 }
 
-.text-underline {
-  text-decoration-line: underline;
+@mixin text-no-select {
+  $select: none;
+
+  -webkit-touch-callout: $select;
+  -webkit-user-select: $select;
+  -khtml-user-select: $select;
+  -moz-user-select: $select;
+  -ms-user-select: $select;
+  user-select: $select;
 }
 
-.content-padding {
-  @include weather.padding-hv;
+.text-no-select {
+  @include text-no-select;
 }
 
-.text-align-center {
-  @include weather.text-align(center);
-}
-
-.text-align-right {
-  @include weather.text-align(right);
-}
-
-.text-align-justify {
-  @include weather.text-align(justify);
-}
-
-.align-self-center {
-  @include weather.align-self(center);
-}
-
-.text-unselectable {
-  @include weather.text-no-select;
-}
-
-@for $i from 6 through 8 {
-  $weight: $i * 100;
-
-  .text-f#{$weight} {
-    @include weather.font-weight($weight);
-  }
+@mixin margin-side($side, $i) {
+  margin-#{$side}: #{$i * 10}px;
 }
 
 @for $i from 1 through 3 {
@@ -56,7 +37,7 @@ html {
 
   @each $side in $sides {
     .margin-#{$side}-z#{$i} {
-      @include weather.margin-side($side, $i);
+      @include margin-side($side, $i);
     }
   }
 }

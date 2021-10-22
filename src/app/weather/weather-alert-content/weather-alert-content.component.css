@@ -1,0 +1,8 @@
+.alert-contents {
+  text-align: justify;
+  line-height: 1.7rem;
+}
+
+.alert-contents-semibold {
+  font-weight: 600;
+}

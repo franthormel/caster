@@ -2,23 +2,23 @@
     <div class="weather-main">
         <div class="weather-main-left">
             <div class="margin-bottom-z3">
-                <p class="text-f600">Cloudiness</p>
+                <p class="weather-main-semibold">Cloudiness</p>
                 <p>{{cloudiness}}%</p>
             </div>
             <div class="margin-bottom-z3">
-                <p class="text-f600" 
+                <p class="weather-main-semibold" 
                    matTooltip="Atmospheric pressure on the sea level">
                    Pressure
                 </p>
                 <p>{{pressure}} hPa</p>
             </div>
             <div class="margin-bottom-z3">
-                <p class="text-f600">Humidity</p>
+                <p class="weather-main-semibold">Humidity</p>
                 <p>{{humidity}}%</p>
             </div>
         </div>
         <div class="weather-main-middle">
-            <div class="text-align-center">
+            <div class="text-center">
                 <div class="weather-main-readings">
                     <div *ngIf="showDailyDetailReading" 
                         matRipple 
@@ -33,7 +33,7 @@
                         <p><span class="weather-main-details-heading">Evening</span>{{evening}}</p>
                         <p><span class="weather-main-details-heading">Night</span>{{night}}</p>
                     </div>
-                    <div class="align-self-center">
+                    <div class="align-center">
                         <p class="weather-main-temperature"
                             [ngClass]="{'text-underline': underlineTemperature}">
                             {{temperature}}°
@@ -53,15 +53,15 @@
         </div>
         <div class="weather-main-right">
             <div class="margin-bottom-z3">
-                <p class="text-f600">Wind Speed</p>
+                <p class="weather-main-semibold">Wind Speed</p>
                 <p>{{windSpeed}} m/s</p>
             </div>
             <div class="margin-bottom-z3">
-                <p class="text-f600">Wind Direction</p>
+                <p class="weather-main-semibold">Wind Direction</p>
                 <p>{{windDirection}}°</p>
             </div>
             <div *ngIf="windGustIsPresent" class="margin-bottom-z3">
-                <p class="text-f600">Wind Gust</p>
+                <p class="weather-main-semibold">Wind Gust</p>
                 <p>{{windGust}} m/s</p>
             </div>
         </div>

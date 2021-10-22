@@ -1,4 +1,5 @@
 @use "../../weather" as weather;
+@use "../../../styles.scss" as global;
 
 .weather-top {
   @include weather.horizontally-apart;
@@ -6,15 +7,15 @@
 }
 
 .weather-top-parent {
+  @include global.text-no-select;
   @include weather.padding-hv;
-  @include weather.text-no-select;
 }
 
 .weather-top-right {
-  @include weather.align-end-text-align(right);
-  @include weather.margin-side(left, 3);
+  @include global.margin-side(left, 3);
+  @include weather.text-align-end(right);
 }
 
 .weather-top-left {
-  @include weather.align-end-text-align;
+  @include weather.text-align-end;
 }

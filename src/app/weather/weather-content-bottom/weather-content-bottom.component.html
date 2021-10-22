@@ -1,31 +1,31 @@
 <section class="weather-bottom">
     <div class="weather-bottom-left">
         <div *ngIf="snowIsPresent" class="margin-right-z3">
-            <p class="text-f600" [matTooltip]="snowTooltip">Snow</p>
+            <p class="weather-bottom-semibold" [matTooltip]="snowTooltip">Snow</p>
             <p>{{snow}} mm</p>
         </div>
         <div *ngIf="rainIsPresent" class="margin-right-z3">
-            <p class="text-f600" [matTooltip]="rainTooltip">Rain</p>
+            <p class="weather-bottom-semibold" [matTooltip]="rainTooltip">Rain</p>
             <p>{{rain}} mm</p>
         </div>
         <div class="margin-right-z3">
-            <p class="text-f600" [matTooltip]="precipitationTooltip">{{precipitationTitle}}</p>
+            <p class="weather-bottom-semibold" [matTooltip]="precipitationTooltip">{{precipitationTitle}}</p>
             <p>{{precipitation}}</p>
         </div>
     </div>
     <div class="weather-bottom-right">
         <div class="margin-left-z3">
-            <p class="text-f600" matTooltip="Atmospheric
+            <p class="weather-bottom-semibold" matTooltip="Atmospheric
             temperature (varying according to pressure and humidity) below which
             water droplets begin to condense and dew can form.">Dew point</p>
             <p>{{dewPoint}}°</p>
         </div>
         <div class="margin-left-z3">
-            <p class="text-f600" [matTooltip]="uviTooltip">UVI</p>
+            <p class="weather-bottom-semibold" [matTooltip]="uviTooltip">UVI</p>
             <p>{{uvi}}</p>
         </div>
         <div *ngIf="visibilityIsPresent" class="margin-left-z3">
-            <p class="text-f600" matTooltip="Average visibility">Visibility</p>
+            <p class="weather-bottom-semibold" matTooltip="Average visibility">Visibility</p>
             <p>{{visibility}}</p>
         </div>
     </div>

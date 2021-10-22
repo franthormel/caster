@@ -1,6 +1,6 @@
 <p *ngFor="let line of alertLines"  
-   class="text-align-justify"
-   [ngClass]="{'text-f600': lineIsCapitalized(line)}">
+   class="alert-contents"
+   [ngClass]="{'alert-contents-semibold': lineIsCapitalized(line)}">
    {{line}}
 </p>
 

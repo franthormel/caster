@@ -1,4 +1,5 @@
 @use "../../weather" as weather;
+@use "../../../styles.scss" as global;
 
 @mixin main-side {
   @include weather.padding-hv;
@@ -6,7 +7,7 @@
 }
 
 .weather-main-parent {
-  @include weather.text-no-select;
+  @include global.text-no-select;
   background-color: #ffffff50;
 }
 
@@ -21,7 +22,7 @@
 .weather-main-right {
   @include main-side;
   @include weather.padding-hv;
-  @include weather.text-align(right);
+  text-align: right;
 }
 
 .weather-main-middle {
@@ -32,19 +33,19 @@
 }
 
 .weather-main-readings {
-  @include weather.display;
-  @include weather.justify-content(center);
+  display: flex;
+  justify-content: center;
 }
 
 .weather-main-details {
-  @include weather.margin-side(right, 2);
-  @include weather.align-self(center);
-  @include weather.text-align(right);
+  @include global.margin-side(right, 2);
+  align-self: center;
+  text-align: right;
 }
 
 .weather-main-details-heading {
-  @include weather.font-weight(600);
-  @include weather.margin-side(right, 2);
+  font-weight: 600;
+  @include global.margin-side(right, 2);
 }
 
 .weather-main-details:hover {
@@ -52,13 +53,29 @@
 }
 
 .weather-main-conditions {
-  @include weather.display(inline-flex);
+  display: inline-flex;
   align-items: center;
   font-size: 1.6em;
 }
 
 .weather-main-temperature {
-  @include weather.font-weight(700);
+  font-weight: 700;
   font-size: 9.8em;
   margin: 0;
+}
+
+.weather-main-semibold {
+  font-weight: 600;
+}
+
+.text-underline {
+  text-decoration-line: underline;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.align-center {
+  align-self: center;
 }
