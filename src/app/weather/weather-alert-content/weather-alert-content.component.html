@@ -3,11 +3,11 @@
 </ng-container>
 
 
-<br />
-<p *ngFor="let line of alertLines" [ngClass]="{'text-f600': lineIsCapitalized(line)}">
-    {{line}}
+<p *ngFor="let line of alertLines"  
+   class="text-align-justify"
+   [ngClass]="{'text-f600': lineIsCapitalized(line)}">
+   {{line}}
 </p>
-<br />
 
 <mat-chip-list [tabIndex]="-1">
     <mat-chip *ngFor="let tag of alert.tags" selected>{{tag}}</mat-chip>
