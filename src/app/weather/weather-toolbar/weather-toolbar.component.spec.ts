@@ -21,5 +21,7 @@ describe('WeatherToolbarComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    // TODO
+    pending('WeatherToolbarComponent');
   });
 });

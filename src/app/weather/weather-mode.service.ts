@@ -12,7 +12,7 @@ import { AppState } from '../app-state.reducers';
 })
 export class WeatherModeService {
   private appState$!: Observable<AppState>;
-  private mode: WeatherReadingMode | undefined;
+  private mode!: WeatherReadingMode;
 
   constructor(private store: Store<{ appState: AppState }>) {
     this.initWeatherMode();

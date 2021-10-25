@@ -21,5 +21,7 @@ describe('WeatherAlertSingleComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    // TODO
+    pending('WeatherAlertSingleComponent');
   });
 });

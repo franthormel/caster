@@ -21,5 +21,7 @@ describe('WeatherContentBottomComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    // TODO
+    pending('WeatherContentBottomComponent');
   });
 });

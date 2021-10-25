@@ -40,7 +40,11 @@ export class WeatherContentTopComponent {
 
   // CURRENT
   get showCurrent(): boolean {
-    return this.weatherMode.isCurrent && this.weatherData.current !== undefined;
+    return this.currentModeIsCurrent && this.weatherData.current !== undefined;
+  }
+
+  private get currentModeIsCurrent(): boolean {
+    return this.weatherMode.isCurrent;
   }
 
   get currentTime(): string {
@@ -48,11 +52,21 @@ export class WeatherContentTopComponent {
   }
 
   get currentTimeSunrise(): string {
-    return this.epochConverter.convertToTime(this.weatherData.current.sunrise);
+    if (this.currentModeIsCurrent) {
+      return this.epochConverter.convertToTime(
+        this.weatherData.current.sunrise!
+      );
+    }
+    return '';
   }
 
   get currentTimeSunset(): string {
-    return this.epochConverter.convertToTime(this.weatherData.current.sunset);
+    if (this.currentModeIsCurrent) {
+      return this.epochConverter.convertToTime(
+        this.weatherData.current.sunset!
+      );
+    }
+    return '';
   }
 
   // HOURLY
@@ -95,18 +109,32 @@ export class WeatherContentTopComponent {
   // DAILY
   get showDaily(): boolean {
     return (
-      this.weatherMode.isDaily &&
+      this.currentModeIsDaily &&
       this.weatherData.daily !== undefined &&
       this.weatherData.daily.length > 0
     );
   }
 
+  private get currentModeIsDaily(): boolean {
+    return this.weatherMode.isDaily;
+  }
+
   get dailyTimeSunrise(): string {
-    return this.epochConverter.convertToTime(this.currentDailyWeather.sunrise);
+    if (this.currentModeIsDaily) {
+      return this.epochConverter.convertToTime(
+        this.currentDailyWeather.sunrise!
+      );
+    }
+    return '';
   }
 
   get dailyTimeSunset(): string {
-    return this.epochConverter.convertToTime(this.currentDailyWeather.sunset);
+    if (this.currentModeIsDaily) {
+      return this.epochConverter.convertToTime(
+        this.currentDailyWeather.sunset!
+      );
+    }
+    return '';
   }
 
   get dailyMoonphaseIcon(): string {

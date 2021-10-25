@@ -12,5 +12,7 @@ describe('WeatherDataService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+    // TODO
+    pending('WeatherDataService');
   });
 });

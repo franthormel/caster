@@ -5,19 +5,15 @@ import { WeatherAlert } from '../models/weather/weather-alert.models';
   providedIn: 'root',
 })
 export class EpochConverterService {
-  
-  convertToDate(seconds: number | undefined): Date {
-    if (seconds) {
-      return new Date(seconds * 1000);
-    }
-    return new Date(0);
+  convertToDate(seconds: number): Date {
+    return new Date(seconds * 1000);
   }
 
-  convertToTime(time: number | undefined): string {
+  convertToTime(time: number): string {
     return this.convertToDate(time).toLocaleTimeString();
   }
 
-  convertToDateTime(time: number | undefined): string {
+  convertToDateTime(time: number): string {
     const date = this.convertToDate(time);
     return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
   }
@@ -45,9 +41,9 @@ export class EpochConverterService {
    * @returns number
    */
   offsetDays(point: number, compare: number, offset: number = 0): number {
-    const daySeconds = 8.64e4;
-    const zPoint = Math.floor((point + offset) / daySeconds);
-    const zCompare = Math.floor((compare + offset) / daySeconds);
+    const dailySeconds = 8.64e4;
+    const zPoint = Math.floor((point + offset) / dailySeconds);
+    const zCompare = Math.floor((compare + offset) / dailySeconds);
 
     return zPoint - zCompare;
   }

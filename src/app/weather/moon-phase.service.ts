@@ -1,31 +1,19 @@
 import { Injectable } from '@angular/core';
 import { ICONS_MOON } from '../data/icons/icons-moon.data';
-import { MOON_DESCRIPTIONS } from '../data/moon-phase/descriptions.data';
+import { DESCRIPTIONS_MOON } from '../data/descriptions/descriptions-moon.data';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MoonPhaseService {
-  /**
-   * Moon phase. 0 and 1 are 'new moon', 0.25 is 'first quarter moon', 0.5 is 'full moon' and
-   * 0.75 is 'last quarter moon'. The periods in between are called 'waxing crescent',
-   * 'waxing gibous', 'waning gibous', and 'waning crescent', respectively.
-   * @param value Whole number (0 to 1)
-   * @returns string
-   */
   description(value: number): string {
-    return MOON_DESCRIPTIONS[this._index(value)];
+    return DESCRIPTIONS_MOON[this._index(value)];
   }
 
-  /**
-   * Returns string to be used for SVG `mat-icon`
-   * @param value Decimal value (0 to 1)
-   * @returns string
-   */
   icon(value: number): string {
     return ICONS_MOON[this._index(value)];
   }
-  
+
   private _index(value: number): number {
     let index: number = -1;
 
