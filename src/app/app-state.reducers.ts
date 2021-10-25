@@ -1,69 +1,77 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import {
-  WeatherReadingMode,
-  WeatherDailyDetailViewMode,
-} from './models/weather/weather.enums';
+import { staticFileUpdate } from './app-state.actions';
+import * as weather from './weather/weather-state.actions';
 
-import * as appStateActions from './app-state.actions';
+import {
+  initialWeatherState,
+  WeatherState,
+} from './weather/weather-state.reducers';
 
 export interface AppState {
   staticFile: number;
-  weatherMode: WeatherReadingMode;
-  weatherIndexDaily: number;
-  weatherIndexHourly: number;
-  weatherDetailViewMode: WeatherDailyDetailViewMode;
+  weatherState: WeatherState;
 }
 
-// Initial
 export const appState: AppState = {
   staticFile: 1,
-  weatherMode: WeatherReadingMode.Daily,
-  weatherIndexDaily: 0,
-  weatherIndexHourly: 0,
-  weatherDetailViewMode: WeatherDailyDetailViewMode.Temperature,
+  weatherState: initialWeatherState,
 };
 
-// Reducer definitions
 const _appStateReducer = createReducer(
   appState,
 
-  // Static files
-  on(appStateActions.staticFileUpdate, (state, { file }) => ({
+  on(staticFileUpdate, (state, { file }) => ({
     ...state,
     staticFile: file,
   })),
 
-  // Weather mode
-  on(appStateActions.weatherModeUpdate, (state, { mode }) => ({
+  on(weather.detailViewTypeUpdate, (state, { dailyDetailViewMode }) => ({
     ...state,
-    weatherMode: mode,
+    weatherState: {
+      ...state.weatherState,
+      dailyDetailViewMode: dailyDetailViewMode,
+    },
   })),
 
-  // Weather index daily
-  on(appStateActions.weatherIndexDailyIncrement, (state) => ({
+  on(weather.indexDailyIncrement, (state) => ({
     ...state,
-    weatherIndexDaily: state.weatherIndexDaily + 1,
-  })),
-  on(appStateActions.weatherIndexDailyDecrement, (state) => ({
-    ...state,
-    weatherIndexDaily: state.weatherIndexDaily - 1,
+    weatherState: {
+      ...state.weatherState,
+      indexDaily: state.weatherState.indexDaily + 1,
+    },
   })),
 
-  // Weather index hourly
-  on(appStateActions.weatherIndexHourlyIncrement, (state) => ({
+  on(weather.indexDailyDecrement, (state) => ({
     ...state,
-    weatherIndexHourly: state.weatherIndexHourly + 1,
-  })),
-  on(appStateActions.weatherIndexHourlyDecrement, (state) => ({
-    ...state,
-    weatherIndexHourly: state.weatherIndexHourly - 1,
+    weatherState: {
+      ...state.weatherState,
+      indexDaily: state.weatherState.indexDaily - 1,
+    },
   })),
 
-  // Weather daily detail
-  on(appStateActions.weatherDetailViewTypeUpdate, (state, { mode }) => ({
+  on(weather.indexHourlyIncrement, (state) => ({
     ...state,
-    weatherDetailViewMode: mode,
+    weatherState: {
+      ...state.weatherState,
+      indexHourly: state.weatherState.indexHourly + 1,
+    },
+  })),
+
+  on(weather.indexHourlyDecrement, (state) => ({
+    ...state,
+    weatherState: {
+      ...state.weatherState,
+      indexHourly: state.weatherState.indexHourly - 1,
+    },
+  })),
+
+  on(weather.modeUpdate, (state, { mode }) => ({
+    ...state,
+    weatherState: {
+      ...state.weatherState,
+      mode: mode,
+    },
   }))
 );
 

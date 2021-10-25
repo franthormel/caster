@@ -15,7 +15,7 @@ import { WeatherModeService } from '../weather-mode.service';
 import { WeatherStateIndexerService } from '../weather-state-indexer.service';
 
 import { AppState } from '../../app-state.reducers';
-import * as actions from '../../app-state.actions';
+import { detailViewTypeUpdate } from '../weather-state.actions';
 
 @Component({
   selector: 'app-weather-content-main',
@@ -26,7 +26,7 @@ export class WeatherContentMainComponent implements OnInit {
   @Input() weatherData!: WeatherData;
 
   private appState$!: Observable<AppState>;
-  private mode!: WeatherDailyDetailViewMode;
+  private dailyDetailViewMode!: WeatherDailyDetailViewMode;
 
   constructor(
     private store: Store<{ appState: AppState }>,
@@ -40,7 +40,7 @@ export class WeatherContentMainComponent implements OnInit {
     this.appState$ = this.store.select('appState');
 
     this.appState$.subscribe((state) => {
-      this.mode = state.weatherDetailViewMode;
+      this.dailyDetailViewMode = state.weatherState.dailyDetailViewMode;
     });
   }
 
@@ -71,19 +71,19 @@ export class WeatherContentMainComponent implements OnInit {
   }
 
   get dailyDetailReadingModeIsTemperature(): boolean {
-    return this.mode === WeatherDailyDetailViewMode.Temperature;
+    return this.dailyDetailViewMode === WeatherDailyDetailViewMode.Temperature;
   }
 
   private updateStateDailyDetailViewMode(mode: WeatherDailyDetailViewMode) {
     this.store.dispatch(
-      actions.weatherDetailViewTypeUpdate({
-        mode: mode,
+      detailViewTypeUpdate({
+        dailyDetailViewMode: mode,
       })
     );
   }
 
   private get dailyDetailReadingModeIsFeelsLike(): boolean {
-    return this.mode === WeatherDailyDetailViewMode.FeelsLike;
+    return this.dailyDetailViewMode === WeatherDailyDetailViewMode.FeelsLike;
   }
 
   get min(): number {

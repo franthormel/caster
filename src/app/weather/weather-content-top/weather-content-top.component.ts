@@ -13,7 +13,7 @@ import { WeatherModeService } from '../weather-mode.service';
 import { WeatherStateIndexerService } from '../weather-state-indexer.service';
 
 import { AppState } from '../../app-state.reducers';
-import * as actions from '../../app-state.actions';
+import * as weather from '../weather-state.actions';
 
 @Component({
   selector: 'app-weather-content-top',
@@ -80,7 +80,7 @@ export class WeatherContentTopComponent {
 
   previousHourlyWeather() {
     if (this.canHourlyGoBackward) {
-      this.store.dispatch(actions.weatherIndexHourlyDecrement());
+      this.store.dispatch(weather.indexHourlyDecrement());
     }
   }
 
@@ -90,7 +90,7 @@ export class WeatherContentTopComponent {
 
   nextHourlyWeather() {
     if (this.canHourlyGoForward) {
-      this.store.dispatch(actions.weatherIndexHourlyIncrement());
+      this.store.dispatch(weather.indexHourlyIncrement());
     }
   }
 
@@ -155,7 +155,7 @@ export class WeatherContentTopComponent {
 
   dailyPrevious() {
     if (this.canDailyGoBackward) {
-      this.store.dispatch(actions.weatherIndexDailyDecrement());
+      this.store.dispatch(weather.indexDailyDecrement());
     }
   }
 
@@ -165,7 +165,7 @@ export class WeatherContentTopComponent {
 
   dailyNext() {
     if (this.canDailyGoForward) {
-      this.store.dispatch(actions.weatherIndexDailyIncrement());
+      this.store.dispatch(weather.indexDailyIncrement());
     }
   }
 

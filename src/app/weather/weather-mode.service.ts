@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { WeatherReadingMode } from '../models/weather/weather.enums';
 
-import { weatherModeUpdate } from '../app-state.actions';
+import { modeUpdate } from './weather-state.actions';
 import { AppState } from '../app-state.reducers';
 
 @Injectable({
@@ -22,7 +22,7 @@ export class WeatherModeService {
     this.appState$ = this.store.select('appState');
 
     this.appState$.subscribe((state) => {
-      this.mode = state.weatherMode;
+      this.mode = state.weatherState.mode;
     });
   }
 
@@ -51,6 +51,6 @@ export class WeatherModeService {
   }
 
   private changeMode(value: WeatherReadingMode) {
-    this.store.dispatch(weatherModeUpdate({ mode: value }));
+    this.store.dispatch(modeUpdate({ mode: value }));
   }
 }

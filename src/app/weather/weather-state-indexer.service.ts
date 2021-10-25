@@ -20,8 +20,8 @@ export class WeatherStateIndexerService {
     this.appState$ = this.store.select('appState');
 
     this.appState$.subscribe((state) => {
-      this._indexHourly = state.weatherIndexHourly;
-      this._indexDaily = state.weatherIndexDaily;
+      this._indexHourly = state.weatherState.indexHourly;
+      this._indexDaily = state.weatherState.indexDaily;
     });
   }
 
