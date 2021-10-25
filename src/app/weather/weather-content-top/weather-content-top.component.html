@@ -1,12 +1,12 @@
-<div class="weather-top-parent">
-    <div class="weather-top">
+<section class="weather-top-parent">
+    <section class="weather-top">
         <p class="weather-top-left"
            aria-label="Location"
            matTooltip="Location">
            {{formattedLocation}}
         </p>
     
-        <div *ngIf="showCurrent" class="weather-top">
+        <section *ngIf="showCurrent" class="weather-top">
             <div class="weather-top-right">
                 <p aria-label="Current time" 
                    matTooltip="Current time">
@@ -33,10 +33,10 @@
                    {{currentTimeSunset}}
                 </p>
             </div>
-        </div>
+        </section>
     
-        <div *ngIf="showHourly" class="weather-top">
-            <div class="weather-top-right">
+        <section *ngIf="showHourly" class="weather-top">
+            <section class="weather-top-right">
                 <button mat-icon-button 
                         aria-label="Previous hour button" 
                         matToolTip="Previous hour"
@@ -59,11 +59,11 @@
                    matTooltip="Time of forecast">         
                    {{hourlyTime}}
                 </p>
-            </div>
-        </div>
+            </section>
+        </section>
     
-        <div *ngIf="showDaily" class="weather-top">
-            <div class="weather-top-right">
+        <section *ngIf="showDaily" class="weather-top">
+            <section class="weather-top-right">
                 <mat-icon svgIcon="sunrise" 
                           color="accent" 
                           aria-label="Sunrise icon">
@@ -72,8 +72,8 @@
                    matTooltip="Sunrise time">
                    {{dailyTimeSunrise}}
                 </p>
-            </div>
-            <div class="weather-top-right">
+            </section>
+            <section class="weather-top-right">
                 <mat-icon svgIcon="sunset" 
                           color="accent" 
                           aria-label="Sunset icon">
@@ -82,8 +82,8 @@
                    matTooltip="Sunrise time">
                    {{dailyTimeSunset}}
                 </p>
-            </div>
-            <div class="weather-top-right">
+            </section>
+            <section class="weather-top-right">
                 <mat-icon [svgIcon]="dailyMoonphaseIcon" 
                           aria-label="Moon phase icon">
                 </mat-icon>
@@ -91,8 +91,8 @@
                    matTooltip="Moon phase">
                    {{dailyMoonphase}}
                 </p>
-            </div>
-            <div class="weather-top-right">
+            </section>
+            <section class="weather-top-right">
                 <mat-icon svgIcon="moonrise" 
                           color="accent" 
                           aria-label="Moon rise icon">
@@ -101,8 +101,8 @@
                    matTooltip="Moon rise time">
                    {{dailyTimeMoonrise}}
                 </p>
-            </div>
-            <div class="weather-top-right">
+            </section>
+            <section class="weather-top-right">
                 <mat-icon svgIcon="moonset"
                           color="accent"
                           aria-label=" Moon set icon">
@@ -111,8 +111,8 @@
                    matTooltip="Moon set time">
                    {{dailyTimeMoonset}}
                 </p>
-            </div>
-            <div class="weather-top-right">
+            </section>
+            <section class="weather-top-right">
                 <button mat-icon-button 
                         aria-label="Previous day button" 
                         matTooltip="Previous day"
@@ -135,7 +135,7 @@
                    matTooltip="Time of forecast">
                    {{dailyTime}}
                 </p>
-            </div>
-        </div>
-    </div>
-</div>
+            </section>
+        </section>
+    </section>
+</section>

@@ -1,6 +1,6 @@
-<div class="weather-main-parent">
-    <div class="weather-main">
-        <div class="weather-main-left">
+<section class="weather-main-parent">
+    <section class="weather-main">
+        <section class="weather-main-left">
             <div class="margin-bottom-z3">
                 <p class="weather-main-semibold">Cloudiness</p>
                 <p>{{cloudiness}}%</p>
@@ -16,11 +16,11 @@
                 <p class="weather-main-semibold">Humidity</p>
                 <p>{{humidity}}%</p>
             </div>
-        </div>
-        <div class="weather-main-middle">
-            <div class="text-center">
-                <div class="weather-main-readings">
-                    <div *ngIf="showDailyDetailReading" 
+        </section>
+        <section class="weather-main-middle">
+            <section class="text-center">
+                <section class="weather-main-readings">
+                    <section *ngIf="showDailyDetailReading" 
                         matRipple 
                         [matRippleUnbounded]="true"
                         class="weather-main-details" 
@@ -32,14 +32,14 @@
                         <p><span class="weather-main-details-heading">Morning</span>{{morning}}</p>
                         <p><span class="weather-main-details-heading">Evening</span>{{evening}}</p>
                         <p><span class="weather-main-details-heading">Night</span>{{night}}</p>
-                    </div>
-                    <div class="align-center">
+                    </section>
+                    <section class="align-center">
                         <p class="weather-main-temperature"
                             [ngClass]="{'text-underline': underlineTemperature}">
                             {{temperature}}°
                         </p>
-                    </div>
-                </div>
+                    </section>
+                </section>
                 <div class="weather-main-conditions">
                     <p class="margin-right-z2" 
                        matTooltip="Human perception of weather"
@@ -49,9 +49,9 @@
                     <mat-icon [svgIcon]="weatherIcon"></mat-icon>
                     <p class="margin-left-z1">{{weatherDescription}}</p>
                 </div>
-            </div>
-        </div>
-        <div class="weather-main-right">
+            </section>
+        </section>
+        <section class="weather-main-right">
             <div class="margin-bottom-z3">
                 <p class="weather-main-semibold">Wind Speed</p>
                 <p>{{windSpeed}} m/s</p>
@@ -64,6 +64,6 @@
                 <p class="weather-main-semibold">Wind Gust</p>
                 <p>{{windGust}} m/s</p>
             </div>
-        </div>
-    </div>
-</div>
+        </section>
+    </section>
+</section>

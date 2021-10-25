@@ -1,5 +1,5 @@
 <section class="weather-bottom">
-    <div class="weather-bottom-left">
+    <section class="weather-bottom-left">
         <div *ngIf="snowIsPresent" class="margin-right-z3">
             <p class="weather-bottom-semibold" [matTooltip]="snowTooltip">Snow</p>
             <p>{{snow}} mm</p>
@@ -12,8 +12,8 @@
             <p class="weather-bottom-semibold" [matTooltip]="precipitationTooltip">{{precipitationTitle}}</p>
             <p>{{precipitation}}</p>
         </div>
-    </div>
-    <div class="weather-bottom-right">
+    </section>
+    <section class="weather-bottom-right">
         <div class="margin-left-z3">
             <p class="weather-bottom-semibold" matTooltip="Atmospheric
             temperature (varying according to pressure and humidity) below which
@@ -28,5 +28,5 @@
             <p class="weather-bottom-semibold" matTooltip="Average visibility">Visibility</p>
             <p>{{visibility}}</p>
         </div>
-    </div>
+    </section>
 </section>
