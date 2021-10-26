@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { StringFormatterService } from './string-formatter.service';
+import { StringParserService } from './string-parser.service';
 
-describe('StringFormatterService', () => {
-  let service: StringFormatterService;
+describe('StringParserService', () => {
+  let service: StringParserService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(StringFormatterService);
+    service = TestBed.inject(StringParserService);
   });
 
   it('should be created', () => {
@@ -58,5 +58,32 @@ describe('StringFormatterService', () => {
 
       expect(result).toBe(expected);
     });
+  });
+
+  describe('isUppercase()', () => {
+    const upper = 'THE APPLE IS RED';
+    const strings = [
+      'The apple is red',
+      'The Apple Is Red',
+      'the apple is red',
+      'tHe aPpLe iS ReD',
+      'ThE ApPlE Is rEd',
+    ];
+
+    it('should return true if param is upper cased', () => {
+      const result = service.isUppercase(upper);
+      const expected = true;
+
+      expect(result).toBe(expected);
+    });
+
+    for (const text of strings) {
+      it(`should return false if param is not upper cased (${text})`, () => {
+        const result = service.isUppercase(text);
+        const expected = false;
+
+        expect(result).toBe(expected);
+      });
+    }
   });
 });

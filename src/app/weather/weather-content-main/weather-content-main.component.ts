@@ -9,7 +9,7 @@ import { WeatherCondition } from '../../models/weather/weather-condition.models'
 import { WeatherReading } from '../../models/weather/weather-reading.models';
 import { WeatherDailyDetailViewMode } from '../../models/weather/weather.enums';
 
-import { StringFormatterService } from '../../shared/string-formatter.service';
+import { StringParserService } from '../../shared/string-parser.service';
 import { TemperatureConverterService } from '../temperature-converter.service';
 import { WeatherModeService } from '../weather-mode.service';
 import { WeatherStateIndexerService } from '../weather-state-indexer.service';
@@ -30,7 +30,7 @@ export class WeatherContentMainComponent implements OnInit {
 
   constructor(
     private store: Store<{ appState: AppState }>,
-    private stringFormatter: StringFormatterService,
+    private stringFormatter: StringParserService,
     private temperatureConverter: TemperatureConverterService,
     private weatherMode: WeatherModeService,
     private weatherStateIndexer: WeatherStateIndexerService

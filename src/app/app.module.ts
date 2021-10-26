@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { EpochConverterService } from './shared/epoch-converter.service';
-import { StringFormatterService } from './shared/string-formatter.service';
+import { StringParserService } from './shared/string-parser.service';
 import { MoonPhaseService } from './weather/moon-phase.service';
 import { TemperatureConverterService } from './weather/temperature-converter.service';
 import { WeatherDataService } from './weather/weather-data.service';
@@ -31,7 +31,7 @@ import { WeatherStateIndexerService } from './weather/weather-state-indexer.serv
   bootstrap: [AppComponent],
   providers: [
     EpochConverterService,
-    StringFormatterService,
+    StringParserService,
     MoonPhaseService,
     TemperatureConverterService,
     WeatherDataService,

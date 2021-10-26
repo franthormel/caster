@@ -1,6 +1,6 @@
 <p *ngFor="let line of alertLines"  
    class="alert-contents"
-   [ngClass]="{'alert-contents-semibold': lineIsCapitalized(line)}">
+   [ngClass]="{'alert-contents-semibold': lineIsUppercased(line)}">
    {{line}}
 </p>
 
