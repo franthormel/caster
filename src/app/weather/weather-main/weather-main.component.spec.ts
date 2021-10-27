@@ -84,12 +84,6 @@ describe('WeatherMainComponent', () => {
 
         expect(result).toBeInstanceOf(Object);
       });
-
-      it('should be defined', () => {
-        const result = component.weatherData;
-
-        expect(result).toBeDefined();
-      });
     });
 
     describe('geolocations', () => {
@@ -98,12 +92,6 @@ describe('WeatherMainComponent', () => {
 
         expect(result).toBeInstanceOf(Array);
       });
-
-      it('should be defined', () => {
-        const result = component.geolocations;
-
-        expect(result).toBeDefined();
-      });
     });
 
     describe('loading', () => {
@@ -111,12 +99,6 @@ describe('WeatherMainComponent', () => {
         const result = component.loading;
 
         expect(result).toBeInstanceOf(Boolean);
-      });
-
-      it('should be defined', () => {
-        const result = component.loading;
-
-        expect(result).toBeDefined();
       });
     });
   });

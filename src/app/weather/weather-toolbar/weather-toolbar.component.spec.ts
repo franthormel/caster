@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { EventEmitter } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 
 import { MatMenuModule } from '@angular/material/menu';
@@ -36,5 +37,42 @@ describe('WeatherToolbarComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('properties', () => {
+    describe('alertCount', () => {
+      it('should return a Number', () => {
+        const result = component.alertCount;
+        expect(result).toBeInstanceOf(Number);
+      });
+    });
+
+    describe('loading', () => {
+      it('should return a Boolean', () => {
+        const result = component.loading;
+        expect(result).toBeInstanceOf(Boolean);
+      });
+    });
+
+    describe('alertEvent', () => {
+      it('should return an EventEmitter', () => {
+        const result = component.alertEvent;
+        expect(result).toBeInstanceOf(EventEmitter);
+      });
+    });
+  });
+
+  describe('methods', () => {
+    describe('showAlert()', () => {
+      beforeEach(() => {
+        spyOn(component, 'showAlert');
+
+        component.showAlert();
+      });
+
+      it('should be called when invoked', () => {
+        expect(component.showAlert).toHaveBeenCalled();
+      });
+    });
   });
 });

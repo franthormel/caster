@@ -36,7 +36,7 @@ export class WeatherContentBottomComponent {
     return text;
   }
 
-  get snow(): number {
+  get snow(): number | undefined {
     return this.weatherMode.isDaily
       ? (this.weatherReading.snow as number)
       : (this.weatherReading.snow as HourlyChance)['1h'];

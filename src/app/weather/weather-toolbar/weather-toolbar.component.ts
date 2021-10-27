@@ -8,8 +8,8 @@ import { WeatherModeService } from '../weather-mode.service';
   styleUrls: ['./weather-toolbar.component.css'],
 })
 export class WeatherToolbarComponent {
-  @Input() alertCount: number | undefined = 0;
-  @Input() loading: boolean | undefined = true;
+  @Input() alertCount: number = 0;
+  @Input() loading: boolean = true;
   @Output() alertEvent = new EventEmitter<void>();
 
   constructor(public weatherMode: WeatherModeService) {}

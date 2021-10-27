@@ -28,16 +28,10 @@ describe('WeatherAlertSingleComponent', () => {
 
   describe('properties', () => {
     describe('alert', () => {
-      it('should be defined', () => {
+      it('should be an Object', () => {
         const result = component.alert;
 
-        expect(result).toBeDefined();
-      });
-
-      it('should be an Array', () => {
-        const result = component.alert;
-
-        expect(result).toBeInstanceOf(Array);
+        expect(result).toBeInstanceOf(Object);
       });
     });
   });

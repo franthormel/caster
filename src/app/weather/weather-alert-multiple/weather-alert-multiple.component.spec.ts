@@ -23,11 +23,22 @@ describe('WeatherAlertMultipleComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WeatherAlertMultipleComponent);
     component = fixture.componentInstance;
+    component.alerts = [];
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('properties', () => {
+    describe('alerts', () => {
+      it('should be an Array', () => {
+        const result = component.alerts;
+
+        expect(result).toBeInstanceOf(Array);
+      });
+    });
   });
 
   describe('methods', () => {
@@ -47,22 +58,6 @@ describe('WeatherAlertMultipleComponent', () => {
           expect(result).toBe(expected);
         });
       }
-    });
-  });
-
-  describe('properties', () => {
-    describe('alerts', () => {
-      it('should be defined', () => {
-        const result = component.alerts;
-
-        expect(result).toBeDefined();
-      });
-
-      it('should be an Array', () => {
-        const result = component.alerts;
-
-        expect(result).toBeInstanceOf(Array);
-      });
     });
   });
 });

@@ -33,6 +33,16 @@ describe('WeatherAlertContentComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  describe('properties', () => {
+    describe('alert', () => {
+      it('should be a WeatherAlert', () => {
+        const result = component.alert;
+
+        expect(result).toBeInstanceOf(Object);
+      });
+    });
+  });
+
   describe('methods', () => {
     describe('alertLines()', () => {
       it('should return an Array', () => {
@@ -65,22 +75,6 @@ describe('WeatherAlertContentComponent', () => {
           expect(result).toBeFalsy();
         });
       }
-    });
-  });
-
-  describe('properties', () => {
-    describe('alert', () => {
-      it('should be defined', () => {
-        const result = component.alert;
-
-        expect(result).toBeDefined();
-      });
-
-      it('should be a WeatherAlert', () => {
-        const result = component.alert;
-
-        expect(result).toBeInstanceOf(Object);
-      });
     });
   });
 });

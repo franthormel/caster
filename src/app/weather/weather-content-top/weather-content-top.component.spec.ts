@@ -8,9 +8,8 @@ describe('WeatherContentTopComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WeatherContentTopComponent ]
-    })
-    .compileComponents();
+      declarations: [WeatherContentTopComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -21,7 +20,10 @@ describe('WeatherContentTopComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-    // TODO
-    pending('WeatherContentTopComponent');
+    pending('Place missing imports');
   });
+
+  describe('properties', () => {});
+
+  describe('methods', () => {});
 });
