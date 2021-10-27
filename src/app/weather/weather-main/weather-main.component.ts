@@ -6,7 +6,7 @@ import { WeatherAlertComponent } from '../weather-alert/weather-alert.component'
 
 import { WeatherData } from '../../models/weather/weather-data.models';
 import { WeatherAlert } from '../../models/weather/weather-alert.models';
-import { Geolocation } from '../../models/geolocation/geolocation.models';
+import { WeatherGeolocation } from '../../models/geolocation/geolocation.models';
 
 import { WeatherModeService } from '../weather-mode.service';
 import { WeatherDataService } from '../weather-data.service';
@@ -18,11 +18,11 @@ import { WeatherDataService } from '../weather-data.service';
 })
 export class WeatherMainComponent implements OnInit {
   weatherData$: Observable<WeatherData> | undefined;
-  geolocationsData$: Observable<Geolocation[]> | undefined;
+  geolocationsData$: Observable<WeatherGeolocation[]> | undefined;
 
-  geolocations: Geolocation[] | undefined;
-  weatherData: WeatherData | undefined;
-  loading: boolean | undefined;
+  geolocations!: WeatherGeolocation[];
+  weatherData!: WeatherData;
+  loading: boolean = true;
 
   constructor(
     public dialog: MatDialog,
@@ -35,8 +35,6 @@ export class WeatherMainComponent implements OnInit {
   }
 
   private initData() {
-    this.loading = true;
-
     const dataCollection$ = this.initThenCombineData();
 
     dataCollection$.subscribe({
@@ -46,7 +44,7 @@ export class WeatherMainComponent implements OnInit {
     });
   }
 
-  private initThenCombineData(): Observable<[WeatherData, Geolocation[]]> {
+  private initThenCombineData(): Observable<[WeatherData, WeatherGeolocation[]]> {
     this.weatherData$ = this.weatherDataService.localFileWeather();
     this.geolocationsData$ = this.weatherDataService.localFileGeolocation();
     this.weatherData$.subscribe({
@@ -80,11 +78,11 @@ export class WeatherMainComponent implements OnInit {
     return this.alerts?.length;
   }
 
-  get geolocation(): Geolocation | undefined {
-    return this.geolocations ? this.geolocations[0] : undefined;
+  get geolocation(): WeatherGeolocation | undefined {
+    return this.geolocations[0];
   }
 
-  get alerts(): WeatherAlert[] | undefined {
-    return this.weatherData?.alerts;
+  private get alerts(): WeatherAlert[] | undefined {
+    return this.weatherData.alerts;
   }
 }

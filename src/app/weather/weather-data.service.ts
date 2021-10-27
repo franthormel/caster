@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { Geolocation } from '../models/geolocation/geolocation.models';
+import { WeatherGeolocation } from '../models/geolocation/geolocation.models';
 import { WeatherData } from '../models/weather/weather-data.models';
 import { environment } from '../../environments/environment';
 
@@ -40,8 +40,8 @@ export class WeatherDataService {
     );
   }
 
-  localFileGeolocation(): Observable<Geolocation[]> {
-    return this.httpClient.get<Geolocation[]>(
+  localFileGeolocation(): Observable<WeatherGeolocation[]> {
+    return this.httpClient.get<WeatherGeolocation[]>(
       `${environment.assetsDataUrl}geolocations/${this.file}.json`,
       {
         responseType: 'json',

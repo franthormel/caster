@@ -1,6 +1,6 @@
 import { GeolocationName } from "./geolocation_name.models";
 
-export interface Geolocation {
+export interface WeatherGeolocation {
   name: string;
   local_names: GeolocationName,
   lat: number;

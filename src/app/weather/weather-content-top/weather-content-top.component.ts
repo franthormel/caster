@@ -5,7 +5,7 @@ import { environment } from '../../../environments/environment';
 
 import { WeatherData } from '../../models/weather/weather-data.models';
 import { WeatherReadingDaily } from '../../models/weather/weather-reading-daily.models';
-import { Geolocation } from '../../models/geolocation/geolocation.models';
+import { WeatherGeolocation } from '../../models/geolocation/geolocation.models';
 
 import { MoonPhaseService } from '../moon-phase.service';
 import { EpochConverterService } from '../../shared/epoch-converter.service';
@@ -22,7 +22,7 @@ import * as weather from '../weather-state.actions';
 })
 export class WeatherContentTopComponent {
   @Input() weatherData!: WeatherData;
-  @Input() geolocation!: Geolocation;
+  @Input() geolocation!: WeatherGeolocation;
 
   constructor(
     private epochConverter: EpochConverterService,
@@ -32,6 +32,10 @@ export class WeatherContentTopComponent {
     private weatherStateIndexer: WeatherStateIndexerService
   ) {}
 
+  // TODO
+  // Sometimes the reverse geolocation API will not return 
+  // a location (probably the coordinates are for an unnamed area)
+  // so think of a way to display an alternative to this
   get formattedLocation(): string {
     return this.geolocation
       ? `${this.geolocation.name}, ${this.geolocation.country}`
