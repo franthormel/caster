@@ -30,21 +30,39 @@ describe('WeatherAlertMultipleComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('isExpanded()', () => {
-    it('should return true if param is 0', () => {
-      const result = component.isExpanded(0);
-      const expected = true;
-
-      expect(result).toBe(expected);
-    });
-
-    for (const number of [-2, -5, -7, 1000, 2021]) {
-      it(`should return true if param is not ${number}`, () => {
-        const result = component.isExpanded(number);
-        const expected = false;
+  describe('methods', () => {
+    describe('isExpanded()', () => {
+      it('should return true if param is 0', () => {
+        const result = component.isExpanded(0);
+        const expected = true;
 
         expect(result).toBe(expected);
       });
-    }
+
+      for (const number of [-2, -5, -7, 1000, 2021]) {
+        it(`should return true if param is not ${number}`, () => {
+          const result = component.isExpanded(number);
+          const expected = false;
+
+          expect(result).toBe(expected);
+        });
+      }
+    });
+  });
+
+  describe('properties', () => {
+    describe('alerts', () => {
+      it('should be defined', () => {
+        const result = component.alerts;
+
+        expect(result).toBeDefined();
+      });
+
+      it('should be an Array', () => {
+        const result = component.alerts;
+
+        expect(result).toBeInstanceOf(Array);
+      });
+    });
   });
 });

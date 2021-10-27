@@ -18,31 +18,11 @@ import { appStateReducer } from '../../app-state.reducers';
 import { WeatherData } from '../../models/weather/weather-data.models';
 import { WeatherGeolocation } from '../../models/geolocation/geolocation.models';
 
+import { TEST_WEATHER_DATA } from '../../../assets/data/testing/weather.testing';
+
 describe('WeatherMainComponent', () => {
   let component: WeatherMainComponent;
   let fixture: ComponentFixture<WeatherMainComponent>;
-
-  const weatherData: WeatherData = {
-    lat: 0,
-    lon: 0,
-    timezone: '',
-    timezone_offset: 0,
-    current: {
-      dt: 0,
-      clouds: 0,
-      dew_point: 0,
-      feels_like: 0,
-      humidity: 0,
-      pressure: 0,
-      temp: 0,
-      uvi: 0,
-      wind_deg: 0,
-      wind_speed: 0,
-      weather: [],
-    },
-    hourly: [],
-    daily: [],
-  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -71,7 +51,7 @@ describe('WeatherMainComponent', () => {
 
     component.weatherData$ = new Observable<WeatherData>();
     component.geolocationsData$ = new Observable<WeatherGeolocation[]>();
-    component.weatherData = weatherData;
+    component.weatherData = TEST_WEATHER_DATA;
     component.geolocations = [];
 
     fixture.detectChanges();
@@ -116,8 +96,6 @@ describe('WeatherMainComponent', () => {
       it('should be an Array', () => {
         const result = component.geolocations;
 
-        console.log(typeof component.geolocationsData$);
-
         expect(result).toBeInstanceOf(Array);
       });
 
@@ -145,20 +123,19 @@ describe('WeatherMainComponent', () => {
 
   describe('methods', () => {
     describe('alertsCount()', () => {
-      it('should return a Number or undefined', () => {
-        const result = typeof component.alertsCount;
-        const expectations = [typeof Number, typeof undefined];
+      it('should return a Number', () => {
+        const result = component.alertsCount;
 
-        expect(expectations).toContain(result);
+        expect(result).toBeInstanceOf(Number);
       });
     });
 
     describe('geolocation()', () => {
       it('should return an Object or undefined', () => {
-        const result = typeof component.geolocation;
-        const expectations = [typeof Object, typeof undefined];
+        const type = typeof component.geolocation;
+        const result = type === 'object' || type === 'undefined';
 
-        expect(expectations).toContain(result);
+        expect(result).toBeTruthy();
       });
     });
   });

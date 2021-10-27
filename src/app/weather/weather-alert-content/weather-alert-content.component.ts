@@ -10,7 +10,6 @@ import { StringParserService } from '../../shared/string-parser.service';
 })
 export class WeatherAlertContentComponent {
   @Input() alert!: WeatherAlert;
-  @Input() showAlertTimeRange: boolean = true;
 
   constructor(private stringParser: StringParserService) {}
 

@@ -74,8 +74,8 @@ export class WeatherMainComponent implements OnInit {
     });
   }
 
-  get alertsCount(): number | undefined {
-    return this.alerts?.length;
+  get alertsCount(): number {
+    return this.alerts ? this.alerts.length : 0;
   }
 
   get geolocation(): WeatherGeolocation | undefined {

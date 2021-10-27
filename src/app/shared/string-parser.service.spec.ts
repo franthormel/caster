@@ -2,6 +2,11 @@ import { TestBed } from '@angular/core/testing';
 
 import { StringParserService } from './string-parser.service';
 
+import {
+  TESTING_STRINGS_UPPER_CASE as upperCasedStrings,
+  TESTING_STRINGS_VARIOUS_NON_UPPER_CASE as nonUpperCasedStrings,
+} from 'src/assets/data/testing/services/strings.testing';
+
 describe('StringParserService', () => {
   let service: StringParserService;
 
@@ -61,28 +66,19 @@ describe('StringParserService', () => {
   });
 
   describe('isUppercase()', () => {
-    const upper = 'THE APPLE IS RED';
-    const strings = [
-      'The apple is red',
-      'The Apple Is Red',
-      'the apple is red',
-      'tHe aPpLe iS ReD',
-      'ThE ApPlE Is rEd',
-    ];
+    for (const upperCasedString of upperCasedStrings) {
+      it(`should return true if param is upper cased (${upperCasedString})`, () => {
+        const result = service.isUppercase(upperCasedString);
 
-    it('should return true if param is upper cased', () => {
-      const result = service.isUppercase(upper);
-      const expected = true;
+        expect(result).toBeTruthy();
+      });
+    }
 
-      expect(result).toBe(expected);
-    });
+    for (const nonUpperCasedString of nonUpperCasedStrings) {
+      it(`should return false if param is not upper cased (${nonUpperCasedString})`, () => {
+        const result = service.isUppercase(nonUpperCasedString);
 
-    for (const text of strings) {
-      it(`should return false if param is not upper cased (${text})`, () => {
-        const result = service.isUppercase(text);
-        const expected = false;
-
-        expect(result).toBe(expected);
+        expect(result).toBeFalsy();
       });
     }
   });
