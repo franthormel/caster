@@ -2,7 +2,7 @@
 @use "../../../styles.scss" as global;
 
 .weather-top {
-  @include weather.horizontally-apart;
+  @include global.horizontally-apart;
   height: 6rem;
 }
 

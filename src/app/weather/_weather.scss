@@ -1,8 +1,3 @@
-@mixin horizontally-apart {
-  display: flex;
-  justify-content: space-between;
-}
-
 @mixin text-align-end($align: left) {
   align-self: flex-end;
   text-align: $align;

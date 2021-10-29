@@ -3,16 +3,16 @@
 
 .weather-bottom {
   @include global.text-no-select;
+  @include global.horizontally-apart;
   @include weather.padding-hv;
-  @include weather.horizontally-apart;
 }
 
 .weather-bottom-left {
-  @include weather.horizontally-apart;
+  @include global.horizontally-apart;
 }
 
 .weather-bottom-right {
-  @include weather.horizontally-apart;
+  @include global.horizontally-apart;
   text-align: right;
 }
 

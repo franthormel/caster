@@ -28,14 +28,17 @@ html {
   @include text-no-select;
 }
 
+@mixin horizontally-apart {
+  display: flex;
+  justify-content: space-between;
+}
+
 @mixin margin-side($side, $i) {
   margin-#{$side}: #{$i * 10}px;
 }
 
 @for $i from 1 through 3 {
-  $sides: left, bottom, right;
-
-  @each $side in $sides {
+  @each $side in left, bottom, right {
     .margin-#{$side}-z#{$i} {
       @include margin-side($side, $i);
     }

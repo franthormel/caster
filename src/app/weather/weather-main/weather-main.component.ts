@@ -10,6 +10,7 @@ import { WeatherGeolocation } from '../../models/geolocation/geolocation.models'
 
 import { WeatherModeService } from '../weather-mode.service';
 import { WeatherDataService } from '../weather-data.service';
+import { ErrorDialogComponent } from 'src/app/shared/error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-weather-main',
@@ -22,7 +23,9 @@ export class WeatherMainComponent implements OnInit {
 
   geolocations!: WeatherGeolocation[];
   weatherData!: WeatherData;
+
   loading: boolean = true;
+  showError: boolean | undefined;
 
   constructor(
     public dialog: MatDialog,
@@ -40,11 +43,14 @@ export class WeatherMainComponent implements OnInit {
     dataCollection$.subscribe({
       complete: () => {
         this.loading = false;
+        this.showError = false;
       },
     });
   }
 
-  private initThenCombineData(): Observable<[WeatherData, WeatherGeolocation[]]> {
+  private initThenCombineData(): Observable<
+    [WeatherData, WeatherGeolocation[]]
+  > {
     this.weatherData$ = this.weatherDataService.localFileWeather();
     this.geolocationsData$ = this.weatherDataService.localFileGeolocation();
     this.weatherData$.subscribe({
@@ -52,7 +58,7 @@ export class WeatherMainComponent implements OnInit {
         this.weatherData = data;
       },
       error: (e) => {
-        console.error('Weather static data error', e);
+        this.showErrorDialog(e as Error);
       },
     });
 
@@ -61,11 +67,21 @@ export class WeatherMainComponent implements OnInit {
         this.geolocations = data;
       },
       error: (e) => {
-        console.error('Geolocations static data error', e);
+        this.showErrorDialog(e as Error);
       },
     });
 
     return forkJoin([this.weatherData$, this.geolocationsData$]);
+  }
+
+  private showErrorDialog(error: Error) {
+    this.dialog.open(ErrorDialogComponent, {
+      data: error,
+    });
+  }
+
+  get showContent(): boolean {
+    return this.weatherData !== undefined && this.showError === false;
   }
 
   showAlertDialog() {

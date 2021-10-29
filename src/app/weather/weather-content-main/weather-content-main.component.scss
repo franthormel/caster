@@ -12,7 +12,7 @@
 }
 
 .weather-main {
-  @include weather.horizontally-apart;
+  @include global.horizontally-apart;
 }
 
 .weather-main-left {
