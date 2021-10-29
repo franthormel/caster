@@ -6,7 +6,7 @@ import { WeatherAlertMultipleComponent } from '../weather-alert-multiple/weather
 import { WeatherAlertSingleComponent } from '../weather-alert-single/weather-alert-single.component';
 import { EpochConverterService } from '../../shared/epoch-converter.service';
 
-import { TEST_WEATHER_ALERTS } from 'src/assets/data/testing/weather.testing';
+import { TEST_WEATHER_ALERTS } from '../../../assets/data/testing/weather.testing';
 
 describe('WeatherAlertComponent', () => {
   let component: WeatherAlertComponent;

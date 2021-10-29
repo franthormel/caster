@@ -1,4 +1,3 @@
-import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { StoreModule } from '@ngrx/store';
 
@@ -6,9 +5,9 @@ import { WeatherContentBottomComponent } from './weather-content-bottom.componen
 import { TemperatureConverterService } from '../temperature-converter.service';
 import { WeatherModeService } from '../weather-mode.service';
 import { WeatherStateIndexerService } from '../weather-state-indexer.service';
-import { appStateReducer } from '../../app-state.reducers';
 
-import { TEST_WEATHER_DATA } from 'src/assets/data/testing/weather.testing';
+import { appStateReducer } from '../../app-state.reducers';
+import { TEST_WEATHER_DATA } from '../../../assets/data/testing/weather.testing';
 
 describe('WeatherContentBottomComponent', () => {
   let component: WeatherContentBottomComponent;
@@ -17,10 +16,7 @@ describe('WeatherContentBottomComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [WeatherContentBottomComponent],
-      imports: [
-        HttpClientModule,
-        StoreModule.forRoot({ appState: appStateReducer }),
-      ],
+      imports: [StoreModule.forRoot({ appState: appStateReducer })],
       providers: [
         TemperatureConverterService,
         WeatherModeService,

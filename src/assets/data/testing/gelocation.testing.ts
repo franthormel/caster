@@ -1,4 +1,4 @@
-import { WeatherGeolocation } from 'src/app/models/geolocation/geolocation.models';
+import { WeatherGeolocation } from '../../../app/models/geolocation/geolocation.models';
 
 export const TEST_GEOLOCATION: WeatherGeolocation = {
   name: 'Consolacion',

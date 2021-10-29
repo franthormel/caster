@@ -4,11 +4,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { WeatherAlertContentComponent } from './weather-alert-content.component';
 import { StringParserService } from '../../shared/string-parser.service';
 
-import { TEST_WEATHER_ALERT } from 'src/assets/data/testing/weather.testing';
-import {
-  TESTING_STRINGS_UPPER_CASE as upperCasedStrings,
-  TESTING_STRINGS_VARIOUS_NON_UPPER_CASE as nonUpperCasedStrings,
-} from 'src/assets/data/testing/services/strings.testing';
+import { TEST_WEATHER_ALERT } from '../../../assets/data/testing/weather.testing';
 
 describe('WeatherAlertContentComponent', () => {
   let component: WeatherAlertContentComponent;

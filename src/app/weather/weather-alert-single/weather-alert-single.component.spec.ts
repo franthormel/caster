@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { WeatherAlertContentComponent } from '../weather-alert-content/weather-alert-content.component';
 import { WeatherAlertSingleComponent } from './weather-alert-single.component';
 
-import { TEST_WEATHER_ALERT } from 'src/assets/data/testing/weather.testing';
+import { TEST_WEATHER_ALERT } from '../../../assets/data/testing/weather.testing';
 
 describe('WeatherAlertSingleComponent', () => {
   let component: WeatherAlertSingleComponent;

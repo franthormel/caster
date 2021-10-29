@@ -1,14 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { StoreModule } from '@ngrx/store';
 
-import { appStateReducer } from 'src/app/app-state.reducers';
 import { WeatherContentTopComponent } from './weather-content-top.component';
-import { EpochConverterService } from 'src/app/shared/epoch-converter.service';
+import { EpochConverterService } from '../../shared/epoch-converter.service';
 import { MoonPhaseService } from '../moon-phase.service';
 import { WeatherModeService } from '../weather-mode.service';
 import { WeatherStateIndexerService } from '../weather-state-indexer.service';
-import { TEST_WEATHER_DATA } from 'src/assets/data/testing/weather.testing';
-import { TEST_GEOLOCATION } from 'src/assets/data/testing/services/gelocation.testing';
+
+import { appStateReducer } from '../../app-state.reducers';
+import { TEST_WEATHER_DATA } from '../../../assets/data/testing/weather.testing';
+import { TEST_GEOLOCATION } from '../../../assets/data/testing/gelocation.testing';
 
 describe('WeatherContentTopComponent', () => {
   let component: WeatherContentTopComponent;

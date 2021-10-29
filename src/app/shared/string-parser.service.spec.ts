@@ -5,7 +5,7 @@ import { StringParserService } from './string-parser.service';
 import {
   TESTING_STRINGS_UPPER_CASE as upperCasedStrings,
   TESTING_STRINGS_VARIOUS_NON_UPPER_CASE as nonUpperCasedStrings,
-} from 'src/assets/data/testing/services/strings.testing';
+} from '../../assets/data/testing/services/strings.testing';
 
 describe('StringParserService', () => {
   let service: StringParserService;

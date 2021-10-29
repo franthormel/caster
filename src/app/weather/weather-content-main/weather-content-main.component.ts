@@ -25,6 +25,7 @@ import { detailViewTypeUpdate } from '../weather-state.actions';
 export class WeatherContentMainComponent implements OnInit {
   @Input() weatherData!: WeatherData;
 
+  // TODO Is an Observable still needed here? Try serving without one!
   private appState$!: Observable<AppState>;
   private dailyDetailViewMode!: WeatherDailyDetailViewMode;
 
@@ -200,6 +201,10 @@ export class WeatherContentMainComponent implements OnInit {
   }
 
   private get weatherCondition(): WeatherCondition {
+    /**
+     * There might be multiple conditions present in one area,
+     * but to display it easily, I choose the first weather condition.
+     */
     return this.weatherReading.weather[0];
   }
 

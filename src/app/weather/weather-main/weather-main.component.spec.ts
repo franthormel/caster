@@ -12,12 +12,12 @@ import { WeatherContentTopComponent } from '../weather-content-top/weather-conte
 import { WeatherContentBottomComponent } from '../weather-content-bottom/weather-content-bottom.component';
 import { WeatherMainComponent } from './weather-main.component';
 
-import { WeatherDataService } from '../weather-data.service';
-import { WeatherModeService } from '../weather-mode.service';
-import { appStateReducer } from '../../app-state.reducers';
 import { WeatherData } from '../../models/weather/weather-data.models';
 import { WeatherGeolocation } from '../../models/geolocation/geolocation.models';
+import { WeatherDataService } from '../weather-data.service';
+import { WeatherModeService } from '../weather-mode.service';
 
+import { appStateReducer } from '../../app-state.reducers';
 import { TEST_WEATHER_DATA } from '../../../assets/data/testing/weather.testing';
 
 describe('WeatherMainComponent', () => {
@@ -113,7 +113,7 @@ describe('WeatherMainComponent', () => {
     });
 
     describe('geolocation()', () => {
-      it('should return an Object or undefined', () => {
+      it('should return an WeatherGeolocation or undefined', () => {
         const type = typeof component.geolocation;
         const result = type === 'object' || type === 'undefined';
 

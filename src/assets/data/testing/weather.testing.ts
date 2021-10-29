@@ -1,4 +1,4 @@
-import { WeatherData } from 'src/app/models/weather/weather-data.models';
+import { WeatherData } from '../../../app/models/weather/weather-data.models';
 
 export const TEST_WEATHER_ALERT = {
   sender_name: 'PAGASA-DOST',
