@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { Clipboard } from '@angular/cdk/clipboard';
@@ -8,11 +8,15 @@ import { Clipboard } from '@angular/cdk/clipboard';
   templateUrl: './error-dialog.component.html',
   styleUrls: ['./error-dialog.component.scss'],
 })
-export class ErrorDialogComponent {
+export class ErrorDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public error: Error,
     private clipboard: Clipboard
   ) {}
+
+  ngOnInit() {
+    console.error(this.error);
+  }
 
   copyErrorMessage() {
     const message = `${this.name} — ${this.message}`;

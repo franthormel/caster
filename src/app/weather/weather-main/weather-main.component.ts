@@ -23,9 +23,7 @@ export class WeatherMainComponent implements OnInit {
 
   geolocations!: WeatherGeolocation[];
   weatherData!: WeatherData;
-
   loading: boolean = true;
-  showError: boolean | undefined;
 
   constructor(
     public dialog: MatDialog,
@@ -43,7 +41,6 @@ export class WeatherMainComponent implements OnInit {
     dataCollection$.subscribe({
       complete: () => {
         this.loading = false;
-        this.showError = false;
       },
     });
   }
@@ -80,10 +77,6 @@ export class WeatherMainComponent implements OnInit {
     });
   }
 
-  get showContent(): boolean {
-    return this.weatherData !== undefined && this.showError === false;
-  }
-
   showAlertDialog() {
     this.dialog.open(WeatherAlertComponent, {
       data: this.alerts,
@@ -95,7 +88,11 @@ export class WeatherMainComponent implements OnInit {
   }
 
   private get alerts(): WeatherAlert[] | undefined {
-    return this.weatherData.alerts;
+    if (this.weatherData !== undefined) {
+      return this.weatherData.alerts;
+    }
+
+    return undefined;
   }
 
   get geolocation(): WeatherGeolocation | undefined {

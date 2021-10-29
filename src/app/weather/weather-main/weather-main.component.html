@@ -1,19 +1,16 @@
-<ng-container *ngIf="showContent">
-    <app-weather-toolbar (alertEvent)="showAlertDialog()" 
-                         [alertCount]="alertsCount" 
-                         [loading]="loading">
-    </app-weather-toolbar>
+<app-weather-toolbar (alertEvent)="showAlertDialog()" 
+                     [alertCount]="alertsCount" 
+                     [loading]="loading">
+</app-weather-toolbar>
 
-    <ng-container *ngIf="loading">
-        <mat-progress-bar color="accent" mode="indeterminate"></mat-progress-bar>
-    </ng-container>
+<ng-container *ngIf="loading">
+    <mat-progress-bar color="accent" mode="indeterminate"></mat-progress-bar>
+</ng-container>
 
-    <!--TODO If there is no weather data, notify user by either using snackbar or dialog-->
-    <ng-container *ngIf="!loading">
-        <app-weather-content-top [geolocation]="geolocation" 
-                                 [weatherData]="weatherData">
-        </app-weather-content-top>
-        <app-weather-content-main [weatherData]="weatherData"></app-weather-content-main>
-        <app-weather-content-bottom [weatherData]="weatherData"></app-weather-content-bottom>
-    </ng-container>
+<ng-container *ngIf="!loading && weatherData">
+    <app-weather-content-top [geolocation]="geolocation" 
+                             [weatherData]="weatherData">
+    </app-weather-content-top>
+    <app-weather-content-main [weatherData]="weatherData"></app-weather-content-main>
+    <app-weather-content-bottom [weatherData]="weatherData"></app-weather-content-bottom>
 </ng-container>
