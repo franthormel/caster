@@ -11,13 +11,9 @@ import { StringParserService } from '../../shared/string-parser.service';
 export class WeatherAlertContentComponent {
   @Input() alert!: WeatherAlert;
 
-  constructor(private stringParser: StringParserService) {}
+  constructor(public stringParser: StringParserService) {}
 
   get alertLines(): string[] {
     return this.alert.description.split('\r\n');
-  }
-
-  lineIsUppercased(line: string): boolean {
-    return this.stringParser.isUppercase(line);
   }
 }

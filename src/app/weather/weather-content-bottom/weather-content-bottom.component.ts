@@ -101,7 +101,8 @@ export class WeatherContentBottomComponent {
         total += minute.precipitation;
       }
 
-      precipitationVolume = (total / length).toFixed(2);
+      precipitationVolume = total / length
+      precipitationVolume = precipitationVolume.toFixed(2);
     }
 
     return `${precipitationVolume} mm`;
@@ -129,7 +130,7 @@ export class WeatherContentBottomComponent {
     } else if (this.weatherMode.isDaily) {
       return `The maximum value of ${text} for the day`;
     } else {
-      return `${text}`;
+      return text;
     }
   }
 
@@ -148,7 +149,10 @@ export class WeatherContentBottomComponent {
     const visibility = this.weatherReading.visibility;
 
     if (visibility && visibility > 1000) {
-      return `${Math.trunc(visibility / 1000)} km`;
+      let visibilityKm = visibility / 1000;
+      visibilityKm = Math.trunc(visibilityKm);
+
+      return `${visibilityKm} km`;
     } else if (visibility) {
       return `${visibility} m`;
     }

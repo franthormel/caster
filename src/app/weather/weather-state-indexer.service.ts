@@ -9,6 +9,7 @@ import { AppState } from '../app-state.reducers';
 })
 export class WeatherStateIndexerService {
   private appState$!: Observable<AppState>;
+  
   private _indexHourly!: number;
   private _indexDaily!: number;
 

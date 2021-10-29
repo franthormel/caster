@@ -78,11 +78,11 @@ export class WeatherMainComponent implements OnInit {
     return this.alerts ? this.alerts.length : 0;
   }
 
-  get geolocation(): WeatherGeolocation | undefined {
-    return this.geolocations[0];
-  }
-
   private get alerts(): WeatherAlert[] | undefined {
     return this.weatherData.alerts;
+  }
+
+  get geolocation(): WeatherGeolocation | undefined {
+    return this.geolocations[0];
   }
 }

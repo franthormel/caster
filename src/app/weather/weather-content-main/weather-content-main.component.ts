@@ -37,6 +37,10 @@ export class WeatherContentMainComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.initDailyDetailViewMode();
+  }
+
+  private initDailyDetailViewMode() {
     this.appState$ = this.store.select('appState');
 
     this.appState$.subscribe((state) => {
@@ -69,17 +73,16 @@ export class WeatherContentMainComponent implements OnInit {
       );
     }
   }
-
-  get dailyDetailReadingModeIsTemperature(): boolean {
-    return this.dailyDetailViewMode === WeatherDailyDetailViewMode.Temperature;
-  }
-
   private updateStateDailyDetailViewMode(mode: WeatherDailyDetailViewMode) {
     this.store.dispatch(
       detailViewTypeUpdate({
         dailyDetailViewMode: mode,
       })
     );
+  }
+
+  get dailyDetailReadingModeIsTemperature(): boolean {
+    return this.dailyDetailViewMode === WeatherDailyDetailViewMode.Temperature;
   }
 
   private get dailyDetailReadingModeIsFeelsLike(): boolean {
@@ -153,7 +156,9 @@ export class WeatherContentMainComponent implements OnInit {
 
   private temperatureBasedOnMode(weather: WeatherReading): number {
     if (this.weatherMode.isDaily) {
-      return (weather.temp as ReadingDetailTemperature).day;
+      const reading = weather.temp as ReadingDetailTemperature;
+
+      return reading.day;
     }
 
     return weather.temp as number;
@@ -170,7 +175,9 @@ export class WeatherContentMainComponent implements OnInit {
 
   private feelsLikeBasedOnMode(weather: WeatherReading): number {
     if (this.weatherMode.isDaily) {
-      return (weather.feels_like as ReadingDetailFeelsLike).day;
+      const reading = weather.feels_like as ReadingDetailFeelsLike;
+
+      return reading.day;
     }
 
     return weather.feels_like as number;

@@ -58,23 +58,5 @@ describe('WeatherAlertContentComponent', () => {
         expect(result).toBe(expectation);
       });
     });
-
-    describe('lineIsUppercased()', () => {
-      for (const upperCasedString of upperCasedStrings) {
-        it(`should return true if param is upper cased (${upperCasedString})`, () => {
-          const result = component.lineIsUppercased(upperCasedString);
-
-          expect(result).toBeTruthy();
-        });
-      }
-
-      for (const nonUpperCasedString of nonUpperCasedStrings) {
-        it(`should return false if param is not upper cased (${nonUpperCasedString})`, () => {
-          const result = component.lineIsUppercased(nonUpperCasedString);
-
-          expect(result).toBeFalsy();
-        });
-      }
-    });
   });
 });
