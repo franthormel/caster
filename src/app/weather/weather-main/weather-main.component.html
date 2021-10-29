@@ -8,7 +8,7 @@
 </ng-container>
 
 <!--TODO If there is no weather data, notify user by either using snackbar or dialog-->
-<ng-container *ngIf="!loading && weatherData && geolocation">
+<ng-container *ngIf="!loading">
     <app-weather-content-top [geolocation]="geolocation" 
                              [weatherData]="weatherData">
     </app-weather-content-top>

@@ -22,7 +22,7 @@ import * as weather from '../weather-state.actions';
 })
 export class WeatherContentTopComponent {
   @Input() weatherData!: WeatherData;
-  @Input() geolocation!: WeatherGeolocation;
+  @Input() geolocation: WeatherGeolocation | undefined;
 
   constructor(
     private epochConverter: EpochConverterService,
@@ -32,14 +32,10 @@ export class WeatherContentTopComponent {
     private weatherStateIndexer: WeatherStateIndexerService
   ) {}
 
-  // TODO
-  // Sometimes the reverse geolocation API will not return 
-  // a location (probably the coordinates are for an unnamed area)
-  // so think of a way to display an alternative to this
   get formattedLocation(): string {
     return this.geolocation
       ? `${this.geolocation.name}, ${this.geolocation.country}`
-      : '';
+      : `${this.weatherData.lat}, ${this.weatherData.lon}`;
   }
 
   // CURRENT
