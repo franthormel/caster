@@ -9,7 +9,7 @@ import { WeatherCondition } from '../../models/weather/weather-condition.models'
 import { WeatherReading } from '../../models/weather/weather-reading.models';
 import { WeatherDailyDetailViewMode } from '../../models/weather/weather.enums';
 
-import { StringParserService } from '../../shared/string-parser.service';
+import { StringParserService } from '../../string-parser.service';
 import { TemperatureConverterService } from '../temperature-converter.service';
 import { WeatherModeService } from '../weather-mode.service';
 import { WeatherStateIndexerService } from '../weather-state-indexer.service';

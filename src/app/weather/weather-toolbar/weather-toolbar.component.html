@@ -1,11 +1,4 @@
-<mat-toolbar class="mat-elevation-z2 text-no-select" color="primary">
-    <button mat-icon-button
-            aria-label="Menu icon">
-        <mat-icon>menu</mat-icon>
-    </button>
-    <span class="toolbar-heavy">Weather</span>
-    <span class="toolbar-spacer"></span>
-
+<shared-menu-toolbar title="Weather">
     <ng-container *ngIf="!loading && alertCount">
         <button mat-icon-button 
                 aria-label="Alerts icon"
@@ -50,4 +43,4 @@
             </mat-list-option>
         </mat-selection-list>
     </mat-menu>
-</mat-toolbar>
+</shared-menu-toolbar>

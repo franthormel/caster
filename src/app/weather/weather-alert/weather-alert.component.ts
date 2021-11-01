@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { WeatherAlert } from '../../models/weather/weather-alert.models';
-import { EpochConverterService } from '../../shared/epoch-converter.service';
+import { EpochConverterService } from '../../epoch-converter.service';
 
 @Component({
   selector: 'app-weather-alert',
@@ -19,14 +19,19 @@ export class WeatherAlertComponent {
     return this.alerts.length > 1;
   }
 
+  get singleAlert(): boolean {
+    return !this.multipleAlerts;
+  }
+
   get title(): string {
-    if (!this.multipleAlerts) {
+    if (this.singleAlert) {
       const alert = this.alerts[0];
 
       return `${alert.event} from ${
         alert.sender_name
       } (${this.epochConverter.convertToTimerange(alert)})`;
     }
+
     return 'Weather Alerts';
   }
 }

@@ -1,6 +1,6 @@
 <span mat-dialog-title>{{title}}</span>
 <mat-dialog-content class="padding-bottom-p1">
-    <ng-container *ngIf="!multipleAlerts">
+    <ng-container *ngIf="singleAlert">
         <app-weather-alert-single [alert]="alerts[0]"></app-weather-alert-single>
     </ng-container>
     <ng-container *ngIf="multipleAlerts">

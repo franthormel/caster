@@ -8,7 +8,7 @@ import { WeatherReadingDaily } from '../../models/weather/weather-reading-daily.
 import { WeatherGeolocation } from '../../models/geolocation/geolocation.models';
 
 import { MoonPhaseService } from '../moon-phase.service';
-import { EpochConverterService } from '../../shared/epoch-converter.service';
+import { EpochConverterService } from '../../epoch-converter.service';
 import { WeatherModeService } from '../weather-mode.service';
 import { WeatherStateIndexerService } from '../weather-state-indexer.service';
 

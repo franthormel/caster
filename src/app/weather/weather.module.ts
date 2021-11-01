@@ -16,6 +16,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatRippleModule } from '@angular/material/core';
+import { SharedModule } from '../shared/shared.module';
 
 import { WeatherToolbarComponent } from './weather-toolbar/weather-toolbar.component';
 import { WeatherAlertComponent } from './weather-alert/weather-alert.component';
@@ -26,6 +27,12 @@ import { WeatherAlertContentComponent } from './weather-alert-content/weather-al
 import { WeatherContentTopComponent } from './weather-content-top/weather-content-top.component';
 import { WeatherContentMainComponent } from './weather-content-main/weather-content-main.component';
 import { WeatherContentBottomComponent } from './weather-content-bottom/weather-content-bottom.component';
+
+import { WeatherDataService } from './weather-data.service';
+import { WeatherModeService } from './weather-mode.service';
+import { WeatherStateIndexerService } from './weather-state-indexer.service';
+import { MoonPhaseService } from './moon-phase.service';
+import { TemperatureConverterService } from './temperature-converter.service';
 
 @NgModule({
   declarations: [
@@ -40,6 +47,7 @@ import { WeatherContentBottomComponent } from './weather-content-bottom/weather-
     WeatherContentBottomComponent,
   ],
   imports: [
+    SharedModule,
     CommonModule,
     HttpClientModule,
     WeatherRoutingModule,
@@ -55,6 +63,13 @@ import { WeatherContentBottomComponent } from './weather-content-bottom/weather-
     MatChipsModule,
     MatExpansionModule,
     MatRippleModule,
+  ],
+  providers: [
+    MoonPhaseService,
+    TemperatureConverterService,
+    WeatherDataService,
+    WeatherModeService,
+    WeatherStateIndexerService,
   ],
 })
 export class WeatherModule {}

@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { WeatherAlert } from '../models/weather/weather-alert.models';
+import { WeatherAlert } from './models/weather/weather-alert.models';
 
 import { EpochConverterService } from './epoch-converter.service';
 

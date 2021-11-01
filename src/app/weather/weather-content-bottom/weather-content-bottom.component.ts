@@ -65,7 +65,7 @@ export class WeatherContentBottomComponent {
   get rainTooltip(): string {
     const text = 'Rain volume';
 
-    if (!this.weatherMode.isDaily) {
+    if (this.isNotDaily) {
       return `${text} for the last hour`;
     }
 
@@ -85,7 +85,7 @@ export class WeatherContentBottomComponent {
   get snowTooltip(): string {
     const text = 'Snow volume';
 
-    if (!this.weatherMode.isDaily) {
+    if (this.isNotDaily) {
       return `${text} for the last hour`;
     }
 
@@ -154,6 +154,10 @@ export class WeatherContentBottomComponent {
       : 0;
 
     return `${precipitationChance}%`;
+  }
+
+  private get isNotDaily() : boolean {
+    return !this.weatherMode.isDaily;
   }
 
   private get weatherReading(): WeatherReading {

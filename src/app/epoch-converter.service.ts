@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { WeatherAlert } from '../models/weather/weather-alert.models';
+import { WeatherAlert } from './models/weather/weather-alert.models';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +17,7 @@ export class EpochConverterService {
   convertToTime(time: number): string {
     return this.convertToDate(time).toLocaleTimeString();
   }
-  
+
   convertToTimerange(alert: WeatherAlert): string {
     return `${this.convertToDateTime(alert.start)} — ${this.convertToDateTime(
       alert.end

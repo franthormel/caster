@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { WeatherAlert } from '../../models/weather/weather-alert.models';
-import { StringParserService } from '../../shared/string-parser.service';
+import { StringParserService } from '../../string-parser.service';
 
 @Component({
   selector: 'app-weather-alert-content',
