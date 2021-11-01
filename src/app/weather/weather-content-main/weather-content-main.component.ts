@@ -40,14 +40,12 @@ export class WeatherContentMainComponent implements OnInit {
     this.initDailyDetailViewMode();
   }
 
-  changeDailyDetailViewMode() {
-    if (this.dailyDetailReadingModeIsTemperature) {
-      this.updateStateDailyDetailViewMode(WeatherDailyDetailViewMode.FeelsLike);
-    } else if (this.dailyDetailReadingModeIsFeelsLike) {
-      this.updateStateDailyDetailViewMode(
-        WeatherDailyDetailViewMode.Temperature
-      );
-    }
+  changeToFeelsLikeViewMode() {
+    this.updateStateDailyDetailViewMode(WeatherDailyDetailViewMode.FeelsLike);
+  }
+
+  changeToTemperatureViewMode() {
+    this.updateStateDailyDetailViewMode(WeatherDailyDetailViewMode.Temperature);
   }
 
   get cloudiness(): number {
@@ -143,7 +141,7 @@ export class WeatherContentMainComponent implements OnInit {
       this.showDailyDetailReading && this.dailyDetailReadingModeIsFeelsLike
     );
   }
-  
+
   get underlineTemperature(): boolean {
     return (
       this.showDailyDetailReading && this.dailyDetailReadingModeIsTemperature
@@ -198,6 +196,10 @@ export class WeatherContentMainComponent implements OnInit {
     return this.weatherReading.weather[0];
   }
 
+  private get dailyDetailReadingModeIsFeelsLike(): boolean {
+    return this.dailyDetailViewMode === WeatherDailyDetailViewMode.FeelsLike;
+  }
+
   private feelsLikeBasedOnMode(weather: WeatherReading): number {
     if (this.weatherMode.isDaily) {
       const reading = weather.feels_like as ReadingDetailFeelsLike;
@@ -206,6 +208,14 @@ export class WeatherContentMainComponent implements OnInit {
     }
 
     return weather.feels_like as number;
+  }
+
+  private initDailyDetailViewMode() {
+    this.appState$ = this.store.select('appState');
+
+    this.appState$.subscribe((state) => {
+      this.dailyDetailViewMode = state.weatherState.dailyDetailViewMode;
+    });
   }
 
   private temperatureBasedOnMode(weather: WeatherReading): number {
@@ -224,17 +234,5 @@ export class WeatherContentMainComponent implements OnInit {
         dailyDetailViewMode: mode,
       })
     );
-  }
-
-  private initDailyDetailViewMode() {
-    this.appState$ = this.store.select('appState');
-
-    this.appState$.subscribe((state) => {
-      this.dailyDetailViewMode = state.weatherState.dailyDetailViewMode;
-    });
-  }
-
-  private get dailyDetailReadingModeIsFeelsLike(): boolean {
-    return this.dailyDetailViewMode === WeatherDailyDetailViewMode.FeelsLike;
   }
 }

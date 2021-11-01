@@ -48,10 +48,6 @@
   @include global.margin-side(right, 2);
 }
 
-.weather-main-details:hover {
-  cursor: pointer;
-}
-
 .weather-main-conditions {
   display: inline-flex;
   align-items: center;
@@ -62,6 +58,11 @@
   font-weight: 700;
   font-size: 9.8em;
   margin: 0;
+}
+
+.weather-main-temperature:hover,
+.weather-main-feels-like:hover {
+  cursor: pointer;
 }
 
 .weather-main-semibold {

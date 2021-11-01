@@ -20,11 +20,8 @@
         <section class="weather-main-middle">
             <section class="text-center">
                 <section class="weather-main-readings">
-                    <section *ngIf="showDailyDetailReading" 
-                        matRipple 
-                        [matRippleUnbounded]="true"
-                        class="weather-main-details" 
-                        (click)="changeDailyDetailViewMode()">
+                    <section *ngIf="showDailyDetailReading"
+                             class="weather-main-details">
                         <ng-container *ngIf="dailyDetailReadingModeIsTemperature">
                             <p><span class="weather-main-details-heading">Min</span>{{min}}</p>
                             <p><span class="weather-main-details-heading">Max</span>{{max}}</p>
@@ -35,15 +32,20 @@
                     </section>
                     <section class="align-center">
                         <p class="weather-main-temperature"
-                            [ngClass]="{'text-underline': underlineTemperature}">
-                            {{temperature}}°
+                           matRipple
+                           [matRippleUnbounded]="true"
+                           [ngClass]="{'text-underline': underlineTemperature}"
+                           (click)="changeToTemperatureViewMode()">
+                           {{temperature}}°
                         </p>
                     </section>
                 </section>
                 <div class="weather-main-conditions">
-                    <p class="margin-right-z2" 
-                       matTooltip="Human perception of weather"
-                       [ngClass]="{'text-underline': underlineFeelsLike}">
+                    <p class="margin-right-z2 weather-main-feels-like" 
+                       matRipple
+                       [matRippleUnbounded]="true"
+                       [ngClass]="{'text-underline': underlineFeelsLike}"
+                       (click)="changeToFeelsLikeViewMode()">
                        Feels like {{feelsLike}}
                     </p>
                     <mat-icon [svgIcon]="weatherIcon"></mat-icon>
