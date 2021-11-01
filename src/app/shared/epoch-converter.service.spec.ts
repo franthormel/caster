@@ -85,7 +85,7 @@ describe('EpochConverterService', () => {
     });
   });
 
-  describe('alertTimeRange()', () => {
+  describe('convertToTimerange()', () => {
     const alert: WeatherAlert = {
       sender_name: '',
       event: '',
@@ -96,14 +96,14 @@ describe('EpochConverterService', () => {
     };
 
     it('should return a value of String type', () => {
-      const result = service.alertTimeRange(alert);
+      const result = service.convertToTimerange(alert);
 
       expect(result).toBeInstanceOf(String);
     });
 
     it(`should return the expected value if start is ${start} and end is ${today}`, () => {
       const expected = '01/01/1970 8:00:00 am — 24/10/2021 1:26:55 pm';
-      const result = service.alertTimeRange(alert);
+      const result = service.convertToTimerange(alert);
 
       expect(result).toBe(expected);
     });

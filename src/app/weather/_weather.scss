@@ -1,10 +1,10 @@
-@mixin text-align-end($align: left) {
-  align-self: flex-end;
-  text-align: $align;
-}
-
 @mixin padding-hv {
   $value: 2;
 
   padding: #{$value}vh #{$value}vw;
+}
+
+@mixin text-align-end($align: left) {
+  align-self: flex-end;
+  text-align: $align;
 }

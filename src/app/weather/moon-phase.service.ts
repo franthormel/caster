@@ -6,15 +6,15 @@ import { DESCRIPTIONS_MOON } from '../data/descriptions/descriptions-moon.data';
   providedIn: 'root',
 })
 export class MoonPhaseService {
-  description(value: number): string {
-    return DESCRIPTIONS_MOON[this._index(value)];
-  }
-
   icon(value: number): string {
-    return ICONS_MOON[this._index(value)];
+    return ICONS_MOON[this.index(value)];
   }
 
-  private _index(value: number): number {
+  description(value: number): string {
+    return DESCRIPTIONS_MOON[this.index(value)];
+  }
+
+  private index(value: number): number {
     let index: number = -1;
 
     if (value === 0 || value === 1) {

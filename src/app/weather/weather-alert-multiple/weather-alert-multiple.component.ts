@@ -14,7 +14,7 @@ export class WeatherAlertMultipleComponent {
 
   constructor(public epochConverter: EpochConverterService) {}
 
-  isExpanded(i: number) : boolean {
-    return i === 0
+  isExpanded(i: number): boolean {
+    return i === 0;
   }
 }

@@ -15,18 +15,18 @@ export class WeatherAlertComponent {
     private epochConverter: EpochConverterService
   ) {}
 
+  get multipleAlerts(): boolean {
+    return this.alerts.length > 1;
+  }
+
   get title(): string {
     if (!this.multipleAlerts) {
       const alert = this.alerts[0];
 
       return `${alert.event} from ${
         alert.sender_name
-      } (${this.epochConverter.alertTimeRange(alert)})`;
+      } (${this.epochConverter.convertToTimerange(alert)})`;
     }
     return 'Weather Alerts';
-  }
-
-  get multipleAlerts(): boolean {
-    return this.alerts.length > 1;
   }
 }

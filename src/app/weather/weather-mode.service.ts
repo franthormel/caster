@@ -18,39 +18,39 @@ export class WeatherModeService {
     this.initWeatherMode();
   }
 
-  private initWeatherMode() {
-    this.appState$ = this.store.select('appState');
-
-    this.appState$.subscribe((state) => {
-      this.mode = state.weatherState.mode;
-    });
-  }
-
-  get isCurrent(): boolean {
-    return this.mode === WeatherReadingMode.Current;
-  }
-
-  get isHourly(): boolean {
-    return this.mode === WeatherReadingMode.Hourly;
-  }
-
-  get isDaily(): boolean {
-    return this.mode === WeatherReadingMode.Daily;
-  }
-
   changeToCurrent() {
     this.changeMode(WeatherReadingMode.Current);
-  }
-
-  changeToHourly() {
-    this.changeMode(WeatherReadingMode.Hourly);
   }
 
   changeToDaily() {
     this.changeMode(WeatherReadingMode.Daily);
   }
 
+  changeToHourly() {
+    this.changeMode(WeatherReadingMode.Hourly);
+  }
+
+  get isCurrent(): boolean {
+    return this.mode === WeatherReadingMode.Current;
+  }
+
+  get isDaily(): boolean {
+    return this.mode === WeatherReadingMode.Daily;
+  }
+
+  get isHourly(): boolean {
+    return this.mode === WeatherReadingMode.Hourly;
+  }
+
   private changeMode(value: WeatherReadingMode) {
     this.store.dispatch(modeUpdate({ mode: value }));
+  }
+
+  private initWeatherMode() {
+    this.appState$ = this.store.select('appState');
+
+    this.appState$.subscribe((state) => {
+      this.mode = state.weatherState.mode;
+    });
   }
 }

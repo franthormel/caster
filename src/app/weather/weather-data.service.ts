@@ -23,12 +23,13 @@ export class WeatherDataService {
     this.initFile();
   }
 
-  private initFile() {
-    this.appState$ = this.store.select('appState');
-
-    this.appState$.subscribe((state) => {
-      this.file = state.staticFile;
-    });
+  localFileGeolocation(): Observable<WeatherGeolocation[]> {
+    return this.httpClient.get<WeatherGeolocation[]>(
+      `${environment.assetsDataUrl}geolocations/${this.file}.json`,
+      {
+        responseType: 'json',
+      }
+    );
   }
 
   localFileWeather(): Observable<WeatherData> {
@@ -40,12 +41,11 @@ export class WeatherDataService {
     );
   }
 
-  localFileGeolocation(): Observable<WeatherGeolocation[]> {
-    return this.httpClient.get<WeatherGeolocation[]>(
-      `${environment.assetsDataUrl}geolocations/${this.file}.json`,
-      {
-        responseType: 'json',
-      }
-    );
+  private initFile() {
+    this.appState$ = this.store.select('appState');
+
+    this.appState$.subscribe((state) => {
+      this.file = state.staticFile;
+    });
   }
 }

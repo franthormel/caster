@@ -17,16 +17,12 @@ export const routes: Routes = [
   {
     path: 'locations',
     loadChildren: () =>
-      import('./locations/locations.module').then(
-        (m) => m.LocationsModule
-      ),
+      import('./locations/locations.module').then((m) => m.LocationsModule),
   },
   {
     path: 'settings',
     loadChildren: () =>
-      import('./settings/settings.module').then(
-        (m) => m.SettingsModule
-      ),
+      import('./settings/settings.module').then((m) => m.SettingsModule),
   },
 
   { path: '**', redirectTo: 'weather', pathMatch: 'full' },

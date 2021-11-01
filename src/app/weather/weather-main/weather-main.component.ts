@@ -35,6 +35,28 @@ export class WeatherMainComponent implements OnInit {
     this.initData();
   }
 
+  showAlertDialog() {
+    this.dialog.open(WeatherAlertComponent, {
+      data: this.alerts,
+    });
+  }
+
+  private get alerts(): WeatherAlert[] | undefined {
+    if (this.weatherData !== undefined) {
+      return this.weatherData.alerts;
+    }
+
+    return undefined;
+  }
+
+  get alertsCount(): number {
+    return this.alerts ? this.alerts.length : 0;
+  }
+
+  get geolocation(): WeatherGeolocation | undefined {
+    return this.geolocations[0];
+  }
+
   private initData() {
     const dataCollection$ = this.initThenCombineData();
 
@@ -75,27 +97,5 @@ export class WeatherMainComponent implements OnInit {
     this.dialog.open(ErrorDialogComponent, {
       data: error,
     });
-  }
-
-  showAlertDialog() {
-    this.dialog.open(WeatherAlertComponent, {
-      data: this.alerts,
-    });
-  }
-
-  get alertsCount(): number {
-    return this.alerts ? this.alerts.length : 0;
-  }
-
-  private get alerts(): WeatherAlert[] | undefined {
-    if (this.weatherData !== undefined) {
-      return this.weatherData.alerts;
-    }
-
-    return undefined;
-  }
-
-  get geolocation(): WeatherGeolocation | undefined {
-    return this.geolocations[0];
   }
 }

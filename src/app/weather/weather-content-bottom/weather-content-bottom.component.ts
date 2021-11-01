@@ -22,24 +22,40 @@ export class WeatherContentBottomComponent {
     private weatherMode: WeatherModeService
   ) {}
 
-  get snowIsPresent(): boolean {
-    return this.weatherReading.snow !== undefined;
+  get dewPoint(): number {
+    return this.temperatureConverter.convertKelvinToCelsius(
+      this.weatherReading.dew_point
+    );
   }
 
-  get snowTooltip(): string {
-    const text = 'Snow volume';
+  get precipitation(): string {
+    return this.weatherMode.isCurrent
+      ? this.currentPrecipitation
+      : this.dailyHourlyPrecipitation;
+  }
 
-    if (!this.weatherMode.isDaily) {
-      return `${text} for the last hour`;
+  get precipitationTitle(): string {
+    const title = 'Precipitation';
+
+    if (this.weatherMode.isCurrent) {
+      return `${title} (Hour)`;
     }
 
-    return text;
+    return title;
   }
 
-  get snow(): number | undefined {
+  get precipitationTooltip(): string {
+    if (this.weatherMode.isCurrent) {
+      return 'Precipitation volume';
+    } else {
+      return 'Probability of precipitation';
+    }
+  }
+
+  get rain(): number {
     return this.weatherMode.isDaily
-      ? (this.weatherReading.snow as number)
-      : (this.weatherReading.snow as HourlyChance)['1h'];
+      ? (this.weatherReading.rain as number)
+      : (this.weatherReading.rain as HourlyChance)['1h'];
   }
 
   get rainIsPresent(): boolean {
@@ -56,70 +72,28 @@ export class WeatherContentBottomComponent {
     return text;
   }
 
-  get rain(): number {
+  get snow(): number | undefined {
     return this.weatherMode.isDaily
-      ? (this.weatherReading.rain as number)
-      : (this.weatherReading.rain as HourlyChance)['1h'];
+      ? (this.weatherReading.snow as number)
+      : (this.weatherReading.snow as HourlyChance)['1h'];
   }
 
-  get precipitationTooltip(): string {
-    if (this.weatherMode.isCurrent) {
-      return 'Precipitation volume';
-    } else {
-      return 'Probability of precipitation';
-    }
+  get snowIsPresent(): boolean {
+    return this.weatherReading.snow !== undefined;
   }
 
-  get precipitationTitle(): string {
-    const title = 'Precipitation';
+  get snowTooltip(): string {
+    const text = 'Snow volume';
 
-    if (this.weatherMode.isCurrent) {
-      return `${title} (Hour)`;
+    if (!this.weatherMode.isDaily) {
+      return `${text} for the last hour`;
     }
 
-    return title;
+    return text;
   }
 
-  /**
-   * Precipitation is measured as a probability for the daily and hourly
-   * forecasts, while current weather uses volume.
-   */
-  get precipitation(): string {
-    return this.weatherMode.isCurrent
-      ? this.currentPrecipitation
-      : this.dailyOrHourlyPrecipitation;
-  }
-
-  private get currentPrecipitation(): string {
-    let precipitationVolume: string | number = 0;
-
-    if (this.weatherData.minutely !== undefined) {
-      let total = 0;
-      const length = this.weatherData.minutely.length;
-
-      for (const minute of this.weatherData.minutely) {
-        total += minute.precipitation;
-      }
-
-      precipitationVolume = total / length
-      precipitationVolume = precipitationVolume.toFixed(2);
-    }
-
-    return `${precipitationVolume} mm`;
-  }
-
-  private get dailyOrHourlyPrecipitation(): string {
-    const precipitationChance = this.weatherReading.pop
-      ? Math.trunc(this.weatherReading.pop * 100)
-      : 0;
-
-    return `${precipitationChance}%`;
-  }
-
-  get dewPoint(): number {
-    return this.temperatureConverter.convertKelvinToCelsius(
-      this.weatherReading.dew_point
-    );
+  get uvi(): number {
+    return this.weatherReading.uvi;
   }
 
   get uviTooltip(): string {
@@ -132,10 +106,6 @@ export class WeatherContentBottomComponent {
     } else {
       return text;
     }
-  }
-
-  get uvi(): number {
-    return this.weatherReading.uvi;
   }
 
   get visibilityIsPresent(): boolean {
@@ -158,6 +128,32 @@ export class WeatherContentBottomComponent {
     }
 
     return '';
+  }
+
+  private get currentPrecipitation(): string {
+    let precipitationVolume: string | number = 0;
+
+    if (this.weatherData.minutely !== undefined) {
+      let total = 0;
+      const length = this.weatherData.minutely.length;
+
+      for (const minute of this.weatherData.minutely) {
+        total += minute.precipitation;
+      }
+
+      precipitationVolume = total / length;
+      precipitationVolume = precipitationVolume.toFixed(2);
+    }
+
+    return `${precipitationVolume} mm`;
+  }
+
+  private get dailyHourlyPrecipitation(): string {
+    const precipitationChance = this.weatherReading.pop
+      ? Math.trunc(this.weatherReading.pop * 100)
+      : 0;
+
+    return `${precipitationChance}%`;
   }
 
   private get weatherReading(): WeatherReading {

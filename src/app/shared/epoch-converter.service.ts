@@ -9,21 +9,16 @@ export class EpochConverterService {
     return new Date(seconds * 1000);
   }
 
-  convertToTime(time: number): string {
-    return this.convertToDate(time).toLocaleTimeString();
-  }
-
   convertToDateTime(time: number): string {
     const date = this.convertToDate(time);
     return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
   }
 
-  /**
-   * Returns string with alert's start and end as a time range
-   * @param alert WeatherAlert
-   * @returns string
-   */
-  alertTimeRange(alert: WeatherAlert): string {
+  convertToTime(time: number): string {
+    return this.convertToDate(time).toLocaleTimeString();
+  }
+  
+  convertToTimerange(alert: WeatherAlert): string {
     return `${this.convertToDateTime(alert.start)} — ${this.convertToDateTime(
       alert.end
     )}`;

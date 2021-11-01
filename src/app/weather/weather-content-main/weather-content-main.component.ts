@@ -25,7 +25,6 @@ import { detailViewTypeUpdate } from '../weather-state.actions';
 export class WeatherContentMainComponent implements OnInit {
   @Input() weatherData!: WeatherData;
 
-  // TODO Is an Observable still needed here? Try serving without one!
   private appState$!: Observable<AppState>;
   private dailyDetailViewMode!: WeatherDailyDetailViewMode;
 
@@ -41,30 +40,6 @@ export class WeatherContentMainComponent implements OnInit {
     this.initDailyDetailViewMode();
   }
 
-  private initDailyDetailViewMode() {
-    this.appState$ = this.store.select('appState');
-
-    this.appState$.subscribe((state) => {
-      this.dailyDetailViewMode = state.weatherState.dailyDetailViewMode;
-    });
-  }
-
-  get cloudiness(): number {
-    return this.weatherReading.clouds;
-  }
-
-  get pressure(): number {
-    return this.weatherReading.pressure;
-  }
-
-  get humidity(): number {
-    return this.weatherReading.humidity;
-  }
-
-  get showDailyDetailReading(): boolean {
-    return this.weatherMode.isDaily;
-  }
-
   changeDailyDetailViewMode() {
     if (this.dailyDetailReadingModeIsTemperature) {
       this.updateStateDailyDetailViewMode(WeatherDailyDetailViewMode.FeelsLike);
@@ -74,30 +49,36 @@ export class WeatherContentMainComponent implements OnInit {
       );
     }
   }
-  private updateStateDailyDetailViewMode(mode: WeatherDailyDetailViewMode) {
-    this.store.dispatch(
-      detailViewTypeUpdate({
-        dailyDetailViewMode: mode,
-      })
-    );
+
+  get cloudiness(): number {
+    return this.weatherReading.clouds;
   }
 
   get dailyDetailReadingModeIsTemperature(): boolean {
     return this.dailyDetailViewMode === WeatherDailyDetailViewMode.Temperature;
   }
 
-  private get dailyDetailReadingModeIsFeelsLike(): boolean {
-    return this.dailyDetailViewMode === WeatherDailyDetailViewMode.FeelsLike;
-  }
-
-  get min(): number {
+  get evening(): number {
     if (this.showDailyDetailReading) {
       const reading = this.weatherReading.temp as ReadingDetailTemperature;
 
-      return this.temperatureConverter.convertKelvinToCelsius(reading.min);
+      return this.temperatureConverter.convertKelvinToCelsius(reading.eve);
     }
 
     return -1;
+  }
+
+  get feelsLike(): number {
+    const weather = this.weatherReading;
+    let feelsLike = this.feelsLikeBasedOnMode(weather);
+
+    feelsLike = this.temperatureConverter.convertKelvinToCelsius(feelsLike);
+
+    return feelsLike;
+  }
+
+  get humidity(): number {
+    return this.weatherReading.humidity;
   }
 
   get max(): number {
@@ -105,6 +86,16 @@ export class WeatherContentMainComponent implements OnInit {
       const reading = this.weatherReading.temp as ReadingDetailTemperature;
 
       return this.temperatureConverter.convertKelvinToCelsius(reading.max);
+    }
+
+    return -1;
+  }
+
+  get min(): number {
+    if (this.showDailyDetailReading) {
+      const reading = this.weatherReading.temp as ReadingDetailTemperature;
+
+      return this.temperatureConverter.convertKelvinToCelsius(reading.min);
     }
 
     return -1;
@@ -120,16 +111,6 @@ export class WeatherContentMainComponent implements OnInit {
     return -1;
   }
 
-  get evening(): number {
-    if (this.showDailyDetailReading) {
-      const reading = this.weatherReading.temp as ReadingDetailTemperature;
-
-      return this.temperatureConverter.convertKelvinToCelsius(reading.eve);
-    }
-
-    return -1;
-  }
-
   get night(): number {
     if (this.showDailyDetailReading) {
       const reading = this.weatherReading.temp as ReadingDetailTemperature;
@@ -140,10 +121,12 @@ export class WeatherContentMainComponent implements OnInit {
     return -1;
   }
 
-  get underlineTemperature(): boolean {
-    return (
-      this.showDailyDetailReading && this.dailyDetailReadingModeIsTemperature
-    );
+  get pressure(): number {
+    return this.weatherReading.pressure;
+  }
+
+  get showDailyDetailReading(): boolean {
+    return this.weatherMode.isDaily;
   }
 
   get temperature(): number {
@@ -155,43 +138,16 @@ export class WeatherContentMainComponent implements OnInit {
     return temperature;
   }
 
-  private temperatureBasedOnMode(weather: WeatherReading): number {
-    if (this.weatherMode.isDaily) {
-      const reading = weather.temp as ReadingDetailTemperature;
-
-      return reading.day;
-    }
-
-    return weather.temp as number;
-  }
-
-  get feelsLike(): number {
-    const weather = this.weatherReading;
-    let feelsLike = this.feelsLikeBasedOnMode(weather);
-
-    feelsLike = this.temperatureConverter.convertKelvinToCelsius(feelsLike);
-
-    return feelsLike;
-  }
-
-  private feelsLikeBasedOnMode(weather: WeatherReading): number {
-    if (this.weatherMode.isDaily) {
-      const reading = weather.feels_like as ReadingDetailFeelsLike;
-
-      return reading.day;
-    }
-
-    return weather.feels_like as number;
-  }
-
   get underlineFeelsLike(): boolean {
     return (
       this.showDailyDetailReading && this.dailyDetailReadingModeIsFeelsLike
     );
   }
-
-  get weatherIcon(): string {
-    return this.weatherCondition.icon;
+  
+  get underlineTemperature(): boolean {
+    return (
+      this.showDailyDetailReading && this.dailyDetailReadingModeIsTemperature
+    );
   }
 
   get weatherDescription(): string {
@@ -200,28 +156,24 @@ export class WeatherContentMainComponent implements OnInit {
     );
   }
 
-  private get weatherCondition(): WeatherCondition {
-    /**
-     * There might be multiple conditions present in one area,
-     * but to display it easily, I choose the first weather condition.
-     */
-    return this.weatherReading.weather[0];
-  }
-
-  get windSpeed(): number {
-    return this.weatherReading.wind_speed;
+  get weatherIcon(): string {
+    return this.weatherCondition.icon;
   }
 
   get windDirection(): number {
     return this.weatherReading.wind_deg;
   }
 
+  get windGust(): number {
+    return this.weatherReading.wind_gust as number;
+  }
+
   get windGustIsPresent(): boolean {
     return this.weatherReading.wind_gust !== undefined;
   }
 
-  get windGust(): number {
-    return this.weatherReading.wind_gust as number;
+  get windSpeed(): number {
+    return this.weatherReading.wind_speed;
   }
 
   private get weatherReading(): WeatherReading {
@@ -236,5 +188,53 @@ export class WeatherContentMainComponent implements OnInit {
     }
 
     return weather;
+  }
+
+  private get weatherCondition(): WeatherCondition {
+    /**
+     * There might be multiple conditions present in one area,
+     * but to display it easily, I choose the first weather condition.
+     */
+    return this.weatherReading.weather[0];
+  }
+
+  private feelsLikeBasedOnMode(weather: WeatherReading): number {
+    if (this.weatherMode.isDaily) {
+      const reading = weather.feels_like as ReadingDetailFeelsLike;
+
+      return reading.day;
+    }
+
+    return weather.feels_like as number;
+  }
+
+  private temperatureBasedOnMode(weather: WeatherReading): number {
+    if (this.weatherMode.isDaily) {
+      const reading = weather.temp as ReadingDetailTemperature;
+
+      return reading.day;
+    }
+
+    return weather.temp as number;
+  }
+
+  private updateStateDailyDetailViewMode(mode: WeatherDailyDetailViewMode) {
+    this.store.dispatch(
+      detailViewTypeUpdate({
+        dailyDetailViewMode: mode,
+      })
+    );
+  }
+
+  private initDailyDetailViewMode() {
+    this.appState$ = this.store.select('appState');
+
+    this.appState$.subscribe((state) => {
+      this.dailyDetailViewMode = state.weatherState.dailyDetailViewMode;
+    });
+  }
+
+  private get dailyDetailReadingModeIsFeelsLike(): boolean {
+    return this.dailyDetailViewMode === WeatherDailyDetailViewMode.FeelsLike;
   }
 }

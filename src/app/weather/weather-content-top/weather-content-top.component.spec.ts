@@ -102,27 +102,27 @@ describe('WeatherContentTopComponent', () => {
       });
     });
 
-    describe('previousHourlyWeather()', () => {
+    describe('hourlyPrevious()', () => {
       beforeEach(() => {
-        spyOn(component, 'previousHourlyWeather');
+        spyOn(component, 'hourlyPrevious');
 
-        component.previousHourlyWeather();
+        component.hourlyPrevious();
       });
 
       it('should be called when invoked', () => {
-        expect(component.previousHourlyWeather).toHaveBeenCalled();
+        expect(component.hourlyPrevious).toHaveBeenCalled();
       });
     });
 
-    describe('nextHourlyWeather()', () => {
+    describe('hourlyNext()', () => {
       beforeEach(() => {
-        spyOn(component, 'nextHourlyWeather');
+        spyOn(component, 'hourlyNext');
 
-        component.nextHourlyWeather();
+        component.hourlyNext();
       });
 
       it('should be called when invoked', () => {
-        expect(component.nextHourlyWeather).toHaveBeenCalled();
+        expect(component.hourlyNext).toHaveBeenCalled();
       });
     });
 
