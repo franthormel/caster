@@ -47,10 +47,10 @@ import { TemperatureConverterService } from './temperature-converter.service';
     WeatherContentBottomComponent,
   ],
   imports: [
-    SharedModule,
     CommonModule,
-    HttpClientModule,
     WeatherRoutingModule,
+    SharedModule,
+    HttpClientModule,
     MatButtonModule,
     MatIconModule,
     MatProgressBarModule,

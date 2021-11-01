@@ -1,10 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+import { AirPollutionComponent } from './air-pollution/air-pollution.component';
+
+const routes: Routes = [
+  { path: '', component: AirPollutionComponent },
+  { path: '**', redirectTo: '', pathMatch: 'full' },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AirPollutionRoutingModule { }
+export class AirPollutionRoutingModule {}

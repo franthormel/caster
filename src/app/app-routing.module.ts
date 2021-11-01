@@ -24,7 +24,6 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./settings/settings.module').then((m) => m.SettingsModule),
   },
-
   { path: '**', redirectTo: 'weather', pathMatch: 'full' },
 ];
 
