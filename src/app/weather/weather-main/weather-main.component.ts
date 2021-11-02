@@ -26,7 +26,7 @@ export class WeatherMainComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private stateManager: StateManagerService
+    public stateManager: StateManagerService
   ) {}
 
   ngOnInit(): void {
@@ -39,20 +39,28 @@ export class WeatherMainComponent implements OnInit {
     });
   }
 
+  get alertsCount(): number {
+    return this.alerts ? this.alerts.length : 0;
+  }
+
+  get alertsAreLoaded() : boolean {
+    return !this.loading && this.alertsCount > 0;
+  }
+
+  get dataIsLoaded(): boolean {
+    return !this.loading && this.weatherData !== undefined;
+  }
+
+  get geolocation(): WeatherGeolocation | undefined {
+    return this.geolocations[0];
+  }
+
   private get alerts(): WeatherAlert[] | undefined {
     if (this.weatherData !== undefined) {
       return this.weatherData.alerts;
     }
 
     return undefined;
-  }
-
-  get alertsCount(): number {
-    return this.alerts ? this.alerts.length : 0;
-  }
-
-  get geolocation(): WeatherGeolocation | undefined {
-    return this.geolocations[0];
   }
 
   private initData() {

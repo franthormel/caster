@@ -18,7 +18,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatRippleModule } from '@angular/material/core';
 import { SharedModule } from '../shared/shared.module';
 
-import { WeatherToolbarComponent } from './weather-toolbar/weather-toolbar.component';
 import { WeatherAlertComponent } from './weather-alert/weather-alert.component';
 import { WeatherMainComponent } from './weather-main/weather-main.component';
 import { WeatherAlertSingleComponent } from './weather-alert-single/weather-alert-single.component';
@@ -33,7 +32,6 @@ import { TemperatureConverterService } from './temperature-converter.service';
 
 @NgModule({
   declarations: [
-    WeatherToolbarComponent,
     WeatherAlertComponent,
     WeatherMainComponent,
     WeatherAlertSingleComponent,
@@ -61,9 +59,6 @@ import { TemperatureConverterService } from './temperature-converter.service';
     MatExpansionModule,
     MatRippleModule,
   ],
-  providers: [
-    MoonPhaseService,
-    TemperatureConverterService,
-  ],
+  providers: [MoonPhaseService, TemperatureConverterService],
 })
 export class WeatherModule {}

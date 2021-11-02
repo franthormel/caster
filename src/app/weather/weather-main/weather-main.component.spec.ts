@@ -6,7 +6,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { StoreModule } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { WeatherToolbarComponent } from '../weather-toolbar/weather-toolbar.component';
 import { WeatherContentMainComponent } from '../weather-content-main/weather-content-main.component';
 import { WeatherContentTopComponent } from '../weather-content-top/weather-content-top.component';
 import { WeatherContentBottomComponent } from '../weather-content-bottom/weather-content-bottom.component';
@@ -26,7 +25,6 @@ describe('WeatherMainComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        WeatherToolbarComponent,
         WeatherContentMainComponent,
         WeatherContentTopComponent,
         WeatherContentBottomComponent,
@@ -117,6 +115,52 @@ describe('WeatherMainComponent', () => {
         const result = type === 'object' || type === 'undefined';
 
         expect(result).toBeTruthy();
+      });
+    });
+
+    describe('alertsAreLoaded()', () => {
+      it('should return a Boolean', () => {
+        const result = component.alertsAreLoaded;
+        expect(result).toBeInstanceOf(Boolean);
+      });
+
+      it('should return true if expected', () => {
+        component.loading = false;
+
+        const result = component.alertsAreLoaded;
+
+        expect(result).toBeTruthy();
+      });
+
+      it('should return false if expected', () => {
+        component.loading = true;
+
+        const result = component.alertsAreLoaded;
+
+        expect(result).toBeFalsy();
+      });
+    });
+
+    describe('dataIsLoaded()', () => {
+      it('should return a Boolean', () => {
+        const result = component.dataIsLoaded;
+        expect(result).toBeInstanceOf(Boolean);
+      });
+
+      it('should return true if expected', () => {
+        component.loading = false;
+
+        const result = component.dataIsLoaded;
+
+        expect(result).toBeTruthy();
+      });
+
+      it('should return false if expected', () => {
+        component.loading = true;
+
+        const result = component.dataIsLoaded;
+
+        expect(result).toBeFalsy();
       });
     });
   });
