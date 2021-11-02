@@ -1,9 +1,3 @@
-html,
-body {
-  font-family: Montserrat;
-  margin: 0;
-}
-
 @mixin text-no-select {
   $select: none;
 
@@ -15,10 +9,6 @@ body {
   user-select: $select;
 }
 
-.text-no-select {
-  @include text-no-select;
-}
-
 @mixin horizontally-apart {
   display: flex;
   justify-content: space-between;
@@ -26,6 +16,25 @@ body {
 
 @mixin margin-side($side, $i) {
   margin-#{$side}: #{$i * 10}px;
+}
+
+html,
+body {
+  font-family: Montserrat;
+  margin: 0;
+}
+
+html {
+  background: no-repeat fixed;
+  background-image: url("/assets/images/background/04d.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.text-no-select {
+  @include text-no-select;
 }
 
 @for $i from 1 through 3 {

@@ -148,38 +148,14 @@ $dark-theme: mat.define-dark-theme(
   )
 );
 
-@mixin size-fullscreen {
-  $full: 100;
-
-  height: #{$full}vh;
-  width: #{$full}vw;
-}
-
-@mixin background-url($url) {
-  background: no-repeat fixed;
-  background-image: url($url);
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
 @include mat.core-theme($light-theme);
 @include mat.all-component-themes($light-theme);
 
 .light-theme {
-  @include background-url("/assets/images/background/light.jpg");
-  @include size-fullscreen();
   color: $light-primary-text;
 }
 
 .dark-theme {
   @include mat.all-component-colors($dark-theme);
-  @include background-url("/assets/images/background/dark.jpg");
-  @include size-fullscreen();
   color: $dark-primary-text;
-}
-
-#dark-text-secondary {
-  color: $dark-secondary-text;
 }

@@ -14,5 +14,5 @@ export const initialWeatherState: WeatherState = {
   dailyDetailViewMode: WeatherDailyDetailViewMode.Temperature,
   indexDaily: 0,
   indexHourly: 0,
-  mode: WeatherReadingMode.Daily,
+  mode: WeatherReadingMode.Current,
 };
