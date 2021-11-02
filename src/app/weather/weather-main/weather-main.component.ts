@@ -2,15 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, forkJoin } from 'rxjs';
 
-import { WeatherAlertComponent } from '../weather-alert/weather-alert.component';
-
 import { WeatherData } from '../../models/weather/weather-data.models';
 import { WeatherAlert } from '../../models/weather/weather-alert.models';
 import { WeatherGeolocation } from '../../models/geolocation/geolocation.models';
 
-import { WeatherModeService } from '../weather-mode.service';
-import { WeatherDataService } from '../weather-data.service';
-import { ErrorDialogComponent } from 'src/app/shared/error-dialog/error-dialog.component';
+import { WeatherAlertComponent } from '../weather-alert/weather-alert.component';
+import { ErrorDialogComponent } from '../../shared/error-dialog/error-dialog.component';
+
+import { WeatherStateManagerService } from '../weather-state-manager.service';
 
 @Component({
   selector: 'app-weather-main',
@@ -27,8 +26,7 @@ export class WeatherMainComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private weatherDataService: WeatherDataService,
-    public weatherMode: WeatherModeService
+    private weatherStateManager: WeatherStateManagerService
   ) {}
 
   ngOnInit(): void {
@@ -70,8 +68,8 @@ export class WeatherMainComponent implements OnInit {
   private initThenCombineData(): Observable<
     [WeatherData, WeatherGeolocation[]]
   > {
-    this.weatherData$ = this.weatherDataService.localFileWeather();
-    this.geolocationsData$ = this.weatherDataService.localFileGeolocation();
+    this.weatherData$ = this.weatherStateManager.localFileWeather();
+    this.geolocationsData$ = this.weatherStateManager.localFileGeolocation();
     this.weatherData$.subscribe({
       next: (data) => {
         this.weatherData = data;

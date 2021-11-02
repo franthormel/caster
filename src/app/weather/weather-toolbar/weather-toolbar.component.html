@@ -27,18 +27,18 @@
     <mat-menu #menuWeatherMode="matMenu" class="text-no-select">
         <mat-selection-list [multiple]="false">
             <mat-list-option 
-                (click)="weatherMode.changeToCurrent()" 
-                [selected]="weatherMode.isCurrent">
+                (click)="weatherStateManager.changeToCurrent()" 
+                [selected]="weatherStateManager.isCurrent">
                 Current
             </mat-list-option>
             <mat-list-option 
-                (click)="weatherMode.changeToHourly()" 
-                [selected]="weatherMode.isHourly">
+                (click)="weatherStateManager.changeToHourly()" 
+                [selected]="weatherStateManager.isHourly">
                 Hourly
             </mat-list-option>
             <mat-list-option 
-                (click)="weatherMode.changeToDaily()" 
-                [selected]="weatherMode.isDaily">
+                (click)="weatherStateManager.changeToDaily()" 
+                [selected]="weatherStateManager.isDaily">
                 Daily
             </mat-list-option>
         </mat-selection-list>

@@ -1,14 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { StoreModule } from '@ngrx/store';
 
-import { WeatherContentMainComponent } from './weather-content-main.component';
-import { StringParserService } from '../../shared/string-parser.service';
-import { TemperatureConverterService } from '../temperature-converter.service';
-import { WeatherModeService } from '../weather-mode.service';
-import { WeatherStateIndexerService } from '../weather-state-indexer.service';
-
 import { appStateReducer } from '../../app-state.reducers';
 import { TEST_WEATHER_DATA } from '../../../assets/data/testing/weather.testing';
+
+import { WeatherContentMainComponent } from './weather-content-main.component';
+import { StringParserService } from '../../string-parser.service';
+import { TemperatureConverterService } from '../temperature-converter.service';
+import { WeatherStateManagerService } from '../weather-state-manager.service';
 
 describe('WeatherContentMainComponent', () => {
   let component: WeatherContentMainComponent;
@@ -21,8 +20,7 @@ describe('WeatherContentMainComponent', () => {
       providers: [
         StringParserService,
         TemperatureConverterService,
-        WeatherModeService,
-        WeatherStateIndexerService,
+        WeatherStateManagerService,
       ],
     }).compileComponents();
   });
@@ -73,18 +71,6 @@ describe('WeatherContentMainComponent', () => {
       it('should return a Boolean', () => {
         const result = component.showDailyDetailReading;
         expect(result).toBeInstanceOf(Boolean);
-      });
-    });
-
-    describe('changeDailyDetailViewMode()', () => {
-      beforeEach(() => {
-        spyOn(component, 'changeDailyDetailViewMode');
-
-        component.changeDailyDetailViewMode();
-      });
-
-      it('should be called when invoked', () => {
-        expect(component.changeDailyDetailViewMode).toHaveBeenCalled();
       });
     });
 

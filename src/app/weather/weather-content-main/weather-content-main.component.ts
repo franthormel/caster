@@ -11,8 +11,7 @@ import { WeatherDailyDetailViewMode } from '../../models/weather/weather.enums';
 
 import { StringParserService } from '../../string-parser.service';
 import { TemperatureConverterService } from '../temperature-converter.service';
-import { WeatherModeService } from '../weather-mode.service';
-import { WeatherStateIndexerService } from '../weather-state-indexer.service';
+import { WeatherStateManagerService } from '../weather-state-manager.service';
 
 import { AppState } from '../../app-state.reducers';
 import { detailViewTypeUpdate } from '../weather-state.actions';
@@ -32,8 +31,7 @@ export class WeatherContentMainComponent implements OnInit {
     private store: Store<{ appState: AppState }>,
     private stringFormatter: StringParserService,
     private temperatureConverter: TemperatureConverterService,
-    private weatherMode: WeatherModeService,
-    private weatherStateIndexer: WeatherStateIndexerService
+    private weatherStateManager: WeatherStateManagerService,
   ) {}
 
   ngOnInit() {
@@ -124,7 +122,7 @@ export class WeatherContentMainComponent implements OnInit {
   }
 
   get showDailyDetailReading(): boolean {
-    return this.weatherMode.isDaily;
+    return this.weatherStateManager.isDaily;
   }
 
   get temperature(): number {
@@ -177,12 +175,12 @@ export class WeatherContentMainComponent implements OnInit {
   private get weatherReading(): WeatherReading {
     let weather!: WeatherReading;
 
-    if (this.weatherMode.isCurrent) {
+    if (this.weatherStateManager.isCurrent) {
       weather = this.weatherData.current;
-    } else if (this.weatherMode.isHourly) {
-      weather = this.weatherData.hourly[this.weatherStateIndexer.indexHourly];
-    } else if (this.weatherMode.isDaily) {
-      weather = this.weatherData.daily[this.weatherStateIndexer.indexDaily];
+    } else if (this.weatherStateManager.isHourly) {
+      weather = this.weatherData.hourly[this.weatherStateManager.indexHourly];
+    } else if (this.weatherStateManager.isDaily) {
+      weather = this.weatherData.daily[this.weatherStateManager.indexDaily];
     }
 
     return weather;
@@ -201,7 +199,7 @@ export class WeatherContentMainComponent implements OnInit {
   }
 
   private feelsLikeBasedOnMode(weather: WeatherReading): number {
-    if (this.weatherMode.isDaily) {
+    if (this.weatherStateManager.isDaily) {
       const reading = weather.feels_like as ReadingDetailFeelsLike;
 
       return reading.day;
@@ -219,7 +217,7 @@ export class WeatherContentMainComponent implements OnInit {
   }
 
   private temperatureBasedOnMode(weather: WeatherReading): number {
-    if (this.weatherMode.isDaily) {
+    if (this.weatherStateManager.isDaily) {
       const reading = weather.temp as ReadingDetailTemperature;
 
       return reading.day;

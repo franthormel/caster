@@ -28,11 +28,9 @@ import { WeatherContentTopComponent } from './weather-content-top/weather-conten
 import { WeatherContentMainComponent } from './weather-content-main/weather-content-main.component';
 import { WeatherContentBottomComponent } from './weather-content-bottom/weather-content-bottom.component';
 
-import { WeatherDataService } from './weather-data.service';
-import { WeatherModeService } from './weather-mode.service';
-import { WeatherStateIndexerService } from './weather-state-indexer.service';
 import { MoonPhaseService } from './moon-phase.service';
 import { TemperatureConverterService } from './temperature-converter.service';
+import { WeatherStateManagerService } from './weather-state-manager.service';
 
 @NgModule({
   declarations: [
@@ -67,9 +65,7 @@ import { TemperatureConverterService } from './temperature-converter.service';
   providers: [
     MoonPhaseService,
     TemperatureConverterService,
-    WeatherDataService,
-    WeatherModeService,
-    WeatherStateIndexerService,
+    WeatherStateManagerService,
   ],
 })
 export class WeatherModule {}
