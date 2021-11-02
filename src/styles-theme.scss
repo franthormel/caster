@@ -2,11 +2,10 @@
 
 @include mat.core();
 
-$dark-primary-text: #121721;
-$light-primary-text: #f7fbfc;
+$dark-primary-text: #f7fbfc;
+$dark-secondary-text: #f9eb4e;
+$light-primary-text: #121721;
 
-// Light accent
-// Dark primary
 $palette-fogra29: (
   50: #4f6692,
   100: #405377,
@@ -18,37 +17,6 @@ $palette-fogra29: (
   700: #121721,
   800: #0e121a,
   900: #07090d,
-  contrast: (
-    50: $light-primary-text,
-    100: $light-primary-text,
-    200: $light-primary-text,
-    300: $light-primary-text,
-    400: $light-primary-text,
-    500: $light-primary-text,
-    600: $light-primary-text,
-    700: $light-primary-text,
-    800: $light-primary-text,
-    900: $light-primary-text,
-    A100: $light-primary-text,
-    A200: $light-primary-text,
-    A400: $light-primary-text,
-    A700: $light-primary-text,
-  ),
-);
-
-// Light primary
-// Dark accent
-$palette-corn: (
-  50: #fdf9c4,
-  100: #fbf49d,
-  200: #fbf28a,
-  300: #faf076,
-  400: #faee62,
-  500: #f9eb4e,
-  600: #f6e73d,
-  700: #f3e22c,
-  800: #f0de1b,
-  900: #ecd909,
   contrast: (
     50: $dark-primary-text,
     100: $dark-primary-text,
@@ -67,18 +35,17 @@ $palette-corn: (
   ),
 );
 
-// Light warn
-$palette-rosso-corsa: (
-  50: #fa4c4c,
-  100: #f92424,
-  200: #f91010,
-  300: #ef0606,
-  400: #db0606,
-  500: #c90505,
-  600: #b30505,
-  700: #9f0404,
-  800: #8b0404,
-  900: #770404,
+$palette-corn: (
+  50: #fdf9c4,
+  100: #fbf49d,
+  200: #fbf28a,
+  300: #faf076,
+  400: #faee62,
+  500: #f9eb4e,
+  600: #f6e73d,
+  700: #f3e22c,
+  800: #f0de1b,
+  900: #ecd909,
   contrast: (
     50: $light-primary-text,
     100: $light-primary-text,
@@ -97,7 +64,35 @@ $palette-rosso-corsa: (
   ),
 );
 
-// Dark warn
+$palette-rosso-corsa: (
+  50: #fa4c4c,
+  100: #f92424,
+  200: #f91010,
+  300: #ef0606,
+  400: #db0606,
+  500: #c90505,
+  600: #b30505,
+  700: #9f0404,
+  800: #8b0404,
+  900: #770404,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $dark-primary-text,
+    600: $dark-primary-text,
+    700: $dark-primary-text,
+    800: $dark-primary-text,
+    900: $dark-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $dark-primary-text,
+  ),
+);
+
 $palette-tart-orange: (
   50: #ffadb0,
   100: #ff8589,
@@ -110,84 +105,81 @@ $palette-tart-orange: (
   800: #f50008,
   900: #e00007,
   contrast: (
-    50: $dark-primary-text,
-    100: $dark-primary-text,
-    200: $dark-primary-text,
-    300: $dark-primary-text,
-    400: $light-primary-text,
-    500: $light-primary-text,
-    600: $light-primary-text,
-    700: $light-primary-text,
-    800: $light-primary-text,
-    900: $light-primary-text,
-    A100: $light-primary-text,
-    A200: $light-primary-text,
-    A400: $light-primary-text,
-    A700: $light-primary-text,
+    50: $light-primary-text,
+    100: $light-primary-text,
+    200: $light-primary-text,
+    300: $light-primary-text,
+    400: $dark-primary-text,
+    500: $dark-primary-text,
+    600: $dark-primary-text,
+    700: $dark-primary-text,
+    800: $dark-primary-text,
+    900: $dark-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $dark-primary-text,
   ),
 );
 
-// All weights are available (100 to 800)
 $typography: mat.define-typography-config(
   $font-family: "Montserrat",
 );
 
-// Light theme definition
-$light-primary: mat.define-palette($palette-corn);
-$light-accent: mat.define-palette($palette-fogra29);
-$light-warn: mat.define-palette($palette-rosso-corsa);
 $light-theme: mat.define-light-theme(
   (
     color: (
-      primary: $light-primary,
-      accent: $light-accent,
-      warn: $light-warn,
+      primary: mat.define-palette($palette-corn),
+      accent: mat.define-palette($palette-fogra29),
+      warn: mat.define-palette($palette-rosso-corsa),
     ),
     typography: $typography,
   )
 );
 
-// Dark theme definition
-$dark-primary: mat.define-palette($palette-fogra29);
-$dark-accent: mat.define-palette($palette-corn);
-$dark-warn: mat.define-palette($palette-tart-orange);
 $dark-theme: mat.define-dark-theme(
   (
     color: (
-      primary: $dark-primary,
-      accent: $dark-accent,
-      warn: $dark-warn,
+      primary: mat.define-palette($palette-fogra29),
+      accent: mat.define-palette($palette-corn),
+      warn: mat.define-palette($palette-tart-orange),
     ),
     typography: $typography,
   )
 );
 
-// Apply light as the default theme
+@mixin size-fullscreen {
+  $full: 100;
+
+  height: #{$full}vh;
+  width: #{$full}vw;
+}
+
+@mixin background-url($url) {
+  background: no-repeat fixed;
+  background-image: url($url);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+@include mat.core-theme($light-theme);
 @include mat.all-component-themes($light-theme);
 
-// Apply this theme to any ancestor
-// element such as HTML body
-.theme-dark {
+.light-theme {
+  @include background-url("/assets/images/background/light.jpg");
+  @include size-fullscreen();
+  color: $light-primary-text;
+}
+
+.dark-theme {
   @include mat.all-component-colors($dark-theme);
+  @include background-url("/assets/images/background/dark.jpg");
+  @include size-fullscreen();
+  color: $dark-primary-text;
 }
 
-// Custom text colors
-.dark-text {
-  color: #f7fbfc;
-}
-.dark-warn {
-  color: mat.get-color-from-palette($palette-tart-orange, "500");
-}
-
-.light-text,
-.light-accent,
-.dark-primary {
-  color: mat.get-color-from-palette($palette-fogra29, "700");
-}
-.light-primary,
-.dark-accent {
-  color: mat.get-color-from-palette($palette-corn, "500");
-}
-.light-warn {
-  color: mat.get-color-from-palette($palette-rosso-corsa, "500");
+#dark-text-secondary {
+  color: $dark-secondary-text;
 }

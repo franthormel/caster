@@ -4,15 +4,6 @@ body {
   margin: 0;
 }
 
-// TODO Prepare for light/dark theme
-html {
-  background: url("/assets/images/background/light.jpg") no-repeat fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
 @mixin text-no-select {
   $select: none;
 

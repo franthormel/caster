@@ -14,6 +14,8 @@ import { ICONS_WEATHER } from './data/icons/icons-weather.data';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
+  URL = '/assets/images/background/03d.jpg';
+
   constructor(
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer
