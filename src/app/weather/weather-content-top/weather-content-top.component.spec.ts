@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 
 import { WeatherContentTopComponent } from './weather-content-top.component';
@@ -17,12 +18,11 @@ describe('WeatherContentTopComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [WeatherContentTopComponent],
-      imports: [StoreModule.forRoot({ appState: appStateReducer })],
-      providers: [
-        EpochConverterService,
-        MoonPhaseService,
-        StateManagerService,
+      imports: [
+        HttpClientModule,
+        StoreModule.forRoot({ appState: appStateReducer }),
       ],
+      providers: [EpochConverterService, MoonPhaseService, StateManagerService],
     }).compileComponents();
   });
 

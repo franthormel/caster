@@ -2,14 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+
 import { AppState } from './app-state.reducers';
+import * as weather from './weather/weather-state.actions';
+
+import { environment } from '../environments/environment';
 import { WeatherGeolocation } from './models/geolocation/geolocation.models';
 import { WeatherData } from './models/weather/weather-data.models';
 import { WeatherReadingMode } from './models/weather/weather.enums';
-import { modeUpdate } from './weather/weather-state.actions';
-import * as weather from './weather/weather-state.actions';
-import { WeatherState } from './weather/weather-state.reducers';
 
 @Injectable({
   providedIn: 'root',
@@ -93,7 +93,7 @@ export class StateManagerService {
   }
 
   private changeMode(value: WeatherReadingMode) {
-    this.store.dispatch(modeUpdate({ mode: value }));
+    this.store.dispatch(weather.modeUpdate({ mode: value }));
   }
 
   private initState() {

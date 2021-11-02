@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EventEmitter } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 
 import { MatMenuModule } from '@angular/material/menu';
@@ -19,6 +20,7 @@ describe('WeatherToolbarComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [WeatherToolbarComponent],
       imports: [
+        HttpClientModule,
         StoreModule.forRoot({ appState: appStateReducer }),
         MatMenuModule,
         MatListModule,

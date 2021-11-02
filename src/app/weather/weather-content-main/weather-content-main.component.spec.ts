@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 
 import { appStateReducer } from '../../app-state.reducers';
@@ -16,7 +17,10 @@ describe('WeatherContentMainComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [WeatherContentMainComponent],
-      imports: [StoreModule.forRoot({ appState: appStateReducer })],
+      imports: [
+        HttpClientModule,
+        StoreModule.forRoot({ appState: appStateReducer }),
+      ],
       providers: [
         StringParserService,
         TemperatureConverterService,

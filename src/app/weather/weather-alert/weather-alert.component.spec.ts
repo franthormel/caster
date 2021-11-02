@@ -4,7 +4,7 @@ import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { WeatherAlertComponent } from './weather-alert.component';
 import { WeatherAlertMultipleComponent } from '../weather-alert-multiple/weather-alert-multiple.component';
 import { WeatherAlertSingleComponent } from '../weather-alert-single/weather-alert-single.component';
-import { EpochConverterService } from '../../shared/epoch-converter.service';
+import { EpochConverterService } from '../../epoch-converter.service';
 
 import { TEST_WEATHER_ALERTS } from '../../../assets/data/testing/weather.testing';
 

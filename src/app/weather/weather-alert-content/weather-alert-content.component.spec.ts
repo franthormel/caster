@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatChipsModule } from '@angular/material/chips';
 
 import { WeatherAlertContentComponent } from './weather-alert-content.component';
-import { StringParserService } from '../../shared/string-parser.service';
+import { StringParserService } from '../../string-parser.service';
 
 import { TEST_WEATHER_ALERT } from '../../../assets/data/testing/weather.testing';
 

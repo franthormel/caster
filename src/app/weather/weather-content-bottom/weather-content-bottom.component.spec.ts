@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 
 import { WeatherContentBottomComponent } from './weather-content-bottom.component';
@@ -15,7 +16,10 @@ describe('WeatherContentBottomComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [WeatherContentBottomComponent],
-      imports: [StoreModule.forRoot({ appState: appStateReducer })],
+      imports: [
+        HttpClientModule,
+        StoreModule.forRoot({ appState: appStateReducer }),
+      ],
       providers: [TemperatureConverterService, StateManagerService],
     }).compileComponents();
   });

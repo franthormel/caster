@@ -5,7 +5,7 @@ import { StringParserService } from './string-parser.service';
 import {
   TESTING_STRINGS_UPPER_CASE as upperCasedStrings,
   TESTING_STRINGS_VARIOUS_NON_UPPER_CASE as nonUpperCasedStrings,
-} from '../../assets/data/testing/services/strings.testing';
+} from '../assets/data/testing/services/strings.testing';
 
 describe('StringParserService', () => {
   let service: StringParserService;
@@ -66,17 +66,17 @@ describe('StringParserService', () => {
   });
 
   describe('isUppercase()', () => {
-    for (const upperCasedString of upperCasedStrings) {
-      it(`should return true if param is upper cased (${upperCasedString})`, () => {
-        const result = service.isUppercase(upperCasedString);
+    for (const upperCase of upperCasedStrings) {
+      it(`should return true if param is upper cased (${upperCase})`, () => {
+        const result = service.isUppercase(upperCase);
 
         expect(result).toBeTruthy();
       });
     }
 
-    for (const nonUpperCasedString of nonUpperCasedStrings) {
-      it(`should return false if param is not upper cased (${nonUpperCasedString})`, () => {
-        const result = service.isUppercase(nonUpperCasedString);
+    for (const nonUpperCase of nonUpperCasedStrings) {
+      it(`should return false if param is not upper cased (${nonUpperCase})`, () => {
+        const result = service.isUppercase(nonUpperCase);
 
         expect(result).toBeFalsy();
       });
