@@ -11,9 +11,6 @@ import { MoonPhaseService } from '../moon-phase.service';
 import { EpochConverterService } from '../../epoch-converter.service';
 import { WeatherStateManagerService } from '../weather-state-manager.service';
 
-import { AppState } from '../../app-state.reducers';
-import * as weather from '../weather-state.actions';
-
 @Component({
   selector: 'app-weather-content-top',
   templateUrl: './weather-content-top.component.html',
@@ -26,33 +23,30 @@ export class WeatherContentTopComponent {
   constructor(
     private epochConverter: EpochConverterService,
     private moonphase: MoonPhaseService,
-    private weatherStateManager: WeatherStateManagerService,
-    private store: Store<{ appState: AppState }>
+    private weatherStateManager: WeatherStateManagerService
   ) {}
 
-  // TODO Move these ... A ...
   dailyNext() {
     if (this.canDailyGoForward) {
-      this.store.dispatch(weather.indexDailyIncrement());
+      this.weatherStateManager.indexDailyIncrement();
     }
   }
 
   dailyPrevious() {
     if (this.canDailyGoBackward) {
-      this.store.dispatch(weather.indexDailyDecrement());
+      this.weatherStateManager.indexDailyDecrement();
     }
   }
 
   hourlyNext() {
     if (this.canHourlyGoForward) {
-      this.store.dispatch(weather.indexHourlyIncrement());
+      this.weatherStateManager.indexHourlyIncrement();
     }
   }
 
-  // ... A ... to a service
   hourlyPrevious() {
     if (this.canHourlyGoBackward) {
-      this.store.dispatch(weather.indexHourlyDecrement());
+      this.weatherStateManager.indexHourlyDecrement();
     }
   }
 

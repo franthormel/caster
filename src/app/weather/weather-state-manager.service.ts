@@ -8,6 +8,8 @@ import { WeatherGeolocation } from '../models/geolocation/geolocation.models';
 import { WeatherData } from '../models/weather/weather-data.models';
 import { WeatherReadingMode } from '../models/weather/weather.enums';
 import { modeUpdate } from './weather-state.actions';
+import * as weather from './weather-state.actions';
+import { WeatherState } from './weather-state.reducers';
 
 @Injectable({
   providedIn: 'root',
@@ -27,6 +29,22 @@ export class WeatherStateManagerService {
     this.initIndexes();
     this.initWeatherMode();
     this.initFile();
+  }
+
+  indexDailyIncrement() {
+    this.store.dispatch(weather.indexDailyIncrement());
+  }
+
+  indexDailyDecrement() {
+    this.store.dispatch(weather.indexDailyDecrement());
+  }
+
+  indexHourlyIncrement() {
+    this.store.dispatch(weather.indexHourlyIncrement());
+  }
+
+  indexHourlyDecrement() {
+    this.store.dispatch(weather.indexHourlyDecrement());
   }
 
   changeToCurrent() {
