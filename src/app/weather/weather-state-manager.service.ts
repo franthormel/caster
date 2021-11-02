@@ -17,18 +17,26 @@ import { WeatherState } from './weather-state.reducers';
 export class WeatherStateManagerService {
   private appState$!: Observable<AppState>;
 
-  private _indexHourly!: number;
-  private _indexDaily!: number;
-  private mode!: WeatherReadingMode;
-  private file!: number;
+  private staticFile!: number;
+  private weatherState!: WeatherState;
 
   constructor(
     private httpClient: HttpClient,
     private store: Store<{ appState: AppState }>
   ) {
-    this.initIndexes();
-    this.initWeatherMode();
-    this.initFile();
+    this.initState();
+  }
+
+  changeToCurrent() {
+    this.changeMode(WeatherReadingMode.Current);
+  }
+
+  changeToDaily() {
+    this.changeMode(WeatherReadingMode.Daily);
+  }
+
+  changeToHourly() {
+    this.changeMode(WeatherReadingMode.Hourly);
   }
 
   indexDailyIncrement() {
@@ -47,21 +55,9 @@ export class WeatherStateManagerService {
     this.store.dispatch(weather.indexHourlyDecrement());
   }
 
-  changeToCurrent() {
-    this.changeMode(WeatherReadingMode.Current);
-  }
-
-  changeToDaily() {
-    this.changeMode(WeatherReadingMode.Daily);
-  }
-
-  changeToHourly() {
-    this.changeMode(WeatherReadingMode.Hourly);
-  }
-
   localFileGeolocation(): Observable<WeatherGeolocation[]> {
     return this.httpClient.get<WeatherGeolocation[]>(
-      `${environment.assetsDataUrl}geolocations/${this.file}.json`,
+      `${environment.assetsDataUrl}geolocations/${this.staticFile}.json`,
       {
         responseType: 'json',
       }
@@ -70,7 +66,7 @@ export class WeatherStateManagerService {
 
   localFileWeather(): Observable<WeatherData> {
     return this.httpClient.get<WeatherData>(
-      `${environment.assetsDataUrl}weather/${this.file}.json`,
+      `${environment.assetsDataUrl}weather/${this.staticFile}.json`,
       {
         responseType: 'json',
       }
@@ -81,6 +77,14 @@ export class WeatherStateManagerService {
     return this.mode === WeatherReadingMode.Current;
   }
 
+  get indexDaily(): number {
+    return this.weatherState.indexDaily;
+  }
+
+  get indexHourly(): number {
+    return this.weatherState.indexHourly;
+  }
+
   get isDaily(): boolean {
     return this.mode === WeatherReadingMode.Daily;
   }
@@ -89,40 +93,20 @@ export class WeatherStateManagerService {
     return this.mode === WeatherReadingMode.Hourly;
   }
 
-  get indexDaily(): number {
-    return this._indexDaily;
-  }
-
-  get indexHourly(): number {
-    return this._indexHourly;
-  }
-
-  private initIndexes() {
-    this.appState$ = this.store.select('appState');
-
-    this.appState$.subscribe((state) => {
-      this._indexHourly = state.weatherState.indexHourly;
-      this._indexDaily = state.weatherState.indexDaily;
-    });
-  }
-
-  private initFile() {
-    this.appState$ = this.store.select('appState');
-
-    this.appState$.subscribe((state) => {
-      this.file = state.staticFile;
-    });
-  }
-
   private changeMode(value: WeatherReadingMode) {
     this.store.dispatch(modeUpdate({ mode: value }));
   }
 
-  private initWeatherMode() {
+  private initState() {
     this.appState$ = this.store.select('appState');
 
     this.appState$.subscribe((state) => {
-      this.mode = state.weatherState.mode;
+      this.staticFile = state.staticFile;
+      this.weatherState = state.weatherState;
     });
+  }
+
+  private get mode(): WeatherReadingMode {
+    return this.weatherState.mode;
   }
 }
