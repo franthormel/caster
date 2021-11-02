@@ -30,7 +30,6 @@ import { WeatherContentBottomComponent } from './weather-content-bottom/weather-
 
 import { MoonPhaseService } from './moon-phase.service';
 import { TemperatureConverterService } from './temperature-converter.service';
-import { WeatherStateManagerService } from './weather-state-manager.service';
 
 @NgModule({
   declarations: [
@@ -65,7 +64,6 @@ import { WeatherStateManagerService } from './weather-state-manager.service';
   providers: [
     MoonPhaseService,
     TemperatureConverterService,
-    WeatherStateManagerService,
   ],
 })
 export class WeatherModule {}

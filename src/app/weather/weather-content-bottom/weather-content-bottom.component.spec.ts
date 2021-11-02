@@ -3,7 +3,7 @@ import { StoreModule } from '@ngrx/store';
 
 import { WeatherContentBottomComponent } from './weather-content-bottom.component';
 import { TemperatureConverterService } from '../temperature-converter.service';
-import { WeatherStateManagerService } from '../weather-state-manager.service';
+import { StateManagerService } from '../../state-manager.service';
 
 import { appStateReducer } from '../../app-state.reducers';
 import { TEST_WEATHER_DATA } from '../../../assets/data/testing/weather.testing';
@@ -16,7 +16,7 @@ describe('WeatherContentBottomComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [WeatherContentBottomComponent],
       imports: [StoreModule.forRoot({ appState: appStateReducer })],
-      providers: [TemperatureConverterService, WeatherStateManagerService],
+      providers: [TemperatureConverterService, StateManagerService],
     }).compileComponents();
   });
 

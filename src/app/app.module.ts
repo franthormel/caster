@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { EpochConverterService } from './epoch-converter.service';
 import { StringParserService } from './string-parser.service';
+import { StateManagerService } from './state-manager.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +27,6 @@ import { StringParserService } from './string-parser.service';
     StoreDevtoolsModule.instrument({}),
   ],
   bootstrap: [AppComponent],
-  providers: [EpochConverterService, StringParserService],
+  providers: [EpochConverterService, StringParserService, StateManagerService],
 })
 export class AppModule {}

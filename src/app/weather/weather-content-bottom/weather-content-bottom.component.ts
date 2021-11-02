@@ -5,7 +5,7 @@ import { WeatherData } from '../../models/weather/weather-data.models';
 import { WeatherReading } from '../../models/weather/weather-reading.models';
 
 import { TemperatureConverterService } from '../temperature-converter.service';
-import { WeatherStateManagerService } from '../weather-state-manager.service';
+import { StateManagerService } from '../../state-manager.service';
 
 @Component({
   selector: 'app-weather-content-bottom',
@@ -17,7 +17,7 @@ export class WeatherContentBottomComponent {
 
   constructor(
     private temperatureConverter: TemperatureConverterService,
-    private weatherStateManager: WeatherStateManagerService
+    private stateManager: StateManagerService
   ) {}
 
   get dewPoint(): number {
@@ -27,7 +27,7 @@ export class WeatherContentBottomComponent {
   }
 
   get precipitation(): string {
-    return this.weatherStateManager.isCurrent
+    return this.stateManager.isCurrent
       ? this.currentPrecipitation
       : this.dailyHourlyPrecipitation;
   }
@@ -35,7 +35,7 @@ export class WeatherContentBottomComponent {
   get precipitationTitle(): string {
     const title = 'Precipitation';
 
-    if (this.weatherStateManager.isCurrent) {
+    if (this.stateManager.isCurrent) {
       return `${title} (Hour)`;
     }
 
@@ -43,7 +43,7 @@ export class WeatherContentBottomComponent {
   }
 
   get precipitationTooltip(): string {
-    if (this.weatherStateManager.isCurrent) {
+    if (this.stateManager.isCurrent) {
       return 'Precipitation volume';
     } else {
       return 'Probability of precipitation';
@@ -51,7 +51,7 @@ export class WeatherContentBottomComponent {
   }
 
   get rain(): number {
-    return this.weatherStateManager.isDaily
+    return this.stateManager.isDaily
       ? (this.weatherReading.rain as number)
       : (this.weatherReading.rain as HourlyChance)['1h'];
   }
@@ -71,7 +71,7 @@ export class WeatherContentBottomComponent {
   }
 
   get snow(): number | undefined {
-    return this.weatherStateManager.isDaily
+    return this.stateManager.isDaily
       ? (this.weatherReading.snow as number)
       : (this.weatherReading.snow as HourlyChance)['1h'];
   }
@@ -97,9 +97,9 @@ export class WeatherContentBottomComponent {
   get uviTooltip(): string {
     const text = 'UV Index';
 
-    if (this.weatherStateManager.isCurrent) {
+    if (this.stateManager.isCurrent) {
       return `Current ${text}`;
-    } else if (this.weatherStateManager.isDaily) {
+    } else if (this.stateManager.isDaily) {
       return `The maximum value of ${text} for the day`;
     } else {
       return text;
@@ -155,18 +155,18 @@ export class WeatherContentBottomComponent {
   }
 
   private get isNotDaily(): boolean {
-    return !this.weatherStateManager.isDaily;
+    return !this.stateManager.isDaily;
   }
 
   private get weatherReading(): WeatherReading {
     let weather!: WeatherReading;
 
-    if (this.weatherStateManager.isCurrent) {
+    if (this.stateManager.isCurrent) {
       weather = this.weatherData.current;
-    } else if (this.weatherStateManager.isHourly) {
-      weather = this.weatherData.hourly[this.weatherStateManager.indexHourly];
-    } else if (this.weatherStateManager.isDaily) {
-      weather = this.weatherData.daily[this.weatherStateManager.indexDaily];
+    } else if (this.stateManager.isHourly) {
+      weather = this.weatherData.hourly[this.stateManager.indexHourly];
+    } else if (this.stateManager.isDaily) {
+      weather = this.weatherData.daily[this.stateManager.indexDaily];
     }
 
     return weather;

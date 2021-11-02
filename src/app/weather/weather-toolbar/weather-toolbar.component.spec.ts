@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { appStateReducer } from '../../app-state.reducers';
 import { WeatherToolbarComponent } from './weather-toolbar.component';
-import { WeatherStateManagerService } from '../weather-state-manager.service';
+import { StateManagerService } from '../../state-manager.service';
 
 describe('WeatherToolbarComponent', () => {
   let component: WeatherToolbarComponent;
@@ -25,7 +25,7 @@ describe('WeatherToolbarComponent', () => {
         MatToolbarModule,
         MatIconModule,
       ],
-      providers: [WeatherStateManagerService],
+      providers: [StateManagerService],
     }).compileComponents();
   });
 

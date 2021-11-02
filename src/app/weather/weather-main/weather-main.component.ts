@@ -9,7 +9,7 @@ import { WeatherGeolocation } from '../../models/geolocation/geolocation.models'
 import { WeatherAlertComponent } from '../weather-alert/weather-alert.component';
 import { ErrorDialogComponent } from '../../shared/error-dialog/error-dialog.component';
 
-import { WeatherStateManagerService } from '../weather-state-manager.service';
+import { StateManagerService } from '../../state-manager.service';
 
 @Component({
   selector: 'app-weather-main',
@@ -26,7 +26,7 @@ export class WeatherMainComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private weatherStateManager: WeatherStateManagerService
+    private stateManager: StateManagerService
   ) {}
 
   ngOnInit(): void {
@@ -68,8 +68,8 @@ export class WeatherMainComponent implements OnInit {
   private initThenCombineData(): Observable<
     [WeatherData, WeatherGeolocation[]]
   > {
-    this.weatherData$ = this.weatherStateManager.localFileWeather();
-    this.geolocationsData$ = this.weatherStateManager.localFileGeolocation();
+    this.weatherData$ = this.stateManager.localFileWeather();
+    this.geolocationsData$ = this.stateManager.localFileGeolocation();
     this.weatherData$.subscribe({
       next: (data) => {
         this.weatherData = data;

@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { WeatherStateManagerService } from '../weather-state-manager.service';
+import { StateManagerService } from '../../state-manager.service';
 
 @Component({
   selector: 'app-weather-toolbar',
@@ -12,7 +12,7 @@ export class WeatherToolbarComponent {
   @Input() loading: boolean = true;
   @Output() alertEvent = new EventEmitter<void>();
 
-  constructor(public weatherStateManager: WeatherStateManagerService) {}
+  constructor(public stateManager: StateManagerService) {}
 
   showAlert() {
     this.alertEvent.emit();

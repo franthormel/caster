@@ -3,22 +3,21 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AppState } from '../app-state.reducers';
-import { WeatherGeolocation } from '../models/geolocation/geolocation.models';
-import { WeatherData } from '../models/weather/weather-data.models';
-import { WeatherReadingMode } from '../models/weather/weather.enums';
-import { modeUpdate } from './weather-state.actions';
-import * as weather from './weather-state.actions';
-import { WeatherState } from './weather-state.reducers';
+import { AppState } from './app-state.reducers';
+import { WeatherGeolocation } from './models/geolocation/geolocation.models';
+import { WeatherData } from './models/weather/weather-data.models';
+import { WeatherReadingMode } from './models/weather/weather.enums';
+import { modeUpdate } from './weather/weather-state.actions';
+import * as weather from './weather/weather-state.actions';
+import { WeatherState } from './weather/weather-state.reducers';
 
 @Injectable({
   providedIn: 'root',
 })
-export class WeatherStateManagerService {
+export class StateManagerService {
   private appState$!: Observable<AppState>;
 
-  private staticFile!: number;
-  private weatherState!: WeatherState;
+  private appState!: AppState;
 
   constructor(
     private httpClient: HttpClient,
@@ -57,7 +56,7 @@ export class WeatherStateManagerService {
 
   localFileGeolocation(): Observable<WeatherGeolocation[]> {
     return this.httpClient.get<WeatherGeolocation[]>(
-      `${environment.assetsDataUrl}geolocations/${this.staticFile}.json`,
+      `${environment.assetsDataUrl}geolocations/${this.appState.staticFile}.json`,
       {
         responseType: 'json',
       }
@@ -66,31 +65,31 @@ export class WeatherStateManagerService {
 
   localFileWeather(): Observable<WeatherData> {
     return this.httpClient.get<WeatherData>(
-      `${environment.assetsDataUrl}weather/${this.staticFile}.json`,
+      `${environment.assetsDataUrl}weather/${this.appState.staticFile}.json`,
       {
         responseType: 'json',
       }
     );
   }
 
-  get isCurrent(): boolean {
-    return this.mode === WeatherReadingMode.Current;
-  }
-
   get indexDaily(): number {
-    return this.weatherState.indexDaily;
+    return this.appState.weatherState.indexDaily;
   }
 
   get indexHourly(): number {
-    return this.weatherState.indexHourly;
+    return this.appState.weatherState.indexHourly;
+  }
+
+  get isCurrent(): boolean {
+    return this.appState.weatherState.mode === WeatherReadingMode.Current;
   }
 
   get isDaily(): boolean {
-    return this.mode === WeatherReadingMode.Daily;
+    return this.appState.weatherState.mode === WeatherReadingMode.Daily;
   }
 
   get isHourly(): boolean {
-    return this.mode === WeatherReadingMode.Hourly;
+    return this.appState.weatherState.mode === WeatherReadingMode.Hourly;
   }
 
   private changeMode(value: WeatherReadingMode) {
@@ -101,12 +100,7 @@ export class WeatherStateManagerService {
     this.appState$ = this.store.select('appState');
 
     this.appState$.subscribe((state) => {
-      this.staticFile = state.staticFile;
-      this.weatherState = state.weatherState;
+      this.appState = state;
     });
-  }
-
-  private get mode(): WeatherReadingMode {
-    return this.weatherState.mode;
   }
 }

@@ -9,7 +9,7 @@ import { WeatherGeolocation } from '../../models/geolocation/geolocation.models'
 
 import { MoonPhaseService } from '../moon-phase.service';
 import { EpochConverterService } from '../../epoch-converter.service';
-import { WeatherStateManagerService } from '../weather-state-manager.service';
+import { StateManagerService } from '../../state-manager.service';
 
 @Component({
   selector: 'app-weather-content-top',
@@ -23,30 +23,30 @@ export class WeatherContentTopComponent {
   constructor(
     private epochConverter: EpochConverterService,
     private moonphase: MoonPhaseService,
-    private weatherStateManager: WeatherStateManagerService
+    private stateManager: StateManagerService
   ) {}
 
   dailyNext() {
     if (this.canDailyGoForward) {
-      this.weatherStateManager.indexDailyIncrement();
+      this.stateManager.indexDailyIncrement();
     }
   }
 
   dailyPrevious() {
     if (this.canDailyGoBackward) {
-      this.weatherStateManager.indexDailyDecrement();
+      this.stateManager.indexDailyDecrement();
     }
   }
 
   hourlyNext() {
     if (this.canHourlyGoForward) {
-      this.weatherStateManager.indexHourlyIncrement();
+      this.stateManager.indexHourlyIncrement();
     }
   }
 
   hourlyPrevious() {
     if (this.canHourlyGoBackward) {
-      this.weatherStateManager.indexHourlyDecrement();
+      this.stateManager.indexHourlyDecrement();
     }
   }
 
@@ -81,7 +81,7 @@ export class WeatherContentTopComponent {
   get hourlyTime(): string {
     const pointTime = this.weatherData.hourly[0].dt;
     const compareTime =
-      this.weatherData.hourly[this.weatherStateManager.indexHourly].dt;
+      this.weatherData.hourly[this.stateManager.indexHourly].dt;
 
     return this.displayDateTime(compareTime, pointTime, compareTime);
   }
@@ -141,7 +141,7 @@ export class WeatherContentTopComponent {
 
   get showHourly(): boolean {
     return (
-      this.weatherStateManager.isHourly &&
+      this.stateManager.isHourly &&
       this.weatherData.hourly !== undefined &&
       this.weatherData.hourly.length > 0
     );
@@ -175,30 +175,30 @@ export class WeatherContentTopComponent {
   }
 
   private get canDailyGoBackward(): boolean {
-    return this.weatherStateManager.indexDaily >= 1;
+    return this.stateManager.indexDaily >= 1;
   }
 
   private get canDailyGoForward(): boolean {
-    return this.weatherStateManager.indexDaily < environment.maxDaily - 1;
+    return this.stateManager.indexDaily < environment.maxDaily - 1;
   }
 
   private get canHourlyGoBackward(): boolean {
-    return this.weatherStateManager.indexHourly >= 1;
+    return this.stateManager.indexHourly >= 1;
   }
 
   private get canHourlyGoForward(): boolean {
-    return this.weatherStateManager.indexHourly < environment.maxHourly - 1;
+    return this.stateManager.indexHourly < environment.maxHourly - 1;
   }
 
   private get currentDailyWeather(): WeatherReadingDaily {
-    return this.weatherData.daily[this.weatherStateManager.indexDaily];
+    return this.weatherData.daily[this.stateManager.indexDaily];
   }
 
   private get currentModeIsCurrent(): boolean {
-    return this.weatherStateManager.isCurrent;
+    return this.stateManager.isCurrent;
   }
 
   private get currentModeIsDaily(): boolean {
-    return this.weatherStateManager.isDaily;
+    return this.stateManager.isDaily;
   }
 }

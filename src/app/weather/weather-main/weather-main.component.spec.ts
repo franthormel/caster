@@ -14,7 +14,7 @@ import { WeatherMainComponent } from './weather-main.component';
 
 import { WeatherData } from '../../models/weather/weather-data.models';
 import { WeatherGeolocation } from '../../models/geolocation/geolocation.models';
-import { WeatherStateManagerService } from '../weather-state-manager.service';
+import { StateManagerService } from '../../state-manager.service';
 
 import { appStateReducer } from '../../app-state.reducers';
 import { TEST_WEATHER_DATA } from '../../../assets/data/testing/weather.testing';
@@ -40,7 +40,7 @@ describe('WeatherMainComponent', () => {
         MatMenuModule,
         StoreModule.forRoot({ appState: appStateReducer }),
       ],
-      providers: [WeatherStateManagerService],
+      providers: [StateManagerService],
     }).compileComponents();
   });
 

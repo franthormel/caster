@@ -7,7 +7,7 @@ import { TEST_WEATHER_DATA } from '../../../assets/data/testing/weather.testing'
 import { WeatherContentMainComponent } from './weather-content-main.component';
 import { StringParserService } from '../../string-parser.service';
 import { TemperatureConverterService } from '../temperature-converter.service';
-import { WeatherStateManagerService } from '../weather-state-manager.service';
+import { StateManagerService } from '../../state-manager.service';
 
 describe('WeatherContentMainComponent', () => {
   let component: WeatherContentMainComponent;
@@ -20,7 +20,7 @@ describe('WeatherContentMainComponent', () => {
       providers: [
         StringParserService,
         TemperatureConverterService,
-        WeatherStateManagerService,
+        StateManagerService,
       ],
     }).compileComponents();
   });
