@@ -1,9 +1,32 @@
-<mat-toolbar class="mat-elevation-z2 text-no-select" color="primary">
-    <button mat-icon-button
-            aria-label="Menu icon">
-        <mat-icon>menu</mat-icon>
-    </button>
-    <span class="toolbar-heavy">{{title}}</span>
-    <span class="toolbar-spacer"></span>
-    <ng-content></ng-content>
-</mat-toolbar>
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer
+                fixedInViewport
+                class="sidenav"
+                mode="over">
+        <mat-toolbar color="primary" 
+                     class="text-heavy sidenav-container-toolbar">
+                     CASTER
+        </mat-toolbar>
+        <mat-nav-list>
+            <!--TODO Style according to prototype-->
+            <a mat-list-item>Link 1</a>
+            <a mat-list-item>Link 2</a>
+            <a mat-list-item>Link 3</a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar class="mat-elevation-z2 text-no-select" 
+                     color="primary">
+            <button mat-icon-button 
+                    aria-label="Menu icon" 
+                    (click)="drawer.open()">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span class="text-heavy sidenav-content-toolbar">{{title}}</span>
+            <span class="toolbar-spacer"></span>
+            <ng-content select="[toolbar-actions]"></ng-content>
+        </mat-toolbar>
+        <ng-content select="[sidenav-contents]">
+        </ng-content>
+    </mat-sidenav-content>
+</mat-sidenav-container>
