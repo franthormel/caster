@@ -65,7 +65,7 @@ describe('WeatherContentBottomComponent', () => {
     describe('snow()', () => {
       it('should return a Number or undefined', () => {
         const type = typeof component.snow;
-        const result = type === 'object' || type === 'undefined';
+        const result = type === 'number' || type === 'undefined';
 
         expect(result).toBeTruthy();
       });
@@ -86,9 +86,11 @@ describe('WeatherContentBottomComponent', () => {
     });
 
     describe('rain()', () => {
-      it('should return a Number', () => {
-        const result = component.rain;
-        expect(result).toBeInstanceOf(Number);
+      it('should return a Number or undefined', () => {
+        const type = typeof component.rain;
+        const result = type === 'number' || type === 'undefined';
+
+        expect(result).toBeTruthy();
       });
     });
 
