@@ -9,16 +9,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 
-import { MenuToolbarComponent } from './menu-toolbar/menu-toolbar.component';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { SearchbarComponent } from './searchbar/searchbar.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 @NgModule({
-  declarations: [
-    MenuToolbarComponent,
-    ErrorDialogComponent,
-    SearchbarComponent,
-  ],
+  declarations: [SidenavComponent, ErrorDialogComponent, SearchbarComponent],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -29,6 +25,6 @@ import { SearchbarComponent } from './searchbar/searchbar.component';
     MatSidenavModule,
     MatListModule,
   ],
-  exports: [MenuToolbarComponent, ErrorDialogComponent, SearchbarComponent],
+  exports: [SidenavComponent, ErrorDialogComponent, SearchbarComponent],
 })
 export class SharedModule {}

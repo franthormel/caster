@@ -1,4 +1,5 @@
-<mat-sidenav-container class="sidenav-container">
+<!--TODO Theme-->
+<mat-sidenav-container class="sidenav-container light-theme">
     <mat-sidenav #drawer
                 fixedInViewport
                 class="sidenav"
@@ -8,14 +9,28 @@
                      CASTER
         </mat-toolbar>
         <mat-nav-list>
-            <!--TODO Style according to prototype-->
-            <a mat-list-item>Link 1</a>
-            <a mat-list-item>Link 2</a>
-            <a mat-list-item>Link 3</a>
+            <a mat-list-item href="/weather">
+                &nbsp;
+                Weather
+            </a>
+            <a mat-list-item href="/locations">
+                &nbsp;
+                Locations
+            </a>
+            <a mat-list-item href="/air-pollution">
+                &nbsp;
+                Air Pollution
+            </a>
+            <br/>
+            <a mat-list-item href="/settings">
+                <mat-icon>settings</mat-icon>
+                &nbsp;
+                Settings
+            </a>
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-        <mat-toolbar class="mat-elevation-z2 text-no-select" 
+        <mat-toolbar class="mat-elevation-z2" 
                      color="primary">
             <button mat-icon-button 
                     aria-label="Menu icon" 

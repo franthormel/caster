@@ -1,3 +1,5 @@
+@use "../../../styles.scss" as global;
+
 @mixin letter-spacing-px($spacing) {
   letter-spacing: #{$spacing}px;
 }
@@ -7,6 +9,7 @@
 }
 
 .sidenav-container {
+  @include global.text-no-select;
   background-color: transparent;
   height: 100vh;
 }
