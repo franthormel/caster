@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { MatIconRegistry } from '@angular/material/icon';
 
 import { environment } from '../environments/environment';
 
-import { ICONS } from './data/icons/icons.data';
-import { ICONS_MOON } from './data/icons/icons-moon.data';
-import { ICONS_WEATHER } from './data/icons/icons-weather.data';
+import { NavigationLink } from './models/navigation-link.models';
+
+import { ICONS } from './data/icons/index.data';
+import { ICONS_MOON } from './data/icons/moon.data';
+import { ICONS_WEATHER } from './data/icons/weather.data';
+import { NAVIGATION_LINKS } from './data/navigation-links.data';
 
 @Component({
   selector: 'app-root',
@@ -16,12 +20,31 @@ import { ICONS_WEATHER } from './data/icons/icons-weather.data';
 export class AppComponent implements OnInit {
   constructor(
     private iconRegistry: MatIconRegistry,
+    private router: Router,
     private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit() {
     this.registerAllIcons();
   }
+
+  get navigationLinks(): NavigationLink[] {
+    return NAVIGATION_LINKS;
+  }
+
+  get title() : string {
+    let title = "CASTER"
+
+    for(const navigation of this.navigationLinks) {
+      if(this.router.url === navigation.link) {
+        title = navigation.name;
+        break;
+      }
+    }
+
+    return title;
+  }
+
 
   private fetchIconAsset(filename: string): string {
     return `${environment.assetsIcons}${filename}.svg`;

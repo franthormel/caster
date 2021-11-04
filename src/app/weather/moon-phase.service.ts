@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ICONS_MOON } from '../data/icons/icons-moon.data';
-import { DESCRIPTIONS_MOON } from '../data/descriptions/descriptions-moon.data';
+import { ICONS_MOON } from '../data/icons/moon.data';
+import { DESCRIPTIONS_MOON } from '../data/descriptions/moon.data';
 
 @Injectable({
   providedIn: 'root',

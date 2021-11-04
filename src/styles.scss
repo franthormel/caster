@@ -15,7 +15,9 @@
 }
 
 @mixin margin-side($side, $i) {
-  margin-#{$side}: #{$i * 10}px;
+  $margin: $i * 10;
+
+  margin-#{$side}: #{$margin}px;
 }
 
 html,
@@ -43,7 +45,9 @@ html {
 
 @for $i from 1 through 3 {
   @each $side in left, bottom, right {
-    .margin-#{$side}-z#{$i} {
+    $margin: margin-#{$side}-z#{$i};
+
+    .#{$margin} {
       @include margin-side($side, $i);
     }
   }

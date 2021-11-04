@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ICONS_MOON } from '../data/icons/icons-moon.data';
-import { DESCRIPTIONS_MOON } from '../data/descriptions/descriptions-moon.data';
+import { ICONS_MOON } from '../data/icons/moon.data';
+import { DESCRIPTIONS_MOON } from '../data/descriptions/moon.data';
 import { MoonPhaseService } from './moon-phase.service';
 
 describe('MoonPhaseService', () => {

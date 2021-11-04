@@ -25,8 +25,8 @@ export class WeatherMainComponent implements OnInit {
   loading: boolean = true;
 
   constructor(
-    private dialog: MatDialog,
-    public stateManager: StateManagerService
+    public stateManager: StateManagerService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
