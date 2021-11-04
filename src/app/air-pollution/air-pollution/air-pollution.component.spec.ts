@@ -8,9 +8,8 @@ describe('AirPollutionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AirPollutionComponent ]
-    })
-    .compileComponents();
+      declarations: [AirPollutionComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

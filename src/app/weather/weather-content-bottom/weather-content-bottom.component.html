@@ -1,31 +1,52 @@
 <section class="weather-bottom">
     <section class="weather-bottom-left">
-        <div *ngIf="snowIsPresent" class="margin-right-z3">
-            <p class="weather-bottom-semibold" [matTooltip]="snowTooltip">Snow</p>
+        <div *ngIf="snowIsPresent"
+             class="margin-right-z3">
+            <p class="font-weight-f600"
+               [matTooltip]="snowTooltip">
+               Snow
+            </p>
             <p>{{snow}} mm</p>
         </div>
-        <div *ngIf="rainIsPresent" class="margin-right-z3">
-            <p class="weather-bottom-semibold" [matTooltip]="rainTooltip">Rain</p>
+        <div *ngIf="rainIsPresent" 
+             class="margin-right-z3">
+            <p class="font-weight-f600" 
+               [matTooltip]="rainTooltip">
+               Rain
+            </p>
             <p>{{rain}} mm</p>
         </div>
         <div class="margin-right-z3">
-            <p class="weather-bottom-semibold" [matTooltip]="precipitationTooltip">{{precipitationTitle}}</p>
+            <p class="font-weight-f600" 
+               [matTooltip]="precipitationTooltip">
+               {{precipitationTitle}}
+            </p>
             <p>{{precipitation}}</p>
         </div>
     </section>
     <section class="weather-bottom-right">
         <div class="margin-left-z3">
-            <p class="weather-bottom-semibold" matTooltip="Atmospheric
-            temperature (varying according to pressure and humidity) below which
-            water droplets begin to condense and dew can form.">Dew point</p>
+            <p class="font-weight-f600" 
+               matTooltip="Atmospheric
+               temperature (varying according to pressure and humidity) below which
+               water droplets begin to condense and dew can form.">
+               Dew point
+            </p>
             <p>{{dewPoint}}°</p>
         </div>
         <div class="margin-left-z3">
-            <p class="weather-bottom-semibold" [matTooltip]="uviTooltip">UVI</p>
+            <p class="font-weight-f600" 
+               [matTooltip]="uviTooltip">
+               UVI
+            </p>
             <p>{{uvi}}</p>
         </div>
-        <div *ngIf="visibilityIsPresent" class="margin-left-z3">
-            <p class="weather-bottom-semibold" matTooltip="Average visibility">Visibility</p>
+        <div *ngIf="visibilityIsPresent" 
+             class="margin-left-z3">
+            <p class="font-weight-f600" 
+               matTooltip="Average visibility">
+               Visibility
+            </p>
             <p>{{visibility}}</p>
         </div>
     </section>

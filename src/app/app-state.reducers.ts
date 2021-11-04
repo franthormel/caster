@@ -13,13 +13,13 @@ export interface AppState {
   weatherState: WeatherState;
 }
 
-export const appState: AppState = {
+export const initialAppState: AppState = {
   staticFile: 1,
   weatherState: initialWeatherState,
 };
 
 const _appStateReducer = createReducer(
-  appState,
+  initialAppState,
 
   on(staticFileUpdate, (state, { file }) => ({
     ...state,
@@ -66,7 +66,7 @@ const _appStateReducer = createReducer(
     },
   })),
 
-  on(weather.modeUpdate, (state, { mode }) => ({
+  on(weather.readingModeUpdate, (state, { mode }) => ({
     ...state,
     weatherState: {
       ...state.weatherState,

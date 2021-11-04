@@ -1,5 +1,6 @@
 /**
- * Uses weather condition codes as names as described from OpenWeatherMap
+ * Uses weather condition codes as names as described from 
+ * [OpenWeatherMap](https://openweathermap.org/weather-conditions) 
  */
 export const ICONS_WEATHER: string[] = [
   '01d',

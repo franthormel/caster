@@ -7,6 +7,7 @@ import { MoonPhaseService } from './moon-phase.service';
 describe('MoonPhaseService', () => {
   let service: MoonPhaseService;
 
+  // TODO Move to test data
   const inputs = [
     0.09, 0.1, 0.15, 0.17, 0.18, 0.2, 0.25, 0.25, 0.36, 0.6, 0.69, 0.73, 0.75,
     0.78, 0.79, 0.82, 0.91, 0.92, 0.94, 0.97,
@@ -24,7 +25,7 @@ describe('MoonPhaseService', () => {
 
   describe('test values', () => {
     it('should have the same lengths', () => {
-      expect(inputs.length).toBe(inputs.length);
+      expect(inputs.length).toBe(outputs.length);
     });
   });
 

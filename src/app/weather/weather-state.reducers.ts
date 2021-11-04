@@ -1,17 +1,17 @@
 import {
   WeatherReadingMode,
-  WeatherDailyDetailViewMode,
+  WeatherDetailMode,
 } from '../models/weather/weather.enums';
 
 export interface WeatherState {
-  dailyDetailViewMode: WeatherDailyDetailViewMode;
+  dailyDetailViewMode: WeatherDetailMode;
   indexDaily: number;
   indexHourly: number;
   mode: WeatherReadingMode;
 }
 
 export const initialWeatherState: WeatherState = {
-  dailyDetailViewMode: WeatherDailyDetailViewMode.Temperature,
+  dailyDetailViewMode: WeatherDetailMode.Temperature,
   indexDaily: 0,
   indexHourly: 0,
   mode: WeatherReadingMode.Daily,

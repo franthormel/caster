@@ -5,15 +5,8 @@ import { LocationsRoutingModule } from './locations-routing.module';
 import { LocationsComponent } from './locations/locations.component';
 import { SharedModule } from '../shared/shared.module';
 
-
 @NgModule({
-  declarations: [
-    LocationsComponent
-  ],
-  imports: [
-    CommonModule,
-    LocationsRoutingModule,
-    SharedModule,
-  ]
+  declarations: [LocationsComponent],
+  imports: [CommonModule, LocationsRoutingModule, SharedModule],
 })
-export class LocationsModule { }
+export class LocationsModule {}

@@ -1,15 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-air-pollution',
   templateUrl: './air-pollution.component.html',
-  styleUrls: ['./air-pollution.component.css']
+  styleUrls: ['./air-pollution.component.css'],
 })
-export class AirPollutionComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class AirPollutionComponent {}

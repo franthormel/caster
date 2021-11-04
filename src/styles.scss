@@ -37,6 +37,10 @@ html {
   @include text-no-select;
 }
 
+.font-weight-f600 {
+  font-weight: 600;
+}
+
 @for $i from 1 through 3 {
   @each $side in left, bottom, right {
     .margin-#{$side}-z#{$i} {

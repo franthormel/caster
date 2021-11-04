@@ -2,14 +2,14 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 
+import { appStateReducer } from '../../app-state.reducers';
+
 import { WeatherContentTopComponent } from './weather-content-top.component';
 import { EpochConverterService } from '../../epoch-converter.service';
 import { MoonPhaseService } from '../moon-phase.service';
-
-import { appStateReducer } from '../../app-state.reducers';
+import { StateManagerService } from '../../state-manager.service';
 import { TEST_WEATHER_DATA } from '../../../assets/data/testing/weather.testing';
 import { TEST_GEOLOCATION } from '../../../assets/data/testing/gelocation.testing';
-import { StateManagerService } from '../../state-manager.service';
 
 describe('WeatherContentTopComponent', () => {
   let component: WeatherContentTopComponent;
@@ -208,6 +208,21 @@ describe('WeatherContentTopComponent', () => {
       it('should return a String', () => {
         const result = component.dailyTime;
         expect(result).toBeInstanceOf(String);
+      });
+    });
+
+    describe('alertsCount()', () => {
+      it('should return a Number', () => {
+        const result = component.alertsCount;
+
+        expect(result).toBeInstanceOf(Number);
+      });
+    });
+
+    describe('alertsAreAvailable()', () => {
+      it('should return a Boolean', () => {
+        const result = component.alertsAreAvailable;
+        expect(result).toBeInstanceOf(Boolean);
       });
     });
   });

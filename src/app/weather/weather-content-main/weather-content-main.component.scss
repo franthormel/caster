@@ -8,6 +8,7 @@
 
 .weather-main-parent {
   background-color: #ffffff50;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.04);
 }
 
 .weather-main {
@@ -28,7 +29,7 @@
   @include weather.padding-hv;
   width: 40%;
   margin: auto;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 }
 
 .weather-main-readings {
@@ -62,10 +63,6 @@
 .weather-main-temperature:hover,
 .weather-main-feels-like:hover {
   cursor: pointer;
-}
-
-.weather-main-semibold {
-  font-weight: 600;
 }
 
 .text-underline {

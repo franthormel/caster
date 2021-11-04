@@ -1,10 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
-import { StoreModule } from '@ngrx/store';
-import { Observable } from 'rxjs';
 
 import { WeatherContentMainComponent } from '../weather-content-main/weather-content-main.component';
 import { WeatherContentTopComponent } from '../weather-content-top/weather-content-top.component';
@@ -101,43 +102,12 @@ describe('WeatherMainComponent', () => {
   });
 
   describe('methods', () => {
-    describe('alertsCount()', () => {
-      it('should return a Number', () => {
-        const result = component.alertsCount;
-
-        expect(result).toBeInstanceOf(Number);
-      });
-    });
-
     describe('geolocation()', () => {
       it('should return an WeatherGeolocation or undefined', () => {
         const type = typeof component.geolocation;
         const result = type === 'object' || type === 'undefined';
 
         expect(result).toBeTruthy();
-      });
-    });
-
-    describe('alertsAreLoaded()', () => {
-      it('should return a Boolean', () => {
-        const result = component.alertsAreLoaded;
-        expect(result).toBeInstanceOf(Boolean);
-      });
-
-      it('should return true if expected', () => {
-        component.loading = false;
-
-        const result = component.alertsAreLoaded;
-
-        expect(result).toBeTruthy();
-      });
-
-      it('should return false if expected', () => {
-        component.loading = true;
-
-        const result = component.alertsAreLoaded;
-
-        expect(result).toBeFalsy();
       });
     });
 

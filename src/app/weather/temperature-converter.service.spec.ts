@@ -15,6 +15,7 @@ describe('TemperatureConverterService', () => {
   });
 
   describe('convertKelvinToCelsius()', () => {
+    // TODO Move to test data
     const inputs = [-240, -229, -112, 83, 298, 336];
     const outputs = [-513.15, -502.15, -385.15, -190.15, 24.85, 62.85];
 

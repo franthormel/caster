@@ -51,8 +51,9 @@ export class AppComponent implements OnInit {
   }
 
   /**
-   *  Name of icons is according to its moonphase in lowerCamelCase notation while
-   *  the filename associated with that moonphase is its cardinal order within the lunar cycle
+   *  Name of icons is according to its moonphase in lowerCamelCase notation
+   *  while the filename associated with that moonphase is its numerical
+   *  cardinal order within the lunar cycle
    */
   private registerMoonIcons() {
     for (const i in ICONS_MOON) {

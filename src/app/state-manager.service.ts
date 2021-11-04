@@ -93,7 +93,7 @@ export class StateManagerService {
   }
 
   private changeMode(value: WeatherReadingMode) {
-    this.store.dispatch(weather.modeUpdate({ mode: value }));
+    this.store.dispatch(weather.readingModeUpdate({ mode: value }));
   }
 
   private initState() {

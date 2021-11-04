@@ -1,6 +1,6 @@
 <p *ngFor="let line of alertLines"  
    class="alert-contents"
-   [ngClass]="{'alert-contents-semibold': stringParser.isUppercase(line)}">
+   [ngClass]="{'text-weight-f600': stringParser.isUppercase(line)}">
    {{line}}
 </p>
 

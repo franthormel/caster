@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { HourlyChance } from '../../models/weather/hourly-chance.models';
+import { WeatherHourlyChance } from '../../models/weather/weather-hourly-chance.models';
 import { WeatherData } from '../../models/weather/weather-data.models';
 import { WeatherReading } from '../../models/weather/weather-reading.models';
 
@@ -53,7 +53,7 @@ export class WeatherContentBottomComponent {
   get rain(): number {
     return this.stateManager.isDaily
       ? (this.weatherReading.rain as number)
-      : (this.weatherReading.rain as HourlyChance)['1h'];
+      : (this.weatherReading.rain as WeatherHourlyChance)['1h'];
   }
 
   get rainIsPresent(): boolean {
@@ -73,7 +73,7 @@ export class WeatherContentBottomComponent {
   get snow(): number | undefined {
     return this.stateManager.isDaily
       ? (this.weatherReading.snow as number)
-      : (this.weatherReading.snow as HourlyChance)['1h'];
+      : (this.weatherReading.snow as WeatherHourlyChance)['1h'];
   }
 
   get snowIsPresent(): boolean {

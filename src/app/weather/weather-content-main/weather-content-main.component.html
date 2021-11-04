@@ -2,18 +2,18 @@
     <section class="weather-main">
         <section class="weather-main-left">
             <div class="margin-bottom-z3">
-                <p class="weather-main-semibold">Cloudiness</p>
+                <p class="font-weight-f600">Cloudiness</p>
                 <p>{{cloudiness}}%</p>
             </div>
             <div class="margin-bottom-z3">
-                <p class="weather-main-semibold" 
+                <p class="font-weight-f600" 
                    matTooltip="Atmospheric pressure on the sea level">
                    Pressure
                 </p>
                 <p>{{pressure}} hPa</p>
             </div>
             <div class="margin-bottom-z3">
-                <p class="weather-main-semibold">Humidity</p>
+                <p class="font-weight-f600">Humidity</p>
                 <p>{{humidity}}%</p>
             </div>
         </section>
@@ -55,15 +55,15 @@
         </section>
         <section class="weather-main-right">
             <div class="margin-bottom-z3">
-                <p class="weather-main-semibold">Wind Speed</p>
+                <p class="font-weight-f600">Wind Speed</p>
                 <p>{{windSpeed}} m/s</p>
             </div>
             <div class="margin-bottom-z3">
-                <p class="weather-main-semibold">Wind Direction</p>
+                <p class="font-weight-f600">Wind Direction</p>
                 <p>{{windDirection}}°</p>
             </div>
             <div *ngIf="windGustIsPresent" class="margin-bottom-z3">
-                <p class="weather-main-semibold">Wind Gust</p>
+                <p class="font-weight-f600">Wind Gust</p>
                 <p>{{windGust}} m/s</p>
             </div>
         </section>

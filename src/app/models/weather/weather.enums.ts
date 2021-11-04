@@ -4,7 +4,7 @@ export enum WeatherReadingMode {
   Daily,
 }
 
-export enum WeatherDailyDetailViewMode {
+export enum WeatherDetailMode {
   Temperature,
   FeelsLike,
 }

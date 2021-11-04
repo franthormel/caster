@@ -2,12 +2,12 @@ import { createAction, props } from '@ngrx/store';
 
 import {
   WeatherReadingMode,
-  WeatherDailyDetailViewMode,
+  WeatherDetailMode,
 } from '../models/weather/weather.enums';
 
 export const detailViewTypeUpdate = createAction(
   '[Weather] Detail View Type Update',
-  props<{ dailyDetailViewMode: WeatherDailyDetailViewMode }>()
+  props<{ dailyDetailViewMode: WeatherDetailMode }>()
 );
 
 export const indexDailyIncrement = createAction(
@@ -26,7 +26,7 @@ export const indexHourlyDecrement = createAction(
   '[Weather] Index Hourly Decrement'
 );
 
-export const modeUpdate = createAction(
-  '[Weather] Mode Update',
+export const readingModeUpdate = createAction(
+  '[Weather] Reading Mode Update',
   props<{ mode: WeatherReadingMode }>()
 );

@@ -2,12 +2,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { ReadingDetailFeelsLike } from '../../models/weather/reading-detail-feels-like.models';
-import { ReadingDetailTemperature } from '../../models/weather/reading-detail-temperature.models';
+import { WeatherReadingDetailFeelsLike } from '../../models/weather/weather-reading-detail-feels-like.models';
+import { WeatherReadingDetailTemperature } from '../../models/weather/weather-reading-detail-temperature.models';
 import { WeatherData } from '../../models/weather/weather-data.models';
 import { WeatherCondition } from '../../models/weather/weather-condition.models';
 import { WeatherReading } from '../../models/weather/weather-reading.models';
-import { WeatherDailyDetailViewMode } from '../../models/weather/weather.enums';
+import { WeatherDetailMode } from '../../models/weather/weather.enums';
 
 import { StringParserService } from '../../string-parser.service';
 import { TemperatureConverterService } from '../temperature-converter.service';
@@ -25,13 +25,14 @@ export class WeatherContentMainComponent implements OnInit {
   @Input() weatherData!: WeatherData;
 
   private appState$!: Observable<AppState>;
-  private dailyDetailViewMode!: WeatherDailyDetailViewMode;
+  private dailyDetailViewMode!: WeatherDetailMode;
 
+  // TODO: Remove store
   constructor(
     private store: Store<{ appState: AppState }>,
     private stringFormatter: StringParserService,
     private temperatureConverter: TemperatureConverterService,
-    private stateManager: StateManagerService,
+    private stateManager: StateManagerService
   ) {}
 
   ngOnInit() {
@@ -39,11 +40,11 @@ export class WeatherContentMainComponent implements OnInit {
   }
 
   changeToFeelsLikeViewMode() {
-    this.updateStateDailyDetailViewMode(WeatherDailyDetailViewMode.FeelsLike);
+    this.updateStateDailyDetailViewMode(WeatherDetailMode.FeelsLike);
   }
 
   changeToTemperatureViewMode() {
-    this.updateStateDailyDetailViewMode(WeatherDailyDetailViewMode.Temperature);
+    this.updateStateDailyDetailViewMode(WeatherDetailMode.Temperature);
   }
 
   get cloudiness(): number {
@@ -51,12 +52,13 @@ export class WeatherContentMainComponent implements OnInit {
   }
 
   get dailyDetailReadingModeIsTemperature(): boolean {
-    return this.dailyDetailViewMode === WeatherDailyDetailViewMode.Temperature;
+    return this.dailyDetailViewMode === WeatherDetailMode.Temperature;
   }
 
   get evening(): number {
     if (this.showDailyDetailReading) {
-      const reading = this.weatherReading.temp as ReadingDetailTemperature;
+      const reading = this.weatherReading
+        .temp as WeatherReadingDetailTemperature;
 
       return this.temperatureConverter.convertKelvinToCelsius(reading.eve);
     }
@@ -79,7 +81,8 @@ export class WeatherContentMainComponent implements OnInit {
 
   get max(): number {
     if (this.showDailyDetailReading) {
-      const reading = this.weatherReading.temp as ReadingDetailTemperature;
+      const reading = this.weatherReading
+        .temp as WeatherReadingDetailTemperature;
 
       return this.temperatureConverter.convertKelvinToCelsius(reading.max);
     }
@@ -89,7 +92,8 @@ export class WeatherContentMainComponent implements OnInit {
 
   get min(): number {
     if (this.showDailyDetailReading) {
-      const reading = this.weatherReading.temp as ReadingDetailTemperature;
+      const reading = this.weatherReading
+        .temp as WeatherReadingDetailTemperature;
 
       return this.temperatureConverter.convertKelvinToCelsius(reading.min);
     }
@@ -99,7 +103,8 @@ export class WeatherContentMainComponent implements OnInit {
 
   get morning(): number {
     if (this.showDailyDetailReading) {
-      const reading = this.weatherReading.temp as ReadingDetailTemperature;
+      const reading = this.weatherReading
+        .temp as WeatherReadingDetailTemperature;
 
       return this.temperatureConverter.convertKelvinToCelsius(reading.morn);
     }
@@ -109,7 +114,8 @@ export class WeatherContentMainComponent implements OnInit {
 
   get night(): number {
     if (this.showDailyDetailReading) {
-      const reading = this.weatherReading.temp as ReadingDetailTemperature;
+      const reading = this.weatherReading
+        .temp as WeatherReadingDetailTemperature;
 
       return this.temperatureConverter.convertKelvinToCelsius(reading.night);
     }
@@ -195,12 +201,12 @@ export class WeatherContentMainComponent implements OnInit {
   }
 
   private get dailyDetailReadingModeIsFeelsLike(): boolean {
-    return this.dailyDetailViewMode === WeatherDailyDetailViewMode.FeelsLike;
+    return this.dailyDetailViewMode === WeatherDetailMode.FeelsLike;
   }
 
   private feelsLikeBasedOnMode(weather: WeatherReading): number {
     if (this.stateManager.isDaily) {
-      const reading = weather.feels_like as ReadingDetailFeelsLike;
+      const reading = weather.feels_like as WeatherReadingDetailFeelsLike;
 
       return reading.day;
     }
@@ -218,7 +224,7 @@ export class WeatherContentMainComponent implements OnInit {
 
   private temperatureBasedOnMode(weather: WeatherReading): number {
     if (this.stateManager.isDaily) {
-      const reading = weather.temp as ReadingDetailTemperature;
+      const reading = weather.temp as WeatherReadingDetailTemperature;
 
       return reading.day;
     }
@@ -226,7 +232,7 @@ export class WeatherContentMainComponent implements OnInit {
     return weather.temp as number;
   }
 
-  private updateStateDailyDetailViewMode(mode: WeatherDailyDetailViewMode) {
+  private updateStateDailyDetailViewMode(mode: WeatherDetailMode) {
     this.store.dispatch(
       detailViewTypeUpdate({
         dailyDetailViewMode: mode,
