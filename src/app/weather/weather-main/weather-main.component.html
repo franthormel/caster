@@ -1,62 +1,13 @@
-<shared-sidenav title="Weather">
-    <ng-container toolbar-actions>
-        <ng-container *ngIf="alertsAreLoaded">
-            <button mat-icon-button 
-                    aria-label="Alerts icon" 
-                    matTooltip="Alerts from weather warning systems"
-                    (click)="showAlertDialog()">
-                <mat-icon matBadgeColor="warn" 
-                          color="warn" 
-                          [matBadge]="alertsCount">
-                          warning
-                </mat-icon>
-            </button>
-        </ng-container>
+<ng-container *ngIf="loading">
+    <mat-progress-bar color="accent" 
+                      mode="indeterminate">
+    </mat-progress-bar>
+</ng-container>
 
-        <button mat-icon-button 
-                aria-label="Refresh icon" 
-                matTooltip="Refresh data">
-            <mat-icon>refresh</mat-icon>
-        </button>
-
-        <button mat-icon-button 
-                aria-label="Change mode icon" 
-                matTooltip="Change mode"
-                [matMenuTriggerFor]="menuWeatherMode">
-            <mat-icon>more_vert</mat-icon>
-        </button>
-
-        <mat-menu #menuWeatherMode="matMenu" 
-                  class="text-no-select">
-            <mat-selection-list [multiple]="false">
-                <mat-list-option (click)="stateManager.changeToCurrent()" 
-                                 [selected]="stateManager.isCurrent">
-                                 Current
-                </mat-list-option>
-                <mat-list-option (click)="stateManager.changeToHourly()" 
-                                 [selected]="stateManager.isHourly">
-                                 Hourly
-                </mat-list-option>
-                <mat-list-option (click)="stateManager.changeToDaily()" 
-                                 [selected]="stateManager.isDaily">
-                                 Daily
-                </mat-list-option>
-            </mat-selection-list>
-        </mat-menu>
-    </ng-container>
-    <ng-container sidenav-contents>
-        <ng-container *ngIf="loading">
-            <mat-progress-bar color="accent" 
-                              mode="indeterminate">
-            </mat-progress-bar>
-        </ng-container>
-
-        <ng-container *ngIf="dataIsLoaded">
-            <app-weather-content-top [geolocation]="geolocation" 
-                                     [weatherData]="weatherData">
-            </app-weather-content-top>
-            <app-weather-content-main [weatherData]="weatherData"></app-weather-content-main>
-            <app-weather-content-bottom [weatherData]="weatherData"></app-weather-content-bottom>
-        </ng-container>
-    </ng-container>
-</shared-sidenav>
+<ng-container *ngIf="dataIsLoaded">
+    <app-weather-content-top [geolocation]="geolocation" 
+                             [weatherData]="weatherData">
+    </app-weather-content-top>
+    <app-weather-content-main [weatherData]="weatherData"></app-weather-content-main>
+    <app-weather-content-bottom [weatherData]="weatherData"></app-weather-content-bottom>
+</ng-container>

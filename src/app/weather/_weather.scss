@@ -3,8 +3,3 @@
 
   padding: #{$value}vh #{$value}vw;
 }
-
-@mixin text-align-end($align: left) {
-  align-self: flex-end;
-  text-align: $align;
-}

@@ -1,8 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { Store } from '@ngrx/store';
+
+import { MatDialog } from '@angular/material/dialog';
 
 import { environment } from '../../../environments/environment';
 
+import { WeatherAlert } from '../../models/weather/weather-alert.models';
 import { WeatherData } from '../../models/weather/weather-data.models';
 import { WeatherReadingDaily } from '../../models/weather/weather-reading-daily.models';
 import { WeatherGeolocation } from '../../models/geolocation/geolocation.models';
@@ -10,6 +12,7 @@ import { WeatherGeolocation } from '../../models/geolocation/geolocation.models'
 import { MoonPhaseService } from '../moon-phase.service';
 import { EpochConverterService } from '../../epoch-converter.service';
 import { StateManagerService } from '../../state-manager.service';
+import { WeatherAlertComponent } from '../weather-alert/weather-alert.component';
 
 @Component({
   selector: 'app-weather-content-top',
@@ -21,9 +24,10 @@ export class WeatherContentTopComponent {
   @Input() geolocation: WeatherGeolocation | undefined;
 
   constructor(
+    public stateManager: StateManagerService,
+    private dialog: MatDialog,
     private epochConverter: EpochConverterService,
-    private moonphase: MoonPhaseService,
-    private stateManager: StateManagerService
+    private moonphase: MoonPhaseService
   ) {}
 
   dailyNext() {
@@ -48,6 +52,20 @@ export class WeatherContentTopComponent {
     if (this.canHourlyGoBackward) {
       this.stateManager.indexHourlyDecrement();
     }
+  }
+
+  showAlertDialog() {
+    this.dialog.open(WeatherAlertComponent, {
+      data: this.alerts,
+    });
+  }
+
+  get alertsCount(): number {
+    return this.alerts ? this.alerts.length : 0;
+  }
+
+  get alertsAreAvailable(): boolean {
+    return this.alertsCount > 0;
   }
 
   get currentTime(): string {
@@ -172,6 +190,10 @@ export class WeatherContentTopComponent {
     } else {
       return this.epochConverter.convertToDateTime(display);
     }
+  }
+
+  private get alerts(): WeatherAlert[] | undefined {
+    return this.weatherData !== undefined ? this.weatherData.alerts : undefined;
   }
 
   private get canDailyGoBackward(): boolean {

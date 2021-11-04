@@ -11,10 +11,9 @@ import { MatListModule } from '@angular/material/list';
 
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { SearchbarComponent } from './searchbar/searchbar.component';
-import { SidenavComponent } from './sidenav/sidenav.component';
 
 @NgModule({
-  declarations: [SidenavComponent, ErrorDialogComponent, SearchbarComponent],
+  declarations: [ErrorDialogComponent, SearchbarComponent],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -25,6 +24,6 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     MatSidenavModule,
     MatListModule,
   ],
-  exports: [SidenavComponent, ErrorDialogComponent, SearchbarComponent],
+  exports: [ErrorDialogComponent, SearchbarComponent],
 })
 export class SharedModule {}

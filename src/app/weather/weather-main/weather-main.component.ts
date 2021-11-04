@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Observable, forkJoin } from 'rxjs';
 
 import { WeatherData } from '../../models/weather/weather-data.models';
@@ -10,6 +9,7 @@ import { WeatherAlertComponent } from '../weather-alert/weather-alert.component'
 import { ErrorDialogComponent } from '../../shared/error-dialog/error-dialog.component';
 
 import { StateManagerService } from '../../state-manager.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-weather-main',
@@ -25,26 +25,12 @@ export class WeatherMainComponent implements OnInit {
   loading: boolean = true;
 
   constructor(
-    public dialog: MatDialog,
+    private dialog: MatDialog,
     public stateManager: StateManagerService
   ) {}
 
   ngOnInit(): void {
     this.initData();
-  }
-
-  showAlertDialog() {
-    this.dialog.open(WeatherAlertComponent, {
-      data: this.alerts,
-    });
-  }
-
-  get alertsCount(): number {
-    return this.alerts ? this.alerts.length : 0;
-  }
-
-  get alertsAreLoaded() : boolean {
-    return !this.loading && this.alertsCount > 0;
   }
 
   get dataIsLoaded(): boolean {
@@ -53,14 +39,6 @@ export class WeatherMainComponent implements OnInit {
 
   get geolocation(): WeatherGeolocation | undefined {
     return this.geolocations[0];
-  }
-
-  private get alerts(): WeatherAlert[] | undefined {
-    if (this.weatherData !== undefined) {
-      return this.weatherData.alerts;
-    }
-
-    return undefined;
   }
 
   private initData() {

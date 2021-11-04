@@ -2,7 +2,6 @@
 @use "../../../styles.scss" as global;
 
 .weather-bottom {
-  @include global.text-no-select;
   @include global.horizontally-apart;
   @include weather.padding-hv;
 }

@@ -1,21 +1,26 @@
 @use "../weather" as weather;
 @use "../../../styles.scss" as global;
 
+@mixin align-self-and-text($self: flex-end, $text: left) {
+  align-self: $self;
+  text-align: $text;
+}
+
 .weather-top {
   @include global.horizontally-apart;
   height: 6rem;
 }
 
 .weather-top-parent {
-  @include global.text-no-select;
   @include weather.padding-hv;
 }
 
 .weather-top-right {
   @include global.margin-side(left, 3);
-  @include weather.text-align-end(right);
+  @include align-self-and-text($text: right);
 }
 
 .weather-top-left {
-  @include weather.text-align-end;
+  @include align-self-and-text($self: center);
+  display: block;
 }
