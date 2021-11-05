@@ -11,6 +11,7 @@
             <a *ngFor="let navigation of navigationLinks"
                mat-list-item 
                [routerLink]="navigation.link"
+               (click)="drawer.close()"
                routerLinkActive="font-weight-f600">
                &nbsp;
                {{navigation.name}}
