@@ -22,7 +22,7 @@ export class WeatherMainComponent implements OnInit {
 
   geolocations!: WeatherGeolocation[];
   weatherData!: WeatherData;
-  loading: boolean = true;
+  loading = true;
 
   constructor(
     public stateManager: StateManagerService,
@@ -37,8 +37,12 @@ export class WeatherMainComponent implements OnInit {
     return !this.loading && this.weatherData !== undefined;
   }
 
-  get geolocation(): WeatherGeolocation | undefined {
-    return this.geolocations[0];
+  get weatherLocation(): string {
+    const geolocation = this.geolocations[0];
+
+    return geolocation
+      ? `${geolocation.name}, ${geolocation.country}`
+      : `${this.weatherData.lat}, ${this.weatherData.lon}`;
   }
 
   private initData() {

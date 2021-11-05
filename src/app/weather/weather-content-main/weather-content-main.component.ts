@@ -23,6 +23,7 @@ import { detailViewTypeUpdate } from '../weather-state.actions';
 })
 export class WeatherContentMainComponent implements OnInit {
   @Input() weatherData!: WeatherData;
+  @Input() weatherLocation! : string;
 
   private appState$!: Observable<AppState>;
   private dailyDetailViewMode!: WeatherDetailMode;

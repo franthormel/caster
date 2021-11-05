@@ -1,8 +1,32 @@
 <section class="weather-top-parent">
     <section class="weather-top">
         <section class="weather-top-left">
+            <button mat-flat-button
+                    color="primary"
+                    class="margin-right-z1"
+                    aria-label="Change mode icon" 
+                    [matMenuTriggerFor]="menuWeatherMode">
+                    Change mode
+            </button>
+            <mat-menu #menuWeatherMode="matMenu"
+                      class="text-no-select">
+                <mat-selection-list [multiple]="false">
+                    <mat-list-option (click)="stateManager.changeToCurrent()" 
+                                     [selected]="stateManager.isCurrent">
+                                     Current
+                    </mat-list-option>
+                    <mat-list-option (click)="stateManager.changeToHourly()" 
+                                     [selected]="stateManager.isHourly">
+                                     Hourly
+                    </mat-list-option>
+                    <mat-list-option (click)="stateManager.changeToDaily()" 
+                                     [selected]="stateManager.isDaily">
+                                     Daily
+                    </mat-list-option>
+                </mat-selection-list>
+            </mat-menu>
             <ng-container *ngIf="alertsAreAvailable">
-                <button mat-flat-button 
+                <button mat-raised-button 
                         color="warn" 
                         aria-label="Alerts icon" 
                         matTooltip="Alerts from weather warning systems"
@@ -12,32 +36,6 @@
                     <mat-icon>warning</mat-icon>
                     Alerts
                 </button>
-            </ng-container>
-            <!--TODO TODO#4-->
-            <ng-container *ngIf="true">
-                <button mat-flat-button
-                        color="primary"
-                        aria-label="Change mode icon" 
-                        [matMenuTriggerFor]="menuWeatherMode">
-                        Change mode
-                </button>
-                <mat-menu #menuWeatherMode="matMenu"
-                          class="text-no-select">
-                    <mat-selection-list [multiple]="false">
-                        <mat-list-option (click)="stateManager.changeToCurrent()" 
-                                         [selected]="stateManager.isCurrent">
-                                         Current
-                        </mat-list-option>
-                        <mat-list-option (click)="stateManager.changeToHourly()" 
-                                         [selected]="stateManager.isHourly">
-                                         Hourly
-                        </mat-list-option>
-                        <mat-list-option (click)="stateManager.changeToDaily()" 
-                                         [selected]="stateManager.isDaily">
-                                         Daily
-                        </mat-list-option>
-                    </mat-selection-list>
-                </mat-menu>
             </ng-container>
         </section>
     

@@ -7,7 +7,6 @@ import { environment } from '../../../environments/environment';
 import { WeatherAlert } from '../../models/weather/weather-alert.models';
 import { WeatherData } from '../../models/weather/weather-data.models';
 import { WeatherReadingDaily } from '../../models/weather/weather-reading-daily.models';
-import { WeatherGeolocation } from '../../models/geolocation/geolocation.models';
 
 import { MoonPhaseService } from '../moon-phase.service';
 import { EpochConverterService } from '../../epoch-converter.service';
@@ -21,7 +20,6 @@ import { WeatherAlertComponent } from '../weather-alert/weather-alert.component'
 })
 export class WeatherContentTopComponent {
   @Input() weatherData!: WeatherData;
-  @Input() geolocation: WeatherGeolocation | undefined;
 
   constructor(
     public stateManager: StateManagerService,
@@ -57,15 +55,16 @@ export class WeatherContentTopComponent {
   showAlertDialog() {
     this.dialog.open(WeatherAlertComponent, {
       data: this.alerts,
+      disableClose: true,
     });
-  }
-
-  get alertsCount(): number {
-    return this.alerts ? this.alerts.length : 0;
   }
 
   get alertsAreAvailable(): boolean {
     return this.alertsCount > 0;
+  }
+
+  get alertsCount(): number {
+    return this.alerts ? this.alerts.length : 0;
   }
 
   get currentTime(): string {
@@ -88,12 +87,6 @@ export class WeatherContentTopComponent {
       );
     }
     return '';
-  }
-
-  get formattedLocation(): string {
-    return this.geolocation
-      ? `${this.geolocation.name}, ${this.geolocation.country}`
-      : `${this.weatherData.lat}, ${this.weatherData.lon}`;
   }
 
   get hourlyTime(): string {

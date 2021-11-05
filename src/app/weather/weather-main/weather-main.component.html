@@ -5,9 +5,9 @@
 </ng-container>
 
 <ng-container *ngIf="dataIsLoaded">
-    <app-weather-content-top [geolocation]="geolocation" 
-                             [weatherData]="weatherData">
-    </app-weather-content-top>
-    <app-weather-content-main [weatherData]="weatherData"></app-weather-content-main>
+    <app-weather-content-top [weatherData]="weatherData"></app-weather-content-top>
+    <app-weather-content-main [weatherData]="weatherData" 
+                              [weatherLocation]="weatherLocation">
+    </app-weather-content-main>
     <app-weather-content-bottom [weatherData]="weatherData"></app-weather-content-bottom>
 </ng-container>
