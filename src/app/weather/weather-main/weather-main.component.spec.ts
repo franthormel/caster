@@ -5,15 +5,13 @@ import { Observable } from 'rxjs';
 
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatMenuModule } from '@angular/material/menu';
 
+import { WeatherData } from '../../models/weather/weather-data.models';
+import { WeatherGeolocation } from '../../models/geolocation/geolocation.models';
 import { WeatherContentMainComponent } from '../weather-content-main/weather-content-main.component';
 import { WeatherContentTopComponent } from '../weather-content-top/weather-content-top.component';
 import { WeatherContentBottomComponent } from '../weather-content-bottom/weather-content-bottom.component';
 import { WeatherMainComponent } from './weather-main.component';
-
-import { WeatherData } from '../../models/weather/weather-data.models';
-import { WeatherGeolocation } from '../../models/geolocation/geolocation.models';
 import { StateManagerService } from '../../state-manager.service';
 
 import { appStateReducer } from '../../app-state.reducers';
@@ -26,17 +24,15 @@ describe('WeatherMainComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
+        WeatherMainComponent,
         WeatherContentMainComponent,
         WeatherContentTopComponent,
         WeatherContentBottomComponent,
-        WeatherMainComponent,
-        WeatherMainComponent,
       ],
       imports: [
         HttpClientModule,
         MatProgressBarModule,
         MatDialogModule,
-        MatMenuModule,
         StoreModule.forRoot({ appState: appStateReducer }),
       ],
       providers: [StateManagerService],
@@ -70,14 +66,14 @@ describe('WeatherMainComponent', () => {
 
     describe('geolocationsData$', () => {
       it('should be an Observable', () => {
-        const result = component.weatherData$;
+        const result = component.geolocationsData$;
 
         expect(result).toBeInstanceOf(Observable);
       });
     });
 
     describe('weatherData', () => {
-      it('should be an Object', () => {
+      it('should be a WeatherData', () => {
         const result = component.weatherData;
 
         expect(result).toBeInstanceOf(Object);
@@ -85,7 +81,7 @@ describe('WeatherMainComponent', () => {
     });
 
     describe('geolocations', () => {
-      it('should be an Array', () => {
+      it('should be a WeatherGeolocation[]', () => {
         const result = component.geolocations;
 
         expect(result).toBeInstanceOf(Array);
@@ -98,39 +94,21 @@ describe('WeatherMainComponent', () => {
 
         expect(result).toBeInstanceOf(Boolean);
       });
+
+      it('should be initalized to true', () => {
+        const result = component.loading;
+
+        expect(result).toBeTruthy();
+      });
     });
   });
 
   describe('methods', () => {
-    describe('geolocation()', () => {
-      it('should return an WeatherGeolocation or undefined', () => {
-        const type = typeof component.geolocation;
-        const result = type === 'object' || type === 'undefined';
+    describe('weatherLocation()', () => {
+      it('should return a String', () => {
+        const result = component.weatherLocation;
 
-        expect(result).toBeTruthy();
-      });
-    });
-
-    describe('dataIsLoaded()', () => {
-      it('should return a Boolean', () => {
-        const result = component.dataIsLoaded;
-        expect(result).toBeInstanceOf(Boolean);
-      });
-
-      it('should return true if expected', () => {
-        component.loading = false;
-
-        const result = component.dataIsLoaded;
-
-        expect(result).toBeTruthy();
-      });
-
-      it('should return false if expected', () => {
-        component.loading = true;
-
-        const result = component.dataIsLoaded;
-
-        expect(result).toBeFalsy();
+        expect(result).toBeInstanceOf(String);
       });
     });
   });

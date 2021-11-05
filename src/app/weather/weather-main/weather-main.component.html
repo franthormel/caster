@@ -4,7 +4,7 @@
     </mat-progress-bar>
 </ng-container>
 
-<ng-container *ngIf="dataIsLoaded">
+<ng-container *ngIf="!loading">
     <app-weather-content-top [weatherData]="weatherData"></app-weather-content-top>
     <app-weather-content-main [weatherData]="weatherData" 
                               [weatherLocation]="weatherLocation">

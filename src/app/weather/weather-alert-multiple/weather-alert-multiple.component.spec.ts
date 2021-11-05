@@ -45,17 +45,15 @@ describe('WeatherAlertMultipleComponent', () => {
     describe('isExpanded()', () => {
       it('should return true if param is 0', () => {
         const result = component.isExpanded(0);
-        const expected = true;
 
-        expect(result).toBe(expected);
+        expect(result).toBeTruthy();
       });
 
       for (const number of [-2, -5, -7, 1000, 2021]) {
-        it(`should return true if param is not ${number}`, () => {
+        it(`should return false if param is not ${number}`, () => {
           const result = component.isExpanded(number);
-          const expected = false;
 
-          expect(result).toBe(expected);
+          expect(result).toBeFalsy();
         });
       }
     });

@@ -33,6 +33,7 @@ describe('WeatherContentMainComponent', () => {
     fixture = TestBed.createComponent(WeatherContentMainComponent);
     component = fixture.componentInstance;
     component.weatherData = TEST_WEATHER_DATA;
+    component.weatherLocation = '';
     fixture.detectChanges();
   });
 
@@ -45,6 +46,13 @@ describe('WeatherContentMainComponent', () => {
       it('should return a WeatherData', () => {
         const result = component.weatherData;
         expect(result).toBeInstanceOf(Object);
+      });
+    });
+
+    describe('weatherLocation()', () => {
+      it('should return a String', () => {
+        const result = component.weatherLocation;
+        expect(result).toBeInstanceOf(String);
       });
     });
   });

@@ -3,7 +3,7 @@
     <ng-container *ngIf="singleAlert">
         <app-weather-alert-single [alert]="alerts[0]"></app-weather-alert-single>
     </ng-container>
-    <ng-container *ngIf="multipleAlerts">
+    <ng-container *ngIf="!singleAlert">
         <app-weather-alert-multiple [alerts]="alerts"></app-weather-alert-multiple>
     </ng-container>
 </mat-dialog-content>

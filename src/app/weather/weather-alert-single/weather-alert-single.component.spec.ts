@@ -28,7 +28,7 @@ describe('WeatherAlertSingleComponent', () => {
 
   describe('properties', () => {
     describe('alert', () => {
-      it('should be an Object', () => {
+      it('should be a WeatherAlert', () => {
         const result = component.alert;
 
         expect(result).toBeInstanceOf(Object);

@@ -2,14 +2,16 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 
-import { appStateReducer } from '../../app-state.reducers';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { WeatherContentTopComponent } from './weather-content-top.component';
 import { EpochConverterService } from '../../epoch-converter.service';
 import { MoonPhaseService } from '../moon-phase.service';
 import { StateManagerService } from '../../state-manager.service';
+
+import { appStateReducer } from '../../app-state.reducers';
 import { TEST_WEATHER_DATA } from '../../../assets/data/testing/weather.testing';
-import { TEST_GEOLOCATION } from '../../../assets/data/testing/gelocation.testing';
 
 describe('WeatherContentTopComponent', () => {
   let component: WeatherContentTopComponent;
@@ -21,6 +23,8 @@ describe('WeatherContentTopComponent', () => {
       imports: [
         HttpClientModule,
         StoreModule.forRoot({ appState: appStateReducer }),
+        MatDialogModule,
+        MatMenuModule,
       ],
       providers: [EpochConverterService, MoonPhaseService, StateManagerService],
     }).compileComponents();
@@ -30,7 +34,6 @@ describe('WeatherContentTopComponent', () => {
     fixture = TestBed.createComponent(WeatherContentTopComponent);
     component = fixture.componentInstance;
     component.weatherData = TEST_WEATHER_DATA;
-    component.geolocation = TEST_GEOLOCATION;
     fixture.detectChanges();
   });
 
@@ -41,30 +44,14 @@ describe('WeatherContentTopComponent', () => {
   describe('properties', () => {
     describe('weatherData', () => {
       it('should return a WeatherData', () => {
-        const result = component.geolocation;
+        const result = component.weatherData;
 
         expect(result).toBeInstanceOf(Object);
-      });
-    });
-
-    describe('geolocation', () => {
-      it('should return a WeatherGeolocation or undefined', () => {
-        const type = typeof component.geolocation;
-        const result = type === 'object' || type === 'undefined';
-
-        expect(result).toBeTruthy();
       });
     });
   });
 
   describe('methods', () => {
-    describe('formattedLocation()', () => {
-      it('should return a String', () => {
-        const result = component.formattedLocation;
-        expect(result).toBeInstanceOf(String);
-      });
-    });
-
     describe('showCurrent()', () => {
       it('should return a Boolean', () => {
         const result = component.showCurrent;

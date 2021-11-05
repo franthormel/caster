@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, forkJoin } from 'rxjs';
 
-import { WeatherData } from '../../models/weather/weather-data.models';
-import { WeatherAlert } from '../../models/weather/weather-alert.models';
-import { WeatherGeolocation } from '../../models/geolocation/geolocation.models';
+import { MatDialog } from '@angular/material/dialog';
 
-import { WeatherAlertComponent } from '../weather-alert/weather-alert.component';
 import { ErrorDialogComponent } from '../../shared/error-dialog/error-dialog.component';
 
+import { WeatherData } from '../../models/weather/weather-data.models';
+import { WeatherGeolocation } from '../../models/geolocation/geolocation.models';
 import { StateManagerService } from '../../state-manager.service';
-import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-weather-main',
@@ -17,8 +15,8 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./weather-main.component.css'],
 })
 export class WeatherMainComponent implements OnInit {
-  weatherData$: Observable<WeatherData> | undefined;
-  geolocationsData$: Observable<WeatherGeolocation[]> | undefined;
+  weatherData$!: Observable<WeatherData>;
+  geolocationsData$!: Observable<WeatherGeolocation[]>;
 
   geolocations!: WeatherGeolocation[];
   weatherData!: WeatherData;
@@ -33,10 +31,6 @@ export class WeatherMainComponent implements OnInit {
     this.initData();
   }
 
-  get dataIsLoaded(): boolean {
-    return !this.loading && this.weatherData !== undefined;
-  }
-
   get weatherLocation(): string {
     const geolocation = this.geolocations[0];
 
@@ -46,7 +40,7 @@ export class WeatherMainComponent implements OnInit {
   }
 
   private initData() {
-    const dataCollection$ = this.initThenCombineData();
+    const dataCollection$ = this.collectAllData();
 
     dataCollection$.subscribe({
       complete: () => {
@@ -55,9 +49,7 @@ export class WeatherMainComponent implements OnInit {
     });
   }
 
-  private initThenCombineData(): Observable<
-    [WeatherData, WeatherGeolocation[]]
-  > {
+  private collectAllData(): Observable<[WeatherData, WeatherGeolocation[]]> {
     this.weatherData$ = this.stateManager.localFileWeather();
     this.geolocationsData$ = this.stateManager.localFileGeolocation();
     this.weatherData$.subscribe({

@@ -15,23 +15,21 @@ export class WeatherAlertComponent {
     private epochConverter: EpochConverterService
   ) {}
 
-  get multipleAlerts(): boolean {
-    return this.alerts.length > 1;
-  }
-
   get singleAlert(): boolean {
-    return !this.multipleAlerts;
+    return this.alerts.length === 1;
   }
 
   get title(): string {
+    let value = 'Weather Alerts';
+
     if (this.singleAlert) {
       const alert = this.alerts[0];
 
-      return `${alert.event} from ${
+      value = `${alert.event} from ${
         alert.sender_name
       } (${this.epochConverter.convertToTimerange(alert)})`;
     }
 
-    return 'Weather Alerts';
+    return value;
   }
 }
