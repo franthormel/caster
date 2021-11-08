@@ -3,9 +3,14 @@ import { TestBed } from '@angular/core/testing';
 import { StringParserService } from './string-parser.service';
 
 import {
-  TESTING_STRINGS_UPPER_CASE as upperCasedStrings,
-  TESTING_STRINGS_VARIOUS_NON_UPPER_CASE as nonUpperCasedStrings,
-} from '../assets/data/testing/services/strings.testing';
+  STRINGS_UPPER,
+  STRINGS_LETTER_SMALL,
+  STRINGS_LETTERS_BIG,
+  STRINGS_WORDS_SMALL,
+  STRINGS_WORDS_BIG,
+  STRINGS_SENTENCES_SMALL,
+  STRINGS_SENTENCES_BIG,
+} from './tests/services/strings.testing';
 
 describe('StringParserService', () => {
   let service: StringParserService;
@@ -27,59 +32,70 @@ describe('StringParserService', () => {
     });
 
     it('should return an empty string if param is also empty', () => {
-      const result = service.capitalizeFirstLetter('');
+      const expected = '';
+      const result = service.capitalizeFirstLetter(expected);
 
-      expect(result.length).toBe(0);
+      expect(result).toBe(expected);
     });
 
     it('should capitalize a letter', () => {
-      const result = service.capitalizeFirstLetter('a');
+      for (const i in STRINGS_LETTER_SMALL) {
+        const input = STRINGS_LETTER_SMALL[i];
+        const expected = STRINGS_LETTERS_BIG[i];
 
-      expect(result).toBe('A');
+        const result = service.capitalizeFirstLetter(input);
+
+        expect(result).toBe(expected);
+      }
     });
 
     it('should return a string with the same length as the param', () => {
-      const words = ['textual', 'carter', 'multitude'];
-
-      for (let word of words) {
+      for (const word of STRINGS_UPPER) {
+        const expected = word.length;
         const result = service.capitalizeFirstLetter(word);
 
-        expect(result.length).toBe(word.length);
+        expect(result.length).toBe(expected);
       }
     });
 
     it('should capitalize the first letter of a word', () => {
-      const param = 'abdominal';
-      const expected = 'Abdominal';
-      const result = service.capitalizeFirstLetter(param);
+      for (const i in STRINGS_WORDS_SMALL) {
+        const param = STRINGS_WORDS_SMALL[i];
+        const expected = STRINGS_WORDS_BIG[i];
 
-      expect(result).toBe(expected);
+        const result = service.capitalizeFirstLetter(param);
+
+        expect(result).toBe(expected);
+      }
     });
 
     it('should capitalize the first letter of a sentence', () => {
-      const param = 'abdominal pain can be caused by indigestion';
-      const expected = 'Abdominal pain can be caused by indigestion';
-      const result = service.capitalizeFirstLetter(param);
+      for (const i in STRINGS_SENTENCES_SMALL) {
+        const param = STRINGS_SENTENCES_SMALL[i];
+        const expected = STRINGS_SENTENCES_BIG[i];
 
-      expect(result).toBe(expected);
+        const result = service.capitalizeFirstLetter(param);
+
+        expect(result).toBe(expected);
+      }
     });
   });
 
   describe('isUppercase()', () => {
-    for (const upperCase of upperCasedStrings) {
-      it(`should return true if param is upper cased (${upperCase})`, () => {
-        const result = service.isUppercase(upperCase);
+    it('should return true if param is upper cased', () => {
+      for (const param of STRINGS_UPPER) {
+        const result = service.isUppercase(param);
 
         expect(result).toBeTruthy();
-      });
-    }
+      }
+    });
 
-    for (const nonUpperCase of nonUpperCasedStrings) {
-      it(`should return false if param is not upper cased (${nonUpperCase})`, () => {
-        const result = service.isUppercase(nonUpperCase);
+    it('should return false if param is not upper cased', () => {
+      for (const param of STRINGS_SENTENCES_SMALL) {
+        const result = service.isUppercase(param);
 
         expect(result).toBeFalsy();
-      });
-    }
+      }
+    });
   });
 });

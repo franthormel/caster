@@ -1,14 +1,18 @@
 import { TestBed } from '@angular/core/testing';
-import { WeatherAlert } from './models/weather/weather-alert.models';
 
 import { EpochConverterService } from './epoch-converter.service';
 
+import {
+  EPOCH_ALERT,
+  EPOCH_ALERT_TIMERANGE,
+  EPOCH_INPUTS,
+  EPOCH_OUTPUTS_DATE,
+  EPOCH_OUTPUTS_DATE_TIME,
+  EPOCH_OUTPUTS_TIME,
+} from './tests/services/epoch-converter.testing';
+
 describe('EpochConverterService', () => {
   let service: EpochConverterService;
-
-  // TODO: Move to testing data
-  const start = 0;
-  const today = 1635053215;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
@@ -21,92 +25,73 @@ describe('EpochConverterService', () => {
 
   describe('convertToDate()', () => {
     it('should return a value of Date type', () => {
-      const result = service.convertToDate(start);
+      const result = service.convertToDate(0);
 
       expect(result).toBeInstanceOf(Date);
     });
 
-    it(`should return the expected Date value if seconds is ${start}`, () => {
-      const expected = new Date(start);
-      const result = service.convertToDate(start);
+    it('should return the expected value', () => {
+      for (const i in EPOCH_INPUTS) {
+        const input = EPOCH_INPUTS[i];
+        const output = EPOCH_OUTPUTS_DATE[i];
 
-      expect(result).toEqual(expected);
-    });
+        const expected = new Date(output);
+        const result = service.convertToDate(input);
 
-    it(`should return the expected Date value if seconds is ${today}`, () => {
-      const expected = new Date(today * 1000);
-      const result = service.convertToDate(today);
-
-      expect(result).toEqual(expected);
+        expect(result).toEqual(expected);
+      }
     });
   });
 
   describe('convertToTime()', () => {
     it('should return a value of String type', () => {
-      const result = service.convertToTime(start);
+      const result = service.convertToTime(0);
 
       expect(result).toBeInstanceOf(String);
     });
 
-    it(`should return the expected locale time value if seconds is ${start}`, () => {
-      const date = new Date(start);
-      const expected = date.toLocaleTimeString();
-      const result = service.convertToTime(start);
+    it('should return the expected value', () => {
+      for (const i in EPOCH_INPUTS) {
+        const input = EPOCH_INPUTS[i];
 
-      expect(result).toBe(expected);
-    });
+        const expected = EPOCH_OUTPUTS_TIME[i];
+        const result = service.convertToTime(input);
 
-    it(`should return the expected locale time value if seconds is ${today}`, () => {
-      const expected = '1:26:55 pm';
-      const result = service.convertToTime(today);
-
-      expect(result).toBe(expected);
+        expect(result).toBe(expected);
+      }
     });
   });
 
   describe('convertToDateTime()', () => {
     it('should return a value of String type', () => {
-      const result = service.convertToDateTime(start);
+      const result = service.convertToDateTime(0);
 
       expect(result).toBeInstanceOf(String);
     });
 
-    it(`should return the expected locale date time value if seconds is ${start}`, () => {
-      const expected = '01/01/1970 8:00:00 am';
-      const result = service.convertToDateTime(start);
+    it('should return the expected locale date time value', () => {
+      for (const i in EPOCH_INPUTS) {
+        const input = EPOCH_INPUTS[i];
 
-      expect(result).toBe(expected);
-    });
+        const expected = EPOCH_OUTPUTS_DATE_TIME[i];
+        const result = service.convertToDateTime(input);
 
-    it(`should return the expected locale date time value if seconds is ${today}`, () => {
-      const expected = '24/10/2021 1:26:55 pm';
-      const result = service.convertToDateTime(today);
-
-      expect(result).toBe(expected);
+        expect(result).toBe(expected);
+      }
     });
   });
 
   describe('convertToTimerange()', () => {
-    const alert: WeatherAlert = {
-      sender_name: '',
-      event: '',
-      description: '',
-      tags: [],
-      start: start,
-      end: today,
-    };
-
     it('should return a value of String type', () => {
-      const result = service.convertToTimerange(alert);
+      const result = service.convertToTimerange(EPOCH_ALERT);
 
       expect(result).toBeInstanceOf(String);
     });
 
-    it(`should return the expected value if start is ${start} and end is ${today}`, () => {
-      const expected = '01/01/1970 8:00:00 am — 24/10/2021 1:26:55 pm';
-      const result = service.convertToTimerange(alert);
+    it('should return the expected value', () => {
+      const result = service.convertToTimerange(EPOCH_ALERT);
 
-      expect(result).toBe(expected);
+      expect(result).toBe(EPOCH_ALERT_TIMERANGE);
     });
   });
 

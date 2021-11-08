@@ -1,9 +1,12 @@
 import { RouterTestingModule } from '@angular/router/testing';
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+  let app: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AppComponent],
@@ -11,9 +14,31 @@ describe('AppComponent', () => {
     }).compileComponents();
   });
 
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    app = fixture.componentInstance;
+    fixture.detectChanges();
+  })
+
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
     expect(app).toBeTruthy();
+  });
+
+  describe('methods()', () => {
+    describe('navigationLinks()', () => {
+      it('should return an Array', () => {
+        const result = app.navigationLinks;
+
+        expect(result).toBeInstanceOf(Array);
+      });
+    });
+
+    describe('title()', () => {
+      it('should return a String', () => {
+        const result = app.title;
+
+        expect(result).toBeInstanceOf(String);
+      });
+    });
   });
 });

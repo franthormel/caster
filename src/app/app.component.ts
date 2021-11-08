@@ -32,11 +32,11 @@ export class AppComponent implements OnInit {
     return NAVIGATION_LINKS;
   }
 
-  get title() : string {
-    let title = "CASTER"
+  get title(): string {
+    let title = 'CASTER';
 
-    for(const navigation of this.navigationLinks) {
-      if(this.router.url === navigation.link) {
+    for (const navigation of this.navigationLinks) {
+      if (this.router.url === navigation.link) {
         title = navigation.name;
         break;
       }
@@ -44,7 +44,6 @@ export class AppComponent implements OnInit {
 
     return title;
   }
-
 
   private fetchIconAsset(filename: string): string {
     return `${environment.assetsIcons}${filename}.svg`;

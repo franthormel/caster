@@ -5,24 +5,28 @@ export const routes: Routes = [
   {
     path: 'weather',
     loadChildren: () =>
-      import('./weather/weather.module').then((m) => m.WeatherModule),
+      import('./modules/weather/weather.module').then((m) => m.WeatherModule),
   },
   {
     path: 'air-pollution',
     loadChildren: () =>
-      import('./air-pollution/air-pollution.module').then(
+      import('./modules/air-pollution/air-pollution.module').then(
         (m) => m.AirPollutionModule
       ),
   },
   {
     path: 'locations',
     loadChildren: () =>
-      import('./locations/locations.module').then((m) => m.LocationsModule),
+      import('./modules/locations/locations.module').then(
+        (m) => m.LocationsModule
+      ),
   },
   {
     path: 'settings',
     loadChildren: () =>
-      import('./settings/settings.module').then((m) => m.SettingsModule),
+      import('./modules/settings/settings.module').then(
+        (m) => m.SettingsModule
+      ),
   },
   { path: '**', redirectTo: 'weather', pathMatch: 'full' },
 ];

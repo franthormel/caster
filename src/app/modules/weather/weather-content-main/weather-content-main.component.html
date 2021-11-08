@@ -1,0 +1,72 @@
+<section class="weather-main-parent">
+    <section class="weather-main">
+        <section class="weather-main-left">
+            <div class="margin-bottom-z3">
+                <p class="font-weight-f600">Cloudiness</p>
+                <p>{{cloudiness}}%</p>
+            </div>
+            <div class="margin-bottom-z3">
+                <p class="font-weight-f600" 
+                   matTooltip="Atmospheric pressure on the sea level">
+                   Pressure
+                </p>
+                <p>{{pressure}} hPa</p>
+            </div>
+            <div class="margin-bottom-z3">
+                <p class="font-weight-f600">Humidity</p>
+                <p>{{humidity}}%</p>
+            </div>
+        </section>
+        <section class="weather-main-middle">
+            <section class="text-center">
+                <section class="weather-main-readings">
+                    <section *ngIf="showDailyDetailReading"
+                             class="weather-main-details">
+                        <ng-container *ngIf="detailModeIsTemperature">
+                            <p><span class="weather-main-details-heading">Min</span>{{min}}</p>
+                            <p><span class="weather-main-details-heading">Max</span>{{max}}</p>
+                        </ng-container>
+                        <p><span class="weather-main-details-heading">Morning</span>{{morning}}</p>
+                        <p><span class="weather-main-details-heading">Evening</span>{{evening}}</p>
+                        <p><span class="weather-main-details-heading">Night</span>{{night}}</p>
+                    </section>
+                    <section class="align-center">
+                        <p class="weather-main-temperature"
+                           matRipple
+                           [matRippleUnbounded]="true"
+                           [ngClass]="{'text-underline': underlineTemperature}"
+                           (click)="changeToTemperatureViewMode()">
+                           {{temperature}}°
+                        </p>
+                    </section>
+                </section>
+                <div class="weather-main-conditions">
+                    <p class="margin-right-z2">{{weatherLocation}}</p>
+                    <p class="margin-right-z2 weather-main-feels-like" 
+                       matRipple
+                       [matRippleUnbounded]="true"
+                       [ngClass]="{'text-underline': underlineFeelsLike}"
+                       (click)="changeToFeelsLikeViewMode()">
+                       Feels like {{feelsLike}}
+                    </p>
+                    <mat-icon [svgIcon]="weatherIcon"></mat-icon>
+                    <p class="margin-left-z1">{{weatherDescription}}</p>
+                </div>
+            </section>
+        </section>
+        <section class="weather-main-right">
+            <div class="margin-bottom-z3">
+                <p class="font-weight-f600">Wind Speed</p>
+                <p>{{windSpeed}} m/s</p>
+            </div>
+            <div class="margin-bottom-z3">
+                <p class="font-weight-f600">Wind Direction</p>
+                <p>{{windDirection}}°</p>
+            </div>
+            <div *ngIf="windGustIsPresent" class="margin-bottom-z3">
+                <p class="font-weight-f600">Wind Gust</p>
+                <p>{{windGust}} m/s</p>
+            </div>
+        </section>
+    </section>
+</section>

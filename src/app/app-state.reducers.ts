@@ -1,12 +1,12 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
 import { staticFileUpdate } from './app-state.actions';
-import * as weather from './weather/weather-state.actions';
+import * as weather from './modules/weather/weather-state.actions';
 
 import {
   initialWeatherState,
   WeatherState,
-} from './weather/weather-state.reducers';
+} from './modules/weather/weather-state.reducers';
 
 export interface AppState {
   staticFile: number;
@@ -26,11 +26,11 @@ const _appStateReducer = createReducer(
     staticFile: file,
   })),
 
-  on(weather.detailViewTypeUpdate, (state, { dailyDetailViewMode }) => ({
+  on(weather.detailModeUpdate, (state, { mode: dailyDetailViewMode }) => ({
     ...state,
     weatherState: {
       ...state.weatherState,
-      dailyDetailViewMode: dailyDetailViewMode,
+      detailMode: dailyDetailViewMode,
     },
   })),
 
@@ -70,7 +70,7 @@ const _appStateReducer = createReducer(
     ...state,
     weatherState: {
       ...state.weatherState,
-      mode: mode,
+      readingMode: mode,
     },
   }))
 );
