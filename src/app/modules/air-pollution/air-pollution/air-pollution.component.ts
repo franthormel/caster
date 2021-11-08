@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 
 import { AirPollution } from '../../../models/air-pollution/air-pollution.models';
 import { DataManagerService } from '../../shared/services/data-manager.service';
+import { DialogHandlerService } from '../../shared/services/dialog-handler.service';
 
 @Component({
   selector: 'app-air-pollution',
@@ -15,7 +16,10 @@ export class AirPollutionComponent implements OnInit {
   airPollution!: AirPollution;
   loading = true;
 
-  constructor(private dataManager: DataManagerService) {}
+  constructor(
+    private dataManager: DataManagerService,
+    private dialogHandler: DialogHandlerService
+  ) {}
 
   ngOnInit(): void {
     this.initData();
@@ -27,11 +31,9 @@ export class AirPollutionComponent implements OnInit {
     this.airPollutionData$.subscribe({
       next: (data) => {
         this.airPollution = data;
-        console.log(data);
       },
-      // TODO Use dialogshowservice error show
       error: (e) => {
-        console.error(e);
+        this.dialogHandler.showError(e as Error);
       },
       complete: () => {
         this.loading = false;

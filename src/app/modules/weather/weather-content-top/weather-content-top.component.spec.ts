@@ -9,9 +9,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 
 import { WeatherContentTopComponent } from './weather-content-top.component';
-import { EpochConverterService } from '../../../epoch-converter.service';
+import { EpochConverterService } from '../../shared/services/epoch-converter.service';
 import { MoonPhaseService } from '../moon-phase.service';
-import { StateManagerService } from '../../../state-manager.service';
+import { StateManagerService } from '../../shared/services/state-manager.service';
 
 import { appStateReducer } from '../../../app-state.reducers';
 import { WEATHER_DATA } from '../../../tests/weather.testing';

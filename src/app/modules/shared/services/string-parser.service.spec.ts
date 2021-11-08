@@ -10,7 +10,7 @@ import {
   STRINGS_WORDS_BIG,
   STRINGS_SENTENCES_SMALL,
   STRINGS_SENTENCES_BIG,
-} from './tests/services/strings.testing';
+} from '../../../tests/services/strings.testing';
 
 describe('StringParserService', () => {
   let service: StringParserService;

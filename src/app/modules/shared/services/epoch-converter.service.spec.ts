@@ -9,7 +9,7 @@ import {
   EPOCH_OUTPUTS_DATE,
   EPOCH_OUTPUTS_DATE_TIME,
   EPOCH_OUTPUTS_TIME,
-} from './tests/services/epoch-converter.testing';
+} from '../../../tests/services/epoch-converter.testing';
 
 describe('EpochConverterService', () => {
   let service: EpochConverterService;

@@ -15,6 +15,7 @@ import { DataManagerService } from './services/data-manager.service';
 import { EpochConverterService } from './services/epoch-converter.service';
 import { StateManagerService } from './services/state-manager.service';
 import { StringParserService } from './services/string-parser.service';
+import { DialogHandlerService } from './services/dialog-handler.service';
 @NgModule({
   declarations: [ErrorDialogComponent, SearchbarComponent],
   imports: [
@@ -29,6 +30,7 @@ import { StringParserService } from './services/string-parser.service';
   ],
   providers: [
     DataManagerService,
+    DialogHandlerService,
     EpochConverterService,
     StateManagerService,
     StringParserService,

@@ -1,12 +1,11 @@
 import { Component, Input } from '@angular/core';
 
-import { MatDialog } from '@angular/material/dialog';
-
 import { WeatherAlert } from '../../../models/weather/weather-alert.models';
 import { WeatherData } from '../../../models/weather/weather-data.models';
 import { WeatherReadingDaily } from '../../../models/weather/weather-reading-daily.models';
 
 import { MoonPhaseService } from '../moon-phase.service';
+import { DialogHandlerService } from '../../shared/services/dialog-handler.service';
 import { EpochConverterService } from '../../shared/services/epoch-converter.service';
 import { StateManagerService } from '../../shared/services/state-manager.service';
 import { WeatherAlertComponent } from '../weather-alert/weather-alert.component';
@@ -21,7 +20,7 @@ export class WeatherContentTopComponent {
 
   constructor(
     public stateManager: StateManagerService,
-    private dialog: MatDialog,
+    private dialogHandler: DialogHandlerService,
     private epochConverter: EpochConverterService,
     private moonphase: MoonPhaseService
   ) {}
@@ -42,13 +41,8 @@ export class WeatherContentTopComponent {
     this.stateManager.indexHourlyDecrement();
   }
 
-
-  // TODO Move to dialogshowservice
   showAlertDialog() {
-    this.dialog.open(WeatherAlertComponent, {
-      data: this.alerts,
-      disableClose: true,
-    });
+    this.dialogHandler.showWeatherAlert(this.alerts, true);
   }
 
   get alertsAreAvailable(): boolean {

@@ -7,9 +7,9 @@ import { appStateReducer } from '../../../app-state.reducers';
 import { WEATHER_DATA } from '../../../tests/weather.testing';
 
 import { WeatherContentMainComponent } from './weather-content-main.component';
-import { StringParserService } from '../../../string-parser.service';
+import { StringParserService } from '../../shared/services/string-parser.service';
 import { TemperatureConverterService } from '../temperature-converter.service';
-import { StateManagerService } from '../../../state-manager.service';
+import { StateManagerService } from '../../shared/services/state-manager.service';
 
 describe('WeatherContentMainComponent', () => {
   let component: WeatherContentMainComponent;

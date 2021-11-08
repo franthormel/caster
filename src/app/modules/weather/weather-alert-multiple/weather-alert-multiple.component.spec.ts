@@ -3,7 +3,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 
 import { WeatherAlertContentComponent } from '../weather-alert-content/weather-alert-content.component';
 import { WeatherAlertMultipleComponent } from './weather-alert-multiple.component';
-import { EpochConverterService } from '../../../epoch-converter.service';
+import { EpochConverterService } from '../../shared/services/epoch-converter.service';
 
 describe('WeatherAlertMultipleComponent', () => {
   let component: WeatherAlertMultipleComponent;

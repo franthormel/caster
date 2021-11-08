@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { StoreModule } from '@ngrx/store';
 
-import { appStateReducer } from './app-state.reducers';
+import { appStateReducer } from '../../../app-state.reducers';
 import { StateManagerService } from './state-manager.service';
 
 describe('StateManagerService', () => {

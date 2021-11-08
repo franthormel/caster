@@ -6,7 +6,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { WeatherContentBottomComponent } from './weather-content-bottom.component';
 import { TemperatureConverterService } from '../temperature-converter.service';
-import { StateManagerService } from '../../../state-manager.service';
+import { StateManagerService } from '../../shared/services/state-manager.service';
 
 import { appStateReducer } from '../../../app-state.reducers';
 import { WEATHER_DATA } from '../../../tests/weather.testing';

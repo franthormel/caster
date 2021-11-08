@@ -12,11 +12,11 @@ import { WeatherContentMainComponent } from '../weather-content-main/weather-con
 import { WeatherContentTopComponent } from '../weather-content-top/weather-content-top.component';
 import { WeatherContentBottomComponent } from '../weather-content-bottom/weather-content-bottom.component';
 import { WeatherMainComponent } from './weather-main.component';
-import { StateManagerService } from '../../../state-manager.service';
+import { StateManagerService } from '../../shared/services/state-manager.service';
 
 import { appStateReducer } from '../../../app-state.reducers';
 import { WEATHER_DATA } from '../../../tests/weather.testing';
-import { DataManagerService } from 'src/app/data-manager.service';
+import { DataManagerService } from '../../shared/services/data-manager.service';
 
 describe('WeatherMainComponent', () => {
   let component: WeatherMainComponent;
