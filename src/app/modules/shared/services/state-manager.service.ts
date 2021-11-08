@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
+import { environment } from '../../../../environments/environment';
 import { AppState } from '../../../app-state.reducers';
 import * as weather from '../../../modules/weather/weather-state.actions';
+import * as airPollution from '../../../modules/air-pollution/air-pollution-state.actions';
 
-import { environment } from '../../../../environments/environment';
 import {
   WeatherDetailMode,
   WeatherReadingMode,
@@ -52,6 +53,18 @@ export class StateManagerService {
     }
   }
 
+  indexAirPollutionIncrement() {
+    if (this.canIndexAirPollutionIncrement) {
+      this.store.dispatch(airPollution.indexIncrement());
+    }
+  }
+
+  indexAirPollutionDecrement() {
+    if (this.canIndexAirPollutionDecrement) {
+      this.store.dispatch(airPollution.indexDecrement());
+    }
+  }
+
   indexDailyIncrement() {
     if (this.canIndexDailyIncrement) {
       this.store.dispatch(weather.indexDailyIncrement());
@@ -84,6 +97,10 @@ export class StateManagerService {
     return this.detailModeIs(WeatherDetailMode.Temperature);
   }
 
+  get indexAirPollution(): number {
+    return this.appState.airPollutionState.index;
+  }
+
   get indexDaily(): number {
     return this.appState.weatherState.indexDaily;
   }
@@ -112,20 +129,28 @@ export class StateManagerService {
     return this.appState.staticFile;
   }
 
+  private get canIndexAirPollutionDecrement(): boolean {
+    return this.indexAirPollution >= 1;
+  }
+
+  private get canIndexAirPollutionIncrement(): boolean {
+    return this.indexAirPollution < environment.maxAirPollution - 1;
+  }
+
   private get canIndexDailyDecrement(): boolean {
-    return this.appState.weatherState.indexDaily >= 1;
+    return this.indexDaily >= 1;
   }
 
   private get canIndexDailyIncrement(): boolean {
-    return this.appState.weatherState.indexDaily < environment.maxDaily - 1;
+    return this.indexDaily < environment.maxDaily - 1;
   }
 
   private get canIndexHourlyDecrement(): boolean {
-    return this.appState.weatherState.indexHourly >= 1;
+    return this.indexHourly >= 1;
   }
 
   private get canIndexHourlyIncrement(): boolean {
-    return this.appState.weatherState.indexHourly < environment.maxHourly - 1;
+    return this.indexHourly < environment.maxHourly - 1;
   }
 
   private changeDetailMode(mode: WeatherDetailMode) {

@@ -4,7 +4,7 @@ import { AirQualityIndex } from '../../models/air-pollution/air-pollution.enums'
 @Injectable({
   providedIn: 'root',
 })
-export class AirQualityIndexService {
+export class AirQualityService {
   describe(index: number): string {
     return this.validAqi(index) ? AirQualityIndex[index] : AirQualityIndex[0];
   }

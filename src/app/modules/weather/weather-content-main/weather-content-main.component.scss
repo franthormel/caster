@@ -1,8 +1,7 @@
-@use "../weather" as weather;
 @use "../../../../styles.scss" as global;
 
 @mixin main-side {
-  @include weather.padding-hv;
+  @include global.padding-hv;
   width: 15%;
 }
 
@@ -21,12 +20,12 @@
 
 .weather-main-right {
   @include main-side;
-  @include weather.padding-hv;
+  @include global.padding-hv;
   text-align: right;
 }
 
 .weather-main-middle {
-  @include weather.padding-hv;
+  @include global.padding-hv;
   width: 40%;
   margin: auto;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);

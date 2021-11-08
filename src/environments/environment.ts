@@ -2,16 +2,16 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+// TODO Rearrange accordingly
 export const environment = {
   production: false,
   assetsDataUrl: '/assets/data/',
   assetsIcons: '/assets/images/icons/',
   assetsIconsMoon: '/assets/images/icons/moon/light/',
   assetsIconsWeather: '/assets/images/icons/weather/',
-  // Total of 47 hourly forecasts ~ 2 days
   maxHourly: 47,
-  // Total of 7 daily forecasts ~ 1 week
   maxDaily: 7,
+  maxAirPollution: 113,
 };
 
 /*

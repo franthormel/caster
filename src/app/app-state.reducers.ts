@@ -2,20 +2,28 @@ import { Action, createReducer, on } from '@ngrx/store';
 
 import { staticFileUpdate } from './app-state.actions';
 import * as weather from './modules/weather/weather-state.actions';
+import * as airPollution from './modules/air-pollution/air-pollution-state.actions';
 
 import {
   initialWeatherState,
   WeatherState,
 } from './modules/weather/weather-state.reducers';
 
+import {
+  initialAirPollutionState,
+  AirPollutionState,
+} from './modules/air-pollution/air-pollution-state.reducers';
+
 export interface AppState {
   staticFile: number;
   weatherState: WeatherState;
+  airPollutionState: AirPollutionState;
 }
 
 export const initialAppState: AppState = {
   staticFile: 1,
   weatherState: initialWeatherState,
+  airPollutionState: initialAirPollutionState,
 };
 
 const _appStateReducer = createReducer(
@@ -24,6 +32,20 @@ const _appStateReducer = createReducer(
   on(staticFileUpdate, (state, { file }) => ({
     ...state,
     staticFile: file,
+  })),
+
+  on(airPollution.indexDecrement, (state) => ({
+    ...state,
+    airPollutionState: {
+      index: state.airPollutionState.index - 1,
+    },
+  })),
+
+  on(airPollution.indexIncrement, (state) => ({
+    ...state,
+    airPollutionState: {
+      index: state.airPollutionState.index + 1,
+    },
   })),
 
   on(weather.detailModeUpdate, (state, { mode: dailyDetailViewMode }) => ({

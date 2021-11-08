@@ -1,9 +1,8 @@
-@use "../weather" as weather;
 @use "../../../../styles.scss" as global;
 
 .weather-bottom {
   @include global.horizontally-apart;
-  @include weather.padding-hv;
+  @include global.padding-hv;
 }
 
 .weather-bottom-left {

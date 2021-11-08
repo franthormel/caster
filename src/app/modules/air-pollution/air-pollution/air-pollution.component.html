@@ -1,1 +1,51 @@
-<p>TODO: Air Pollution</p>
+<!--Controls-->
+<section>
+    <button mat-icon-button 
+            aria-label="Previous day button" 
+            matTooltip="Previous day"
+            (click)="previous()">
+        <mat-icon color="accent"
+                  aria-label="Previous icon">
+                  chevron_left
+        </mat-icon>
+    </button>
+    <button mat-icon-button 
+            aria-label="Next day button" 
+            matTooltip="Next day"
+            (click)="next()">
+        <mat-icon color="accent"
+                  aria-label="Next icon">
+                  chevron_right
+        </mat-icon>
+    </button>
+    <p aria-label="Day time" 
+       matTooltip="Time of forecast">
+       {{time}}
+    </p>
+</section>
+
+<!--Description-->
+<section>
+    <h4>Today we are experiencing</h4>
+    <h2>{{description}} air quality</h2>
+</section>
+
+<!--Components-->
+<section>
+
+    <!--Header-->
+    <section>
+        <p>Air Components</p>
+        <p>Concentration (µg/m³)</p>
+    </section>
+
+    <!--Contents-->
+    <section *ngFor="let component of airComponents">
+        <p>{{component.name}}</p>
+        <p>{{component.concentration}}</p>
+    </section>
+</section>
+
+<footer>
+    Source: <a href="https://en.wikipedia.org/wiki/Air_quality_index#CAQI">Common Air Quality Index (CAQI)</a>
+</footer>

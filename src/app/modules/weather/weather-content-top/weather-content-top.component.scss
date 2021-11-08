@@ -1,4 +1,3 @@
-@use "../weather" as weather;
 @use "../../../../styles.scss" as global;
 
 @mixin align-self-and-text($self: flex-end, $text: left) {
@@ -12,7 +11,7 @@
 }
 
 .weather-top-parent {
-  @include weather.padding-hv;
+  @include global.padding-hv;
 }
 
 .weather-top-right {

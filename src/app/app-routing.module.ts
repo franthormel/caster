@@ -28,7 +28,7 @@ export const routes: Routes = [
         (m) => m.SettingsModule
       ),
   },
-  { path: '**', redirectTo: 'weather', pathMatch: 'full' },
+  { path: '**', redirectTo: 'air-pollution', pathMatch: 'full' },
 ];
 
 @NgModule({
