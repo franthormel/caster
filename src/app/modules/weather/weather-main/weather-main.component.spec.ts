@@ -16,6 +16,7 @@ import { StateManagerService } from '../../../state-manager.service';
 
 import { appStateReducer } from '../../../app-state.reducers';
 import { WEATHER_DATA } from '../../../tests/weather.testing';
+import { DataManagerService } from 'src/app/data-manager.service';
 
 describe('WeatherMainComponent', () => {
   let component: WeatherMainComponent;
@@ -35,7 +36,7 @@ describe('WeatherMainComponent', () => {
         MatDialogModule,
         StoreModule.forRoot({ appState: appStateReducer }),
       ],
-      providers: [StateManagerService],
+      providers: [StateManagerService, DataManagerService],
     }).compileComponents();
   });
 

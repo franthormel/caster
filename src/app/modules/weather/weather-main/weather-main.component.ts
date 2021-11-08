@@ -8,6 +8,7 @@ import { ErrorDialogComponent } from '../../shared/error-dialog/error-dialog.com
 import { WeatherData } from '../../../models/weather/weather-data.models';
 import { WeatherGeolocation } from '../../../models/geolocation/geolocation.models';
 import { StateManagerService } from '../../../state-manager.service';
+import { DataManagerService } from '../../../data-manager.service';
 
 @Component({
   selector: 'app-weather-main',
@@ -24,6 +25,7 @@ export class WeatherMainComponent implements OnInit {
 
   constructor(
     public stateManager: StateManagerService,
+    private dataManager: DataManagerService,
     private dialog: MatDialog
   ) {}
 
@@ -40,8 +42,8 @@ export class WeatherMainComponent implements OnInit {
   }
 
   private collectAllData(): Observable<[WeatherData, WeatherGeolocation[]]> {
-    this.weatherData$ = this.stateManager.localFileWeather();
-    this.geolocationsData$ = this.stateManager.localFileGeolocation();
+    this.weatherData$ = this.dataManager.localFileWeather();
+    this.geolocationsData$ = this.dataManager.localFileGeolocation();
     this.weatherData$.subscribe({
       next: (data) => {
         this.weatherData = data;

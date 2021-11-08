@@ -7,8 +7,6 @@ import { AppState } from './app-state.reducers';
 import * as weather from './modules/weather/weather-state.actions';
 
 import { environment } from '../environments/environment';
-import { WeatherGeolocation } from './models/geolocation/geolocation.models';
-import { WeatherData } from './models/weather/weather-data.models';
 import {
   WeatherDetailMode,
   WeatherReadingMode,
@@ -21,10 +19,7 @@ export class StateManagerService {
   private appState$!: Observable<AppState>;
   private appState!: AppState;
 
-  constructor(
-    private httpClient: HttpClient,
-    private store: Store<{ appState: AppState }>
-  ) {
+  constructor(private store: Store<{ appState: AppState }>) {
     this.initState();
   }
 
@@ -82,24 +77,6 @@ export class StateManagerService {
     }
   }
 
-  localFileGeolocation(): Observable<WeatherGeolocation[]> {
-    return this.httpClient.get<WeatherGeolocation[]>(
-      `${environment.assetsDataUrl}geolocations/${this.appState.staticFile}.json`,
-      {
-        responseType: 'json',
-      }
-    );
-  }
-
-  localFileWeather(): Observable<WeatherData> {
-    return this.httpClient.get<WeatherData>(
-      `${environment.assetsDataUrl}weather/${this.appState.staticFile}.json`,
-      {
-        responseType: 'json',
-      }
-    );
-  }
-
   get detailModeIsFeelsLike(): boolean {
     return this.detailModeIs(WeatherDetailMode.FeelsLike);
   }
@@ -130,6 +107,10 @@ export class StateManagerService {
 
   get readingModeIsHourly(): boolean {
     return this.readingModeIs(WeatherReadingMode.Hourly);
+  }
+
+  get staticFile() : number {
+    return this.appState.staticFile;
   }
 
   private get canIndexDailyDecrement(): boolean {
