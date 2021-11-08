@@ -5,7 +5,7 @@ import { WeatherData } from '../../../models/weather/weather-data.models';
 import { WeatherReading } from '../../../models/weather/weather-reading.models';
 
 import { TemperatureConverterService } from '../temperature-converter.service';
-import { StateManagerService } from '../../../state-manager.service';
+import { StateManagerService } from '../../shared/services/state-manager.service';
 
 @Component({
   selector: 'app-weather-content-bottom',

@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { WeatherAlert } from '../../../models/weather/weather-alert.models';
-import { EpochConverterService } from '../../../epoch-converter.service';
+import { EpochConverterService } from '../../shared/services/epoch-converter.service';
 
 @Component({
   selector: 'app-weather-alert',

@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { StoreModule } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { appStateReducer } from './app-state.reducers';
+import { appStateReducer } from '../../../app-state.reducers';
 import { DataManagerService } from './data-manager.service';
 import { StateManagerService } from './state-manager.service';
 

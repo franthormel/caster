@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { AirPollution } from '../../../models/air-pollution/air-pollution.models';
-import { DataManagerService } from '../../../data-manager.service';
+import { DataManagerService } from '../../shared/services/data-manager.service';
 
 @Component({
   selector: 'app-air-pollution',

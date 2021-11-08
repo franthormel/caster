@@ -1,16 +1,15 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { AppState } from './app-state.reducers';
-import * as weather from './modules/weather/weather-state.actions';
+import { AppState } from '../../../app-state.reducers';
+import * as weather from '../../../modules/weather/weather-state.actions';
 
-import { environment } from '../environments/environment';
+import { environment } from '../../../../environments/environment';
 import {
   WeatherDetailMode,
   WeatherReadingMode,
-} from './models/weather/weather.enums';
+} from '../../../models/weather/weather.enums';
 
 @Injectable({
   providedIn: 'root',
@@ -109,7 +108,7 @@ export class StateManagerService {
     return this.readingModeIs(WeatherReadingMode.Hourly);
   }
 
-  get staticFile() : number {
+  get staticFile(): number {
     return this.appState.staticFile;
   }
 

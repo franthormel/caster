@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { WeatherAlert } from './models/weather/weather-alert.models';
+import { WeatherAlert } from '../../../models/weather/weather-alert.models';
 
 @Injectable({
   providedIn: 'root',

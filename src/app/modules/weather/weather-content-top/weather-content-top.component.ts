@@ -7,8 +7,8 @@ import { WeatherData } from '../../../models/weather/weather-data.models';
 import { WeatherReadingDaily } from '../../../models/weather/weather-reading-daily.models';
 
 import { MoonPhaseService } from '../moon-phase.service';
-import { EpochConverterService } from '../../../epoch-converter.service';
-import { StateManagerService } from '../../../state-manager.service';
+import { EpochConverterService } from '../../shared/services/epoch-converter.service';
+import { StateManagerService } from '../../shared/services/state-manager.service';
 import { WeatherAlertComponent } from '../weather-alert/weather-alert.component';
 
 @Component({

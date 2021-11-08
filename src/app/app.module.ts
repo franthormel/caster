@@ -17,10 +17,6 @@ import { appStateReducer } from './app-state.reducers';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { EpochConverterService } from './epoch-converter.service';
-import { StringParserService } from './string-parser.service';
-import { StateManagerService } from './state-manager.service';
-
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -38,6 +34,5 @@ import { StateManagerService } from './state-manager.service';
     MatListModule,
   ],
   bootstrap: [AppComponent],
-  providers: [EpochConverterService, StringParserService, StateManagerService],
 })
 export class AppModule {}

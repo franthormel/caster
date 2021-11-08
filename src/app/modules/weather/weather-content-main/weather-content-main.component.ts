@@ -6,9 +6,9 @@ import { WeatherData } from '../../../models/weather/weather-data.models';
 import { WeatherCondition } from '../../../models/weather/weather-condition.models';
 import { WeatherReading } from '../../../models/weather/weather-reading.models';
 
-import { StringParserService } from '../../../string-parser.service';
+import { StringParserService } from '../../shared/services/string-parser.service';
 import { TemperatureConverterService } from '../temperature-converter.service';
-import { StateManagerService } from '../../../state-manager.service';
+import { StateManagerService } from '../../shared/services/state-manager.service';
 
 @Component({
   selector: 'app-weather-content-main',

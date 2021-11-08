@@ -7,8 +7,8 @@ import { ErrorDialogComponent } from '../../shared/error-dialog/error-dialog.com
 
 import { WeatherData } from '../../../models/weather/weather-data.models';
 import { WeatherGeolocation } from '../../../models/geolocation/geolocation.models';
-import { StateManagerService } from '../../../state-manager.service';
-import { DataManagerService } from '../../../data-manager.service';
+import { StateManagerService } from '../../shared/services/state-manager.service';
+import { DataManagerService } from '../../shared/services/data-manager.service';
 
 @Component({
   selector: 'app-weather-main',

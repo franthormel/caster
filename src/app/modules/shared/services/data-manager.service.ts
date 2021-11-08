@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { environment } from '../environments/environment';
+import { environment } from '../../../../environments/environment';
 
-import { AirPollution } from './models/air-pollution/air-pollution.models';
-import { WeatherGeolocation } from './models/geolocation/geolocation.models';
-import { WeatherData } from './models/weather/weather-data.models';
+import { AirPollution } from '../../../models/air-pollution/air-pollution.models';
+import { WeatherGeolocation } from '../../../models/geolocation/geolocation.models';
+import { WeatherData } from '../../../models/weather/weather-data.models';
 import { StateManagerService } from './state-manager.service';
 
 @Injectable({
