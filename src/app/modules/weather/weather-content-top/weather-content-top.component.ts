@@ -42,6 +42,8 @@ export class WeatherContentTopComponent {
     this.stateManager.indexHourlyDecrement();
   }
 
+
+  // TODO Move to dialogshowservice
   showAlertDialog() {
     this.dialog.open(WeatherAlertComponent, {
       data: this.alerts,
