@@ -34,7 +34,7 @@
                         <p class="weather-main-temperature"
                            matRipple
                            [matRippleUnbounded]="true"
-                           [ngClass]="{'text-underline': underlineTemperature}"
+                           [ngClass]="{'text-focus-temperature': underlineTemperature}"
                            (click)="changeToTemperatureViewMode()">
                            {{temperature}}°
                         </p>
@@ -45,7 +45,7 @@
                     <p class="margin-right-z2 weather-main-feels-like" 
                        matRipple
                        [matRippleUnbounded]="true"
-                       [ngClass]="{'text-underline': underlineFeelsLike}"
+                       [ngClass]="{'text-focus-feelslike': underlineFeelsLike}"
                        (click)="changeToFeelsLikeViewMode()">
                        Feels like {{feelsLike}}
                     </p>

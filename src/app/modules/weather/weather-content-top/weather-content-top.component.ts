@@ -160,6 +160,7 @@ export class WeatherContentTopComponent {
    * @param compare UTC seconds
    * @returns string
    */
+  // TODO Try to move ot epochconverter service
   private displayDateTime(
     display: number,
     point: number,

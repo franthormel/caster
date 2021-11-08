@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { AirPollutionRoutingModule } from './air-pollution-routing.module';
 import { AirPollutionComponent } from './air-pollution/air-pollution.component';
@@ -17,6 +18,7 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule,
     MatButtonModule,
     MatIconModule,
+    MatProgressBarModule,
   ],
   providers: [AirQualityService],
 })

@@ -9,7 +9,7 @@
   margin-#{$side}: #{$margin}px;
 }
 
-@mixin padding-hv {
+@mixin padding-2hv {
   $value: 2;
 
   padding: #{$value}vh #{$value}vw;

@@ -2,7 +2,7 @@
 
 .weather-bottom {
   @include global.horizontally-apart;
-  @include global.padding-hv;
+  @include global.padding-2hv;
 }
 
 .weather-bottom-left {

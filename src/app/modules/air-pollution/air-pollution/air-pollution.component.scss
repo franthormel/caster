@@ -1,2 +1,43 @@
 @use "../../../../styles.scss" as global;
 
+.air-pollution {
+  width: 60vw;
+  margin-top: 3vh;
+  margin-left: auto;
+  margin-right: auto;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  @include global.padding-2hv;
+}
+
+.air-pollution-controls {
+  @include global.horizontally-apart;
+  width: 40%;
+  margin: auto;
+}
+
+.air-pollution-description {
+  text-align: center;
+  font-weight: 600;
+  font-size: x-large;
+}
+
+.air-pollution-description-span {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+}
+
+.air-pollution-components {
+  width: 60%;
+  margin: auto;
+}
+
+.air-pollution-components-header {
+  @include global.horizontally-apart;
+  font-weight: 600;
+}
+
+.air-pollution-components-contents {
+  @include global.horizontally-apart;
+}
