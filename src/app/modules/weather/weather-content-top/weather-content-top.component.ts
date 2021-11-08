@@ -142,23 +142,15 @@ export class WeatherContentTopComponent {
   }
 
   get showCurrent(): boolean {
-    return this.currentModeIsCurrent && this.weatherData.current !== undefined;
+    return this.currentModeIsCurrent;
   }
 
   get showDaily(): boolean {
-    return (
-      this.currentModeIsDaily &&
-      this.weatherData.daily !== undefined &&
-      this.weatherData.daily.length > 0
-    );
+    return this.currentModeIsDaily && this.weatherData.daily.length > 0;
   }
 
   get showHourly(): boolean {
-    return (
-      this.currentModeIsHourly &&
-      this.weatherData.hourly !== undefined &&
-      this.weatherData.hourly.length > 0
-    );
+    return this.currentModeIsHourly && this.weatherData.hourly.length > 0;
   }
 
   get titleViewMode(): string {
@@ -193,7 +185,9 @@ export class WeatherContentTopComponent {
   }
 
   private get alerts(): WeatherAlert[] | undefined {
-    return this.weatherData !== undefined ? this.weatherData.alerts : undefined;
+    const alerts = this.weatherData.alerts;
+
+    return alerts !== undefined ? alerts : undefined;
   }
 
   private get currentDailyWeather(): WeatherReadingDaily {
