@@ -5,7 +5,7 @@
                 {{alert.event}} from {{alert.sender_name}}
             </mat-panel-title>
             <mat-panel-description>
-                {{epochConverter.convertToTimerange(alert)}}
+                {{epochConverter.toTimerange(alert)}}
             </mat-panel-description>
         </mat-expansion-panel-header>
         <app-weather-alert-content [alert]="alert"></app-weather-alert-content>

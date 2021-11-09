@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 
 import { AirPollution } from '../../../models/air-pollution/air-pollution.models';
 import { AirPollutionReading } from '../../../models/air-pollution/air-pollution-reading.models';
+import { WeatherData } from '../../../models/weather/weather-data.models';
 import { DataManagerService } from '../../shared/services/data-manager.service';
 import { DialogHandlerService } from '../../shared/services/dialog-handler.service';
 import { EpochConverterService } from '../../shared/services/epoch-converter.service';
@@ -23,6 +24,7 @@ export class AirPollutionComponent implements OnInit {
   airPollutionData$!: Observable<AirPollution>;
 
   airPollution!: AirPollution;
+  timezoneOffset = 0;
   loading = true;
 
   constructor(
@@ -89,15 +91,23 @@ export class AirPollutionComponent implements OnInit {
   }
 
   get time(): string {
-    return this.epochConverter.convertToDateTime(this.reading.dt);
+    const point = this.airPollution.list[0];
+    const compare = this.reading;
+
+    const compareTime = compare.dt;
+    const pointTime = point.dt;
+    const offset = this.timezoneOffset;
+
+    return this.epochConverter.displayDateTime(pointTime, compareTime, offset);
   }
 
   private get reading(): AirPollutionReading {
     return this.airPollution.list[this.stateManager.indexAirPollution];
   }
 
-  private initData() {
+  private collectAllData(): Observable<[AirPollution, WeatherData]> {
     this.airPollutionData$ = this.dataManager.staticFileAirPollution();
+    const weatherData$ = this.dataManager.staticFileWeather();
 
     this.airPollutionData$.subscribe({
       next: (data) => {
@@ -106,6 +116,24 @@ export class AirPollutionComponent implements OnInit {
       error: (e) => {
         this.dialogHandler.showError(e as Error);
       },
+    });
+
+    weatherData$.subscribe({
+      next: (data) => {
+        this.timezoneOffset = data.timezone_offset;
+      },
+      error: (e) => {
+        this.dialogHandler.showError(e as Error);
+      },
+    });
+
+    return forkJoin([this.airPollutionData$, weatherData$]);
+  }
+
+  private initData() {
+    const data$ = this.collectAllData();
+
+    data$.subscribe({
       complete: () => {
         this.loading = false;
       },

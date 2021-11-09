@@ -27,7 +27,7 @@ export class WeatherAlertComponent {
 
       value = `${alert.event} from ${
         alert.sender_name
-      } (${this.epochConverter.convertToTimerange(alert)})`;
+      } (${this.epochConverter.toTimerange(alert)})`;
     }
 
     return value;

@@ -1,28 +1,40 @@
 <ng-container *ngIf="loading">
-    <mat-progress-bar color="accent" mode="indeterminate">
+    <mat-progress-bar color="accent" 
+                      mode="indeterminate">
     </mat-progress-bar>
 </ng-container>
 
-<section *ngIf="!loading" class="air-pollution">
+<section *ngIf="!loading" 
+         class="air-pollution">
     <section class="air-pollution-controls">
-        <button mat-icon-button aria-label="Previous day button" matTooltip="Previous day" (click)="previous()">
-            <mat-icon color="accent" aria-label="Previous icon">
+        <button mat-icon-button 
+                aria-label="Previous day button" 
+                matTooltip="Previous day" 
+                (click)="previous()">
+            <mat-icon color="accent" 
+                      aria-label="Previous icon">
                 chevron_left
             </mat-icon>
         </button>
-        <!--TODO Try display with offsetDays from epochconverter just like weather-content-top-->
-        <p aria-label="Day time" matTooltip="Time of forecast">
+        <p aria-label="Day time"
+           matTooltip="Time of forecast">
             {{time}}
         </p>
-        <button mat-icon-button aria-label="Next day button" matTooltip="Next day" (click)="next()">
-            <mat-icon color="accent" aria-label="Next icon">
+        <button mat-icon-button 
+                aria-label="Next day button" 
+                matTooltip="Next day"
+                (click)="next()">
+            <mat-icon color="accent" 
+                      aria-label="Next icon">
                 chevron_right
             </mat-icon>
         </button>
     </section>
 
-    <p class="air-pollution-description"><span class="air-pollution-description-span">{{description}}</span> air quality
-        is to be expected</p>
+    <p class="air-pollution-description">
+        <span class="air-pollution-description-span">{{description}}</span> 
+        air quality is to be expected
+    </p>
 
     <section class="air-pollution-components">
         <section class="air-pollution-components-header">
@@ -30,7 +42,8 @@
             <p>Concentration (µg/m³)</p>
         </section>
 
-        <section *ngFor="let component of airComponents" class="air-pollution-components-contents">
+        <section *ngFor="let component of airComponents" 
+                 class="air-pollution-components-contents">
             <p>{{component.name}}</p>
             <p>{{component.concentration}}</p>
         </section>

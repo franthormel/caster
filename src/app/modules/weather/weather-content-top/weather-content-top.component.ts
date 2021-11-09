@@ -54,14 +54,14 @@ export class WeatherContentTopComponent {
   }
 
   get currentTime(): string {
-    return this.epochConverter.convertToTime(this.weatherData.current.dt);
+    return this.epochConverter.toTime(this.weatherData.current.dt);
   }
 
   get currentTimeSunrise(): string {
     let value = '';
 
     if (this.currentModeIsCurrent) {
-      value = this.epochConverter.convertToTime(
+      value = this.epochConverter.toTime(
         this.weatherData.current.sunrise!
       );
     }
@@ -72,7 +72,7 @@ export class WeatherContentTopComponent {
     let value = '';
 
     if (this.currentModeIsCurrent) {
-      value = this.epochConverter.convertToTime(
+      value = this.epochConverter.toTime(
         this.weatherData.current.sunset!
       );
     }
@@ -83,10 +83,12 @@ export class WeatherContentTopComponent {
   get dailyTime(): string {
     const compare = this.currentDailyWeather;
     const point = this.weatherData.daily[0];
+
     const compareTime = compare.dt;
     const pointTime = point.dt;
+    const offset = this.weatherData.timezone_offset;
 
-    return this.displayDateTime(compareTime, pointTime, compareTime);
+    return this.epochConverter.displayDateTime(pointTime, compareTime, offset);
   }
 
   get dailyMoonphase(): string {
@@ -98,18 +100,18 @@ export class WeatherContentTopComponent {
   }
 
   get dailyTimeMoonrise(): string {
-    return this.epochConverter.convertToTime(this.currentDailyWeather.moonrise);
+    return this.epochConverter.toTime(this.currentDailyWeather.moonrise);
   }
 
   get dailyTimeMoonset(): string {
-    return this.epochConverter.convertToTime(this.currentDailyWeather.moonset);
+    return this.epochConverter.toTime(this.currentDailyWeather.moonset);
   }
 
   get dailyTimeSunrise(): string {
     let value = '';
 
     if (this.currentModeIsDaily) {
-      value = this.epochConverter.convertToTime(
+      value = this.epochConverter.toTime(
         this.currentDailyWeather.sunrise!
       );
     }
@@ -120,7 +122,7 @@ export class WeatherContentTopComponent {
     let value = '';
 
     if (this.currentModeIsDaily) {
-      value = this.epochConverter.convertToTime(
+      value = this.epochConverter.toTime(
         this.currentDailyWeather.sunset!
       );
     }
@@ -131,10 +133,12 @@ export class WeatherContentTopComponent {
   get hourlyTime(): string {
     const compare = this.weatherData.hourly[this.stateManager.indexHourly];
     const point = this.weatherData.hourly[0];
+
     const compareTime = compare.dt;
     const pointTime = point.dt;
+    const offset = this.weatherData.timezone_offset;
 
-    return this.displayDateTime(compareTime, pointTime, compareTime);
+    return this.epochConverter.displayDateTime(pointTime, compareTime, offset);
   }
 
   get showCurrent(): boolean {
@@ -151,34 +155,6 @@ export class WeatherContentTopComponent {
 
   get titleViewMode(): string {
     return this.stateManager.readingMode;
-  }
-
-  /**
-   * Prepends either 'Today', 'Tomorrow' or neither depending on `point` and `compare`
-   * @param display UTC seconds to display
-   * @param point UTC seconds
-   * @param compare UTC seconds
-   * @returns string
-   */
-  // TODO Try to move ot epochconverter service
-  private displayDateTime(
-    display: number,
-    point: number,
-    compare: number
-  ): string {
-    const offset = this.epochConverter.offsetDays(
-      point,
-      compare,
-      this.weatherData.timezone_offset
-    );
-
-    if (offset === 0) {
-      return `Today ${this.epochConverter.convertToTime(display)}`;
-    } else if (offset === -1) {
-      return `Tomorrow ${this.epochConverter.convertToTime(display)}`;
-    } else {
-      return this.epochConverter.convertToDateTime(display);
-    }
   }
 
   private get alerts(): WeatherAlert[] | undefined {

@@ -49,7 +49,7 @@ export class WeatherMainComponent implements OnInit {
         this.weatherData = data;
       },
       error: (e) => {
-        this.showErrorDialog(e as Error);
+        this.dialogHandler.showError(e as Error);
       },
     });
 
@@ -58,7 +58,7 @@ export class WeatherMainComponent implements OnInit {
         this.geolocations = data;
       },
       error: (e) => {
-        this.showErrorDialog(e as Error);
+        this.dialogHandler.showError(e as Error);
       },
     });
 
@@ -66,16 +66,12 @@ export class WeatherMainComponent implements OnInit {
   }
 
   private initData() {
-    const dataCollection$ = this.collectAllData();
+    const data$ = this.collectAllData();
 
-    dataCollection$.subscribe({
+    data$.subscribe({
       complete: () => {
         this.loading = false;
       },
     });
-  }
-
-  private showErrorDialog(error: Error) {
-    this.dialogHandler.showError(error);
   }
 }

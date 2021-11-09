@@ -5,23 +5,40 @@ import { WeatherAlert } from '../../../models/weather/weather-alert.models';
   providedIn: 'root',
 })
 export class EpochConverterService {
-  convertToDate(seconds: number): Date {
+  toDate(seconds: number): Date {
     return new Date(seconds * 1000);
   }
 
-  convertToDateTime(time: number): string {
-    const date = this.convertToDate(time);
+  toDateTime(time: number): string {
+    const date = this.toDate(time);
     return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
   }
 
-  convertToTime(time: number): string {
-    return this.convertToDate(time).toLocaleTimeString();
+  toTime(time: number): string {
+    return this.toDate(time).toLocaleTimeString();
   }
 
-  convertToTimerange(alert: WeatherAlert): string {
-    return `${this.convertToDateTime(alert.start)} — ${this.convertToDateTime(
-      alert.end
-    )}`;
+  toTimerange(alert: WeatherAlert): string {
+    return `${this.toDateTime(alert.start)} — ${this.toDateTime(alert.end)}`;
+  }
+
+  /**
+   * Prepends either 'Today', 'Tomorrow' or neither depending on `point` and `compare`
+   * @param display UTC seconds to display
+   * @param point UTC seconds
+   * @param compare UTC seconds
+   * @returns string
+   */
+  displayDateTime(point: number, compare: number, offset: number = 0): string {
+    const days = this.offsetDays(point, compare, offset);
+
+    if (days === 0) {
+      return `Today ${this.toTime(compare)}`;
+    } else if (days === -1) {
+      return `Tomorrow ${this.toTime(compare)}`;
+    } else {
+      return this.toDateTime(compare);
+    }
   }
 
   /**
@@ -35,7 +52,11 @@ export class EpochConverterService {
    * @param offset Timezone's offset in seconds (defaults to 0)
    * @returns number
    */
-  offsetDays(point: number, compare: number, offset: number = 0): number {
+  private offsetDays(
+    point: number,
+    compare: number,
+    offset: number = 0
+  ): number {
     const dailySeconds = 8.64e4;
     const zPoint = Math.floor((point + offset) / dailySeconds);
     const zCompare = Math.floor((compare + offset) / dailySeconds);
