@@ -1,5 +1,5 @@
 export enum AirQualityIndex {
-  'Unknown index',
+  'Unknown',
   'Good',
   'Fair',
   'Moderate',

@@ -6,6 +6,7 @@ import { StoreModule } from '@ngrx/store';
 import { AirPollutionComponent } from './air-pollution.component';
 import { appStateReducer } from '../../../app-state.reducers';
 
+// TODO Write tests
 describe('AirPollutionComponent', () => {
   let component: AirPollutionComponent;
   let fixture: ComponentFixture<AirPollutionComponent>;
