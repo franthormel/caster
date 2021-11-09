@@ -22,10 +22,10 @@ interface AirComponentDisplay {
 })
 export class AirPollutionComponent implements OnInit {
   airPollutionData$!: Observable<AirPollution>;
-
   airPollution!: AirPollution;
-  timezoneOffset = 0;
+
   loading = true;
+  timezoneOffset = 0;
 
   constructor(
     private airQuality: AirQualityService,

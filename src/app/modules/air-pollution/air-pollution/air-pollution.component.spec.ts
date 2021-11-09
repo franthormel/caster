@@ -1,12 +1,22 @@
 import { HttpClientModule } from '@angular/common/http';
-import { MatDialogModule } from '@angular/material/dialog';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { StoreModule } from '@ngrx/store';
 
-import { AirPollutionComponent } from './air-pollution.component';
-import { appStateReducer } from '../../../app-state.reducers';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 
-// TODO Write tests
+import { AirPollutionComponent } from './air-pollution.component';
+import { DataManagerService } from '../../shared/services/data-manager.service';
+import { DialogHandlerService } from '../../shared/services/dialog-handler.service';
+import { EpochConverterService } from '../../shared/services/epoch-converter.service';
+import { StateManagerService } from '../../shared/services/state-manager.service';
+import { AirQualityService } from '../air-quality.service';
+
+import { appStateReducer } from '../../../app-state.reducers';
+import { AIR_POLLUTION } from '../../../tests/air-pollution.testing';
+
 describe('AirPollutionComponent', () => {
   let component: AirPollutionComponent;
   let fixture: ComponentFixture<AirPollutionComponent>;
@@ -15,20 +25,99 @@ describe('AirPollutionComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
-        MatDialogModule,
         StoreModule.forRoot({ appState: appStateReducer }),
+        MatDialogModule,
+        MatProgressBarModule,
+        MatIconModule,
+        MatButtonModule,
       ],
       declarations: [AirPollutionComponent],
+      providers: [
+        AirQualityService,
+        DataManagerService,
+        DialogHandlerService,
+        EpochConverterService,
+        StateManagerService,
+      ],
     }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AirPollutionComponent);
     component = fixture.componentInstance;
+    component.airPollution = AIR_POLLUTION;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('properties', () => {
+    describe('loading', () => {
+      it('should be a Boolean', () => {
+        const result = component.loading;
+
+        expect(result).toBeInstanceOf(Boolean);
+      });
+    });
+
+    describe('timezoneOffset', () => {
+      it('should be a Number', () => {
+        const result = component.timezoneOffset;
+
+        expect(result).toBeInstanceOf(Number);
+      });
+    });
+  });
+
+  describe('methods()', () => {
+    describe('next()', () => {
+      beforeEach(() => {
+        spyOn(component, 'next');
+
+        component.next();
+      });
+
+      it('should be called when invoked', () => {
+        expect(component.next).toHaveBeenCalled();
+      });
+    });
+
+    describe('previous()', () => {
+      beforeEach(() => {
+        spyOn(component, 'previous');
+
+        component.previous();
+      });
+
+      it('should be called when invoked', () => {
+        expect(component.previous).toHaveBeenCalled();
+      });
+    });
+
+    describe('airComponents()', () => {
+      it('should return an Array', () => {
+        const result = component.airComponents;
+
+        expect(result).toBeInstanceOf(Array);
+      });
+    });
+
+    describe('description()', () => {
+      it('should return an String', () => {
+        const result = component.description;
+
+        expect(result).toBeInstanceOf(String);
+      });
+    });
+
+    describe('time()', () => {
+      it('should return an String', () => {
+        const result = component.time;
+
+        expect(result).toBeInstanceOf(String);
+      });
+    });
   });
 });
