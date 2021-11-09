@@ -13,6 +13,15 @@ import { StateManagerService } from './state-manager.service';
   providedIn: 'root',
 })
 export class DataManagerService {
+  private readonly DATA_URL = {
+    STATIC: '/assets/data/',
+    LIVE: {
+      AIR: 'http://api.openweathermap.org/data/2.5/air_pollution/forecast',
+      GEOCODING_REVERSE: 'http://api.openweathermap.org/geo/1.0/reverse',
+      WEATHER: 'https://api.openweathermap.org/data/2.5/onecall',
+    },
+  };
+
   constructor(
     private httpClient: HttpClient,
     private stateManager: StateManagerService
@@ -37,14 +46,14 @@ export class DataManagerService {
   }
 
   private get urlGeolocation(): string {
-    return `${environment.assetsDataUrl}geolocations/${this.stateManager.staticFile}.json`;
+    return `${this.DATA_URL.STATIC}geolocations/${this.stateManager.staticFile}.json`;
   }
 
   private get urlWeather(): string {
-    return `${environment.assetsDataUrl}weather/${this.stateManager.staticFile}.json`;
+    return `${this.DATA_URL.STATIC}weather/${this.stateManager.staticFile}.json`;
   }
 
   private get urlAirPollution(): string {
-    return `${environment.assetsDataUrl}air_pollution/${this.stateManager.staticFile}.json`;
+    return `${this.DATA_URL.STATIC}air_pollution/${this.stateManager.staticFile}.json`;
   }
 }

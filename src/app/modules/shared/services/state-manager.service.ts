@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { environment } from '../../../../environments/environment';
 import { AppState } from '../../../app-state.reducers';
 import * as weather from '../../../modules/weather/weather-state.actions';
 import * as airPollution from '../../../modules/air-pollution/air-pollution-state.actions';
@@ -16,6 +15,13 @@ import {
   providedIn: 'root',
 })
 export class StateManagerService {
+  // Presumed maximum amount of entries for each reading
+  private readonly MAX = {
+    HOURLY: 47,
+    DAILY: 7,
+    AIR_POLLUTION: 113,
+  };
+
   private appState$!: Observable<AppState>;
   private appState!: AppState;
 
@@ -134,7 +140,7 @@ export class StateManagerService {
   }
 
   private get canIndexAirPollutionIncrement(): boolean {
-    return this.indexAirPollution < environment.maxAirPollution - 1;
+    return this.indexAirPollution < this.MAX.AIR_POLLUTION - 1;
   }
 
   private get canIndexDailyDecrement(): boolean {
@@ -142,7 +148,7 @@ export class StateManagerService {
   }
 
   private get canIndexDailyIncrement(): boolean {
-    return this.indexDaily < environment.maxDaily - 1;
+    return this.indexDaily < this.MAX.DAILY - 1;
   }
 
   private get canIndexHourlyDecrement(): boolean {
@@ -150,7 +156,7 @@ export class StateManagerService {
   }
 
   private get canIndexHourlyIncrement(): boolean {
-    return this.indexHourly < environment.maxHourly - 1;
+    return this.indexHourly < this.MAX.HOURLY - 1;
   }
 
   private changeDetailMode(mode: WeatherDetailMode) {

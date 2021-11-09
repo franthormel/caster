@@ -18,6 +18,12 @@ import { NAVIGATION_LINKS } from './data/navigation-links.data';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  private readonly ICONS = {
+    GENERAL: '/assets/images/icons/',
+    MOON: '/assets/images/icons/moon/light/',
+    WEATHER: '/assets/images/icons/weather/',
+  };
+
   constructor(
     private iconRegistry: MatIconRegistry,
     private router: Router,
@@ -46,15 +52,15 @@ export class AppComponent implements OnInit {
   }
 
   private fetchIconAsset(filename: string): string {
-    return `${environment.assetsIcons}${filename}.svg`;
+    return `${this.ICONS.GENERAL}${filename}.svg`;
   }
 
   private fetchIconAssetMoon(filename: string): string {
-    return `${environment.assetsIconsMoon}${filename}.svg`;
+    return `${this.ICONS.MOON}${filename}.svg`;
   }
 
   private fetchIconAssetWeather(filename: string): string {
-    return `${environment.assetsIconsWeather}${filename}.svg`;
+    return `${this.ICONS.WEATHER}${filename}.svg`;
   }
 
   private registerAllIcons() {
