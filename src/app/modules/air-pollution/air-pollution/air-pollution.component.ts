@@ -106,15 +106,15 @@ export class AirPollutionComponent implements OnInit {
   }
 
   private collectAllData(): Observable<[AirPollution, WeatherData]> {
-    this.airPollutionData$ = this.dataManager.staticFileAirPollution();
-    const weatherData$ = this.dataManager.staticFileWeather();
+    this.airPollutionData$ = this.dataManager.staticAirPollutionFile();
+    const weatherData$ = this.dataManager.staticWeatherFile();
 
     this.airPollutionData$.subscribe({
       next: (data) => {
         this.airPollution = data;
       },
-      error: (e) => {
-        this.dialogHandler.showError(e as Error);
+      error: (error) => {
+        this.dialogHandler.showError(error as Error);
       },
     });
 
@@ -122,8 +122,8 @@ export class AirPollutionComponent implements OnInit {
       next: (data) => {
         this.timezoneOffset = data.timezone_offset;
       },
-      error: (e) => {
-        this.dialogHandler.showError(e as Error);
+      error: (error) => {
+        this.dialogHandler.showError(error as Error);
       },
     });
 

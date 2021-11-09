@@ -41,15 +41,15 @@ export class WeatherMainComponent implements OnInit {
   }
 
   private collectAllData(): Observable<[WeatherData, WeatherGeolocation[]]> {
-    this.weatherData$ = this.dataManager.staticFileWeather();
-    this.geolocationsData$ = this.dataManager.staticFileGeolocation();
+    this.weatherData$ = this.dataManager.staticWeatherFile();
+    this.geolocationsData$ = this.dataManager.staticGeolocationFile();
 
     this.weatherData$.subscribe({
       next: (data) => {
         this.weatherData = data;
       },
-      error: (e) => {
-        this.dialogHandler.showError(e as Error);
+      error: (error) => {
+        this.dialogHandler.showError(error as Error);
       },
     });
 
@@ -57,8 +57,8 @@ export class WeatherMainComponent implements OnInit {
       next: (data) => {
         this.geolocations = data;
       },
-      error: (e) => {
-        this.dialogHandler.showError(e as Error);
+      error: (error) => {
+        this.dialogHandler.showError(error as Error);
       },
     });
 
