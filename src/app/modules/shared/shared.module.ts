@@ -14,7 +14,7 @@ import { SearchbarComponent } from './searchbar/searchbar.component';
 import { DataManagerService } from './services/data-manager.service';
 import { EpochConverterService } from './services/epoch-converter.service';
 import { StateManagerService } from './services/state-manager.service';
-import { StringParserService } from './services/string-parser.service';
+import { StringManagerService } from './services/string-manager.service';
 import { DialogHandlerService } from './services/dialog-handler.service';
 @NgModule({
   declarations: [ErrorDialogComponent, SearchbarComponent],
@@ -33,7 +33,7 @@ import { DialogHandlerService } from './services/dialog-handler.service';
     DialogHandlerService,
     EpochConverterService,
     StateManagerService,
-    StringParserService,
+    StringManagerService,
   ],
   exports: [ErrorDialogComponent, SearchbarComponent],
 })

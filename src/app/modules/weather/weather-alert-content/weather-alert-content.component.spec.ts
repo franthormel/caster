@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatChipsModule } from '@angular/material/chips';
 
 import { WeatherAlertContentComponent } from './weather-alert-content.component';
-import { StringParserService } from '../../shared/services/string-parser.service';
+import { StringManagerService } from '../../shared/services/string-manager.service';
 
 import { WEATHER_ALERT } from '../../../tests/weather.testing';
 
@@ -13,7 +13,7 @@ describe('WeatherAlertContentComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MatChipsModule],
-      providers: [StringParserService],
+      providers: [StringManagerService],
       declarations: [WeatherAlertContentComponent],
     }).compileComponents();
   });

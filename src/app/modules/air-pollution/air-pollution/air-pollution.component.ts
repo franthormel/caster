@@ -17,9 +17,7 @@ import { AirQualityService } from '../air-quality.service';
   styleUrls: ['./air-pollution.component.scss'],
 })
 export class AirPollutionComponent implements OnInit {
-  airPollutionData$!: Observable<AirPollution>;
   airPollution!: AirPollution;
-
   loading = true;
   timezoneOffset = 0;
 
@@ -102,10 +100,10 @@ export class AirPollutionComponent implements OnInit {
   }
 
   private collectAllData(): Observable<[AirPollution, WeatherData]> {
-    this.airPollutionData$ = this.dataManager.staticAirPollutionFile();
+    const airPollutionData$ = this.dataManager.staticAirPollutionFile();
     const weatherData$ = this.dataManager.staticWeatherFile();
 
-    this.airPollutionData$.subscribe({
+    airPollutionData$.subscribe({
       next: (data) => {
         this.airPollution = data;
       },
@@ -123,7 +121,7 @@ export class AirPollutionComponent implements OnInit {
       },
     });
 
-    return forkJoin([this.airPollutionData$, weatherData$]);
+    return forkJoin([airPollutionData$, weatherData$]);
   }
 
   private initData() {

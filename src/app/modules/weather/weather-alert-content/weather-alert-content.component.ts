@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { WeatherAlert } from '../../../models/weather/weather-alert.models';
-import { StringParserService } from '../../shared/services/string-parser.service';
+import { StringManagerService } from '../../shared/services/string-manager.service';
 
 @Component({
   selector: 'app-weather-alert-content',
@@ -11,7 +11,7 @@ import { StringParserService } from '../../shared/services/string-parser.service
 export class WeatherAlertContentComponent {
   @Input() alert!: WeatherAlert;
 
-  constructor(public stringParser: StringParserService) {}
+  constructor(public stringManager: StringManagerService) {}
 
   get alertLines(): string[] {
     return this.alert.description.split('\r\n');

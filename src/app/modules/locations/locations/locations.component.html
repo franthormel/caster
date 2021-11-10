@@ -3,11 +3,10 @@
     </mat-progress-bar>
 </ng-container>
 <section *ngIf="!loading" class="locations-display">
-    <!--TODO Make this filter search work with clear button-->
     <mat-form-field color="accent" appearance="outline" class="locations-searchbar">
         <mat-label>Search for a location</mat-label>
-        <input matInput [(ngModel)]="searchText">
-        <button *ngIf="searchTextIsAvailable" matSuffix mat-icon-button (click)="clearSearchText()">
+        <input matInput [(ngModel)]="search">
+        <button *ngIf="searchable" matSuffix mat-icon-button (click)="clearSearch()">
             <mat-icon>close</mat-icon>
         </button>
     </mat-form-field>

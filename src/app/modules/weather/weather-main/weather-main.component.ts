@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, forkJoin } from 'rxjs';
 
-import { ErrorDialogComponent } from '../../shared/error-dialog/error-dialog.component';
-
 import { WeatherData } from '../../../models/weather/weather-data.models';
 import { WeatherGeolocation } from '../../../models/geolocation/geolocation.models';
 import { StateManagerService } from '../../shared/services/state-manager.service';
@@ -15,10 +13,7 @@ import { DialogHandlerService } from '../../shared/services/dialog-handler.servi
   styleUrls: ['./weather-main.component.css'],
 })
 export class WeatherMainComponent implements OnInit {
-  weatherData$!: Observable<WeatherData>;
-  geolocationsData$!: Observable<WeatherGeolocation[]>;
-
-  geolocations!: WeatherGeolocation[];
+  geolocation!: WeatherGeolocation;
   weatherData!: WeatherData;
   loading = true;
 
@@ -33,18 +28,16 @@ export class WeatherMainComponent implements OnInit {
   }
 
   get weatherLocation(): string {
-    const geolocation = this.geolocations[0];
-
-    return geolocation
-      ? `${geolocation.name}, ${geolocation.country}`
+    return this.geolocation
+      ? `${this.geolocation.name}, ${this.geolocation.country}`
       : `${this.weatherData.lat}, ${this.weatherData.lon}`;
   }
 
   private collectAllData(): Observable<[WeatherData, WeatherGeolocation[]]> {
-    this.weatherData$ = this.dataManager.staticWeatherFile();
-    this.geolocationsData$ = this.dataManager.staticGeolocationFile();
+    const weatherData$ = this.dataManager.staticWeatherFile();
+    const geolocationsData$ = this.dataManager.staticGeolocationFile();
 
-    this.weatherData$.subscribe({
+    weatherData$.subscribe({
       next: (data) => {
         this.weatherData = data;
       },
@@ -53,16 +46,16 @@ export class WeatherMainComponent implements OnInit {
       },
     });
 
-    this.geolocationsData$.subscribe({
+    geolocationsData$.subscribe({
       next: (data) => {
-        this.geolocations = data;
+        this.geolocation = data[0];
       },
       error: (error) => {
         this.dialogHandler.showError(error as Error);
       },
     });
 
-    return forkJoin([this.weatherData$, this.geolocationsData$]);
+    return forkJoin([weatherData$, geolocationsData$]);
   }
 
   private initData() {

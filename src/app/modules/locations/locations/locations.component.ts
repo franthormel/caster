@@ -4,6 +4,7 @@ import { WeatherGeolocationDisplay } from '../../../models/geolocation/geolocati
 import { WeatherGeolocation } from '../../../models/geolocation/geolocation.models';
 import { DataManagerService } from '../../shared/services/data-manager.service';
 import { DialogHandlerService } from '../../shared/services/dialog-handler.service';
+import { StringManagerService } from '../../shared/services/string-manager.service';
 
 @Component({
   selector: 'app-locations',
@@ -11,39 +12,29 @@ import { DialogHandlerService } from '../../shared/services/dialog-handler.servi
   styleUrls: ['./locations.component.scss'],
 })
 export class LocationsComponent implements OnInit {
-  geolocations: WeatherGeolocation[][] = [];
+  geolocations: WeatherGeolocation[] = [];
   loading = true;
-  searchText = '';
+  search = '';
 
   constructor(
     private dataManager: DataManagerService,
-    private dialogHandler: DialogHandlerService
+    private dialogHandler: DialogHandlerService,
+    private stringManager: StringManagerService
   ) {}
 
   ngOnInit(): void {
     this.initData();
   }
 
-  clearSearchText() {
-    this.searchText = '';
-  }
-
-  get searchTextIsAvailable(): boolean {
-    return this.searchText !== '';
-  }
-
-
-  private get filteredLocations(): WeatherGeolocation[][] {
-    let results: WeatherGeolocation[][] = [];
-
-    return results;
+  clearSearch() {
+    this.search = '';
   }
 
   get locations(): WeatherGeolocationDisplay[] {
     let collection: WeatherGeolocationDisplay[] = [];
 
-    this.geolocations.forEach((geolocation, index) => {
-      const entry = this.createDisplay(geolocation, index);
+    this.chooseDataset.forEach((geolocation, index) => {
+      const entry = this.createGeolocationDisplay(geolocation, index);
 
       collection.push(entry);
     });
@@ -51,22 +42,20 @@ export class LocationsComponent implements OnInit {
     return collection;
   }
 
-  get count(): number {
-    return this.geolocations.length;
+  get searchable(): boolean {
+    return this.search !== undefined && this.search !== '';
   }
 
-  private createDisplay(
-    geolocation: WeatherGeolocation[],
+  private createGeolocationDisplay(
+    geolocation: WeatherGeolocation,
     index: number
   ): WeatherGeolocationDisplay {
-    const location = geolocation[0];
-
     return {
       index: index,
-      country: location.country,
-      name: location.name,
-      latitude: location.lat,
-      longitude: location.lon,
+      country: geolocation.country,
+      name: geolocation.name,
+      latitude: geolocation.lat,
+      longitude: geolocation.lon,
     };
   }
 
@@ -77,7 +66,7 @@ export class LocationsComponent implements OnInit {
       next: (geolocation$) => {
         geolocation$.subscribe({
           next: (geolocation) => {
-            this.geolocations.push(geolocation);
+            this.geolocations.push(geolocation[0]);
           },
         });
       },
@@ -88,5 +77,42 @@ export class LocationsComponent implements OnInit {
         this.loading = false;
       },
     });
+  }
+
+  private geolocationContains(geolocation: WeatherGeolocation): boolean {
+    const countryContains = this.stringManager.searchContainsText(
+      geolocation.country,
+      this.search
+    );
+    const nameContains = this.stringManager.searchContainsText(
+      geolocation.name,
+      this.search
+    );
+
+    const value = countryContains || nameContains;
+
+    return value;
+  }
+
+  private get chooseDataset(): WeatherGeolocation[] {
+    let dataset = this.geolocations;
+
+    if (this.searchable) {
+      dataset = this.filteredLocations;
+    }
+
+    return dataset;
+  }
+
+  private get filteredLocations(): WeatherGeolocation[] {
+    let results: WeatherGeolocation[] = [];
+
+    this.geolocations.forEach((geolocation) => {
+      if (this.geolocationContains(geolocation)) {
+        results.push(geolocation);
+      }
+    });
+
+    return results;
   }
 }

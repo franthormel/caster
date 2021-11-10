@@ -7,7 +7,7 @@ import { appStateReducer } from '../../../app-state.reducers';
 import { WEATHER_DATA } from '../../../tests/weather.testing';
 
 import { WeatherContentMainComponent } from './weather-content-main.component';
-import { StringParserService } from '../../shared/services/string-parser.service';
+import { StringManagerService } from '../../shared/services/string-manager.service';
 import { TemperatureConverterService } from '../temperature-converter.service';
 import { StateManagerService } from '../../shared/services/state-manager.service';
 
@@ -24,7 +24,7 @@ describe('WeatherContentMainComponent', () => {
         MatIconModule,
       ],
       providers: [
-        StringParserService,
+        StringManagerService,
         TemperatureConverterService,
         StateManagerService,
       ],

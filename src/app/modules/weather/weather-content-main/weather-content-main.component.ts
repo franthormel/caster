@@ -6,7 +6,7 @@ import { WeatherData } from '../../../models/weather/weather-data.models';
 import { WeatherCondition } from '../../../models/weather/weather-condition.models';
 import { WeatherReading } from '../../../models/weather/weather-reading.models';
 
-import { StringParserService } from '../../shared/services/string-parser.service';
+import { StringManagerService } from '../../shared/services/string-manager.service';
 import { TemperatureConverterService } from '../temperature-converter.service';
 import { StateManagerService } from '../../shared/services/state-manager.service';
 
@@ -20,7 +20,7 @@ export class WeatherContentMainComponent {
   @Input() weatherLocation!: string;
 
   constructor(
-    private stringFormatter: StringParserService,
+    private stringFormatter: StringManagerService,
     private temperatureConverter: TemperatureConverterService,
     private stateManager: StateManagerService
   ) {}
