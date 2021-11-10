@@ -5,10 +5,9 @@
   margin-top: 3vh;
   margin-left: auto;
   margin-right: auto;
-  background: rgba(255, 255, 255, 0.5);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 3px;
   @include global.padding-2hv;
+  @include global.transparent-bg;
 }
 
 .air-pollution-controls {

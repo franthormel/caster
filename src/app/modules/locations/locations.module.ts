@@ -6,10 +6,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 import { LocationsRoutingModule } from './locations-routing.module';
 import { LocationsComponent } from './locations/locations.component';
 import { SharedModule } from '../shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [LocationsComponent],
@@ -17,11 +20,14 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     LocationsRoutingModule,
     SharedModule,
+    FormsModule,
     MatButtonModule,
     MatIconModule,
     MatProgressBarModule,
     MatTooltipModule,
     MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
 })
 export class LocationsModule {}

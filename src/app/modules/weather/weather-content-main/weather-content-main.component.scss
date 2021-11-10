@@ -6,8 +6,7 @@
 }
 
 .weather-main-parent {
-  background-color: #ffffff50;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.04);
+  @include global.transparent-bg;
 }
 
 .weather-main {

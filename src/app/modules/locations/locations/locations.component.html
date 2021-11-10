@@ -2,12 +2,23 @@
     <mat-progress-bar color="accent" mode="indeterminate">
     </mat-progress-bar>
 </ng-container>
-
-<section *ngIf="!loading">
-    <mat-card *ngFor="let location of geolocations">
-        <mat-card-header>
-            <mat-card-title>{{name(location)}}</mat-card-title>
-            <mat-card-subtitle>{{country(location)}}</mat-card-subtitle>
-        </mat-card-header>
-    </mat-card>
+<section *ngIf="!loading" class="locations-display">
+    <!--TODO Make this filter search work with clear button-->
+    <mat-form-field color="accent" appearance="outline" class="locations-searchbar">
+        <mat-label>Search for a location</mat-label>
+        <input matInput [(ngModel)]="searchText">
+        <button *ngIf="searchTextIsAvailable" matSuffix mat-icon-button (click)="clearSearchText()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+    <section class="locations-card">
+        <!--TODO: Test if there are a lot of locations-->
+        <!--TODO Make it clickable and add mat-ripple-->
+        <mat-card *ngFor="let location of locations">
+            <mat-card-header>
+                <mat-card-title>{{location.name}}, {{location.country}}</mat-card-title>
+                <mat-card-subtitle>{{location.latitude}}, {{location.longitude}}</mat-card-subtitle>
+            </mat-card-header>
+        </mat-card>
+    </section>
 </section>

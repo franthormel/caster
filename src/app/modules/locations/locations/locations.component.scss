@@ -1,0 +1,23 @@
+@use "../../../../styles.scss" as global;
+
+// TODO Refine me
+.locations-display {
+  @include global.transparent-bg;
+  @include global.padding-2hv;
+  margin-top: 3vh;
+}
+
+.locations-searchbar {
+  width: 15vw;
+}
+
+.locations-card mat-card {
+  display: inline-block;
+  margin-top: 1%;
+  margin-right: 2%;
+  margin-bottom: 1%;
+}
+
+.locations-card mat-card-subtitle {
+  margin-top: 10px;
+}
