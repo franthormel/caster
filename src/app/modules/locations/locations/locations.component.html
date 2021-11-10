@@ -1,1 +1,13 @@
-<p>TODO: Locations</p>
+<ng-container *ngIf="loading">
+    <mat-progress-bar color="accent" mode="indeterminate">
+    </mat-progress-bar>
+</ng-container>
+
+<section *ngIf="!loading">
+    <mat-card *ngFor="let location of geolocations">
+        <mat-card-header>
+            <mat-card-title>{{name(location)}}</mat-card-title>
+            <mat-card-subtitle>{{country(location)}}</mat-card-subtitle>
+        </mat-card-header>
+    </mat-card>
+</section>

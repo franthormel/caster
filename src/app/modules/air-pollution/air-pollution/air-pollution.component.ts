@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { forkJoin, Observable } from 'rxjs';
 
 import { AirPollution } from '../../../models/air-pollution/air-pollution.models';
+import { AirPollutionComponentDisplay } from '../../../models/air-pollution/air-pollution-display.models';
 import { AirPollutionReading } from '../../../models/air-pollution/air-pollution-reading.models';
 import { WeatherData } from '../../../models/weather/weather-data.models';
 import { DataManagerService } from '../../shared/services/data-manager.service';
@@ -9,11 +10,6 @@ import { DialogHandlerService } from '../../shared/services/dialog-handler.servi
 import { EpochConverterService } from '../../shared/services/epoch-converter.service';
 import { StateManagerService } from '../../shared/services/state-manager.service';
 import { AirQualityService } from '../air-quality.service';
-
-interface AirComponentDisplay {
-  name: string;
-  concentration: number;
-}
 
 @Component({
   selector: 'app-air-pollution',
@@ -47,7 +43,7 @@ export class AirPollutionComponent implements OnInit {
     this.stateManager.indexAirPollutionDecrement();
   }
 
-  get airComponents(): AirComponentDisplay[] {
+  get airComponents(): AirPollutionComponentDisplay[] {
     const components = this.reading.components;
 
     return [

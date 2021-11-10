@@ -10,6 +10,8 @@ import { StateManagerService } from './state-manager.service';
 @Injectable({
   providedIn: 'root',
 })
+
+// TODO Refactor member names
 export class DataManagerService {
   private readonly FILES = [1, 2, 3];
 
@@ -28,25 +30,21 @@ export class DataManagerService {
   ) {}
 
   staticAirPollutionFile(): Observable<AirPollution> {
-    return this.httpClient.get<AirPollution>(this.airPollutionJsonFile, {
+    return this.httpClient.get<AirPollution>(this.airPollutionFile, {
       responseType: 'json',
     });
   }
 
   staticGeolocationFile(): Observable<WeatherGeolocation[]> {
-    return this.httpClient.get<WeatherGeolocation[]>(this.geolocationJsonFile, {
-      responseType: 'json',
-    });
+    return this.fetchGeolocation(this.geolocationFile);
   }
 
   staticGeolocationFiles(): Observable<Observable<WeatherGeolocation[]>> {
     let jsonDataCollection$: Observable<WeatherGeolocation[]>[] = [];
 
     this.FILES.forEach((file) => {
-      const jsonFile = this.chooseGeolocationJsonFile(file);
-      const jsonData$ = this.httpClient.get<WeatherGeolocation[]>(jsonFile, {
-        responseType: 'json',
-      });
+      const jsonFile = this.chooseGeolocationFile(file);
+      const jsonData$ = this.fetchGeolocation(jsonFile);
 
       jsonDataCollection$.push(jsonData$);
     });
@@ -55,24 +53,30 @@ export class DataManagerService {
   }
 
   staticWeatherFile(): Observable<WeatherData> {
-    return this.httpClient.get<WeatherData>(this.weatherJsonFile, {
+    return this.httpClient.get<WeatherData>(this.weatherFile, {
       responseType: 'json',
     });
   }
 
-  private chooseGeolocationJsonFile(index: number): string {
+  private chooseGeolocationFile(index: number): string {
     return `${this.DATA_URL.STATIC}geolocations/${index}.json`;
   }
 
-  private get geolocationJsonFile(): string {
-    return `${this.DATA_URL.STATIC}geolocations/${this.stateManager.staticFile}.json`;
+  private fetchGeolocation(url: string): Observable<WeatherGeolocation[]> {
+    return this.httpClient.get<WeatherGeolocation[]>(url, {
+      responseType: 'json',
+    });
   }
 
-  private get weatherJsonFile(): string {
+  private get geolocationFile(): string {
+    return this.chooseGeolocationFile(this.stateManager.staticFile);
+  }
+
+  private get weatherFile(): string {
     return `${this.DATA_URL.STATIC}weather/${this.stateManager.staticFile}.json`;
   }
 
-  private get airPollutionJsonFile(): string {
+  private get airPollutionFile(): string {
     return `${this.DATA_URL.STATIC}air_pollution/${this.stateManager.staticFile}.json`;
   }
 }

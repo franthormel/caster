@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { WeatherGeolocation } from 'src/app/models/geolocation/geolocation.models';
+
+import { WeatherGeolocation } from '../../../models/geolocation/geolocation.models';
 import { DataManagerService } from '../../shared/services/data-manager.service';
 import { DialogHandlerService } from '../../shared/services/dialog-handler.service';
 
@@ -9,9 +10,8 @@ import { DialogHandlerService } from '../../shared/services/dialog-handler.servi
   styleUrls: ['./locations.component.scss'],
 })
 export class LocationsComponent implements OnInit {
-  loading = true;
-
   geolocations: WeatherGeolocation[][] = [];
+  loading = true;
 
   constructor(
     private dataManager: DataManagerService,
@@ -19,6 +19,22 @@ export class LocationsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initData();
+  }
+
+  name(location: WeatherGeolocation[]) {
+    return this.firstEntry(location).name;
+  }
+
+  country(location: WeatherGeolocation[]) {
+    return this.firstEntry(location).country;
+  }
+
+  private firstEntry(location: WeatherGeolocation[]): WeatherGeolocation {
+    return location[0];
+  }
+
+  private initData() {
     const geolocations$ = this.dataManager.staticGeolocationFiles();
 
     geolocations$.subscribe({

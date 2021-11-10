@@ -35,9 +35,6 @@ import { DialogHandlerService } from './services/dialog-handler.service';
     StateManagerService,
     StringParserService,
   ],
-  exports: [
-    ErrorDialogComponent,
-    SearchbarComponent,
-  ],
+  exports: [ErrorDialogComponent, SearchbarComponent],
 })
 export class SharedModule {}
