@@ -27,7 +27,7 @@ describe('DataManagerService', () => {
 
   describe('localFileWeather()', () => {
     it('should return an Observable when called', () => {
-      const result = service.staticWeatherFile();
+      const result = service.fileDataWeather();
 
       expect(result).toBeInstanceOf(Observable);
     });
@@ -35,7 +35,7 @@ describe('DataManagerService', () => {
 
   describe('localFileGeolocation()', () => {
     it('should return an Observable when called', () => {
-      const result = service.staticGeolocationFile();
+      const result = service.fileDataGeolocation();
 
       expect(result).toBeInstanceOf(Observable);
     });

@@ -11,13 +11,12 @@ import { StateManagerService } from './state-manager.service';
   providedIn: 'root',
 })
 
-// TODO Refactor member names
 export class DataManagerService {
   private readonly FILES = [1, 2, 3];
 
   private readonly DATA_URL = {
-    STATIC: '/assets/data/',
-    LIVE: {
+    FILE: '/assets/data/',
+    ONLINE: {
       AIR: 'http://api.openweathermap.org/data/2.5/air_pollution/forecast',
       GEOCODING_REVERSE: 'http://api.openweathermap.org/geo/1.0/reverse',
       WEATHER: 'https://api.openweathermap.org/data/2.5/onecall',
@@ -29,22 +28,22 @@ export class DataManagerService {
     private stateManager: StateManagerService
   ) {}
 
-  staticAirPollutionFile(): Observable<AirPollution> {
+  fileDataAirPollution(): Observable<AirPollution> {
     return this.httpClient.get<AirPollution>(this.airPollutionFile, {
       responseType: 'json',
     });
   }
 
-  staticGeolocationFile(): Observable<WeatherGeolocation[]> {
-    return this.fetchGeolocation(this.geolocationFile);
+  fileDataGeolocation(): Observable<WeatherGeolocation[]> {
+    return this.getGeolocation(this.geolocationFile);
   }
 
-  staticGeolocationFiles(): Observable<Observable<WeatherGeolocation[]>> {
+  fileDataGeolocations(): Observable<Observable<WeatherGeolocation[]>> {
     let jsonDataCollection$: Observable<WeatherGeolocation[]>[] = [];
 
     this.FILES.forEach((file) => {
       const jsonFile = this.chooseGeolocationFile(file);
-      const jsonData$ = this.fetchGeolocation(jsonFile);
+      const jsonData$ = this.getGeolocation(jsonFile);
 
       jsonDataCollection$.push(jsonData$);
     });
@@ -52,17 +51,17 @@ export class DataManagerService {
     return concat(jsonDataCollection$);
   }
 
-  staticWeatherFile(): Observable<WeatherData> {
+  fileDataWeather(): Observable<WeatherData> {
     return this.httpClient.get<WeatherData>(this.weatherFile, {
       responseType: 'json',
     });
   }
 
   private chooseGeolocationFile(index: number): string {
-    return `${this.DATA_URL.STATIC}geolocations/${index}.json`;
+    return `${this.DATA_URL.FILE}geolocations/${index}.json`;
   }
 
-  private fetchGeolocation(url: string): Observable<WeatherGeolocation[]> {
+  private getGeolocation(url: string): Observable<WeatherGeolocation[]> {
     return this.httpClient.get<WeatherGeolocation[]>(url, {
       responseType: 'json',
     });
@@ -73,10 +72,10 @@ export class DataManagerService {
   }
 
   private get weatherFile(): string {
-    return `${this.DATA_URL.STATIC}weather/${this.stateManager.staticFile}.json`;
+    return `${this.DATA_URL.FILE}weather/${this.stateManager.staticFile}.json`;
   }
 
   private get airPollutionFile(): string {
-    return `${this.DATA_URL.STATIC}air_pollution/${this.stateManager.staticFile}.json`;
+    return `${this.DATA_URL.FILE}air_pollution/${this.stateManager.staticFile}.json`;
   }
 }

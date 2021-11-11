@@ -34,8 +34,8 @@ export class WeatherMainComponent implements OnInit {
   }
 
   private collectAllData(): Observable<[WeatherData, WeatherGeolocation[]]> {
-    const weatherData$ = this.dataManager.staticWeatherFile();
-    const geolocationsData$ = this.dataManager.staticGeolocationFile();
+    const weatherData$ = this.dataManager.fileDataWeather();
+    const geolocationsData$ = this.dataManager.fileDataGeolocation();
 
     weatherData$.subscribe({
       next: (data) => {

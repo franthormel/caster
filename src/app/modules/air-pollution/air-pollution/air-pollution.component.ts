@@ -100,8 +100,8 @@ export class AirPollutionComponent implements OnInit {
   }
 
   private collectAllData(): Observable<[AirPollution, WeatherData]> {
-    const airPollutionData$ = this.dataManager.staticAirPollutionFile();
-    const weatherData$ = this.dataManager.staticWeatherFile();
+    const airPollutionData$ = this.dataManager.fileDataAirPollution();
+    const weatherData$ = this.dataManager.fileDataWeather();
 
     airPollutionData$.subscribe({
       next: (data) => {

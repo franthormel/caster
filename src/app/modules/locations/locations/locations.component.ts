@@ -60,7 +60,7 @@ export class LocationsComponent implements OnInit {
   }
 
   private initData() {
-    const geolocations$ = this.dataManager.staticGeolocationFiles();
+    const geolocations$ = this.dataManager.fileDataGeolocations();
 
     geolocations$.subscribe({
       next: (geolocation$) => {
