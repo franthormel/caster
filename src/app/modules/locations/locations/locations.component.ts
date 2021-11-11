@@ -33,8 +33,14 @@ export class LocationsComponent implements OnInit {
   get locations(): WeatherGeolocationDisplay[] {
     let collection: WeatherGeolocationDisplay[] = [];
 
-    this.chooseDataset.forEach((geolocation, index) => {
-      const entry = this.createGeolocationDisplay(geolocation, index);
+    this.chosenDataset.forEach((geolocation, index) => {
+      const entry = {
+        index: index,
+        country: geolocation.country,
+        name: geolocation.name,
+        latitude: geolocation.lat,
+        longitude: geolocation.lon,
+      };
 
       collection.push(entry);
     });
@@ -46,17 +52,14 @@ export class LocationsComponent implements OnInit {
     return this.search !== undefined && this.search !== '';
   }
 
-  private createGeolocationDisplay(
-    geolocation: WeatherGeolocation,
-    index: number
-  ): WeatherGeolocationDisplay {
-    return {
-      index: index,
-      country: geolocation.country,
-      name: geolocation.name,
-      latitude: geolocation.lat,
-      longitude: geolocation.lon,
-    };
+  private get chosenDataset(): WeatherGeolocation[] {
+    let dataset = this.geolocations;
+
+    if (this.searchable) {
+      dataset = this.filteredLocations;
+    }
+
+    return dataset;
   }
 
   private initData() {
@@ -79,40 +82,20 @@ export class LocationsComponent implements OnInit {
     });
   }
 
-  private geolocationContains(geolocation: WeatherGeolocation): boolean {
-    const countryContains = this.stringManager.searchContainsText(
-      geolocation.country,
-      this.search
-    );
-    const nameContains = this.stringManager.searchContainsText(
-      geolocation.name,
-      this.search
-    );
-
-    const value = countryContains || nameContains;
-
-    return value;
-  }
-
-  private get chooseDataset(): WeatherGeolocation[] {
-    let dataset = this.geolocations;
-
-    if (this.searchable) {
-      dataset = this.filteredLocations;
-    }
-
-    return dataset;
-  }
-
   private get filteredLocations(): WeatherGeolocation[] {
-    let results: WeatherGeolocation[] = [];
+    return this.geolocations.filter((geolocation) => {
+      const country = this.stringManager.searchContainsText(
+        geolocation.country,
+        this.search
+      );
+      const name = this.stringManager.searchContainsText(
+        geolocation.name,
+        this.search
+      );
 
-    this.geolocations.forEach((geolocation) => {
-      if (this.geolocationContains(geolocation)) {
-        results.push(geolocation);
-      }
+      const value = country || name;
+
+      return value;
     });
-
-    return results;
   }
 }
