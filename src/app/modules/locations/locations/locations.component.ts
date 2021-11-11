@@ -4,6 +4,7 @@ import { WeatherGeolocationDisplay } from '../../../models/geolocation/geolocati
 import { WeatherGeolocation } from '../../../models/geolocation/geolocation.models';
 import { DataManagerService } from '../../shared/services/data-manager.service';
 import { DialogHandlerService } from '../../shared/services/dialog-handler.service';
+import { StateManagerService } from '../../shared/services/state-manager.service';
 import { StringManagerService } from '../../shared/services/string-manager.service';
 
 @Component({
@@ -19,6 +20,7 @@ export class LocationsComponent implements OnInit {
   constructor(
     private dataManager: DataManagerService,
     private dialogHandler: DialogHandlerService,
+    private stateManager: StateManagerService,
     private stringManager: StringManagerService
   ) {}
 
@@ -28,6 +30,19 @@ export class LocationsComponent implements OnInit {
 
   clearSearch() {
     this.search = '';
+  }
+
+  locationClicked(id: number) {
+    const file = id + 1;
+
+    this.stateManager.changeStaticFile(file);
+  }
+
+  showLocationIcon(id: number): boolean {
+    const file = id + 1;
+    const value = this.stateManager.staticFile === file;
+
+    return value;
   }
 
   get locations(): WeatherGeolocationDisplay[] {
@@ -52,16 +67,6 @@ export class LocationsComponent implements OnInit {
     return this.search !== undefined && this.search !== '';
   }
 
-  private get chosenDataset(): WeatherGeolocation[] {
-    let dataset = this.geolocations;
-
-    if (this.searchable) {
-      dataset = this.filteredLocations;
-    }
-
-    return dataset;
-  }
-
   private initData() {
     const geolocations$ = this.dataManager.fileDataGeolocations();
 
@@ -80,6 +85,16 @@ export class LocationsComponent implements OnInit {
         this.loading = false;
       },
     });
+  }
+
+  private get chosenDataset(): WeatherGeolocation[] {
+    let dataset = this.geolocations;
+
+    if (this.searchable) {
+      dataset = this.filteredLocations;
+    }
+
+    return dataset;
   }
 
   private get filteredLocations(): WeatherGeolocation[] {

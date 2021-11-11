@@ -10,7 +10,6 @@ import { StateManagerService } from './state-manager.service';
 @Injectable({
   providedIn: 'root',
 })
-
 export class DataManagerService {
   private readonly FILES = [1, 2, 3];
 

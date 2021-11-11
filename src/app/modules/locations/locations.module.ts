@@ -8,6 +8,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatRippleModule } from '@angular/material/core';
 
 import { LocationsRoutingModule } from './locations-routing.module';
 import { LocationsComponent } from './locations/locations.component';
@@ -28,6 +29,7 @@ import { FormsModule } from '@angular/forms';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    MatRippleModule,
   ],
 })
 export class LocationsModule {}

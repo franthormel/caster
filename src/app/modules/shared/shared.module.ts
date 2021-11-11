@@ -10,14 +10,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
-import { SearchbarComponent } from './searchbar/searchbar.component';
 import { DataManagerService } from './services/data-manager.service';
 import { EpochConverterService } from './services/epoch-converter.service';
 import { StateManagerService } from './services/state-manager.service';
 import { StringManagerService } from './services/string-manager.service';
 import { DialogHandlerService } from './services/dialog-handler.service';
 @NgModule({
-  declarations: [ErrorDialogComponent, SearchbarComponent],
+  declarations: [ErrorDialogComponent],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -35,6 +34,6 @@ import { DialogHandlerService } from './services/dialog-handler.service';
     StateManagerService,
     StringManagerService,
   ],
-  exports: [ErrorDialogComponent, SearchbarComponent],
+  exports: [ErrorDialogComponent],
 })
 export class SharedModule {}

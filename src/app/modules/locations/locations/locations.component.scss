@@ -1,6 +1,5 @@
 @use "../../../../styles.scss" as global;
 
-// TODO Refine me
 .locations-display {
   @include global.transparent-bg;
   @include global.padding-2hv;
@@ -8,16 +7,20 @@
 }
 
 .locations-searchbar {
-  width: 15vw;
+  width: 15rem;
 }
 
-.locations-card mat-card {
+.locations-card {
+  $margin: 1%;
+
   display: inline-block;
-  margin-top: 1%;
-  margin-right: 2%;
-  margin-bottom: 1%;
+  margin: $margin $margin + $margin $margin 0;
 }
 
-.locations-card mat-card-subtitle {
+.locations-card:hover {
+  cursor: pointer;
+}
+
+.locations-card-subtitle {
   margin-top: 10px;
 }

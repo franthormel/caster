@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { AppState } from '../../../app-state.reducers';
+import { staticFileUpdate } from '../../../app-state.actions';
 import * as weather from '../../../modules/weather/weather-state.actions';
 import * as airPollution from '../../../modules/air-pollution/air-pollution-state.actions';
 
@@ -15,7 +16,6 @@ import {
   providedIn: 'root',
 })
 export class StateManagerService {
-  // Presumed maximum amount of entries for each reading
   private readonly MAX = {
     HOURLY: 47,
     DAILY: 7,
@@ -38,6 +38,12 @@ export class StateManagerService {
   changeDetailModeToTemperature() {
     if (!this.detailModeIsTemperature) {
       this.changeDetailMode(WeatherDetailMode.Temperature);
+    }
+  }
+
+  changeStaticFile(file: number) {
+    if (this.staticFile !== file) {
+      this.store.dispatch(staticFileUpdate({ file: file }));
     }
   }
 
@@ -175,15 +181,15 @@ export class StateManagerService {
     return this.appState.weatherState.detailMode === mode;
   }
 
-  private readingModeIs(mode: WeatherReadingMode): boolean {
-    return this.readingMode === mode;
-  }
-
   private initState() {
     this.appState$ = this.store.select('appState');
 
     this.appState$.subscribe((state) => {
       this.appState = state;
     });
+  }
+
+  private readingModeIs(mode: WeatherReadingMode): boolean {
+    return this.readingMode === mode;
   }
 }
