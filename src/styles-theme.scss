@@ -1,5 +1,8 @@
 @use "@angular/material" as mat;
 
+@use "./app/app-theme" as app;
+@use "./app/modules/locations/locations/locations-theme" as locations;
+
 @include mat.core();
 
 $dark-primary-text: #f7fbfc;
@@ -151,11 +154,5 @@ $dark-theme: mat.define-dark-theme(
 @include mat.core-theme($light-theme);
 @include mat.all-component-themes($light-theme);
 
-.light-theme {
-  color: $light-primary-text;
-}
-
-.dark-theme {
-  @include mat.all-component-colors($dark-theme);
-  color: $dark-primary-text;
-}
+@include app.color($light-theme);
+@include locations.card-background-color($light-theme);
