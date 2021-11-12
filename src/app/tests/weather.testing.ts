@@ -1,8 +1,10 @@
 import { WeatherAlert } from '../models/weather/weather-alert.models';
 import { WeatherData } from '../models/weather/weather-data.models';
 
-export const WEATHER_ALERT_TITLE_SINGLE =
+export const WEATHER_ALERT_TITLE_SINGLE_FIREFOX =
   'Tropical Cyclone Alert from PAGASA-DOST (07/10/2021 5:11:08 pm — 08/10/2021 6:10:58 am)';
+export const WEAHTER_ALERT_TITLE_SINGLE_CHROME =
+  'Tropical Cyclone Alert from PAGASA-DOST (10/7/2021 5:11:08 PM — 10/8/2021 6:10:58 AM)';
 
 export const WEATHER_ALERT_TITLE_MULTIPLE_OR_EMPTY = 'Weather Alerts';
 

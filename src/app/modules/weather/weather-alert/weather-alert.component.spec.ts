@@ -10,7 +10,8 @@ import {
   WEATHER_ALERT,
   WEATHER_ALERTS,
   WEATHER_ALERT_TITLE_MULTIPLE_OR_EMPTY,
-  WEATHER_ALERT_TITLE_SINGLE,
+  WEAHTER_ALERT_TITLE_SINGLE_CHROME,
+  WEATHER_ALERT_TITLE_SINGLE_FIREFOX,
 } from '../../../tests/weather.testing';
 
 describe('WeatherAlertComponent', () => {
@@ -63,10 +64,12 @@ describe('WeatherAlertComponent', () => {
 
       it('should return expected value if there is a single alert', () => {
         setToSingleAlert();
-        const expected = WEATHER_ALERT_TITLE_SINGLE;
-        const result = component.title;
+        const title = component.title;
+        const result =
+          title === WEATHER_ALERT_TITLE_SINGLE_FIREFOX ||
+          title === WEAHTER_ALERT_TITLE_SINGLE_CHROME;
 
-        expect(result).toBe(expected);
+        expect(result).toBeTruthy();
       });
 
       it('should return expected value if there are multiple alerts', () => {

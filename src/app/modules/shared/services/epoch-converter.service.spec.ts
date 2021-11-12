@@ -4,11 +4,14 @@ import { EpochConverterService } from './epoch-converter.service';
 
 import {
   EPOCH_ALERT,
-  EPOCH_ALERT_TIMERANGE,
+  EPOCH_ALERT_TIMERANGE_FIREFOX,
+  EPOCH_ALERT_TIMERANGE_CHROME,
   EPOCH_INPUTS,
   EPOCH_OUTPUTS_DATE,
-  EPOCH_OUTPUTS_DATE_TIME,
-  EPOCH_OUTPUTS_TIME,
+  EPOCH_OUTPUTS_DATE_TIME_FIREFOX,
+  EPOCH_OUTPUTS_DATE_TIME_CHROME,
+  EPOCH_OUTPUTS_TIME_CHROME,
+  EPOCH_OUTPUTS_TIME_FIREFOX,
 } from '../../../tests/services/epoch-converter.testing';
 
 describe('EpochConverterService', () => {
@@ -53,11 +56,13 @@ describe('EpochConverterService', () => {
     it('should return the expected value', () => {
       for (const i in EPOCH_INPUTS) {
         const input = EPOCH_INPUTS[i];
+        const output = service.toTime(input);
 
-        const expected = EPOCH_OUTPUTS_TIME[i];
-        const result = service.toTime(input);
+        const result =
+          output === EPOCH_OUTPUTS_TIME_FIREFOX ||
+          output === EPOCH_OUTPUTS_TIME_CHROME;
 
-        expect(result).toBe(expected);
+        expect(result).toBeTruthy();
       }
     });
   });
@@ -72,11 +77,14 @@ describe('EpochConverterService', () => {
     it('should return the expected locale date time value', () => {
       for (const i in EPOCH_INPUTS) {
         const input = EPOCH_INPUTS[i];
+        const output = service.toDateTime(input);
 
-        const expected = EPOCH_OUTPUTS_DATE_TIME[i];
-        const result = service.toDateTime(input);
+        const expected_firefox = EPOCH_OUTPUTS_DATE_TIME_FIREFOX[i];
+        const expected_chrome = EPOCH_OUTPUTS_DATE_TIME_CHROME[i];
+        const result =
+          output === expected_firefox || output === expected_chrome;
 
-        expect(result).toBe(expected);
+        expect(result).toBeTruthy();
       }
     });
   });
@@ -89,9 +97,13 @@ describe('EpochConverterService', () => {
     });
 
     it('should return the expected value', () => {
-      const result = service.toTimerange(EPOCH_ALERT);
+      const output = service.toTimerange(EPOCH_ALERT);
 
-      expect(result).toBe(EPOCH_ALERT_TIMERANGE);
+      const result =
+        output === EPOCH_ALERT_TIMERANGE_FIREFOX ||
+        output === EPOCH_ALERT_TIMERANGE_CHROME;
+
+      expect(result).toBeTruthy();
     });
   });
 });

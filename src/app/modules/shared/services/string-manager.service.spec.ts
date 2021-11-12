@@ -83,10 +83,70 @@ describe('StringManagerService', () => {
     });
 
     describe('searchContainsText()', () => {
-      pending('create datasets and tests');
+      it('should return a Boolean', () => {
+        const result = service.searchContainsText('','');
+
+        expect(result).toBeInstanceOf(Boolean);
+      });
+      it('should return true when expected if both params are lower cased', () => {
+        const result = service.searchContainsText('higher', 'hi');
+
+        expect(result).toBeTruthy();
+      });
+      it('should return true when expected if both params are upper cased', () => {
+        const result = service.searchContainsText('TANTRUM', 'RUM');
+
+        expect(result).toBeTruthy();
+      });
+      it('should return true when expected if both params have random casings', () => {
+        const result = service.searchContainsText('PIlOt', 'loT');
+
+        expect(result).toBeTruthy();
+      });
+      it('should return true when expected if text is uppercased', () => {
+        const result = service.searchContainsText('pillow', 'low');
+
+        expect(result).toBeTruthy();
+      });
+      it('should return true when expected if search is uppercased', () => {
+        const result = service.searchContainsText('MARKER', 'arker');
+
+        expect(result).toBeTruthy();
+      });
+      it('should return false when expected if both params are lower cased', () => {
+        const result = service.searchContainsText('painting', 'barge');
+
+        expect(result).toBeFalsy();
+      });
+      it('should return false when expected if both params are upper cased', () => {
+        const result = service.searchContainsText('mantis', 'concrete');
+
+        expect(result).toBeFalsy();
+      });
+      it('should return false when expected if both params have random casings', () => {
+        const result = service.searchContainsText('cLOthEd', 'TaRgEts');
+
+        expect(result).toBeFalsy();
+      });
+      it('should return false when expected if text is uppercased', () => {
+        const result = service.searchContainsText('goner', 'MARK');
+
+        expect(result).toBeFalsy();
+      });
+      it('should return false when expected if search is uppercased', () => {
+        const result = service.searchContainsText('PITCHES', 'night');
+
+        expect(result).toBeFalsy();
+      });
     });
 
     describe('isUppercase()', () => {
+      it('should return a Boolean', () => {
+        const result = service.isUppercase('');
+
+        expect(result).toBeInstanceOf(Boolean);
+      });
+
       it('should return true if param is upper cased', () => {
         for (const param of STRINGS_UPPER) {
           const result = service.isUppercase(param);
