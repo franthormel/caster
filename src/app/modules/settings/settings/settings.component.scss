@@ -1,0 +1,24 @@
+@use "../../../../styles.scss" as global;
+
+.settings {
+  @include global.padding-2hv;
+  background-color: white;
+  height: 87vh;
+}
+
+.settings-tab {
+  @include global.padding-2hv ;
+  margin-left: 100px;
+}
+
+.settings-option {
+  margin-bottom: 2em;
+}
+
+.settings-option-label {
+  font-weight: 600;
+}
+
+.settings-radio-button {
+  margin-right: 3em;
+}

@@ -1,1 +1,59 @@
-<p>TODO: Settings</p>
+<section class="settings">
+    <mat-tab-group>
+        <mat-tab class="settings-tab" label="General">
+            <section class="settings-option">
+                <p class="settings-option-label">Temperature unit</p>
+                <!--TODO Fix changing radio buttons not working-->
+                <mat-radio-group [(ngModel)]="config.temperature">
+                    <mat-radio-button *ngFor="let option of temperatureOptions" 
+                                      class="settings-radio-button"
+                                      color="primary"
+                                      [value]="option.value">
+                                      {{option.name}}
+                    </mat-radio-button>
+                </mat-radio-group>
+            </section>
+            <section class="settings-option">
+                <p class="settings-option-label">Number of significant figures</p>
+                <!--TODO Fix changing radio buttons not working-->
+                <mat-radio-group [(ngModel)]="config.significantFigures">
+                    <mat-radio-button *ngFor="let option of significantFigureOptions" 
+                                      class="settings-radio-button"
+                                      color="primary"
+                                      [value]="option.value">
+                                      {{option.name}}
+                    </mat-radio-button>
+                </mat-radio-group>
+            </section>
+            <section class="settings-option">
+                <p class="settings-option-label">Background image</p>
+                <!--TODO Fix changing radio buttons not working-->
+                <mat-radio-group [(ngModel)]="config.backgroundImage">
+                    <mat-radio-button *ngFor="let option of backgroundImageOptions" 
+                                      class="settings-radio-button"
+                                      color="primary"
+                                      [value]="option.value">
+                                      {{option.name}}
+                    </mat-radio-button>    
+                </mat-radio-group>
+            </section>
+            <section class="settings-option">
+                <p class="settings-option-label">Theme</p>
+                <!--TODO Fix changing radio buttons not working-->
+                <mat-radio-group [(ngModel)]="config.theme">
+                    <mat-radio-button *ngFor="let option of themeOptions" 
+                                      class="settings-radio-button"
+                                      color="primary"
+                                      [value]="option.value">
+                                      {{option.name}}
+                    </mat-radio-button>    
+                </mat-radio-group>
+            </section>
+            <section class="settings-option">
+                <mat-slide-toggle color="primary" [(ngModel)]="showDegreeSign">Show degree° sign</mat-slide-toggle>
+            </section>
+        </mat-tab>
+        <mat-tab class="settings-tab" label="Settings"></mat-tab>
+        <mat-tab class="settings-tab" label="About"></mat-tab>
+    </mat-tab-group>
+</section>

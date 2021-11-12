@@ -15,6 +15,7 @@ import { EpochConverterService } from './services/epoch-converter.service';
 import { StateManagerService } from './services/state-manager.service';
 import { StringManagerService } from './services/string-manager.service';
 import { DialogHandlerService } from './services/dialog-handler.service';
+import { SettingsManagerService } from './services/settings-manager.service';
 @NgModule({
   declarations: [ErrorDialogComponent],
   imports: [
@@ -31,6 +32,7 @@ import { DialogHandlerService } from './services/dialog-handler.service';
     DataManagerService,
     DialogHandlerService,
     EpochConverterService,
+    SettingsManagerService,
     StateManagerService,
     StringManagerService,
   ],
