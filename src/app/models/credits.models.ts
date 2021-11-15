@@ -10,4 +10,5 @@ export interface ImageCredits extends Credits {
 
 export interface SoftwareCredits extends Credits {
   type: string;
+  version: string;
 }
