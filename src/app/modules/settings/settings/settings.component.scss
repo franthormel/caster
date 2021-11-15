@@ -3,11 +3,10 @@
 .settings {
   @include global.padding-2hv;
   background-color: white;
-  height: 87vh;
 }
 
 .settings-tab {
-  @include global.padding-2hv ;
+  @include global.padding-2hv;
   margin-left: 100px;
 }
 
@@ -20,5 +19,6 @@
 }
 
 .settings-radio-button {
-  margin-right: 3em;
+  margin-right: 2em;
+  margin-bottom: 1em;
 }

@@ -6,13 +6,7 @@ import {
   SettingsBackgroundImage,
   SettingsTheme,
 } from '../../../models/settings.enums';
-import {
-  RadioOptionTemperature,
-  RadioOptionSignificantFigures,
-  RadioOptionBackgroundImage,
-  RadioOptionTheme,
-  SettingsConfig,
-} from '../../../models/settings.models';
+import { SettingsConfig } from '../../../models/settings.models';
 
 @Component({
   selector: 'app-settings',
@@ -22,45 +16,53 @@ import {
 export class SettingsComponent {
   // TODO Move to service
   config: SettingsConfig = {
-    significantFigures: SettingsSignificantFigures.None,
-    backgroundImage: SettingsBackgroundImage.Generic,
     temperature: SettingsTemperature.Celsius,
+    significantFigures: 0,
+    backgroundImage: SettingsBackgroundImage.Generic,
     theme: SettingsTheme.Light,
+    showDegreeSign: true,
   };
-  showDegreeSign = true;
 
-  get temperatureOptions(): RadioOptionTemperature[] {
+  constructor() {}
+
+  changeTemperature(value: SettingsTemperature) {
+    // TODO
+  }
+  changeSignificantFigures(value: SettingsSignificantFigures) {
+    // TODO
+  }
+  changeBackgroundImage(value: SettingsBackgroundImage) {
+    // TODO
+  }
+  changeTheme(value: SettingsTheme) {
+    // TODO
+  }
+
+  get temperatureOptions(): SettingsTemperature[] {
     return [
-      { name: 'Celsius', value: SettingsTemperature.Celsius },
-      { name: 'Fahrenheit', value: SettingsTemperature.Fahrenheit },
-      { name: 'Kelvin', value: SettingsTemperature.Kelvin },
+      SettingsTemperature.Celsius,
+      SettingsTemperature.Fahrenheit,
+      SettingsTemperature.Kelvin,
     ];
   }
 
-  get significantFigureOptions(): RadioOptionSignificantFigures[] {
+  get significantFigureOptions(): SettingsSignificantFigures[] {
+    return [0, 1, 2];
+  }
+
+  get backgroundImageOptions(): SettingsBackgroundImage[] {
     return [
-      { name: '0', value: SettingsSignificantFigures.None },
-      { name: '1', value: SettingsSignificantFigures.Single },
-      { name: '2', value: SettingsSignificantFigures.Double },
+      SettingsBackgroundImage.Generic,
+      SettingsBackgroundImage.WeatherRelated,
     ];
   }
 
-  get backgroundImageOptions(): RadioOptionBackgroundImage[] {
+  get themeOptions(): SettingsTheme[] {
     return [
-      {
-        name: 'Weather related',
-        value: SettingsBackgroundImage.WeatherRelated,
-      },
-      { name: 'Generic', value: SettingsBackgroundImage.Generic },
-    ];
-  }
-
-  get themeOptions(): RadioOptionTheme[] {
-    return [
-      { name: 'Time related', value: SettingsTheme.TimeRelated },
-      { name: 'System', value: SettingsTheme.System },
-      { name: 'Light', value: SettingsTheme.Light },
-      { name: 'Dark', value: SettingsTheme.Dark },
+      SettingsTheme.Light,
+      SettingsTheme.Dark,
+      SettingsTheme.System,
+      SettingsTheme.TimeRelated,
     ];
   }
 }

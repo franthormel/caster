@@ -1,23 +1,19 @@
 export enum SettingsTemperature {
-  Celsius,
-  Fahrenheit,
-  Kelvin,
+  Celsius = 'Celsius',
+  Fahrenheit = 'Fahrenheit',
+  Kelvin = 'Kelvin',
 }
 
-export enum SettingsSignificantFigures {
-  None,
-  Single,
-  Double,
-}
+export type SettingsSignificantFigures = 0 | 1 | 2;
 
 export enum SettingsBackgroundImage {
-  WeatherRelated,
-  Generic,
+  WeatherRelated = 'Weather related',
+  Generic = 'Generic',
 }
 
 export enum SettingsTheme {
-  TimeRelated,
-  System,
-  Light,
-  Dark,
+  TimeRelated = 'Time related',
+  System = 'System',
+  Light = 'Light',
+  Dark = 'Dark',
 }
