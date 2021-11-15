@@ -1,5 +1,5 @@
 import { createAction } from '@ngrx/store';
 
-export const indexDecrement = createAction('[Air Pollution] Index Decrement');
+export const decrementIndex = createAction('[Air Pollution] Decrement Index');
 
-export const indexIncrement = createAction('[Air Pollution] Index Increment');
+export const incrementIndex = createAction('[Air Pollution] Increment Index');

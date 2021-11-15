@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
-export const staticFileUpdate = createAction(
+// TODO Move to locaitons module
+export const changeStaticFile = createAction(
   '[Static Data] File Update',
   props<{ file: number }>()
 );

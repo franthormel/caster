@@ -3,14 +3,22 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { AppState } from '../../../app-state.reducers';
-import { staticFileUpdate } from '../../../app-state.actions';
+import { changeStaticFile } from '../../../app-state.actions';
 import * as weather from '../../../modules/weather/weather-state.actions';
 import * as airPollution from '../../../modules/air-pollution/air-pollution-state.actions';
+import * as settings from '../../../modules/settings/settings-state.actions';
 
 import {
   WeatherDetailMode,
   WeatherReadingMode,
 } from '../../../models/weather/weather.enums';
+
+import {
+  SettingsTemperature,
+  SettingsSignificantFigures,
+  SettingsBackgroundImage,
+  SettingsTheme,
+} from '../../../models/settings.enums';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +30,6 @@ export class StateManagerService {
     AIR_POLLUTION: 113,
   };
 
-  private appState$!: Observable<AppState>;
   private appState!: AppState;
 
   constructor(private store: Store<{ appState: AppState }>) {
@@ -43,7 +50,7 @@ export class StateManagerService {
 
   changeStaticFile(file: number) {
     if (this.staticFile !== file) {
-      this.store.dispatch(staticFileUpdate({ file: file }));
+      this.store.dispatch(changeStaticFile({ file: file }));
     }
   }
 
@@ -65,40 +72,74 @@ export class StateManagerService {
     }
   }
 
+  changeSettingsBackgroundImage(background: SettingsBackgroundImage) {
+    if (!this.settingsBackgroundImageIs(background)) {
+      this.store.dispatch(
+        settings.changeBackgroundImage({ background: background })
+      );
+    }
+  }
+
+  changeSettingsSignificantFigures(figures: SettingsSignificantFigures) {
+    if (!this.settingsSignificantFiguresIs(figures)) {
+      this.store.dispatch(
+        settings.changeSignificantFigures({ figures: figures })
+      );
+    }
+  }
+
+  changeSettingsTemperature(temperature: SettingsTemperature) {
+    if (!this.settingsTemperatureIs(temperature)) {
+      this.store.dispatch(
+        settings.changeTemperature({ temperature: temperature })
+      );
+    }
+  }
+
+  changeSettingsTheme(theme: SettingsTheme) {
+    if (!this.settingsThemeIs(theme)) {
+      this.store.dispatch(settings.changeTheme({ theme: theme }));
+    }
+  }
+
   indexAirPollutionIncrement() {
     if (this.canIndexAirPollutionIncrement) {
-      this.store.dispatch(airPollution.indexIncrement());
+      this.store.dispatch(airPollution.incrementIndex());
     }
   }
 
   indexAirPollutionDecrement() {
     if (this.canIndexAirPollutionDecrement) {
-      this.store.dispatch(airPollution.indexDecrement());
+      this.store.dispatch(airPollution.decrementIndex());
     }
   }
 
   indexDailyIncrement() {
     if (this.canIndexDailyIncrement) {
-      this.store.dispatch(weather.indexDailyIncrement());
+      this.store.dispatch(weather.incrementIndexDaily());
     }
   }
 
   indexDailyDecrement() {
     if (this.canIndexDailyDecrement) {
-      this.store.dispatch(weather.indexDailyDecrement());
+      this.store.dispatch(weather.decrementIndexDaily());
     }
   }
 
   indexHourlyIncrement() {
     if (this.canIndexHourlyIncrement) {
-      this.store.dispatch(weather.indexHourlyIncrement());
+      this.store.dispatch(weather.incrementIndexHourly());
     }
   }
 
   indexHourlyDecrement() {
     if (this.canIndexHourlyDecrement) {
-      this.store.dispatch(weather.indexHourlyDecrement());
+      this.store.dispatch(weather.decrementIndexHourly());
     }
+  }
+
+  settingsToggleDegreeSign() {
+    this.store.dispatch(settings.toggleDegreeSign());
   }
 
   get detailModeIsFeelsLike(): boolean {
@@ -137,6 +178,24 @@ export class StateManagerService {
     return this.readingModeIs(WeatherReadingMode.Hourly);
   }
 
+  get settingsTemperature(): SettingsTemperature {
+    return this.appState.settingsState.temperature;
+  }
+
+  get settingsSignificantFigures(): SettingsSignificantFigures {
+    return this.appState.settingsState.significantFigures;
+  }
+  get settingsBackgroundImage(): SettingsBackgroundImage {
+    return this.appState.settingsState.backgroundImage;
+  }
+  get settingsTheme(): SettingsTheme {
+    return this.appState.settingsState.theme;
+  }
+
+  get settingsDegreeSign(): boolean {
+    return this.appState.settingsState.showDegreeSign;
+  }
+
   get staticFile(): number {
     return this.appState.staticFile;
   }
@@ -167,14 +226,14 @@ export class StateManagerService {
 
   private changeDetailMode(mode: WeatherDetailMode) {
     this.store.dispatch(
-      weather.detailModeUpdate({
+      weather.changeDetailMode({
         mode: mode,
       })
     );
   }
 
   private changeReadingMode(value: WeatherReadingMode) {
-    this.store.dispatch(weather.readingModeUpdate({ mode: value }));
+    this.store.dispatch(weather.changeReadingMode({ mode: value }));
   }
 
   private detailModeIs(mode: WeatherDetailMode): boolean {
@@ -182,14 +241,34 @@ export class StateManagerService {
   }
 
   private initState() {
-    this.appState$ = this.store.select('appState');
+    const appState$ = this.store.select('appState');
 
-    this.appState$.subscribe((state) => {
+    appState$.subscribe((state) => {
       this.appState = state;
     });
   }
 
   private readingModeIs(mode: WeatherReadingMode): boolean {
     return this.readingMode === mode;
+  }
+
+  private settingsBackgroundImageIs(
+    background: SettingsBackgroundImage
+  ): boolean {
+    return this.appState.settingsState.backgroundImage === background;
+  }
+
+  private settingsSignificantFiguresIs(
+    figures: SettingsSignificantFigures
+  ): boolean {
+    return this.appState.settingsState.significantFigures === figures;
+  }
+
+  private settingsTemperatureIs(temperature: SettingsTemperature): boolean {
+    return this.appState.settingsState.temperature === temperature;
+  }
+
+  private settingsThemeIs(theme: SettingsTheme): boolean {
+    return this.appState.settingsState.theme === theme;
   }
 }

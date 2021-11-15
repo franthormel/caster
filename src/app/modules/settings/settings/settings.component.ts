@@ -6,7 +6,8 @@ import {
   SettingsBackgroundImage,
   SettingsTheme,
 } from '../../../models/settings.enums';
-import { SettingsConfig } from '../../../models/settings.models';
+
+import { StateManagerService } from '../../shared/services/state-manager.service';
 
 @Component({
   selector: 'app-settings',
@@ -14,28 +15,53 @@ import { SettingsConfig } from '../../../models/settings.models';
   styleUrls: ['./settings.component.scss'],
 })
 export class SettingsComponent {
-  // TODO Move to service
-  config: SettingsConfig = {
-    temperature: SettingsTemperature.Celsius,
-    significantFigures: 0,
-    backgroundImage: SettingsBackgroundImage.Generic,
-    theme: SettingsTheme.Light,
-    showDegreeSign: true,
-  };
+  constructor(private stateManager: StateManagerService) {}
 
-  constructor() {}
+  changeBackgroundImage(value: SettingsBackgroundImage) {
+    this.stateManager.changeSettingsBackgroundImage(value);
+  }
+
+  changeSignificantFigures(value: SettingsSignificantFigures) {
+    this.stateManager.changeSettingsSignificantFigures(value);
+  }
 
   changeTemperature(value: SettingsTemperature) {
-    // TODO
+    this.stateManager.changeSettingsTemperature(value);
   }
-  changeSignificantFigures(value: SettingsSignificantFigures) {
-    // TODO
-  }
-  changeBackgroundImage(value: SettingsBackgroundImage) {
-    // TODO
-  }
+
   changeTheme(value: SettingsTheme) {
-    // TODO
+    this.stateManager.changeSettingsTheme(value);
+  }
+
+  toggleDegreeSign() {
+    this.stateManager.settingsToggleDegreeSign();
+  }
+
+  get backgroundImage(): SettingsBackgroundImage {
+    return this.stateManager.settingsBackgroundImage;
+  }
+
+  get backgroundImageOptions(): SettingsBackgroundImage[] {
+    return [
+      SettingsBackgroundImage.Generic,
+      SettingsBackgroundImage.WeatherRelated,
+    ];
+  }
+
+  get degreeSign(): boolean {
+    return this.stateManager.settingsDegreeSign;
+  }
+
+  get significantFigures(): SettingsSignificantFigures {
+    return this.stateManager.settingsSignificantFigures;
+  }
+
+  get significantFigureOptions(): SettingsSignificantFigures[] {
+    return [0, 1, 2];
+  }
+
+  get temperature(): SettingsTemperature {
+    return this.stateManager.settingsTemperature;
   }
 
   get temperatureOptions(): SettingsTemperature[] {
@@ -46,15 +72,8 @@ export class SettingsComponent {
     ];
   }
 
-  get significantFigureOptions(): SettingsSignificantFigures[] {
-    return [0, 1, 2];
-  }
-
-  get backgroundImageOptions(): SettingsBackgroundImage[] {
-    return [
-      SettingsBackgroundImage.Generic,
-      SettingsBackgroundImage.WeatherRelated,
-    ];
+  get theme(): SettingsTheme {
+    return this.stateManager.settingsTheme;
   }
 
   get themeOptions(): SettingsTheme[] {

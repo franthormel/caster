@@ -5,28 +5,28 @@ import {
   WeatherDetailMode,
 } from '../../models/weather/weather.enums';
 
-export const detailModeUpdate = createAction(
-  '[Weather] Detail Mode Update',
+export const changeDetailMode = createAction(
+  '[Weather] Change Detail Mode',
   props<{ mode: WeatherDetailMode }>()
 );
 
-export const indexDailyDecrement = createAction(
-  '[Weather] Index Daily Decrement'
+export const decrementIndexDaily = createAction(
+  '[Weather] Decrement Index Daily'
 );
 
-export const indexDailyIncrement = createAction(
-  '[Weather] Index Daily Increment'
+export const incrementIndexDaily = createAction(
+  '[Weather] Increment Index Daily'
 );
 
-export const indexHourlyDecrement = createAction(
-  '[Weather] Index Hourly Decrement'
+export const decrementIndexHourly = createAction(
+  '[Weather] Decrement Index Hourly'
 );
 
-export const indexHourlyIncrement = createAction(
-  '[Weather] Index Hourly Increment'
+export const incrementIndexHourly = createAction(
+  '[Weather] Increment Index Hourly'
 );
 
-export const readingModeUpdate = createAction(
-  '[Weather] Reading Mode Update',
+export const changeReadingMode = createAction(
+  '[Weather] Change Reading Mode',
   props<{ mode: WeatherReadingMode }>()
 );
