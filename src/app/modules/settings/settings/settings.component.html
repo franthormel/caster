@@ -1,5 +1,5 @@
 <section class="settings">
-    <mat-tab-group>
+    <mat-tab-group [selectedIndex]="2">
         <mat-tab class="settings-tab" label="General">
             <section class="settings-option">
                 <p class="settings-option-label">Temperature unit</p>
@@ -24,6 +24,13 @@
                                       {{option}}
                     </mat-radio-button>
                 </mat-radio-group>
+            </section>
+            <section class="settings-option">
+                <mat-slide-toggle [ngModel]="degreeSign"
+                                  (click)="toggleDegreeSign()"
+                                  color="primary">
+                    Show degree° sign
+                </mat-slide-toggle>
             </section>
             <section class="settings-option">
                 <p class="settings-option-label">Background image</p>
@@ -51,16 +58,37 @@
                     </mat-radio-button>    
                 </mat-radio-group>
             </section>
-            <section class="settings-option">
-                <mat-slide-toggle [ngModel]="degreeSign"
-                                  (click)="toggleDegreeSign()"
-                                  color="primary">
-                    Show degree° sign
-                </mat-slide-toggle>
-            </section>
         </mat-tab>
-        <mat-tab class="settings-tab" label="Settings">
+        <mat-tab class="settings-tab" label="Credits">
             <!--TODO-->
+            <section class="settings-credits-header">
+                <img class="settings-credits-header-logo" 
+                     src="/assets/images/logo_open_weather.svg"/>
+                <span class="settings-credits-header-text">
+                    Weather data provided freely by 
+                    <a href="https://openweathermap.org/"
+                       target="_blank">
+                        OpenWeatherMap
+                    </a>
+                </span>
+            </section>
+            <mat-divider class="settings-credits-divider"></mat-divider>
+            <section class="settings-credits-list">
+                <mat-list>
+                    <span mat-subheader>Image Credits</span>
+                    <ng-container *ngFor="let credit of creditsImages">
+                        <mat-list-item  *ngIf="credit.enabled">
+                            <span>
+                                {{credit.name}} on 
+                                <a [href]="credit.url"
+                                   target="_blank">
+                                   {{credit.source}}
+                                </a>
+                            </span>
+                        </mat-list-item>
+                    </ng-container>
+                </mat-list>
+            </section>
         </mat-tab>
         <mat-tab class="settings-tab" label="About">
             <!--TODO-->

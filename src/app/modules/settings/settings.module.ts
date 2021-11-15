@@ -5,6 +5,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatListModule } from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
 
 import { SettingsRoutingModule } from './settings-routing.module';
@@ -22,6 +23,7 @@ import { SharedModule } from '../shared/shared.module';
     MatInputModule,
     MatSlideToggleModule,
     MatRadioModule,
+    MatListModule,
   ],
 })
 export class SettingsModule {}

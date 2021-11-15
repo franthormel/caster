@@ -1,8 +1,13 @@
 @use "../../../../styles.scss" as global;
 
+a {
+  text-decoration: none;
+}
+
 .settings {
   @include global.padding-2hv;
   background-color: white;
+  height: 87vh;
 }
 
 .settings-tab {
@@ -21,4 +26,32 @@
 .settings-radio-button {
   margin-right: 2em;
   margin-bottom: 1em;
+}
+
+.settings-credits-header {
+  display: flex;
+  margin: 3vh auto;
+  width: 50%;
+}
+
+.settings-credits-header-logo {
+  $dimension: 140px;
+
+  height: $dimension;
+  width: $dimension;
+}
+
+.settings-credits-header-text {
+  font-size: 2em;
+  align-self: center;
+  text-align: center;
+}
+
+.settings-credits-divider {
+  $margin-top-bottom: 4vh;
+
+  margin: {
+    top: $margin-top-bottom;
+    bottom: $margin-top-bottom;
+  }
 }
