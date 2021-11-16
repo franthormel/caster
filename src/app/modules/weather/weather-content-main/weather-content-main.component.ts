@@ -46,7 +46,7 @@ export class WeatherContentMainComponent {
       const reading = this.weatherReading
         .temp as WeatherReadingDetailTemperature;
 
-      return this.temperatureConverter.convertKelvinToCelsius(reading.eve);
+      return this.temperatureConverter.convertTemperature(reading.eve);
     }
 
     return -1;
@@ -56,7 +56,7 @@ export class WeatherContentMainComponent {
     const weather = this.weatherReading;
     let feelsLike = this.feelsLikeBasedOnMode(weather);
 
-    feelsLike = this.temperatureConverter.convertKelvinToCelsius(feelsLike);
+    feelsLike = this.temperatureConverter.convertTemperature(feelsLike);
 
     return feelsLike;
   }
@@ -72,7 +72,7 @@ export class WeatherContentMainComponent {
       const reading = this.weatherReading
         .temp as WeatherReadingDetailTemperature;
 
-      value = this.temperatureConverter.convertKelvinToCelsius(reading.max);
+      value = this.temperatureConverter.convertTemperature(reading.max);
     }
 
     return value;
@@ -85,7 +85,7 @@ export class WeatherContentMainComponent {
       const reading = this.weatherReading
         .temp as WeatherReadingDetailTemperature;
 
-      value = this.temperatureConverter.convertKelvinToCelsius(reading.min);
+      value = this.temperatureConverter.convertTemperature(reading.min);
     }
 
     return value;
@@ -98,7 +98,7 @@ export class WeatherContentMainComponent {
       const reading = this.weatherReading
         .temp as WeatherReadingDetailTemperature;
 
-      value = this.temperatureConverter.convertKelvinToCelsius(reading.morn);
+      value = this.temperatureConverter.convertTemperature(reading.morn);
     }
 
     return value;
@@ -111,7 +111,7 @@ export class WeatherContentMainComponent {
       const reading = this.weatherReading
         .temp as WeatherReadingDetailTemperature;
 
-      value = this.temperatureConverter.convertKelvinToCelsius(reading.night);
+      value = this.temperatureConverter.convertTemperature(reading.night);
     }
 
     return value;
@@ -129,7 +129,7 @@ export class WeatherContentMainComponent {
     const weather = this.weatherReading;
     let temperature = this.temperatureBasedOnMode(weather);
 
-    temperature = this.temperatureConverter.convertKelvinToCelsius(temperature);
+    temperature = this.temperatureConverter.convertTemperature(temperature);
 
     return temperature;
   }

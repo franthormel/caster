@@ -5,13 +5,12 @@ import {
   SettingsTheme,
 } from '../../models/settings.enums';
 
-
 export interface SettingsState {
-  backgroundImage: SettingsBackgroundImage; 
+  backgroundImage: SettingsBackgroundImage;
   significantFigures: SettingsSignificantFigures; // TODO: Apply
   showDegreeSign: boolean; // TODO: Apply
-  temperature: SettingsTemperature; // TODO: Apply
-  theme: SettingsTheme; 
+  temperature: SettingsTemperature;
+  theme: SettingsTheme;
 }
 
 export const initialSettingsState: SettingsState = {

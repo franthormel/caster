@@ -185,9 +185,11 @@ export class StateManagerService {
   get settingsSignificantFigures(): SettingsSignificantFigures {
     return this.appState.settingsState.significantFigures;
   }
+
   get settingsBackgroundImage(): SettingsBackgroundImage {
     return this.appState.settingsState.backgroundImage;
   }
+  
   get settingsTheme(): SettingsTheme {
     return this.appState.settingsState.theme;
   }

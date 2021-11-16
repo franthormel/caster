@@ -21,7 +21,7 @@ export class WeatherContentBottomComponent {
   ) {}
 
   get dewPoint(): number {
-    return this.temperatureConverter.convertKelvinToCelsius(
+    return this.temperatureConverter.convertTemperature(
       this.weatherReading.dew_point
     );
   }
