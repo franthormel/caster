@@ -20,10 +20,16 @@ export class WeatherContentBottomComponent {
     private stateManager: StateManagerService
   ) {}
 
-  get dewPoint(): number {
-    return this.temperatureConverter.convertTemperature(
+  get dewPoint(): number | string {
+    let value: number | string = this.temperatureConverter.convertTemperature(
       this.weatherReading.dew_point
     );
+
+    if (this.stateManager.settingsDegreeSign) {
+      value = `${value}°`;
+    }
+
+    return value;
   }
 
   get precipitation(): string {
@@ -130,7 +136,7 @@ export class WeatherContentBottomComponent {
   }
 
   private get currentPrecipitation(): string {
-    let precipitationVolume: string | number = 0;
+    let precipitationVolume: number | string = 0;
 
     if (this.weatherData.minutely !== undefined) {
       let total = 0;

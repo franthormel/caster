@@ -125,13 +125,18 @@ export class WeatherContentMainComponent {
     return this.stateManager.readingModeIsDaily;
   }
 
-  get temperature(): number {
-    const weather = this.weatherReading;
-    let temperature = this.temperatureBasedOnMode(weather);
+  get temperature(): number | string {
+    let value: number | string = this.temperatureBasedOnMode(
+      this.weatherReading
+    );
 
-    temperature = this.temperatureConverter.convertTemperature(temperature);
+    value = this.temperatureConverter.convertTemperature(value);
 
-    return temperature;
+    if (this.stateManager.settingsDegreeSign) {
+      value = `${value}°`;
+    }
+
+    return value;
   }
 
   get underlineFeelsLike(): boolean {
@@ -152,8 +157,14 @@ export class WeatherContentMainComponent {
     return this.weatherCondition.icon;
   }
 
-  get windDirection(): number {
-    return this.weatherReading.wind_deg;
+  get windDirection(): number | string {
+    let value: number | string = this.weatherReading.wind_deg;
+
+    if (this.stateManager.settingsDegreeSign) {
+      value = `${value}°`;
+    }
+
+    return value;
   }
 
   get windGust(): number {

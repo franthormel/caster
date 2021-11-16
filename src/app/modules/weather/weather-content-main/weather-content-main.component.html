@@ -36,7 +36,7 @@
                            [matRippleUnbounded]="true"
                            [ngClass]="{'text-focus-temperature': underlineTemperature}"
                            (click)="changeToTemperatureViewMode()">
-                           {{temperature}}°
+                           {{temperature}}
                         </p>
                     </section>
                 </section>
@@ -61,7 +61,7 @@
             </div>
             <div class="margin-bottom-z3">
                 <p class="font-weight-f600">Wind Direction</p>
-                <p>{{windDirection}}°</p>
+                <p>{{windDirection}}</p>
             </div>
             <div *ngIf="windGustIsPresent" class="margin-bottom-z3">
                 <p class="font-weight-f600">Wind Gust</p>
