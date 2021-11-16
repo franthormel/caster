@@ -3,10 +3,11 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { AppState } from '../../../app-state.reducers';
-import { changeStaticFile } from '../../../app-state.actions';
-import * as weather from '../../../modules/weather/weather-state.actions';
+
 import * as airPollution from '../../../modules/air-pollution/air-pollution-state.actions';
+import * as locations from '../../../modules/locations/locations-state.actions';
 import * as settings from '../../../modules/settings/settings-state.actions';
+import * as weather from '../../../modules/weather/weather-state.actions';
 
 import {
   WeatherDetailMode,
@@ -49,8 +50,8 @@ export class StateManagerService {
   }
 
   changeStaticFile(file: number) {
-    if (this.staticFile !== file) {
-      this.store.dispatch(changeStaticFile({ file: file }));
+    if (this.locationsFile !== file) {
+      this.store.dispatch(locations.changeLocationsFile({ file: file }));
     }
   }
 
@@ -162,6 +163,10 @@ export class StateManagerService {
     return this.appState.weatherState.indexHourly;
   }
 
+  get locationsFile(): number {
+    return this.appState.locationsState.index;
+  }
+
   get readingMode(): WeatherReadingMode {
     return this.appState.weatherState.readingMode;
   }
@@ -189,17 +194,13 @@ export class StateManagerService {
   get settingsBackgroundImage(): SettingsBackgroundImage {
     return this.appState.settingsState.backgroundImage;
   }
-  
+
   get settingsTheme(): SettingsTheme {
     return this.appState.settingsState.theme;
   }
 
   get settingsDegreeSign(): boolean {
     return this.appState.settingsState.showDegreeSign;
-  }
-
-  get staticFile(): number {
-    return this.appState.staticFile;
   }
 
   private get canIndexAirPollutionDecrement(): boolean {

@@ -1,14 +1,9 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { changeStaticFile } from './app-state.actions';
-import * as weather from './modules/weather/weather-state.actions';
 import * as airPollution from './modules/air-pollution/air-pollution-state.actions';
+import * as locations from './modules/locations/locations-state.actions';
 import * as settings from './modules/settings/settings-state.actions';
-
-import {
-  initialWeatherState,
-  WeatherState,
-} from './modules/weather/weather-state.reducers';
+import * as weather from './modules/weather/weather-state.actions';
 
 import {
   initialAirPollutionState,
@@ -16,31 +11,36 @@ import {
 } from './modules/air-pollution/air-pollution-state.reducers';
 
 import {
+  initialLocationsState,
+  LocationsState,
+} from './modules/locations/locations-state.reducers';
+
+import {
   initialSettingsState,
   SettingsState,
 } from './modules/settings/settings-state.reducers';
 
+import {
+  initialWeatherState,
+  WeatherState,
+} from './modules/weather/weather-state.reducers';
+
 export interface AppState {
-  staticFile: number;
-  weatherState: WeatherState;
   airPollutionState: AirPollutionState;
+  locationsState: LocationsState;
   settingsState: SettingsState;
+  weatherState: WeatherState;
 }
 
 export const initialAppState: AppState = {
-  staticFile: 1, // TODO:  When there are more files available (>3) make this a literal type instead of a number
-  weatherState: initialWeatherState,
   airPollutionState: initialAirPollutionState,
+  locationsState: initialLocationsState,
   settingsState: initialSettingsState,
+  weatherState: initialWeatherState,
 };
 
 const _appStateReducer = createReducer(
   initialAppState,
-
-  on(changeStaticFile, (state, { file }) => ({
-    ...state,
-    staticFile: file,
-  })),
 
   on(airPollution.decrementIndex, (state) => ({
     ...state,
@@ -53,6 +53,13 @@ const _appStateReducer = createReducer(
     ...state,
     airPollutionState: {
       index: state.airPollutionState.index + 1,
+    },
+  })),
+
+  on(locations.changeLocationsFile, (state, { file }) => ({
+    ...state,
+    locationsState: {
+      index: file,
     },
   })),
 

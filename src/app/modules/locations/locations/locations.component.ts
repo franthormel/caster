@@ -40,7 +40,7 @@ export class LocationsComponent implements OnInit {
 
   showLocationIcon(id: number): boolean {
     const file = id + 1;
-    const value = this.stateManager.staticFile === file;
+    const value = this.stateManager.locationsFile === file;
 
     return value;
   }

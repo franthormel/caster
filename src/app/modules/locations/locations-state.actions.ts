@@ -1,5 +1,6 @@
-import { createAction } from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
 
-export const decrementIndex = createAction('[Air Pollution] Decrement Index');
-
-export const incrementIndex = createAction('[Air Pollution] Increment Index');
+export const changeLocationsFile = createAction(
+  '[Locations] Change file',
+  props<{ file: number }>()
+);

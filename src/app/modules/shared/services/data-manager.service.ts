@@ -67,14 +67,14 @@ export class DataManagerService {
   }
 
   private get geolocationFile(): string {
-    return this.chooseGeolocationFile(this.stateManager.staticFile);
+    return this.chooseGeolocationFile(this.stateManager.locationsFile);
   }
 
   private get weatherFile(): string {
-    return `${this.DATA_URL.FILE}weather/${this.stateManager.staticFile}.json`;
+    return `${this.DATA_URL.FILE}weather/${this.stateManager.locationsFile}.json`;
   }
 
   private get airPollutionFile(): string {
-    return `${this.DATA_URL.FILE}air_pollution/${this.stateManager.staticFile}.json`;
+    return `${this.DATA_URL.FILE}air_pollution/${this.stateManager.locationsFile}.json`;
   }
 }
