@@ -28,7 +28,7 @@ export interface AppState {
 }
 
 export const initialAppState: AppState = {
-  staticFile: 1,
+  staticFile: 1, // TODO:  When there are more files available (>3) make this a literal type instead of a number
   weatherState: initialWeatherState,
   airPollutionState: initialAirPollutionState,
   settingsState: initialSettingsState,
