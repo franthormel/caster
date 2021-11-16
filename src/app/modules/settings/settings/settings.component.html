@@ -60,7 +60,6 @@
             </section>
         </mat-tab>
         <mat-tab class="settings-tab" label="Credits">
-            <!--TODO-->
             <section class="settings-credits-header">
                 <img class="settings-credits-header-logo" 
                      src="/assets/images/logo_open_weather.svg"/>
@@ -72,8 +71,8 @@
                     </a>
                 </span>
             </section>
-            <mat-divider class="settings-credits-divider"></mat-divider>
-            <section class="settings-credits-list">
+            <mat-divider></mat-divider>
+            <section>
                 <mat-list>
                     <span mat-subheader>Image Credits</span>
                     <ng-container *ngFor="let credit of creditsImages">
@@ -91,7 +90,34 @@
             </section>
         </mat-tab>
         <mat-tab class="settings-tab" label="About">
-            <!--TODO-->
+                <section class="settings-about">
+                    <p class="settings-about-header">
+                        CASTER 1.0.0
+                    </p>
+                    <p class="settings-about-subheader">
+                        <a href="https://github.com/pendraic/caster" 
+                           target="_blank">
+                           Francis Anthony Carmel © 2021
+                        </a>
+                    </p>
+                </section>
+            <mat-divider></mat-divider>
+            <section>
+                <mat-list>
+                    <span mat-subheader>Third party applications</span>
+                    <ng-container *ngFor="let credit of creditsSoftware">
+                        <mat-list-item  *ngIf="credit.enabled">
+                            <span>
+                                <a [href]="credit.url"
+                                   target="_blank">
+                                   {{credit.name}} {{credit.version}}
+                                </a>
+                                ({{credit.type}})
+                            </span>
+                        </mat-list-item>
+                    </ng-container>
+                </mat-list>
+            </section>
         </mat-tab>
     </mat-tab-group>
 </section>

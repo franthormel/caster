@@ -7,7 +7,6 @@ a {
 .settings {
   @include global.padding-2hv;
   background-color: white;
-  height: 87vh;
 }
 
 .settings-tab {
@@ -47,11 +46,17 @@ a {
   text-align: center;
 }
 
-.settings-credits-divider {
-  $margin-top-bottom: 4vh;
+.settings-about {
+  text-align: center;
+  padding: 2vh;
+}
 
-  margin: {
-    top: $margin-top-bottom;
-    bottom: $margin-top-bottom;
-  }
+.settings-about-header {
+  font-size: x-large;
+  font-weight: 800;
+}
+
+.settings-about-subheader {
+  font-size: large;
+  font-weight: 400;
 }

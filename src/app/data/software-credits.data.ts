@@ -29,7 +29,7 @@ export const SOFTWARE_CREDITS: SoftwareCredits[] = [
     enabled: true,
     url: 'https://rxjs.dev/',
     type: 'Reactive extension',
-    version: '7.4',
+    version: '7.4.0',
   },
   {
     name: 'Sass',
