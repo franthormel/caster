@@ -1,16 +1,15 @@
-<!--TODO Give padding-bottom-->
 <ng-container *ngIf="loading">
-    <mat-progress-bar color="accent" 
+    <mat-progress-bar color="accent"
                       mode="indeterminate">
     </mat-progress-bar>
 </ng-container>
 
-<section *ngIf="!loading" 
+<section *ngIf="!loading"
          class="air-pollution">
     <section class="air-pollution-controls">
-        <button mat-icon-button 
-                aria-label="Previous day button" 
-                matTooltip="Previous day" 
+        <button mat-icon-button
+                aria-label="Previous day button"
+                matTooltip="Previous day"
                 (click)="previous()">
             <mat-icon color="accent" 
                       aria-label="Previous icon">
@@ -25,7 +24,7 @@
                 aria-label="Next day button" 
                 matTooltip="Next day"
                 (click)="next()">
-            <mat-icon color="accent" 
+            <mat-icon color="accent"
                       aria-label="Next icon">
                 chevron_right
             </mat-icon>

@@ -1,10 +1,8 @@
 @use "../../../../styles.scss" as global;
 
 .air-pollution {
-  width: 60vw;
-  margin-top: 3vh;
-  margin-left: auto;
-  margin-right: auto;
+  width: 50%;
+  margin: 3vh auto;
   border-radius: 3px;
   @include global.padding-2hv;
   @include global.transparent-bg;

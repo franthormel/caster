@@ -8,7 +8,7 @@ import {
 export interface SettingsState {
   backgroundImage: SettingsBackgroundImage;
   significantFigures: SettingsSignificantFigures; // TODO: Apply
-  showDegreeSign: boolean; // TODO: Apply
+  showDegreeSign: boolean;
   temperature: SettingsTemperature;
   theme: SettingsTheme;
 }
