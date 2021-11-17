@@ -14,19 +14,6 @@
                     </mat-radio-button>
                 </mat-radio-group>
             </section>
-            <!--tODO MAke owrk-->
-            <section class="settings-option">
-                <p class="settings-option-label">Number of significant figures</p>
-                <mat-radio-group [ngModel]="significantFigures">
-                    <mat-radio-button *ngFor="let option of significantFigureOptions" 
-                                      class="settings-radio-button"
-                                      color="primary"
-                                      (click)="changeSignificantFigures(option)"
-                                      [value]="option">
-                                      {{option}}
-                    </mat-radio-button>
-                </mat-radio-group>
-            </section>
             <section class="settings-option">
                 <mat-slide-toggle [ngModel]="degreeSign"
                                   (change)="toggleDegreeSign()"

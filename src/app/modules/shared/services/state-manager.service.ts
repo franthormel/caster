@@ -16,7 +16,6 @@ import {
 
 import {
   SettingsTemperature,
-  SettingsSignificantFigures,
   SettingsBackgroundImage,
   SettingsTheme,
 } from '../../../models/settings.enums';
@@ -77,14 +76,6 @@ export class StateManagerService {
     if (!this.settingsBackgroundImageIs(background)) {
       this.store.dispatch(
         settings.changeBackgroundImage({ background: background })
-      );
-    }
-  }
-
-  changeSettingsSignificantFigures(figures: SettingsSignificantFigures) {
-    if (!this.settingsSignificantFiguresIs(figures)) {
-      this.store.dispatch(
-        settings.changeSignificantFigures({ figures: figures })
       );
     }
   }
@@ -187,10 +178,6 @@ export class StateManagerService {
     return this.appState.settingsState.temperature;
   }
 
-  get settingsSignificantFigures(): SettingsSignificantFigures {
-    return this.appState.settingsState.significantFigures;
-  }
-
   get settingsBackgroundImage(): SettingsBackgroundImage {
     return this.appState.settingsState.backgroundImage;
   }
@@ -259,12 +246,6 @@ export class StateManagerService {
     background: SettingsBackgroundImage
   ): boolean {
     return this.appState.settingsState.backgroundImage === background;
-  }
-
-  private settingsSignificantFiguresIs(
-    figures: SettingsSignificantFigures
-  ): boolean {
-    return this.appState.settingsState.significantFigures === figures;
   }
 
   private settingsTemperatureIs(temperature: SettingsTemperature): boolean {

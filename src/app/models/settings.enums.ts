@@ -4,8 +4,6 @@ export enum SettingsTemperature {
   Kelvin = 'Kelvin',
 }
 
-export type SettingsSignificantFigures = 0 | 1 | 2;
-
 export enum SettingsBackgroundImage {
   WeatherRelated = 'Weather related',
   Generic = 'Generic',

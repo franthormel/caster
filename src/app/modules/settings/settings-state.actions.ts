@@ -2,7 +2,6 @@ import { createAction, props } from '@ngrx/store';
 
 import {
   SettingsTemperature,
-  SettingsSignificantFigures,
   SettingsBackgroundImage,
   SettingsTheme,
 } from '../../models/settings.enums';
@@ -10,11 +9,6 @@ import {
 export const changeBackgroundImage = createAction(
   '[Settings] Change BackgroundImage',
   props<{ background: SettingsBackgroundImage }>()
-);
-
-export const changeSignificantFigures = createAction(
-  '[Settings] Change Significant Figures',
-  props<{ figures: SettingsSignificantFigures }>()
 );
 
 export const changeTemperature = createAction(

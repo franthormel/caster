@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 
 import {
   SettingsTemperature,
-  SettingsSignificantFigures,
   SettingsBackgroundImage,
   SettingsTheme,
 } from '../../../models/settings.enums';
@@ -26,10 +25,6 @@ export class SettingsComponent {
 
   changeBackgroundImage(value: SettingsBackgroundImage) {
     this.stateManager.changeSettingsBackgroundImage(value);
-  }
-
-  changeSignificantFigures(value: SettingsSignificantFigures) {
-    this.stateManager.changeSettingsSignificantFigures(value);
   }
 
   changeTemperature(value: SettingsTemperature) {
@@ -64,14 +59,6 @@ export class SettingsComponent {
     const value = `${prepend} degree sign for temperature readings and wind direction`;
 
     return value;
-  }
-
-  get significantFigures(): SettingsSignificantFigures {
-    return this.stateManager.settingsSignificantFigures;
-  }
-
-  get significantFigureOptions(): SettingsSignificantFigures[] {
-    return [0, 1, 2];
   }
 
   get temperature(): SettingsTemperature {

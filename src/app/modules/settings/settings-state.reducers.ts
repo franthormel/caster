@@ -1,13 +1,11 @@
 import {
   SettingsTemperature,
-  SettingsSignificantFigures,
   SettingsBackgroundImage,
   SettingsTheme,
 } from '../../models/settings.enums';
 
 export interface SettingsState {
   backgroundImage: SettingsBackgroundImage;
-  significantFigures: SettingsSignificantFigures; // TODO: Apply
   showDegreeSign: boolean;
   temperature: SettingsTemperature;
   theme: SettingsTheme;
@@ -15,7 +13,6 @@ export interface SettingsState {
 
 export const initialSettingsState: SettingsState = {
   backgroundImage: SettingsBackgroundImage.Generic,
-  significantFigures: 0,
   showDegreeSign: true,
   temperature: SettingsTemperature.Celsius,
   theme: SettingsTheme.Light,

@@ -71,14 +71,6 @@ const _appStateReducer = createReducer(
     },
   })),
 
-  on(settings.changeSignificantFigures, (state, { figures }) => ({
-    ...state,
-    settingsState: {
-      ...state.settingsState,
-      figures: figures,
-    },
-  })),
-
   on(settings.changeBackgroundImage, (state, { background }) => ({
     ...state,
     settingsState: {
