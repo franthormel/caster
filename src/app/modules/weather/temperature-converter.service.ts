@@ -9,9 +9,9 @@ import { StateManagerService } from '../shared/services/state-manager.service';
 export class TemperatureConverterService {
   constructor(private stateManager: StateManagerService) {}
 
+  // TODO: When number of significant figures is implemented using Number.toFixed(precision)
+
   convertTemperature(kelvin: number): number {
-    // TODO: Separate converting reading to corresponding type (kfc) then roudning it to a speicfic precision according
-    // to settings (0,1,2) Number.prototype.toPrecision() by using 2 different priv methods 
     const settings = this.stateManager.settingsTemperature;
     let value = kelvin;
 

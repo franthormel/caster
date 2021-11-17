@@ -59,6 +59,13 @@ export class SettingsComponent {
     return this.stateManager.settingsDegreeSign;
   }
 
+  get degreeSignTooltip(): string {
+    const prepend = this.degreeSign ? 'Hide' : 'Show';
+    const value = `${prepend} degree sign for temperature readings and wind direction`;
+
+    return value;
+  }
+
   get significantFigures(): SettingsSignificantFigures {
     return this.stateManager.settingsSignificantFigures;
   }

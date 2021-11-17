@@ -3,7 +3,8 @@
         <mat-tab class="settings-tab" label="General">
             <section class="settings-option">
                 <p class="settings-option-label">Temperature unit</p>
-                <mat-radio-group [ngModel]="temperature">
+                <mat-radio-group [ngModel]="temperature" 
+                                 matTooltip="Change unit of measurement for temperature readings">
                     <mat-radio-button *ngFor="let option of temperatureOptions" 
                                       class="settings-radio-button"
                                       color="primary"
@@ -13,6 +14,7 @@
                     </mat-radio-button>
                 </mat-radio-group>
             </section>
+            <!--tODO MAke owrk-->
             <section class="settings-option">
                 <p class="settings-option-label">Number of significant figures</p>
                 <mat-radio-group [ngModel]="significantFigures">
@@ -28,6 +30,7 @@
             <section class="settings-option">
                 <mat-slide-toggle [ngModel]="degreeSign"
                                   (change)="toggleDegreeSign()"
+                                  [matTooltip]="degreeSignTooltip"
                                   color="primary">
                     Show degree° sign
                 </mat-slide-toggle>

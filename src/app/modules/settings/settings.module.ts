@@ -11,6 +11,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { SettingsRoutingModule } from './settings-routing.module';
 import { SettingsComponent } from './settings/settings.component';
 import { SharedModule } from '../shared/shared.module';
+import { MatTooltipModule } from '@angular/material/tooltip';
 @NgModule({
   declarations: [SettingsComponent],
   imports: [
@@ -23,6 +24,7 @@ import { SharedModule } from '../shared/shared.module';
     MatInputModule,
     MatSlideToggleModule,
     MatRadioModule,
+    MatTooltipModule,
     MatListModule,
   ],
 })
