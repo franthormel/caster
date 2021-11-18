@@ -9,9 +9,15 @@ import { StateManagerService } from '../shared/services/state-manager.service';
 export class TemperatureConverterService {
   constructor(private stateManager: StateManagerService) {}
 
-  // TODO: When number of significant figures is implemented using Number.toFixed(precision)
-
   convertTemperature(kelvin: number): number {
+    let value = this.convertAccordingToSettings(kelvin);
+
+    value = Math.round(value);
+
+    return value;
+  }
+
+  private convertAccordingToSettings(kelvin: number): number {
     const settings = this.stateManager.settingsTemperature;
     let value = kelvin;
 
@@ -28,8 +34,6 @@ export class TemperatureConverterService {
       default:
         value;
     }
-
-    value = Math.round(value);
 
     return value;
   }
