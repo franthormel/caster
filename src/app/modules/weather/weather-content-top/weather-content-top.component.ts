@@ -49,6 +49,28 @@ export class WeatherContentTopComponent {
     return this.alertsCount > 0;
   }
 
+  get alertsButtonText(): string {
+    let value = 'Alert';
+
+    if (this.alertsCount > 1) {
+      value += 's';
+    }
+
+    return value;
+  }
+
+  get alertsButtonTooltip(): string {
+    let value = 'Alert';
+
+    if (this.alertsCount > 1) {
+      value += 's';
+    }
+
+    value += ' from weather warning systems';
+
+    return value;
+  }
+
   get alertsCount(): number {
     return this.alerts ? this.alerts.length : 0;
   }
@@ -61,9 +83,7 @@ export class WeatherContentTopComponent {
     let value = '';
 
     if (this.currentModeIsCurrent) {
-      value = this.epochConverter.toTime(
-        this.weatherData.current.sunrise!
-      );
+      value = this.epochConverter.toTime(this.weatherData.current.sunrise!);
     }
     return value;
   }
@@ -72,9 +92,7 @@ export class WeatherContentTopComponent {
     let value = '';
 
     if (this.currentModeIsCurrent) {
-      value = this.epochConverter.toTime(
-        this.weatherData.current.sunset!
-      );
+      value = this.epochConverter.toTime(this.weatherData.current.sunset!);
     }
 
     return value;
@@ -111,9 +129,7 @@ export class WeatherContentTopComponent {
     let value = '';
 
     if (this.currentModeIsDaily) {
-      value = this.epochConverter.toTime(
-        this.currentDailyWeather.sunrise!
-      );
+      value = this.epochConverter.toTime(this.currentDailyWeather.sunrise!);
     }
     return value;
   }
@@ -122,9 +138,7 @@ export class WeatherContentTopComponent {
     let value = '';
 
     if (this.currentModeIsDaily) {
-      value = this.epochConverter.toTime(
-        this.currentDailyWeather.sunset!
-      );
+      value = this.epochConverter.toTime(this.currentDailyWeather.sunset!);
     }
 
     return value;
@@ -158,9 +172,7 @@ export class WeatherContentTopComponent {
   }
 
   private get alerts(): WeatherAlert[] | undefined {
-    const alerts = this.weatherData.alerts;
-
-    return alerts !== undefined ? alerts : undefined;
+    return this.weatherData.alerts;
   }
 
   private get currentDailyWeather(): WeatherReadingDaily {

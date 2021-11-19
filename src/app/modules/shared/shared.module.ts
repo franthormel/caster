@@ -1,32 +1,30 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatRippleModule } from '@angular/material/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { DataManagerService } from './services/data-manager.service';
+import { DialogHandlerService } from './services/dialog-handler.service';
 import { EpochConverterService } from './services/epoch-converter.service';
+import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
+import { SettingsManagerService } from './services/settings-manager.service';
 import { StateManagerService } from './services/state-manager.service';
 import { StringManagerService } from './services/string-manager.service';
-import { DialogHandlerService } from './services/dialog-handler.service';
-import { SettingsManagerService } from './services/settings-manager.service';
 @NgModule({
   declarations: [ErrorDialogComponent],
   imports: [
     CommonModule,
     MatButtonModule,
     MatDialogModule,
-    MatFormFieldModule,
     MatIconModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatListModule,
   ],
   providers: [
     DataManagerService,
@@ -36,6 +34,17 @@ import { SettingsManagerService } from './services/settings-manager.service';
     StateManagerService,
     StringManagerService,
   ],
-  exports: [ErrorDialogComponent],
+  exports: [
+    ErrorDialogComponent,
+    MatButtonModule,
+    MatIconModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatListModule,
+    MatProgressBarModule,
+    MatRippleModule,
+    MatTooltipModule,
+  ],
 })
 export class SharedModule {}

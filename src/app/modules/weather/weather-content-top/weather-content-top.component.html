@@ -2,9 +2,10 @@
     <section class="weather-top">
         <section class="weather-top-left">
             <button mat-flat-button
+                    aria-label="Change mode icon"
                     color="primary"
                     class="margin-right-z1"
-                    aria-label="Change mode icon" 
+                    matTooltip="Change mode"
                     [matMenuTriggerFor]="menuWeatherMode">
                     View {{titleViewMode}}
             </button>
@@ -28,13 +29,13 @@
             <ng-container *ngIf="alertsAreAvailable">
                 <button mat-raised-button 
                         color="warn" 
-                        aria-label="Alerts icon" 
-                        matTooltip="Alerts from weather warning systems"
+                        aria-label="Alert icon"
+                        [matTooltip]="alertsButtonTooltip"
                         (click)="showAlertDialog()"
                         matBadgeColor="warn" 
                         [matBadge]="alertsCount">
                     <mat-icon>warning</mat-icon>
-                    Alerts
+                    {{alertsButtonText}}
                 </button>
             </ng-container>
         </section>
@@ -81,7 +82,7 @@
                 </button>                
                 <button mat-icon-button 
                         aria-label="Next hour button"
-                        matTooltip="Next hour"
+                        matTooltip="Next hour"x
                         (click)="hourlyNext()">
                     <mat-icon color="accent"
                               aria-label="Next icon">
