@@ -14,11 +14,7 @@ import {
   WeatherReadingMode,
 } from '../../../models/weather/weather.enums';
 
-import {
-  SettingsTemperature,
-  SettingsBackgroundImage,
-  SettingsTheme,
-} from '../../../models/settings.enums';
+import { SettingsTemperature } from '../../../models/settings.enums';
 
 @Injectable({
   providedIn: 'root',
@@ -72,25 +68,11 @@ export class StateManagerService {
     }
   }
 
-  changeSettingsBackgroundImage(background: SettingsBackgroundImage) {
-    if (!this.settingsBackgroundImageIs(background)) {
-      this.store.dispatch(
-        settings.changeBackgroundImage({ background: background })
-      );
-    }
-  }
-
   changeSettingsTemperature(temperature: SettingsTemperature) {
     if (!this.settingsTemperatureIs(temperature)) {
       this.store.dispatch(
         settings.changeTemperature({ temperature: temperature })
       );
-    }
-  }
-
-  changeSettingsTheme(theme: SettingsTheme) {
-    if (!this.settingsThemeIs(theme)) {
-      this.store.dispatch(settings.changeTheme({ theme: theme }));
     }
   }
 
@@ -178,14 +160,6 @@ export class StateManagerService {
     return this.appState.settingsState.temperature;
   }
 
-  get settingsBackgroundImage(): SettingsBackgroundImage {
-    return this.appState.settingsState.backgroundImage;
-  }
-
-  get settingsTheme(): SettingsTheme {
-    return this.appState.settingsState.theme;
-  }
-
   get settingsDegreeSign(): boolean {
     return this.appState.settingsState.showDegreeSign;
   }
@@ -242,17 +216,7 @@ export class StateManagerService {
     return this.readingMode === mode;
   }
 
-  private settingsBackgroundImageIs(
-    background: SettingsBackgroundImage
-  ): boolean {
-    return this.appState.settingsState.backgroundImage === background;
-  }
-
   private settingsTemperatureIs(temperature: SettingsTemperature): boolean {
     return this.appState.settingsState.temperature === temperature;
-  }
-
-  private settingsThemeIs(theme: SettingsTheme): boolean {
-    return this.appState.settingsState.theme === theme;
   }
 }
