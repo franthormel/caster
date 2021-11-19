@@ -71,6 +71,22 @@ const _appStateReducer = createReducer(
     },
   })),
 
+  on(settings.changeBackgroundImage, (state, { background }) => ({
+    ...state,
+    settingsState: {
+      ...state.settingsState,
+      background: background,
+    },
+  })),
+
+  on(settings.changeTheme, (state, { theme }) => ({
+    ...state,
+    settingsState: {
+      ...state.settingsState,
+      theme: theme,
+    },
+  })),
+
   on(settings.toggleDegreeSign, (state) => ({
     ...state,
     settingsState: {

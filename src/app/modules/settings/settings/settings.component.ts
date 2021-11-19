@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 
-import { SettingsTemperature } from '../../../models/settings.enums';
+import {
+  SettingsTemperature,
+  SettingsBackgroundImage,
+  SettingsTheme,
+} from '../../../models/settings.enums';
 
 import {
   IMAGE_CREDITS_LIGHT,
@@ -19,12 +23,31 @@ import { StateManagerService } from '../../shared/services/state-manager.service
 export class SettingsComponent {
   constructor(private stateManager: StateManagerService) {}
 
+  changeBackgroundImage(value: SettingsBackgroundImage) {
+    this.stateManager.changeSettingsBackgroundImage(value);
+  }
+
   changeTemperature(value: SettingsTemperature) {
     this.stateManager.changeSettingsTemperature(value);
   }
 
+  changeTheme(value: SettingsTheme) {
+    this.stateManager.changeSettingsTheme(value);
+  }
+
   toggleDegreeSign() {
     this.stateManager.settingsToggleDegreeSign();
+  }
+
+  get backgroundImage(): SettingsBackgroundImage {
+    return this.stateManager.settingsBackgroundImage;
+  }
+
+  get backgroundImageOptions(): SettingsBackgroundImage[] {
+    return [
+      SettingsBackgroundImage.Generic,
+      SettingsBackgroundImage.WeatherRelated,
+    ];
   }
 
   get degreeSign(): boolean {
@@ -47,6 +70,19 @@ export class SettingsComponent {
       SettingsTemperature.Celsius,
       SettingsTemperature.Fahrenheit,
       SettingsTemperature.Kelvin,
+    ];
+  }
+
+  get theme(): SettingsTheme {
+    return this.stateManager.settingsTheme;
+  }
+
+  get themeOptions(): SettingsTheme[] {
+    return [
+      SettingsTheme.Light,
+      SettingsTheme.Dark,
+      SettingsTheme.System,
+      SettingsTheme.TimeRelated,
     ];
   }
 
