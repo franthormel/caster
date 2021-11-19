@@ -22,6 +22,34 @@
                     Show degree° sign
                 </mat-slide-toggle>
             </section>
+            <section class="settings-option">
+                <p class="settings-option-label">Background image</p>
+                <mat-radio-group [ngModel]="backgroundImage">
+                    <mat-radio-button *ngFor="let option of backgroundImageOptions" 
+                                      class="settings-radio-button"
+                                      color="primary"
+                                      disabled
+                                      matTooltip="Not available"
+                                      (click)="changeBackgroundImage(option)"
+                                      [value]="option">
+                                      {{option}}
+                    </mat-radio-button>    
+                </mat-radio-group>
+            </section>
+            <section class="settings-option">
+                <p class="settings-option-label">Theme</p>
+                <mat-radio-group [ngModel]="theme">
+                    <mat-radio-button *ngFor="let option of themeOptions" 
+                                      class="settings-radio-button"
+                                      color="primary"
+                                      disabled
+                                      matTooltip="Not available"
+                                      (click)="changeTheme(option)"
+                                      [value]="option">
+                                      {{option}}
+                    </mat-radio-button>    
+                </mat-radio-group>
+            </section>
         </mat-tab>
         <mat-tab class="settings-tab" label="Credits">
             <section class="settings-credits-header">
