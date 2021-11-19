@@ -25,19 +25,37 @@ describe('DataManagerService', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('localFileWeather()', () => {
-    it('should return an Observable when called', () => {
-      const result = service.fileDataWeather();
+  describe('methods', () => {
+    describe('fileDataAirPollution()', () => {
+      it('should return an Observable when called', () => {
+        const result = service.fileDataAirPollution();
 
-      expect(result).toBeInstanceOf(Observable);
+        expect(result).toBeInstanceOf(Observable);
+      });
     });
-  });
 
-  describe('localFileGeolocation()', () => {
-    it('should return an Observable when called', () => {
-      const result = service.fileDataGeolocation();
+    describe('fileDataGeolocation()', () => {
+      it('should return an Observable when called', () => {
+        const result = service.fileDataGeolocation();
 
-      expect(result).toBeInstanceOf(Observable);
+        expect(result).toBeInstanceOf(Observable);
+      });
+    });
+
+    describe('fileDataGeolocations()', () => {
+      it('should return an Observable when called', () => {
+        const result = service.fileDataGeolocations();
+
+        expect(result).toBeInstanceOf(Observable);
+      });
+    });
+
+    describe('fileDataWeather()', () => {
+      it('should return an Observable when called', () => {
+        const result = service.fileDataWeather();
+
+        expect(result).toBeInstanceOf(Observable);
+      });
     });
   });
 });

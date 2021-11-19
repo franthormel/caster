@@ -3,11 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: 'weather',
-    loadChildren: () =>
-      import('./modules/weather/weather.module').then((m) => m.WeatherModule),
-  },
-  {
     path: 'air-pollution',
     loadChildren: () =>
       import('./modules/air-pollution/air-pollution.module').then(
@@ -27,6 +22,11 @@ export const routes: Routes = [
       import('./modules/settings/settings.module').then(
         (m) => m.SettingsModule
       ),
+  },
+  {
+    path: 'weather',
+    loadChildren: () =>
+      import('./modules/weather/weather.module').then((m) => m.WeatherModule),
   },
   { path: '**', redirectTo: 'weather', pathMatch: 'full' },
 ];

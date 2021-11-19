@@ -9,9 +9,7 @@ describe('StateManagerService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        StoreModule.forRoot({ appState: appStateReducer }),
-      ],
+      imports: [StoreModule.forRoot({ appState: appStateReducer })],
     });
     service = TestBed.inject(StateManagerService);
   });
@@ -21,7 +19,6 @@ describe('StateManagerService', () => {
   });
 
   describe('methods()', () => {
-
     describe('indexHourly()', () => {
       it('should return a number', () => {
         const result = service.indexHourly;

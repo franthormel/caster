@@ -64,7 +64,7 @@ export class LocationsComponent implements OnInit {
   }
 
   get searchable(): boolean {
-    return this.search !== undefined && this.search !== '';
+    return this.search !== '';
   }
 
   private initData() {

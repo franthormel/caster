@@ -19,7 +19,8 @@ import { AirQualityService } from '../air-quality.service';
 export class AirPollutionComponent implements OnInit {
   airPollution!: AirPollution;
   loading = true;
-  timezoneOffset = 0;
+  
+  private timezoneOffset = 0;
 
   constructor(
     private airQuality: AirQualityService,

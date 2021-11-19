@@ -84,7 +84,7 @@ describe('StringManagerService', () => {
 
     describe('searchContainsText()', () => {
       it('should return a Boolean', () => {
-        const result = service.searchContainsText('','');
+        const result = service.searchContainsText('', '');
 
         expect(result).toBeInstanceOf(Boolean);
       });

@@ -61,14 +61,6 @@ describe('AirPollutionComponent', () => {
         expect(result).toBeInstanceOf(Boolean);
       });
     });
-
-    describe('timezoneOffset', () => {
-      it('should be a Number', () => {
-        const result = component.timezoneOffset;
-
-        expect(result).toBeInstanceOf(Number);
-      });
-    });
   });
 
   describe('methods()', () => {

@@ -3,8 +3,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { MatIconRegistry } from '@angular/material/icon';
 
-import { environment } from '../environments/environment';
-
 import { NavigationLink } from './models/navigation-link.models';
 
 import { ICONS } from './data/icons/index.data';

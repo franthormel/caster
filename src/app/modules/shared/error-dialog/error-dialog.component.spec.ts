@@ -33,6 +33,18 @@ describe('ErrorDialogComponent', () => {
   });
 
   describe('methods', () => {
+    describe('copyErrorMessage()', () => {
+      beforeEach(() => {
+        spyOn(component, 'copyErrorMessage');
+
+        component.copyErrorMessage();
+      });
+
+      it('should be called when invoked', () => {
+        expect(component.copyErrorMessage).toHaveBeenCalled();
+      });
+    });
+
     describe('message', () => {
       it('should return a String', () => {
         const result = component.message;

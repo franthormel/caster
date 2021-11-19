@@ -11,7 +11,10 @@ import { WeatherAlert } from '../../../models/weather/weather-alert.models';
 export class DialogHandlerService {
   constructor(private dialog: MatDialog) {}
 
-  showWeatherAlert(alerts: WeatherAlert[] | undefined, disableClose: boolean = false) {
+  showWeatherAlert(
+    alerts: WeatherAlert[] | undefined,
+    disableClose: boolean = false
+  ) {
     this.dialog.open(WeatherAlertComponent, {
       data: alerts,
       disableClose: disableClose,

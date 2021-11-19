@@ -26,84 +26,89 @@ describe('EpochConverterService', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('toDate()', () => {
-    it('should return a value of Date type', () => {
-      const result = service.toDate(0);
+  describe('methods()', () => {
+    describe('toDate()', () => {
+      it('should return a value of Date type', () => {
+        const result = service.toDate(0);
 
-      expect(result).toBeInstanceOf(Date);
+        expect(result).toBeInstanceOf(Date);
+      });
+
+      it('should return the expected value', () => {
+        for (const i in EPOCH_INPUTS) {
+          const input = EPOCH_INPUTS[i];
+          const output = EPOCH_OUTPUTS_DATE[i];
+
+          const expected = new Date(output);
+          const result = service.toDate(input);
+
+          expect(result).toEqual(expected);
+        }
+      });
     });
 
-    it('should return the expected value', () => {
-      for (const i in EPOCH_INPUTS) {
-        const input = EPOCH_INPUTS[i];
-        const output = EPOCH_OUTPUTS_DATE[i];
+    describe('toTime()', () => {
+      it('should return a value of String type', () => {
+        const result = service.toTime(0);
 
-        const expected = new Date(output);
-        const result = service.toDate(input);
+        expect(result).toBeInstanceOf(String);
+      });
 
-        expect(result).toEqual(expected);
-      }
+      it('should return the expected value', () => {
+        for (const i in EPOCH_INPUTS) {
+          const input = EPOCH_INPUTS[i];
+          const output = service.toTime(input);
+
+          const result =
+            output === EPOCH_OUTPUTS_TIME_FIREFOX ||
+            output === EPOCH_OUTPUTS_TIME_CHROME;
+
+          expect(result).toBeTruthy();
+        }
+      });
     });
-  });
 
-  describe('toTime()', () => {
-    it('should return a value of String type', () => {
-      const result = service.toTime(0);
+    describe('toDateTime()', () => {
+      it('should return a value of String type', () => {
+        const result = service.toDateTime(0);
 
-      expect(result).toBeInstanceOf(String);
+        expect(result).toBeInstanceOf(String);
+      });
+
+      it('should return the expected locale date time value', () => {
+        for (const i in EPOCH_INPUTS) {
+          const input = EPOCH_INPUTS[i];
+          const output = service.toDateTime(input);
+
+          const expected_firefox = EPOCH_OUTPUTS_DATE_TIME_FIREFOX[i];
+          const expected_chrome = EPOCH_OUTPUTS_DATE_TIME_CHROME[i];
+          const result =
+            output === expected_firefox || output === expected_chrome;
+
+          expect(result).toBeTruthy();
+        }
+      });
     });
 
-    it('should return the expected value', () => {
-      for (const i in EPOCH_INPUTS) {
-        const input = EPOCH_INPUTS[i];
-        const output = service.toTime(input);
+    describe('toTimerange()', () => {
+      it('should return a value of String type', () => {
+        const result = service.toTimerange(EPOCH_ALERT);
+
+        expect(result).toBeInstanceOf(String);
+      });
+
+      it('should return the expected value', () => {
+        const output = service.toTimerange(EPOCH_ALERT);
 
         const result =
-          output === EPOCH_OUTPUTS_TIME_FIREFOX ||
-          output === EPOCH_OUTPUTS_TIME_CHROME;
+          output === EPOCH_ALERT_TIMERANGE_FIREFOX ||
+          output === EPOCH_ALERT_TIMERANGE_CHROME;
 
         expect(result).toBeTruthy();
-      }
-    });
-  });
-
-  describe('toDateTime()', () => {
-    it('should return a value of String type', () => {
-      const result = service.toDateTime(0);
-
-      expect(result).toBeInstanceOf(String);
+      });
     });
 
-    it('should return the expected locale date time value', () => {
-      for (const i in EPOCH_INPUTS) {
-        const input = EPOCH_INPUTS[i];
-        const output = service.toDateTime(input);
-
-        const expected_firefox = EPOCH_OUTPUTS_DATE_TIME_FIREFOX[i];
-        const expected_chrome = EPOCH_OUTPUTS_DATE_TIME_CHROME[i];
-        const result =
-          output === expected_firefox || output === expected_chrome;
-
-        expect(result).toBeTruthy();
-      }
-    });
-  });
-
-  describe('toTimerange()', () => {
-    it('should return a value of String type', () => {
-      const result = service.toTimerange(EPOCH_ALERT);
-
-      expect(result).toBeInstanceOf(String);
-    });
-
-    it('should return the expected value', () => {
-      const output = service.toTimerange(EPOCH_ALERT);
-
-      const result =
-        output === EPOCH_ALERT_TIMERANGE_FIREFOX ||
-        output === EPOCH_ALERT_TIMERANGE_CHROME;
-
-      expect(result).toBeTruthy();
-    });
+    // TODO
+    pending('displayDateTime');
   });
 });

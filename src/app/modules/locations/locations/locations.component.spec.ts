@@ -50,19 +50,41 @@ describe('LocationsComponent', () => {
 
         expect(result).toBeInstanceOf(Array);
       });
+
+      it('should be initialized as empty', () => {
+        const result = component.geolocations.length;
+        const expected = 0;
+
+        expect(result).toBe(expected);
+      });
     });
+
     describe('loading', () => {
       it('should be a Boolean', () => {
         const result = component.loading;
 
         expect(result).toBeInstanceOf(Boolean);
       });
+
+      it('should be initialized to true', () => {
+        const result = component.loading;
+
+        expect(result).toBeTruthy();
+      });
     });
+
     describe('search', () => {
       it('should be a String', () => {
         const result = component.search;
 
         expect(result).toBeInstanceOf(String);
+      });
+
+      it('should be initialized to an empty string', () => {
+        const result = component.search;
+        const expected = '';
+
+        expect(result).toBe(expected);
       });
     });
   });
@@ -76,6 +98,7 @@ describe('LocationsComponent', () => {
 
         expect(result).toBe('');
       });
+
       it('should clear search property after search is set to a value', () => {
         component.search = 'I am text';
 
@@ -86,6 +109,7 @@ describe('LocationsComponent', () => {
         expect(result).toBe('');
       });
     });
+
     describe('locationClicked()', () => {
       beforeEach(() => {
         spyOn(component, 'locationClicked');
@@ -97,6 +121,7 @@ describe('LocationsComponent', () => {
         expect(component.locationClicked).toHaveBeenCalled();
       });
     });
+
     describe('showLocationIcon()', () => {
       it('should return a Boolean', () => {
         const result = component.showLocationIcon(0);
@@ -104,6 +129,7 @@ describe('LocationsComponent', () => {
         expect(result).toBeInstanceOf(Boolean);
       });
     });
+
     describe('locations()', () => {
       it('should return an Array', () => {
         const result = component.locations;
@@ -111,11 +137,28 @@ describe('LocationsComponent', () => {
         expect(result).toBeInstanceOf(Array);
       });
     });
+
     describe('searchable()', () => {
       it('should return a Boolean', () => {
         const result = component.searchable;
 
         expect(result).toBeInstanceOf(Boolean);
+      });
+
+      it('should return true if search is not empty', () => {
+        component.search = 'Location';
+
+        const result = component.searchable;
+
+        expect(result).toBeTruthy();
+      });
+
+      it('should return false if search is empty', () => {
+        component.search = '';
+
+        const result = component.searchable;
+
+        expect(result).toBeFalsy();
       });
     });
   });
