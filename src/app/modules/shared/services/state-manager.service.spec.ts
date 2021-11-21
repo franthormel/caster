@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { StoreModule } from '@ngrx/store';
 
 import { appStateReducer } from '../../../app-state.reducers';
+import { SettingsTemperature } from '../../../models/settings.enums';
 import { StateManagerService } from './state-manager.service';
 
 describe('StateManagerService', () => {
@@ -396,6 +397,127 @@ describe('StateManagerService', () => {
         const result = service.readingMode;
 
         expect(result).toBeInstanceOf(String);
+      });
+    });
+
+    describe('locationsFile()', () => {
+      it('should return a Number', () => {
+        const result = service.locationsFile;
+
+        expect(result).toBeInstanceOf(Number);
+      });
+    });
+
+    describe('changeLocationsFile()', () => {
+      it('should change the expected value accordingly', () => {
+        for (const file of [0, 1, 2, 3, 4, 5]) {
+          service.changeLocationsFile(file);
+
+          const result = service.locationsFile;
+          const expected = file;
+
+          expect(result).toBe(expected);
+        }
+      });
+    });
+
+    describe('settingsTemperature()', () => {
+      it('should return a String', () => {
+        const result = service.settingsTemperature;
+
+        expect(result).toBeInstanceOf(String);
+      });
+    });
+
+    describe('changeSettingsTemperature()', () => {
+      it('should change the expected value accordingly', () => {
+        const temperatures: SettingsTemperature[] = [
+          SettingsTemperature.Celsius,
+          SettingsTemperature.Fahrenheit,
+          SettingsTemperature.Kelvin,
+        ];
+
+        for (const temperature of temperatures) {
+          service.changeSettingsTemperature(temperature);
+
+          const result = service.settingsTemperature;
+          const expected = temperature;
+
+          expect(result).toBe(expected);
+        }
+      });
+    });
+
+    describe('settingsDegreeSign()', () => {
+      it('should return a Boolean', () => {
+        const result = service.settingsDegreeSign;
+
+        expect(result).toBeInstanceOf(Boolean);
+      });
+    });
+
+    describe('settingsToggleDegreeSign()', () => {
+      it('should return false after being toggled', () => {
+        service.settingsToggleDegreeSign();
+
+        const result = service.settingsDegreeSign;
+
+        expect(result).toBeFalsy();
+      });
+
+      it('should return true after being toggled', () => {
+        service.settingsToggleDegreeSign();
+        service.settingsToggleDegreeSign();
+
+        const result = service.settingsDegreeSign;
+
+        expect(result).toBeTruthy();
+      });
+    });
+
+    describe('indexAirPollution()', () => {
+      it('should return a Number', () => {
+        const result = service.indexAirPollution;
+
+        expect(result).toBeInstanceOf(Number);
+      });
+
+      it('should return expected value after calling indexAirPollutionIncrement() once', () => {
+        service.indexAirPollutionIncrement();
+
+        const result = service.indexAirPollution;
+        const expected = 1;
+
+        expect(result).toBe(expected);
+      });
+
+      it('should return expected value after calling indexAirPollutionIncrement() twice', () => {
+        service.indexAirPollutionIncrement();
+        service.indexAirPollutionIncrement();
+
+        const result = service.indexAirPollution;
+        const expected = 2;
+
+        expect(result).toBe(expected);
+      });
+
+      it('should return expected value after calling indexAirPollutionDecrement() once', () => {
+        service.indexAirPollutionDecrement();
+
+        const result = service.indexAirPollution;
+        const expected = 0;
+
+        expect(result).toBe(expected);
+      });
+
+      it('should return expected value after calling indexAirPollutionDecrement() twice', () => {
+        service.indexAirPollutionDecrement();
+        service.indexAirPollutionDecrement();
+
+        const result = service.indexAirPollution;
+        const expected = 0;
+
+        expect(result).toBe(expected);
       });
     });
   });

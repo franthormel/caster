@@ -65,12 +65,6 @@ describe('LocationsComponent', () => {
 
         expect(result).toBeInstanceOf(Boolean);
       });
-
-      it('should be initialized to true', () => {
-        const result = component.loading;
-
-        expect(result).toBeTruthy();
-      });
     });
 
     describe('search', () => {

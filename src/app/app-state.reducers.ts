@@ -59,7 +59,7 @@ const _appStateReducer = createReducer(
   on(locations.changeLocationsFile, (state, { file }) => ({
     ...state,
     locationsState: {
-      index: file,
+      file: file,
     },
   })),
 
@@ -79,11 +79,11 @@ const _appStateReducer = createReducer(
     },
   })),
 
-  on(weather.changeDetailMode, (state, { mode: dailyDetailViewMode }) => ({
+  on(weather.changeDetailMode, (state, { detailMode }) => ({
     ...state,
     weatherState: {
       ...state.weatherState,
-      detailMode: dailyDetailViewMode,
+      detailMode: detailMode,
     },
   })),
 
@@ -119,11 +119,11 @@ const _appStateReducer = createReducer(
     },
   })),
 
-  on(weather.changeReadingMode, (state, { mode }) => ({
+  on(weather.changeReadingMode, (state, { readingMode }) => ({
     ...state,
     weatherState: {
       ...state.weatherState,
-      readingMode: mode,
+      readingMode: readingMode,
     },
   }))
 );

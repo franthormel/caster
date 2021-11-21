@@ -1,16 +1,16 @@
-<mat-sidenav-container class="sidenav-container 
+<mat-sidenav-container class="sidenav-container
                               app-color">
-    <mat-sidenav #drawer 
-                 fixedInViewport 
-                 class="sidenav" 
+    <mat-sidenav #drawer
+                 fixedInViewport
+                 class="sidenav"
                  mode="over">
-        <mat-toolbar color="primary" 
+        <mat-toolbar color="primary"
                      class="sidenav-toolbar">
                      CASTER
         </mat-toolbar>
         <mat-nav-list>
             <a *ngFor="let navigation of navigationLinks"
-               mat-list-item 
+               mat-list-item
                [routerLink]="navigation.link"
                (click)="drawer.close()"
                routerLinkActive="font-weight-f600">
@@ -21,8 +21,8 @@
     </mat-sidenav>
     <mat-sidenav-content>
         <mat-toolbar color="primary" class="mat-elevation-z4">
-            <button mat-icon-button 
-                    aria-label="Menu icon" 
+            <button mat-icon-button
+                    aria-label="Menu icon"
                     (click)="drawer.open()">
                 <mat-icon>menu</mat-icon>
             </button>

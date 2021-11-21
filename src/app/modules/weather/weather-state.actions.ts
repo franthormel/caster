@@ -7,7 +7,7 @@ import {
 
 export const changeDetailMode = createAction(
   '[Weather] Change Detail Mode',
-  props<{ mode: WeatherDetailMode }>()
+  props<{ detailMode: WeatherDetailMode }>()
 );
 
 export const decrementIndexDaily = createAction(
@@ -28,5 +28,5 @@ export const incrementIndexHourly = createAction(
 
 export const changeReadingMode = createAction(
   '[Weather] Change Reading Mode',
-  props<{ mode: WeatherReadingMode }>()
+  props<{ readingMode: WeatherReadingMode }>()
 );

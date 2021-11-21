@@ -14,7 +14,15 @@ import { MoonPhaseService } from '../moon-phase.service';
 import { StateManagerService } from '../../shared/services/state-manager.service';
 
 import { appStateReducer } from '../../../app-state.reducers';
-import { WEATHER_DATA } from '../../../tests/weather.testing';
+
+import {
+  WEATHER_ALERT,
+  WEATHER_ALERT_BUTTON_TEXT_MULTIPLE,
+  WEATHER_ALERT_BUTTON_TEXT_SINGLE,
+  WEATHER_ALERT_BUTTON_TOOLTIP_MULTIPLE,
+  WEATHER_ALERT_BUTTON_TOOLTIP_SINGLE,
+  WEATHER_DATA,
+} from '../../../tests/weather.testing';
 
 describe('WeatherContentTopComponent', () => {
   let component: WeatherContentTopComponent;
@@ -247,6 +255,58 @@ describe('WeatherContentTopComponent', () => {
         const result = component.titleViewMode;
 
         expect(result).toBeInstanceOf(String);
+      });
+    });
+
+    describe('alertsButtonText()', () => {
+      it('should return a String', () => {
+        const result = component.alertsButtonTooltip;
+
+        expect(result).toBeInstanceOf(String);
+      });
+
+      it('should return expected value if there is only a single alert', () => {
+        component.weatherData.alerts = [WEATHER_ALERT];
+
+        const result = component.alertsButtonText;
+        const expected = WEATHER_ALERT_BUTTON_TEXT_SINGLE;
+
+        expect(result).toBe(expected);
+      });
+
+      it('should return expected value if there are multiple alerts', () => {
+        component.weatherData.alerts = [WEATHER_ALERT, WEATHER_ALERT];
+
+        const result = component.alertsButtonText;
+        const expected = WEATHER_ALERT_BUTTON_TEXT_MULTIPLE;
+
+        expect(result).toBe(expected);
+      });
+    });
+
+    describe('alertsButtonTooltip()', () => {
+      it('should return a String', () => {
+        const result = component.alertsButtonTooltip;
+
+        expect(result).toBeInstanceOf(String);
+      });
+
+      it('should return expected value if there is only a single alert', () => {
+        component.weatherData.alerts = [WEATHER_ALERT];
+
+        const result = component.alertsButtonTooltip;
+        const expected = WEATHER_ALERT_BUTTON_TOOLTIP_SINGLE;
+
+        expect(result).toBe(expected);
+      });
+
+      it('should return expected value if there are multiple alerts', () => {
+        component.weatherData.alerts = [WEATHER_ALERT, WEATHER_ALERT];
+
+        const result = component.alertsButtonTooltip;
+        const expected = WEATHER_ALERT_BUTTON_TOOLTIP_MULTIPLE;
+
+        expect(result).toBe(expected);
       });
     });
   });

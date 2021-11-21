@@ -124,10 +124,10 @@ describe('WeatherContentBottomComponent', () => {
     });
 
     describe('dewPoint()', () => {
-      it('should return a Number', () => {
+      it('should return a String', () => {
         const result = component.dewPoint;
 
-        expect(result).toBeInstanceOf(Number);
+        expect(result).toBeInstanceOf(String);
       });
     });
 
@@ -158,7 +158,7 @@ describe('WeatherContentBottomComponent', () => {
     describe('visibility()', () => {
       it('should return a String', () => {
         const result = component.visibility;
-        
+
         expect(result).toBeInstanceOf(String);
       });
     });

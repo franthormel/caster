@@ -150,10 +150,10 @@ describe('WeatherContentMainComponent', () => {
     });
 
     describe('temperature()', () => {
-      it('should return a Number', () => {
+      it('should return a String', () => {
         const result = component.temperature;
 
-        expect(result).toBeInstanceOf(Number);
+        expect(result).toBeInstanceOf(String);
       });
     });
 
@@ -198,10 +198,10 @@ describe('WeatherContentMainComponent', () => {
     });
 
     describe('windDirection()', () => {
-      it('should return a Number', () => {
+      it('should return a String', () => {
         const result = component.windDirection;
 
-        expect(result).toBeInstanceOf(Number);
+        expect(result).toBeInstanceOf(String);
       });
     });
 

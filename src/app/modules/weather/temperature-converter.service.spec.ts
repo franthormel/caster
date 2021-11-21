@@ -1,16 +1,24 @@
 import { TestBed } from '@angular/core/testing';
+import { StoreModule } from '@ngrx/store';
+
+import { appStateReducer } from '../../app-state.reducers';
 
 import {
   TEMPERATURES_KELVIN,
   TEMPERATURES_CELSIUS,
 } from '../../tests/services/temperature-converter.testing';
+
+import { StateManagerService } from '../shared/services/state-manager.service';
 import { TemperatureConverterService } from './temperature-converter.service';
 
 describe('TemperatureConverterService', () => {
   let service: TemperatureConverterService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [StoreModule.forRoot({ appState: appStateReducer })],
+      providers: [StateManagerService],
+    });
     service = TestBed.inject(TemperatureConverterService);
   });
 
@@ -18,21 +26,23 @@ describe('TemperatureConverterService', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('convertKelvinToCelsius()', () => {
+  describe('convertTemperature()', () => {
     it('should return a value of Number type', () => {
-      const result = service.convertKelvinToCelsius(0);
+      const result = service.convertTemperature(0);
 
       expect(result).toBeInstanceOf(Number);
     });
 
+    // Check the initial state values in app reducers to properly determine
+    // which set of expected output values are to be used when testing this spec.
     it('should return the expected value', () => {
       for (const i in TEMPERATURES_KELVIN) {
-        const kelvin = TEMPERATURES_KELVIN[i];
-        const celsius = Math.round(TEMPERATURES_CELSIUS[i]);
+        const input = TEMPERATURES_KELVIN[i];
 
-        const result = service.convertKelvinToCelsius(kelvin);
+        const result = service.convertTemperature(input);
+        const expected = TEMPERATURES_CELSIUS[i];
 
-        expect(result).toBe(celsius);
+        expect(result).toBe(expected);
       }
     });
   });

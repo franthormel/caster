@@ -43,8 +43,7 @@ export class StateManagerService {
     }
   }
 
-  // TODO Test
-  changeStaticFile(file: number) {
+  changeLocationsFile(file: number) {
     if (this.locationsFile !== file) {
       this.store.dispatch(locations.changeLocationsFile({ file: file }));
     }
@@ -68,7 +67,6 @@ export class StateManagerService {
     }
   }
 
-  // TODO Test
   changeSettingsTemperature(temperature: SettingsTemperature) {
     if (!this.settingsTemperatureIs(temperature)) {
       this.store.dispatch(
@@ -77,14 +75,12 @@ export class StateManagerService {
     }
   }
 
-  // TODO Test
   indexAirPollutionIncrement() {
     if (this.canIndexAirPollutionIncrement) {
       this.store.dispatch(airPollution.incrementIndex());
     }
   }
 
-  // TODO Test
   indexAirPollutionDecrement() {
     if (this.canIndexAirPollutionDecrement) {
       this.store.dispatch(airPollution.decrementIndex());
@@ -115,7 +111,6 @@ export class StateManagerService {
     }
   }
 
-  // TODO Test
   settingsToggleDegreeSign() {
     this.store.dispatch(settings.toggleDegreeSign());
   }
@@ -128,7 +123,6 @@ export class StateManagerService {
     return this.detailModeIs(WeatherDetailMode.Temperature);
   }
 
-  // TODO Test
   get indexAirPollution(): number {
     return this.appState.airPollutionState.index;
   }
@@ -141,9 +135,8 @@ export class StateManagerService {
     return this.appState.weatherState.indexHourly;
   }
 
-  // TODO Test
   get locationsFile(): number {
-    return this.appState.locationsState.index;
+    return this.appState.locationsState.file;
   }
 
   get readingMode(): WeatherReadingMode {
@@ -162,14 +155,12 @@ export class StateManagerService {
     return this.readingModeIs(WeatherReadingMode.Hourly);
   }
 
-  // TODO Test
-  get settingsTemperature(): SettingsTemperature {
-    return this.appState.settingsState.temperature;
-  }
-
-  // TODO Test
   get settingsDegreeSign(): boolean {
     return this.appState.settingsState.showDegreeSign;
+  }
+
+  get settingsTemperature(): SettingsTemperature {
+    return this.appState.settingsState.temperature;
   }
 
   private get canIndexAirPollutionDecrement(): boolean {
@@ -199,13 +190,13 @@ export class StateManagerService {
   private changeDetailMode(mode: WeatherDetailMode) {
     this.store.dispatch(
       weather.changeDetailMode({
-        mode: mode,
+        detailMode: mode,
       })
     );
   }
 
   private changeReadingMode(value: WeatherReadingMode) {
-    this.store.dispatch(weather.changeReadingMode({ mode: value }));
+    this.store.dispatch(weather.changeReadingMode({ readingMode: value }));
   }
 
   private detailModeIs(mode: WeatherDetailMode): boolean {

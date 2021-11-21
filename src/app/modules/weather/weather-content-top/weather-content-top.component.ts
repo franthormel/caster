@@ -8,7 +8,8 @@ import { MoonPhaseService } from '../moon-phase.service';
 import { DialogHandlerService } from '../../shared/services/dialog-handler.service';
 import { EpochConverterService } from '../../shared/services/epoch-converter.service';
 import { StateManagerService } from '../../shared/services/state-manager.service';
-import { WeatherAlertComponent } from '../weather-alert/weather-alert.component';
+import { WeatherReadingHourly } from 'src/app/models/weather/weather-reading-hourly.models';
+import { WeatherReadingCurrent } from 'src/app/models/weather/weather-reading-current.models';
 
 @Component({
   selector: 'app-weather-content-top',
@@ -76,14 +77,14 @@ export class WeatherContentTopComponent {
   }
 
   get currentTime(): string {
-    return this.epochConverter.toTime(this.weatherData.current.dt);
+    return this.epochConverter.toTime(this.currentWeather.dt);
   }
 
   get currentTimeSunrise(): string {
     let value = '';
 
     if (this.currentModeIsCurrent) {
-      value = this.epochConverter.toTime(this.weatherData.current.sunrise!);
+      value = this.epochConverter.toTime(this.currentWeather.sunrise!);
     }
     return value;
   }
@@ -92,7 +93,7 @@ export class WeatherContentTopComponent {
     let value = '';
 
     if (this.currentModeIsCurrent) {
-      value = this.epochConverter.toTime(this.weatherData.current.sunset!);
+      value = this.epochConverter.toTime(this.currentWeather.sunset!);
     }
 
     return value;
@@ -145,7 +146,7 @@ export class WeatherContentTopComponent {
   }
 
   get hourlyTime(): string {
-    const compare = this.weatherData.hourly[this.stateManager.indexHourly];
+    const compare = this.currentHourlyWeather;
     const point = this.weatherData.hourly[0];
 
     const compareTime = compare.dt;
@@ -175,8 +176,16 @@ export class WeatherContentTopComponent {
     return this.weatherData.alerts;
   }
 
+  private get currentWeather(): WeatherReadingCurrent {
+    return this.weatherData.current;
+  }
+
   private get currentDailyWeather(): WeatherReadingDaily {
     return this.weatherData.daily[this.stateManager.indexDaily];
+  }
+
+  private get currentHourlyWeather(): WeatherReadingHourly {
+    return this.weatherData.hourly[this.stateManager.indexHourly];
   }
 
   private get currentModeIsCurrent(): boolean {

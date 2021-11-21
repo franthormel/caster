@@ -23,7 +23,6 @@ describe('WeatherAlertMultipleComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WeatherAlertMultipleComponent);
     component = fixture.componentInstance;
-    component.alerts = [];
     fixture.detectChanges();
   });
 

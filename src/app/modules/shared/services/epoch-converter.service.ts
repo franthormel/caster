@@ -22,23 +22,11 @@ export class EpochConverterService {
     return `${this.toDateTime(alert.start)} — ${this.toDateTime(alert.end)}`;
   }
 
-  /**
-   * Prepends either 'Today', 'Tomorrow' or neither depending on `point` and `compare`
-   * @param display UTC seconds to display
-   * @param point UTC seconds
-   * @param compare UTC seconds
-   * @returns string
-   */
   displayDateTime(point: number, compare: number, offset: number = 0): string {
     const days = this.offsetDays(point, compare, offset);
+    const value = this.prependOffsetToCompare(days, compare);
 
-    if (days === 0) {
-      return `Today ${this.toTime(compare)}`;
-    } else if (days === -1) {
-      return `Tomorrow ${this.toTime(compare)}`;
-    } else {
-      return this.toDateTime(compare);
-    }
+    return value;
   }
 
   /**
@@ -62,5 +50,23 @@ export class EpochConverterService {
     const zCompare = Math.floor((compare + offset) / dailySeconds);
 
     return zPoint - zCompare;
+  }
+
+  /**
+   * Prepends either 'Today', 'Tomorrow' or neither depending on `point` and `compare`
+   * @param offsetDays Calculated value from `offsetDays()`
+   * @param compare UTC date to display
+   * @returns string
+   */
+  private prependOffsetToCompare(offsetDays: number, compare: number): string {
+    let value = this.toDateTime(compare);
+
+    if (offsetDays === 0) {
+      value = `Today ${this.toTime(compare)}`;
+    } else if (offsetDays === -1) {
+      value = `Tomorrow ${this.toTime(compare)}`;
+    }
+
+    return value;
   }
 }

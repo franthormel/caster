@@ -1,7 +1,7 @@
 export interface LocationsState {
-  index: number;
+  file: number;
 }
 
 export const initialLocationsState: LocationsState = {
-  index: 1,
+  file: 1,
 };

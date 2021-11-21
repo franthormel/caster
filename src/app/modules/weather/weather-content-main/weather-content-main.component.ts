@@ -125,7 +125,7 @@ export class WeatherContentMainComponent {
     return this.stateManager.readingModeIsDaily;
   }
 
-  get temperature(): number | string {
+  get temperature(): string {
     let value: number | string = this.temperatureBasedOnMode(
       this.weatherReading
     );
@@ -136,7 +136,7 @@ export class WeatherContentMainComponent {
       value = `${value}°`;
     }
 
-    return value;
+    return value.toString();
   }
 
   get underlineFeelsLike(): boolean {
@@ -157,8 +157,8 @@ export class WeatherContentMainComponent {
     return this.weatherCondition.icon;
   }
 
-  get windDirection(): number | string {
-    let value: number | string = this.weatherReading.wind_deg;
+  get windDirection(): string {
+    let value = this.weatherReading.wind_deg.toString();
 
     if (this.stateManager.settingsDegreeSign) {
       value = `${value}°`;

@@ -1,7 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { StoreModule } from '@ngrx/store';
 
 import { SettingsTemperature } from '../../../models/settings.enums';
 
+import { appStateReducer } from '../../../app-state.reducers';
 import { SettingsComponent } from './settings.component';
 
 describe('SettingsComponent', () => {
@@ -11,6 +13,7 @@ describe('SettingsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SettingsComponent],
+      imports: [StoreModule.forRoot({ appState: appStateReducer })],
     }).compileComponents();
   });
 
@@ -66,10 +69,10 @@ describe('SettingsComponent', () => {
     });
 
     describe('temperature()', () => {
-      it('should return an Object', () => {
+      it('should return a String', () => {
         const result = component.temperature;
 
-        expect(result).toBeInstanceOf(Object);
+        expect(result).toBeInstanceOf(String);
       });
     });
 

@@ -35,7 +35,7 @@ export class LocationsComponent implements OnInit {
   locationClicked(id: number) {
     const file = id + 1;
 
-    this.stateManager.changeStaticFile(file);
+    this.stateManager.changeLocationsFile(file);
   }
 
   showLocationIcon(id: number): boolean {

@@ -12,6 +12,9 @@ import {
   EPOCH_OUTPUTS_DATE_TIME_CHROME,
   EPOCH_OUTPUTS_TIME_CHROME,
   EPOCH_OUTPUTS_TIME_FIREFOX,
+  EPOCH_POINT,
+  EPOCH_COMPARE,
+  EPOCH_DISPLAY_DATE_TIME,
 } from '../../../tests/services/epoch-converter.testing';
 
 describe('EpochConverterService', () => {
@@ -108,7 +111,24 @@ describe('EpochConverterService', () => {
       });
     });
 
-    // TODO
-    pending('displayDateTime');
+    describe('displayDateTime', () => {
+      it('should return a String', () => {
+        const result = service.displayDateTime(0, 0);
+
+        expect(result).toBeInstanceOf(String);
+      });
+
+      for (const i in EPOCH_COMPARE) {
+        it('should return expected value', () => {
+          const point = EPOCH_POINT;
+          const compare = EPOCH_COMPARE[i];
+
+          const result = service.displayDateTime(point, compare);
+          const expected = EPOCH_DISPLAY_DATE_TIME[i];
+
+          expect(result).toBe(expected);
+        });
+      }
+    });
   });
 });

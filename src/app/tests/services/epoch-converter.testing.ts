@@ -39,3 +39,21 @@ export const EPOCH_OUTPUTS_DATE_TIME_CHROME: string[] = [
   '11/6/2017 1:50:27 PM',
   '11/6/2016 1:50:27 PM',
 ];
+
+export const EPOCH_POINT = 1637387407;
+
+export const EPOCH_COMPARE: number[] = [
+  1637203849, 1637290249, 1637376649, 1637401849, 1637369449, 1637473787,
+  1637560187, 1637646587,
+];
+
+export const EPOCH_DISPLAY_DATE_TIME: string[] = [
+  '11/18/2021 10:50:49 AM',
+  '11/19/2021 10:50:49 AM',
+  'Today 10:50:49 AM',
+  'Today 5:50:49 PM',
+  'Today 8:50:49 AM',
+  'Tomorrow 1:49:47 PM',
+  '11/22/2021 1:49:47 PM',
+  '11/23/2021 1:49:47 PM',
+];

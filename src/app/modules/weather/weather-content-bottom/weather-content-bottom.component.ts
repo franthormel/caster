@@ -20,10 +20,10 @@ export class WeatherContentBottomComponent {
     private stateManager: StateManagerService
   ) {}
 
-  get dewPoint(): number | string {
-    let value: number | string = this.temperatureConverter.convertTemperature(
-      this.weatherReading.dew_point
-    );
+  get dewPoint(): string {
+    let value = this.temperatureConverter
+      .convertTemperature(this.weatherReading.dew_point)
+      .toString();
 
     if (this.stateManager.settingsDegreeSign) {
       value = `${value}°`;

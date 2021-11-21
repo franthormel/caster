@@ -16,7 +16,8 @@
                 chevron_left
             </mat-icon>
         </button>
-        <p aria-label="Day time"
+        <p [@fadeInElement]="time"
+           aria-label="Day time"
            matTooltip="Time of forecast">
            {{time}}
         </p>
@@ -32,8 +33,8 @@
     </section>
 
     <p class="air-pollution-description">
-        <span class="air-pollution-description-span">{{description}}</span> 
-        air quality is to be expected
+       <span [@fadeInElement]="description">{{description}}</span> 
+       air quality is to be expected
     </p>
 
     <section class="air-pollution-components">
@@ -42,10 +43,10 @@
             <p>Concentration (µg/m³)</p>
         </section>
 
-        <section *ngFor="let component of airComponents" 
+        <section *ngFor="let component of airComponents; index as i"
                  class="air-pollution-components-contents">
             <p>{{component.name}}</p>
-            <p>{{component.concentration}}</p>
+            <p >{{component.concentration}}</p>
         </section>
     </section>
 </section>

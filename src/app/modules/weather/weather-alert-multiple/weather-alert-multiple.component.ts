@@ -10,7 +10,7 @@ import { WeatherAlert } from '../../../models/weather/weather-alert.models';
   styleUrls: ['./weather-alert-multiple.component.css'],
 })
 export class WeatherAlertMultipleComponent {
-  @Input() alerts!: WeatherAlert[];
+  @Input() alerts: WeatherAlert[] = [];
 
   constructor(public epochConverter: EpochConverterService) {}
 

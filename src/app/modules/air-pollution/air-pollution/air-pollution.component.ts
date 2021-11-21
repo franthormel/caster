@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { forkJoin, Observable } from 'rxjs';
 
 import { AirPollution } from '../../../models/air-pollution/air-pollution.models';
@@ -11,15 +18,18 @@ import { EpochConverterService } from '../../shared/services/epoch-converter.ser
 import { StateManagerService } from '../../shared/services/state-manager.service';
 import { AirQualityService } from '../air-quality.service';
 
+import { fadeInElement } from '../../../animations';
+
 @Component({
   selector: 'app-air-pollution',
   templateUrl: './air-pollution.component.html',
   styleUrls: ['./air-pollution.component.scss'],
+  animations: [fadeInElement],
 })
 export class AirPollutionComponent implements OnInit {
   airPollution!: AirPollution;
   loading = true;
-  
+
   private timezoneOffset = 0;
 
   constructor(
