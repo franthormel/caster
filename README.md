@@ -1,5 +1,7 @@
 # Caster 
 
+###  [View the live project here!](https://angular-caster.web.app/)
+
 This weather application displays the following:
 1. Current weather
 2. Minute forecast for one hour
