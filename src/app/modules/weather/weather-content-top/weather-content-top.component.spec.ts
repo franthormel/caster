@@ -3,16 +3,16 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import { MatListModule } from '@angular/material/list';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
 
-import { WeatherContentTopComponent } from './weather-content-top.component';
 import { EpochConverterService } from '../../shared/services/epoch-converter.service';
 import { MoonPhaseService } from '../moon-phase.service';
 import { StateManagerService } from '../../shared/services/state-manager.service';
+import { WeatherContentTopComponent } from './weather-content-top.component';
 
 import { appStateReducer } from '../../../app-state.reducers';
 

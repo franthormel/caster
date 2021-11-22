@@ -12,10 +12,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { appStateReducer } from './app-state.reducers';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { appStateReducer } from './app-state.reducers';
 
 @NgModule({
   declarations: [AppComponent],

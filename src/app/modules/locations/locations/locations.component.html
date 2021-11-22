@@ -1,27 +1,27 @@
 <ng-container *ngIf="loading">
-    <mat-progress-bar color="accent" 
+    <mat-progress-bar color="accent"
                       mode="indeterminate">
     </mat-progress-bar>
 </ng-container>
-<section *ngIf="!loading" 
+<section *ngIf="!loading"
          class="locations">
     <mat-form-field class="locations-searchbar"
-                    appearance="outline" 
+                    appearance="outline"
                     color="accent">
         <mat-label>Search for a location</mat-label>
         <input matInput [(ngModel)]="search">
-        <button *ngIf="searchable" 
-                matSuffix 
-                mat-icon-button 
+        <button *ngIf="searchable"
+                matSuffix
+                mat-icon-button
                 (click)="clearSearch()">
             <mat-icon>close</mat-icon>
         </button>
     </mat-form-field>
     <section>
-        <mat-card *ngFor="let location of locations; index as id" 
+        <mat-card *ngFor="let location of locations; index as id"
                   matRipple
                   [ngClass]="{'mat-elevation-z3' : locationIsSelected(id)}"
-                  class="locations-card" 
+                  class="locations-card"
                   (click)="locationClicked(id)">
             <mat-card-header>
                 <mat-icon *ngIf="locationIsSelected(id)"

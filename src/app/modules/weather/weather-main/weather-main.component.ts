@@ -3,9 +3,10 @@ import { Observable, forkJoin } from 'rxjs';
 
 import { WeatherData } from '../../../models/weather/weather-data.models';
 import { WeatherGeolocation } from '../../../models/geolocation/geolocation.models';
-import { StateManagerService } from '../../shared/services/state-manager.service';
+
 import { DataManagerService } from '../../shared/services/data-manager.service';
 import { DialogHandlerService } from '../../shared/services/dialog-handler.service';
+import { StateManagerService } from '../../shared/services/state-manager.service';
 
 @Component({
   selector: 'app-weather-main',
@@ -14,13 +15,13 @@ import { DialogHandlerService } from '../../shared/services/dialog-handler.servi
 })
 export class WeatherMainComponent implements OnInit {
   geolocation!: WeatherGeolocation;
-  weatherData!: WeatherData;
   loading = true;
+  weatherData!: WeatherData;
 
   constructor(
-    public stateManager: StateManagerService,
     private dataManager: DataManagerService,
-    private dialogHandler: DialogHandlerService
+    private dialogHandler: DialogHandlerService,
+    public stateManager: StateManagerService
   ) {}
 
   ngOnInit(): void {

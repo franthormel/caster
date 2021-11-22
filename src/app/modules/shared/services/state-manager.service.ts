@@ -75,21 +75,15 @@ export class StateManagerService {
     }
   }
 
-  indexAirPollutionIncrement() {
-    if (this.canIndexAirPollutionIncrement) {
-      this.store.dispatch(airPollution.incrementIndex());
-    }
-  }
-
   indexAirPollutionDecrement() {
     if (this.canIndexAirPollutionDecrement) {
       this.store.dispatch(airPollution.decrementIndex());
     }
   }
 
-  indexDailyIncrement() {
-    if (this.canIndexDailyIncrement) {
-      this.store.dispatch(weather.incrementIndexDaily());
+  indexAirPollutionIncrement() {
+    if (this.canIndexAirPollutionIncrement) {
+      this.store.dispatch(airPollution.incrementIndex());
     }
   }
 
@@ -99,15 +93,21 @@ export class StateManagerService {
     }
   }
 
-  indexHourlyIncrement() {
-    if (this.canIndexHourlyIncrement) {
-      this.store.dispatch(weather.incrementIndexHourly());
+  indexDailyIncrement() {
+    if (this.canIndexDailyIncrement) {
+      this.store.dispatch(weather.incrementIndexDaily());
     }
   }
 
   indexHourlyDecrement() {
     if (this.canIndexHourlyDecrement) {
       this.store.dispatch(weather.decrementIndexHourly());
+    }
+  }
+
+  indexHourlyIncrement() {
+    if (this.canIndexHourlyIncrement) {
+      this.store.dispatch(weather.incrementIndexHourly());
     }
   }
 

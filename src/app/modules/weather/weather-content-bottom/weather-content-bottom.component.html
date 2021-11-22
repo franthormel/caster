@@ -8,16 +8,16 @@
             </p>
             <p [@fadeInElement]="snow">{{snow}} mm</p>
         </div>
-        <div *ngIf="rainIsPresent" 
+        <div *ngIf="rainIsPresent"
              class="margin-right-z3">
-            <p class="font-weight-f600" 
+            <p class="font-weight-f600"
                [matTooltip]="rainTooltip">
                Rain
             </p>
             <p [@fadeInElement]="rain">{{rain}} mm</p>
         </div>
         <div class="margin-right-z3">
-            <p class="font-weight-f600" 
+            <p class="font-weight-f600"
                [matTooltip]="precipitationTooltip">
                {{precipitationTitle}}
             </p>
@@ -26,7 +26,7 @@
     </section>
     <section class="weather-bottom-right">
         <div class="margin-left-z3">
-            <p class="font-weight-f600" 
+            <p class="font-weight-f600"
                matTooltip="Atmospheric
                temperature (varying according to pressure and humidity) below which
                water droplets begin to condense and dew can form.">
@@ -35,15 +35,15 @@
             <p [@fadeInElement]="dewPoint">{{dewPoint}}</p>
         </div>
         <div class="margin-left-z3">
-            <p class="font-weight-f600" 
+            <p class="font-weight-f600"
                [matTooltip]="uviTooltip">
                UVI
             </p>
             <p [@fadeInElement]="uvi">{{uvi}}</p>
         </div>
-        <div *ngIf="visibilityIsPresent" 
+        <div *ngIf="visibilityIsPresent"
              class="margin-left-z3">
-            <p class="font-weight-f600" 
+            <p class="font-weight-f600"
                matTooltip="Average visibility">
                Visibility
             </p>

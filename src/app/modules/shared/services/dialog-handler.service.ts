@@ -13,7 +13,7 @@ export class DialogHandlerService {
 
   showWeatherAlert(
     alerts: WeatherAlert[] | undefined,
-    disableClose: boolean = false
+    disableClose?: boolean
   ) {
     this.dialog.open(WeatherAlertComponent, {
       data: alerts,

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { ICONS_MOON } from '../../data/icons/moon.data';
 import { DESCRIPTIONS } from '../../data/descriptions/moon.data';
 
@@ -9,7 +10,7 @@ export class MoonPhaseService {
   description(value: number): string {
     return DESCRIPTIONS[this.index(value)];
   }
-  
+
   icon(value: number): string {
     return ICONS_MOON[this.index(value)];
   }

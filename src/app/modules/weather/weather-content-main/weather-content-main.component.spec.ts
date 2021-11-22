@@ -1,16 +1,16 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
-import { StoreModule } from '@ngrx/store';
 import { MatIconModule } from '@angular/material/icon';
+import { StoreModule } from '@ngrx/store';
 
 import { appStateReducer } from '../../../app-state.reducers';
 import { WEATHER_DATA } from '../../../tests/weather.testing';
 
-import { WeatherContentMainComponent } from './weather-content-main.component';
+import { StateManagerService } from '../../shared/services/state-manager.service';
 import { StringManagerService } from '../../shared/services/string-manager.service';
 import { TemperatureConverterService } from '../temperature-converter.service';
-import { StateManagerService } from '../../shared/services/state-manager.service';
+import { WeatherContentMainComponent } from './weather-content-main.component';
 
 describe('WeatherContentMainComponent', () => {
   let component: WeatherContentMainComponent;

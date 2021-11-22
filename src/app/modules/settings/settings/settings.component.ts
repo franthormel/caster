@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 
 import { SettingsTemperature } from '../../../models/settings.enums';
 
+import { ImageCredits, SoftwareCredits } from '../../../models/credits.models';
+
 import {
   IMAGE_CREDITS_LIGHT,
   IMAGE_CREDITS_DARK,
 } from '../../../data/images-credits.data';
 import { SOFTWARE_CREDITS } from '../../../data/software-credits.data';
-import { ImageCredits, SoftwareCredits } from '../../../models/credits.models';
 
 import { StateManagerService } from '../../shared/services/state-manager.service';
 
@@ -53,6 +54,7 @@ export class SettingsComponent {
   get creditsImages(): ImageCredits[] {
     return IMAGE_CREDITS_LIGHT.concat(IMAGE_CREDITS_DARK);
   }
+
   get creditsSoftware(): SoftwareCredits[] {
     return SOFTWARE_CREDITS;
   }

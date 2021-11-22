@@ -1,22 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
 import { forkJoin, Observable } from 'rxjs';
 
 import { AirPollution } from '../../../models/air-pollution/air-pollution.models';
 import { AirPollutionComponentDisplay } from '../../../models/air-pollution/air-pollution-display.models';
 import { AirPollutionReading } from '../../../models/air-pollution/air-pollution-reading.models';
 import { WeatherData } from '../../../models/weather/weather-data.models';
+
+import { AirQualityService } from '../air-quality.service';
 import { DataManagerService } from '../../shared/services/data-manager.service';
 import { DialogHandlerService } from '../../shared/services/dialog-handler.service';
 import { EpochConverterService } from '../../shared/services/epoch-converter.service';
 import { StateManagerService } from '../../shared/services/state-manager.service';
-import { AirQualityService } from '../air-quality.service';
 
 import { fadeInElement } from '../../../animations';
 
@@ -106,10 +100,6 @@ export class AirPollutionComponent implements OnInit {
     return this.epochConverter.displayDateTime(pointTime, compareTime, offset);
   }
 
-  private get reading(): AirPollutionReading {
-    return this.airPollution.list[this.stateManager.indexAirPollution];
-  }
-
   private collectAllData(): Observable<[AirPollution, WeatherData]> {
     const airPollutionData$ = this.dataManager.fileDataAirPollution();
     const weatherData$ = this.dataManager.fileDataWeather();
@@ -143,5 +133,9 @@ export class AirPollutionComponent implements OnInit {
         this.loading = false;
       },
     });
+  }
+
+  private get reading(): AirPollutionReading {
+    return this.airPollution.list[this.stateManager.indexAirPollution];
   }
 }

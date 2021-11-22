@@ -12,28 +12,28 @@
             <mat-menu #menuWeatherMode="matMenu"
                       class="text-no-select">
                 <mat-selection-list [multiple]="false">
-                    <mat-list-option (click)="stateManager.changeReadingModeToCurrent()" 
+                    <mat-list-option (click)="stateManager.changeReadingModeToCurrent()"
                                      [selected]="stateManager.readingModeIsCurrent">
                                      Current
                     </mat-list-option>
-                    <mat-list-option (click)="stateManager.changeReadingModeToHourly()" 
+                    <mat-list-option (click)="stateManager.changeReadingModeToHourly()"
                                      [selected]="stateManager.readingModeIsHourly">
                                      Hourly
                     </mat-list-option>
-                    <mat-list-option (click)="stateManager.changeReadingModeToDaily()" 
+                    <mat-list-option (click)="stateManager.changeReadingModeToDaily()"
                                      [selected]="stateManager.readingModeIsDaily">
                                      Daily
                     </mat-list-option>
                 </mat-selection-list>
             </mat-menu>
             <ng-container *ngIf="alertsAreAvailable">
-                <button mat-raised-button 
-                        color="warn" 
+                <button mat-raised-button
+                        color="warn"
                         aria-label="Alert icon"
                         [@fadeInElement]="alertsButtonText"
                         [matTooltip]="alertsButtonTooltip"
                         (click)="showAlertDialog()"
-                        matBadgeColor="warn" 
+                        matBadgeColor="warn"
                         [matBadge]="alertsCount">
                     <mat-icon>warning</mat-icon>
                     {{alertsButtonText}}
@@ -43,18 +43,18 @@
     
         <section *ngIf="showCurrent" class="weather-top">
             <div class="weather-top-right">
-                <p aria-label="Current time" 
+                <p aria-label="Current time"
                    matTooltip="Current time"
                    [@fadeInElement]="currentTime">
                    {{currentTime}}
                 </p>
             </div>
             <div class="weather-top-right">
-                <mat-icon svgIcon="sunrise" 
-                          color="accent" 
+                <mat-icon svgIcon="sunrise"
+                          color="accent"
                           aria-label="Sunrise icon">
                 </mat-icon>
-                <p aria-label="Sunrise time" 
+                <p aria-label="Sunrise time"
                    matTooltip="Sunrise time"
                    [@fadeInElement]="currentTimeSunrise">
                    {{currentTimeSunrise}}
@@ -86,7 +86,7 @@
                 </button>
                 <button mat-icon-button
                         aria-label="Next hour button"
-                        matTooltip="Next hour"x
+                        matTooltip="Next hour"
                         (click)="hourlyNext()">
                     <mat-icon color="accent"
                               aria-label="Next icon">
@@ -103,8 +103,8 @@
     
         <section *ngIf="showDaily" class="weather-top">
             <section class="weather-top-right">
-                <mat-icon svgIcon="sunrise" 
-                          color="accent" 
+                <mat-icon svgIcon="sunrise"
+                          color="accent"
                           aria-label="Sunrise icon">
                 </mat-icon>
                 <p aria-label="Sunrise time"
@@ -114,8 +114,8 @@
                 </p>
             </section>
             <section class="weather-top-right">
-                <mat-icon svgIcon="sunset" 
-                          color="accent" 
+                <mat-icon svgIcon="sunset"
+                          color="accent"
                           aria-label="Sunset icon">
                 </mat-icon>
                 <p aria-label="Sunset time"
@@ -135,8 +135,8 @@
                 </p>
             </section>
             <section class="weather-top-right">
-                <mat-icon svgIcon="moonrise" 
-                          color="accent" 
+                <mat-icon svgIcon="moonrise"
+                          color="accent"
                           aria-label="Moon rise icon">
                 </mat-icon>
                 <p aria-label="Moon rise time"
@@ -157,8 +157,8 @@
                 </p>
             </section>
             <section class="weather-top-right">
-                <button mat-icon-button 
-                        aria-label="Previous day button" 
+                <button mat-icon-button
+                        aria-label="Previous day button"
                         matTooltip="Previous day"
                         (click)="dailyPrevious()">
                     <mat-icon color="accent"
@@ -166,8 +166,8 @@
                               chevron_left
                     </mat-icon>
                 </button>
-                <button mat-icon-button 
-                        aria-label="Next day button" 
+                <button mat-icon-button
+                        aria-label="Next day button"
                         matTooltip="Next day"
                         (click)="dailyNext()">
                     <mat-icon color="accent"
@@ -175,7 +175,7 @@
                               chevron_right
                     </mat-icon>
                 </button>
-                <p aria-label="Day time" 
+                <p aria-label="Day time"
                    matTooltip="Time of forecast"
                    [@fadeInElement]="dailyTime">
                    {{dailyTime}}

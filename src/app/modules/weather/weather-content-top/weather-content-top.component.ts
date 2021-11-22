@@ -4,12 +4,13 @@ import { WeatherAlert } from '../../../models/weather/weather-alert.models';
 import { WeatherData } from '../../../models/weather/weather-data.models';
 import { WeatherReadingDaily } from '../../../models/weather/weather-reading-daily.models';
 
-import { MoonPhaseService } from '../moon-phase.service';
+import { WeatherReadingCurrent } from '../../../models/weather/weather-reading-current.models';
+import { WeatherReadingHourly } from '../../../models/weather/weather-reading-hourly.models';
+
 import { DialogHandlerService } from '../../shared/services/dialog-handler.service';
 import { EpochConverterService } from '../../shared/services/epoch-converter.service';
+import { MoonPhaseService } from '../moon-phase.service';
 import { StateManagerService } from '../../shared/services/state-manager.service';
-import { WeatherReadingHourly } from 'src/app/models/weather/weather-reading-hourly.models';
-import { WeatherReadingCurrent } from 'src/app/models/weather/weather-reading-current.models';
 
 import { fadeInElement } from '../../../animations';
 

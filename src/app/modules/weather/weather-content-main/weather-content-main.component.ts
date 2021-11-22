@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 
+import { WeatherReadingDetail } from '../../../models/weather/weather-reading-detail.models';
 import { WeatherReadingDetailFeelsLike } from '../../../models/weather/weather-reading-detail-feels-like.models';
 import { WeatherReadingDetailTemperature } from '../../../models/weather/weather-reading-detail-temperature.models';
 import { WeatherData } from '../../../models/weather/weather-data.models';
@@ -45,14 +46,15 @@ export class WeatherContentMainComponent {
   }
 
   get evening(): number {
-    if (this.showDailyDetailReading) {
-      const reading = this.weatherReading
-        .temp as WeatherReadingDetailTemperature;
+    let value = -1;
 
-      return this.temperatureConverter.convertTemperature(reading.eve);
+    if (this.showDailyDetailReading) {
+      const reading = this.weatherReadingDetail.eve;
+
+      value = this.temperatureConverter.convertTemperature(reading);
     }
 
-    return -1;
+    return value;
   }
 
   get feelsLike(): number {
@@ -98,10 +100,9 @@ export class WeatherContentMainComponent {
     let value = -1;
 
     if (this.showDailyDetailReading) {
-      const reading = this.weatherReading
-        .temp as WeatherReadingDetailTemperature;
+      const reading = this.weatherReadingDetail.morn;
 
-      value = this.temperatureConverter.convertTemperature(reading.morn);
+      value = this.temperatureConverter.convertTemperature(reading);
     }
 
     return value;
@@ -111,10 +112,9 @@ export class WeatherContentMainComponent {
     let value = -1;
 
     if (this.showDailyDetailReading) {
-      const reading = this.weatherReading
-        .temp as WeatherReadingDetailTemperature;
+      const reading = this.weatherReadingDetail.night;
 
-      value = this.temperatureConverter.convertTemperature(reading.night);
+      value = this.temperatureConverter.convertTemperature(reading);
     }
 
     return value;
@@ -218,6 +218,19 @@ export class WeatherContentMainComponent {
     }
 
     return weather;
+  }
+
+  private get weatherReadingDetail(): WeatherReadingDetail {
+    let reading!: WeatherReadingDetail;
+
+    if (this.detailModeIsFeelsLike) {
+      reading = this.weatherReading
+        .feels_like as WeatherReadingDetailTemperature;
+    } else if (this.detailModeIsTemperature) {
+      reading = this.weatherReading.temp as WeatherReadingDetailTemperature;
+    }
+
+    return reading;
   }
 
   private get weatherCondition(): WeatherCondition {

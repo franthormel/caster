@@ -3,9 +3,9 @@
         <mat-tab class="settings-tab" label="General">
             <section class="settings-option">
                 <p class="settings-option-label">Temperature unit</p>
-                <mat-radio-group [ngModel]="temperature" 
+                <mat-radio-group [ngModel]="temperature"
                                  matTooltip="Change unit of measurement for temperature readings">
-                    <mat-radio-button *ngFor="let option of temperatureOptions" 
+                    <mat-radio-button *ngFor="let option of temperatureOptions"
                                       class="settings-radio-button"
                                       color="primary"
                                       (click)="changeTemperature(option)"
@@ -25,10 +25,10 @@
         </mat-tab>
         <mat-tab class="settings-tab" label="Credits">
             <section class="settings-credits-header">
-                <img class="settings-credits-header-logo" 
-                     src="/assets/images/logo_open_weather.svg"/>
+                <img class="settings-credits-header-logo"
+                     src="/assets/images/logo_credits.svg"/>
                 <span class="settings-credits-header-text">
-                    Weather data provided freely by 
+                    Data source provided by
                     <a href="https://openweathermap.org/"
                        target="_blank">
                         OpenWeatherMap

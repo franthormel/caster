@@ -27,12 +27,12 @@ describe('AirQualityService', () => {
       });
 
       it('should return expected value', () => {
-        for(const i in AIR_QUALITY_INPUTS) {
+        for (const i in AIR_QUALITY_INPUTS) {
           const input = AIR_QUALITY_INPUTS[i];
           const expected = AIR_QUALITY_OUTPUTS[i];
-          
+
           const result = service.describe(input);
-          
+
           expect(result).toBe(expected);
         }
       });

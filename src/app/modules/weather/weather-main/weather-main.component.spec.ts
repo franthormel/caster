@@ -2,19 +2,20 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
+import { WeatherContentBottomComponent } from '../weather-content-bottom/weather-content-bottom.component';
 import { WeatherContentMainComponent } from '../weather-content-main/weather-content-main.component';
 import { WeatherContentTopComponent } from '../weather-content-top/weather-content-top.component';
-import { WeatherContentBottomComponent } from '../weather-content-bottom/weather-content-bottom.component';
 import { WeatherMainComponent } from './weather-main.component';
+
+import { DataManagerService } from '../../shared/services/data-manager.service';
 import { StateManagerService } from '../../shared/services/state-manager.service';
 
 import { appStateReducer } from '../../../app-state.reducers';
 import { WEATHER_DATA } from '../../../tests/weather.testing';
 import { WEATHER_GEOLOCATION } from '../../../tests/geolocation.testing';
-import { DataManagerService } from '../../shared/services/data-manager.service';
 
 describe('WeatherMainComponent', () => {
   let component: WeatherMainComponent;

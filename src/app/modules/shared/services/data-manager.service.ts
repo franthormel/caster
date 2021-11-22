@@ -11,8 +11,6 @@ import { StateManagerService } from './state-manager.service';
   providedIn: 'root',
 })
 export class DataManagerService {
-  private readonly FILES = [1, 2, 3];
-
   private readonly DATA_URL = {
     FILE: '/assets/data/',
     ONLINE: {
@@ -21,6 +19,8 @@ export class DataManagerService {
       WEATHER: 'https://api.openweathermap.org/data/2.5/onecall',
     },
   };
+
+  private readonly FILES = [1, 2, 3];
 
   constructor(
     private httpClient: HttpClient,
