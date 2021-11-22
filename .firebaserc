@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "angular-caster": {
+      "hosting": {
+        "caster": [
+          "angular-caster"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "angular-caster"
+  }
+}
