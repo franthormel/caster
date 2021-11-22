@@ -20,15 +20,16 @@
     <section>
         <mat-card *ngFor="let location of locations; index as id" 
                   matRipple
+                  [ngClass]="{'mat-elevation-z3' : locationIsSelected(id)}"
                   class="locations-card" 
                   (click)="locationClicked(id)">
             <mat-card-header>
-                <mat-icon *ngIf="showLocationIcon(id)" 
+                <mat-icon *ngIf="locationIsSelected(id)"
                           mat-card-avatar>
                           check_circle
                 </mat-icon>
                 <mat-card-title>{{location.name}}, {{location.country}}</mat-card-title>
-                <mat-card-subtitle class="locations-card-subtitle">
+                <mat-card-subtitle>
                     {{location.latitude}}, {{location.longitude}}
                 </mat-card-subtitle>
             </mat-card-header>

@@ -118,7 +118,7 @@ describe('LocationsComponent', () => {
 
     describe('showLocationIcon()', () => {
       it('should return a Boolean', () => {
-        const result = component.showLocationIcon(0);
+        const result = component.locationIsSelected(0);
 
         expect(result).toBeInstanceOf(Boolean);
       });

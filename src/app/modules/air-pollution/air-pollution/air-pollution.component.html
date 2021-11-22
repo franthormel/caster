@@ -43,10 +43,10 @@
             <p>Concentration (µg/m³)</p>
         </section>
 
-        <section *ngFor="let component of airComponents; index as i"
+        <section *ngFor="let component of airComponents"
                  class="air-pollution-components-contents">
             <p>{{component.name}}</p>
-            <p >{{component.concentration}}</p>
+            <p>{{component.concentration}}</p>
         </section>
     </section>
 </section>

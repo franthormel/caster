@@ -10,10 +10,13 @@ import { StringManagerService } from '../../shared/services/string-manager.servi
 import { TemperatureConverterService } from '../temperature-converter.service';
 import { StateManagerService } from '../../shared/services/state-manager.service';
 
+import { fadeInElement } from '../../../animations';
+
 @Component({
   selector: 'app-weather-content-main',
   templateUrl: './weather-content-main.component.html',
   styleUrls: ['./weather-content-main.component.scss'],
+  animations: [fadeInElement],
 })
 export class WeatherContentMainComponent {
   @Input() weatherData!: WeatherData;

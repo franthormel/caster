@@ -38,7 +38,7 @@ export class LocationsComponent implements OnInit {
     this.stateManager.changeLocationsFile(file);
   }
 
-  showLocationIcon(id: number): boolean {
+  locationIsSelected(id: number): boolean {
     const file = id + 1;
     const value = this.stateManager.locationsFile === file;
 
@@ -48,7 +48,7 @@ export class LocationsComponent implements OnInit {
   get locations(): WeatherGeolocationDisplay[] {
     let collection: WeatherGeolocationDisplay[] = [];
 
-    this.chosenDataset.forEach((geolocation, index) => {
+    this.chooseLocations.forEach((geolocation, index) => {
       const entry = {
         index: index,
         country: geolocation.country,
@@ -87,7 +87,7 @@ export class LocationsComponent implements OnInit {
     });
   }
 
-  private get chosenDataset(): WeatherGeolocation[] {
+  private get chooseLocations(): WeatherGeolocation[] {
     let dataset = this.geolocations;
 
     if (this.searchable) {

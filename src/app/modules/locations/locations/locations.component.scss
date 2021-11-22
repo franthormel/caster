@@ -1,3 +1,4 @@
+@use "@angular/material" as mat;
 @use "../../../../styles.scss" as global;
 
 .locations {
@@ -11,16 +12,16 @@
 }
 
 .locations-card {
-  $margin: 1%;
+  @include mat.elevation-transition();
+
+  &:hover {
+    @include mat.elevation(3);
+  }
 
   display: inline-block;
-  margin: $margin $margin + $margin $margin 0;
+  margin: 1% 2% 1% 0;
 }
 
 .locations-card:hover {
   cursor: pointer;
-}
-
-.locations-card-subtitle {
-  margin-top: 10px;
 }

@@ -11,10 +11,13 @@ import { StateManagerService } from '../../shared/services/state-manager.service
 import { WeatherReadingHourly } from 'src/app/models/weather/weather-reading-hourly.models';
 import { WeatherReadingCurrent } from 'src/app/models/weather/weather-reading-current.models';
 
+import { fadeInElement } from '../../../animations';
+
 @Component({
   selector: 'app-weather-content-top',
   templateUrl: './weather-content-top.component.html',
   styleUrls: ['./weather-content-top.component.scss'],
+  animations: [fadeInElement],
 })
 export class WeatherContentTopComponent {
   @Input() weatherData!: WeatherData;

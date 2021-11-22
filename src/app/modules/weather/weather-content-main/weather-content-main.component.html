@@ -3,18 +3,18 @@
         <section class="weather-main-left">
             <div class="margin-bottom-z3">
                 <p class="font-weight-f600">Cloudiness</p>
-                <p>{{cloudiness}}%</p>
+                <p [@fadeInElement]="cloudiness">{{cloudiness}}%</p>
             </div>
             <div class="margin-bottom-z3">
                 <p class="font-weight-f600" 
                    matTooltip="Atmospheric pressure on the sea level">
                    Pressure
                 </p>
-                <p>{{pressure}} hPa</p>
+                <p [@fadeInElement]="pressure">{{pressure}} hPa</p>
             </div>
             <div class="margin-bottom-z3">
                 <p class="font-weight-f600">Humidity</p>
-                <p>{{humidity}}%</p>
+                <p [@fadeInElement]="humidity">{{humidity}}%</p>
             </div>
         </section>
         <section class="weather-main-middle">
@@ -23,15 +23,31 @@
                     <section *ngIf="showDailyDetailReading"
                              class="weather-main-details">
                         <ng-container *ngIf="detailModeIsTemperature">
-                            <p><span class="weather-main-details-heading">Min</span>{{min}}</p>
-                            <p><span class="weather-main-details-heading">Max</span>{{max}}</p>
+                            <p>
+                                <span class="weather-main-details-heading">Min</span>
+                                <span [@fadeInElement]="min">{{min}}</span>
+                            </p>
+                            <p>
+                                <span class="weather-main-details-heading">Max</span>
+                                <span [@fadeInElement]="max">{{max}}</span>
+                            </p>
                         </ng-container>
-                        <p><span class="weather-main-details-heading">Morning</span>{{morning}}</p>
-                        <p><span class="weather-main-details-heading">Evening</span>{{evening}}</p>
-                        <p><span class="weather-main-details-heading">Night</span>{{night}}</p>
+                        <p>
+                            <span class="weather-main-details-heading">Morning</span>
+                            <span [@fadeInElement]="morning">{{morning}}</span>
+                        </p>
+                        <p>
+                            <span class="weather-main-details-heading">Evening</span>
+                            <span [@fadeInElement]="evening">{{evening}}</span>
+                        </p>
+                        <p>
+                            <span class="weather-main-details-heading">Night</span>
+                            <span [@fadeInElement]="night">{{night}}</span>
+                        </p>
                     </section>
                     <section class="align-center">
                         <p class="weather-main-temperature"
+                           [@fadeInElement]="temperature"
                            matRipple
                            [matRippleUnbounded]="true"
                            [ngClass]="{'text-focus-temperature': underlineTemperature}"
@@ -41,31 +57,41 @@
                     </section>
                 </section>
                 <div class="weather-main-conditions">
-                    <p class="margin-right-z2">{{weatherLocation}}</p>
+                    <p class="margin-right-z2" 
+                       [@fadeInElement]="weatherLocation">
+                       {{weatherLocation}}
+                    </p>
                     <p class="margin-right-z2 weather-main-feels-like" 
                        matRipple
                        [matRippleUnbounded]="true"
                        [ngClass]="{'text-focus-feelslike': underlineFeelsLike}"
                        (click)="changeToFeelsLikeViewMode()">
-                       Feels like {{feelsLike}}
+                       Feels like 
+                       <span [@fadeInElement]="feelsLike">{{feelsLike}}</span>
                     </p>
-                    <mat-icon [svgIcon]="weatherIcon"></mat-icon>
-                    <p class="margin-left-z1">{{weatherDescription}}</p>
+                    <mat-icon [@fadeInElement]="weatherIcon" 
+                              [svgIcon]="weatherIcon">
+                    </mat-icon>
+                    <p class="margin-left-z1" 
+                       [@fadeInElement]="weatherDescription">
+                       {{weatherDescription}}
+                    </p>
                 </div>
             </section>
         </section>
         <section class="weather-main-right">
             <div class="margin-bottom-z3">
                 <p class="font-weight-f600">Wind Speed</p>
-                <p>{{windSpeed}} m/s</p>
+                <p [@fadeInElement]="windSpeed">{{windSpeed}} m/s</p>
             </div>
             <div class="margin-bottom-z3">
                 <p class="font-weight-f600">Wind Direction</p>
-                <p>{{windDirection}}</p>
+                <p [@fadeInElement]="windDirection">{{windDirection}}</p>
             </div>
-            <div *ngIf="windGustIsPresent" class="margin-bottom-z3">
+            <div *ngIf="windGustIsPresent" 
+                 class="margin-bottom-z3">
                 <p class="font-weight-f600">Wind Gust</p>
-                <p>{{windGust}} m/s</p>
+                <p [@fadeInElement]="windGust">{{windGust}} m/s</p>
             </div>
         </section>
     </section>
