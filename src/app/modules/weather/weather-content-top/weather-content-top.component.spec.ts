@@ -1,3 +1,4 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
@@ -32,6 +33,7 @@ describe('WeatherContentTopComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [WeatherContentTopComponent],
       imports: [
+        BrowserAnimationsModule,
         HttpClientModule,
         StoreModule.forRoot({ appState: appStateReducer }),
         MatDialogModule,
