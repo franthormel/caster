@@ -28,13 +28,11 @@ export class DataManagerService {
   ) {}
 
   fileDataAirPollution(): Observable<AirPollution> {
-    return this.httpClient.get<AirPollution>(this.airPollutionFile, {
-      responseType: 'json',
-    });
+    return this.httpGetAirPollution(this.airPollutionFile);
   }
 
   fileDataGeolocation(): Observable<WeatherGeolocation[]> {
-    return this.getGeolocation(this.geolocationFile);
+    return this.httpGetGeolocation(this.geolocationFile);
   }
 
   fileDataGeolocations(): Observable<Observable<WeatherGeolocation[]>> {
@@ -42,7 +40,7 @@ export class DataManagerService {
 
     this.FILES.forEach((file) => {
       const jsonFile = this.chooseGeolocationFile(file);
-      const jsonData$ = this.getGeolocation(jsonFile);
+      const jsonData$ = this.httpGetGeolocation(jsonFile);
 
       jsonDataCollection$.push(jsonData$);
     });
@@ -51,17 +49,27 @@ export class DataManagerService {
   }
 
   fileDataWeather(): Observable<WeatherData> {
-    return this.httpClient.get<WeatherData>(this.weatherFile, {
-      responseType: 'json',
-    });
+    return this.httpGetWeather(this.weatherFile);
   }
 
   private chooseGeolocationFile(index: number): string {
     return `${this.DATA_URL.FILE}geolocations/${index}.json`;
   }
 
-  private getGeolocation(url: string): Observable<WeatherGeolocation[]> {
+  private httpGetAirPollution(url: string): Observable<AirPollution> {
+    return this.httpClient.get<AirPollution>(url, {
+      responseType: 'json',
+    });
+  }
+
+  private httpGetGeolocation(url: string): Observable<WeatherGeolocation[]> {
     return this.httpClient.get<WeatherGeolocation[]>(url, {
+      responseType: 'json',
+    });
+  }
+
+  private httpGetWeather(url: string): Observable<WeatherData> {
+    return this.httpClient.get<WeatherData>(url, {
       responseType: 'json',
     });
   }
