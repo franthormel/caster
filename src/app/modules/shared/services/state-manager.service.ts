@@ -13,7 +13,10 @@ import {
   WeatherReadingMode,
 } from '../../../models/weather/weather.enums';
 
-import { SettingsTemperature } from '../../../models/settings.enums';
+import {
+  SettingsDatasource,
+  SettingsTemperature,
+} from '../../../models/settings.enums';
 
 @Injectable({
   providedIn: 'root',
@@ -31,39 +34,47 @@ export class StateManagerService {
     this.initState();
   }
 
-  changeDetailModeToFeelsLike() {
-    if (!this.detailModeIsFeelsLike) {
-      this.changeDetailMode(WeatherDetailMode.FeelsLike);
-    }
-  }
-
-  changeDetailModeToTemperature() {
-    if (!this.detailModeIsTemperature) {
-      this.changeDetailMode(WeatherDetailMode.Temperature);
-    }
-  }
-
   changeLocationsFile(file: number) {
     if (this.locationsFile !== file) {
       this.store.dispatch(locations.changeLocationsFile({ file: file }));
     }
   }
 
-  changeReadingModeToCurrent() {
-    if (!this.readingModeIsCurrent) {
-      this.changeReadingMode(WeatherReadingMode.Current);
+  changeWeatherDetailModeToFeelsLike() {
+    if (!this.weatherDetailModeIsFeelsLike) {
+      this.changeWeatherDetailMode(WeatherDetailMode.FeelsLike);
     }
   }
 
-  changeReadingModeToDaily() {
-    if (!this.readingModeIsDaily) {
-      this.changeReadingMode(WeatherReadingMode.Daily);
+  changeWeatherDetailModeToTemperature() {
+    if (!this.weatherDetailModeIsTemperature) {
+      this.changeWeatherDetailMode(WeatherDetailMode.Temperature);
     }
   }
 
-  changeReadingModeToHourly() {
-    if (!this.readingModeIsHourly) {
-      this.changeReadingMode(WeatherReadingMode.Hourly);
+  changeWeatherReadingModeToCurrent() {
+    if (!this.weatherReadingModeIsCurrent) {
+      this.changeWeatherReadingMode(WeatherReadingMode.Current);
+    }
+  }
+
+  changeWeatherReadingModeToDaily() {
+    if (!this.weatherReadingModeIsDaily) {
+      this.changeWeatherReadingMode(WeatherReadingMode.Daily);
+    }
+  }
+
+  changeWeatherReadingModeToHourly() {
+    if (!this.weatherReadingModeIsHourly) {
+      this.changeWeatherReadingMode(WeatherReadingMode.Hourly);
+    }
+  }
+
+  changeSettingsDatasource(datasource: SettingsDatasource) {
+    if (!this.settingsDatasourceIs(datasource)) {
+      this.store.dispatch(
+        settings.changeDatasource({ datasource: datasource })
+      );
     }
   }
 
@@ -75,84 +86,56 @@ export class StateManagerService {
     }
   }
 
-  indexAirPollutionDecrement() {
-    if (this.canIndexAirPollutionDecrement) {
+  decrementAirPollutionIndex() {
+    if (this.canAirPollutionIndexDecrement) {
       this.store.dispatch(airPollution.decrementIndex());
     }
   }
 
-  indexAirPollutionIncrement() {
-    if (this.canIndexAirPollutionIncrement) {
-      this.store.dispatch(airPollution.incrementIndex());
-    }
-  }
-
-  indexDailyDecrement() {
-    if (this.canIndexDailyDecrement) {
+  decrementWeatherIndexDaily() {
+    if (this.canWeatherIndexDailyDecrement) {
       this.store.dispatch(weather.decrementIndexDaily());
     }
   }
 
-  indexDailyIncrement() {
-    if (this.canIndexDailyIncrement) {
-      this.store.dispatch(weather.incrementIndexDaily());
-    }
-  }
-
-  indexHourlyDecrement() {
-    if (this.canIndexHourlyDecrement) {
+  decrementWeatherIndexHourly() {
+    if (this.canWeatherIndexHourlyDecrement) {
       this.store.dispatch(weather.decrementIndexHourly());
     }
   }
 
-  indexHourlyIncrement() {
-    if (this.canIndexHourlyIncrement) {
+  incrementAirPollutionIndex() {
+    if (this.canAirPollutionIndexIncrement) {
+      this.store.dispatch(airPollution.incrementIndex());
+    }
+  }
+
+  incrementWeatherIndexDaily() {
+    if (this.canWeatherIndexDailyIncrement) {
+      this.store.dispatch(weather.incrementIndexDaily());
+    }
+  }
+
+  incrementWeatherIndexHourly() {
+    if (this.canWeatherIndexHourlyIncrement) {
       this.store.dispatch(weather.incrementIndexHourly());
     }
   }
 
-  settingsToggleDegreeSign() {
+  toggleSettingsDegreeSign() {
     this.store.dispatch(settings.toggleDegreeSign());
   }
 
-  get detailModeIsFeelsLike(): boolean {
-    return this.detailModeIs(WeatherDetailMode.FeelsLike);
-  }
-
-  get detailModeIsTemperature(): boolean {
-    return this.detailModeIs(WeatherDetailMode.Temperature);
-  }
-
-  get indexAirPollution(): number {
+  get airPollutionIndex(): number {
     return this.appState.airPollutionState.index;
-  }
-
-  get indexDaily(): number {
-    return this.appState.weatherState.indexDaily;
-  }
-
-  get indexHourly(): number {
-    return this.appState.weatherState.indexHourly;
   }
 
   get locationsFile(): number {
     return this.appState.locationsState.file;
   }
 
-  get readingMode(): WeatherReadingMode {
-    return this.appState.weatherState.readingMode;
-  }
-
-  get readingModeIsCurrent(): boolean {
-    return this.readingModeIs(WeatherReadingMode.Current);
-  }
-
-  get readingModeIsDaily(): boolean {
-    return this.readingModeIs(WeatherReadingMode.Daily);
-  }
-
-  get readingModeIsHourly(): boolean {
-    return this.readingModeIs(WeatherReadingMode.Hourly);
+  get settingsDatasource(): SettingsDatasource {
+    return this.appState.settingsState.datasource;
   }
 
   get settingsDegreeSign(): boolean {
@@ -163,31 +146,39 @@ export class StateManagerService {
     return this.appState.settingsState.temperature;
   }
 
-  private get canIndexAirPollutionDecrement(): boolean {
-    return this.indexAirPollution >= 1;
+  get weatherDetailModeIsFeelsLike(): boolean {
+    return this.weatherDetailModeIs(WeatherDetailMode.FeelsLike);
   }
 
-  private get canIndexAirPollutionIncrement(): boolean {
-    return this.indexAirPollution < this.MAX.AIR_POLLUTION - 1;
+  get weatherDetailModeIsTemperature(): boolean {
+    return this.weatherDetailModeIs(WeatherDetailMode.Temperature);
   }
 
-  private get canIndexDailyDecrement(): boolean {
-    return this.indexDaily >= 1;
+  get weatherIndexDaily(): number {
+    return this.appState.weatherState.indexDaily;
   }
 
-  private get canIndexDailyIncrement(): boolean {
-    return this.indexDaily < this.MAX.DAILY - 1;
+  get weatherIndexHourly(): number {
+    return this.appState.weatherState.indexHourly;
   }
 
-  private get canIndexHourlyDecrement(): boolean {
-    return this.indexHourly >= 1;
+  get weatherReadingMode(): WeatherReadingMode {
+    return this.appState.weatherState.readingMode;
   }
 
-  private get canIndexHourlyIncrement(): boolean {
-    return this.indexHourly < this.MAX.HOURLY - 1;
+  get weatherReadingModeIsCurrent(): boolean {
+    return this.weatherReadingModeIs(WeatherReadingMode.Current);
   }
 
-  private changeDetailMode(mode: WeatherDetailMode) {
+  get weatherReadingModeIsDaily(): boolean {
+    return this.weatherReadingModeIs(WeatherReadingMode.Daily);
+  }
+
+  get weatherReadingModeIsHourly(): boolean {
+    return this.weatherReadingModeIs(WeatherReadingMode.Hourly);
+  }
+
+  private changeWeatherDetailMode(mode: WeatherDetailMode) {
     this.store.dispatch(
       weather.changeDetailMode({
         detailMode: mode,
@@ -195,12 +186,8 @@ export class StateManagerService {
     );
   }
 
-  private changeReadingMode(value: WeatherReadingMode) {
+  private changeWeatherReadingMode(value: WeatherReadingMode) {
     this.store.dispatch(weather.changeReadingMode({ readingMode: value }));
-  }
-
-  private detailModeIs(mode: WeatherDetailMode): boolean {
-    return this.appState.weatherState.detailMode === mode;
   }
 
   private initState() {
@@ -211,11 +198,43 @@ export class StateManagerService {
     });
   }
 
-  private readingModeIs(mode: WeatherReadingMode): boolean {
-    return this.readingMode === mode;
+  private settingsDatasourceIs(datasource: SettingsDatasource): boolean {
+    return this.appState.settingsState.datasource === datasource;
   }
 
   private settingsTemperatureIs(temperature: SettingsTemperature): boolean {
     return this.appState.settingsState.temperature === temperature;
+  }
+
+  private weatherDetailModeIs(mode: WeatherDetailMode): boolean {
+    return this.appState.weatherState.detailMode === mode;
+  }
+
+  private weatherReadingModeIs(mode: WeatherReadingMode): boolean {
+    return this.weatherReadingMode === mode;
+  }
+
+  private get canAirPollutionIndexDecrement(): boolean {
+    return this.airPollutionIndex >= 1;
+  }
+
+  private get canAirPollutionIndexIncrement(): boolean {
+    return this.airPollutionIndex < this.MAX.AIR_POLLUTION - 1;
+  }
+
+  private get canWeatherIndexDailyDecrement(): boolean {
+    return this.weatherIndexDaily >= 1;
+  }
+
+  private get canWeatherIndexDailyIncrement(): boolean {
+    return this.weatherIndexDaily < this.MAX.DAILY - 1;
+  }
+
+  private get canWeatherIndexHourlyDecrement(): boolean {
+    return this.weatherIndexHourly >= 1;
+  }
+
+  private get canWeatherIndexHourlyIncrement(): boolean {
+    return this.weatherIndexHourly < this.MAX.HOURLY - 1;
   }
 }

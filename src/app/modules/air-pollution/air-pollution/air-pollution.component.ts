@@ -39,11 +39,11 @@ export class AirPollutionComponent implements OnInit {
   }
 
   next() {
-    this.stateManager.indexAirPollutionIncrement();
+    this.stateManager.incrementAirPollutionIndex();
   }
 
   previous() {
-    this.stateManager.indexAirPollutionDecrement();
+    this.stateManager.decrementAirPollutionIndex();
   }
 
   get airComponents(): AirPollutionComponentDisplay[] {
@@ -136,6 +136,6 @@ export class AirPollutionComponent implements OnInit {
   }
 
   private get reading(): AirPollutionReading {
-    return this.airPollution.list[this.stateManager.indexAirPollution];
+    return this.airPollution.list[this.stateManager.airPollutionIndex];
   }
 }

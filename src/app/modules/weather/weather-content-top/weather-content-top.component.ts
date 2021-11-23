@@ -31,19 +31,19 @@ export class WeatherContentTopComponent {
   ) {}
 
   dailyNext() {
-    this.stateManager.indexDailyIncrement();
+    this.stateManager.incrementWeatherIndexDaily();
   }
 
   dailyPrevious() {
-    this.stateManager.indexDailyDecrement();
+    this.stateManager.decrementWeatherIndexDaily();
   }
 
   hourlyNext() {
-    this.stateManager.indexHourlyIncrement();
+    this.stateManager.incrementWeatherIndexHourly();
   }
 
   hourlyPrevious() {
-    this.stateManager.indexHourlyDecrement();
+    this.stateManager.decrementWeatherIndexHourly();
   }
 
   showAlertDialog() {
@@ -173,7 +173,7 @@ export class WeatherContentTopComponent {
   }
 
   get titleViewMode(): string {
-    return this.stateManager.readingMode;
+    return this.stateManager.weatherReadingMode;
   }
 
   private get alerts(): WeatherAlert[] | undefined {
@@ -185,22 +185,22 @@ export class WeatherContentTopComponent {
   }
 
   private get currentDailyWeather(): WeatherReadingDaily {
-    return this.weatherData.daily[this.stateManager.indexDaily];
+    return this.weatherData.daily[this.stateManager.weatherIndexDaily];
   }
 
   private get currentHourlyWeather(): WeatherReadingHourly {
-    return this.weatherData.hourly[this.stateManager.indexHourly];
+    return this.weatherData.hourly[this.stateManager.weatherIndexHourly];
   }
 
   private get currentModeIsCurrent(): boolean {
-    return this.stateManager.readingModeIsCurrent;
+    return this.stateManager.weatherReadingModeIsCurrent;
   }
 
   private get currentModeIsDaily(): boolean {
-    return this.stateManager.readingModeIsDaily;
+    return this.stateManager.weatherReadingModeIsDaily;
   }
 
   private get currentModeIsHourly(): boolean {
-    return this.stateManager.readingModeIsHourly;
+    return this.stateManager.weatherReadingModeIsHourly;
   }
 }

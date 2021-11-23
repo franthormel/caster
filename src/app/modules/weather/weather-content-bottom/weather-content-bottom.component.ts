@@ -36,7 +36,7 @@ export class WeatherContentBottomComponent {
   }
 
   get precipitation(): string {
-    return this.stateManager.readingModeIsCurrent
+    return this.stateManager.weatherReadingModeIsCurrent
       ? this.currentPrecipitation
       : this.dailyHourlyPrecipitation;
   }
@@ -44,7 +44,7 @@ export class WeatherContentBottomComponent {
   get precipitationTitle(): string {
     const title = 'Precipitation';
 
-    if (this.stateManager.readingModeIsCurrent) {
+    if (this.stateManager.weatherReadingModeIsCurrent) {
       return `${title} (Hour)`;
     }
 
@@ -52,7 +52,7 @@ export class WeatherContentBottomComponent {
   }
 
   get precipitationTooltip(): string {
-    if (this.stateManager.readingModeIsCurrent) {
+    if (this.stateManager.weatherReadingModeIsCurrent) {
       return 'Precipitation volume';
     } else {
       return 'Probability of precipitation';
@@ -60,7 +60,7 @@ export class WeatherContentBottomComponent {
   }
 
   get rain(): number | undefined {
-    return this.stateManager.readingModeIsDaily
+    return this.stateManager.weatherReadingModeIsDaily
       ? (this.weatherReading.rain as number)
       : (this.weatherReading.rain as WeatherHourlyChance)['1h'];
   }
@@ -80,7 +80,7 @@ export class WeatherContentBottomComponent {
   }
 
   get snow(): number | undefined {
-    return this.stateManager.readingModeIsDaily
+    return this.stateManager.weatherReadingModeIsDaily
       ? (this.weatherReading.snow as number)
       : (this.weatherReading.snow as WeatherHourlyChance)['1h'];
   }
@@ -106,9 +106,9 @@ export class WeatherContentBottomComponent {
   get uviTooltip(): string {
     const text = 'UV Index';
 
-    if (this.stateManager.readingModeIsCurrent) {
+    if (this.stateManager.weatherReadingModeIsCurrent) {
       return `Current ${text}`;
-    } else if (this.stateManager.readingModeIsDaily) {
+    } else if (this.stateManager.weatherReadingModeIsDaily) {
       return `The maximum value of ${text} for the day`;
     } else {
       return text;
@@ -165,18 +165,18 @@ export class WeatherContentBottomComponent {
   }
 
   private get isNotDaily(): boolean {
-    return !this.stateManager.readingModeIsDaily;
+    return !this.stateManager.weatherReadingModeIsDaily;
   }
 
   private get weatherReading(): WeatherReading {
     let weather!: WeatherReading;
 
-    if (this.stateManager.readingModeIsCurrent) {
+    if (this.stateManager.weatherReadingModeIsCurrent) {
       weather = this.weatherData.current;
-    } else if (this.stateManager.readingModeIsHourly) {
-      weather = this.weatherData.hourly[this.stateManager.indexHourly];
-    } else if (this.stateManager.readingModeIsDaily) {
-      weather = this.weatherData.daily[this.stateManager.indexDaily];
+    } else if (this.stateManager.weatherReadingModeIsHourly) {
+      weather = this.weatherData.hourly[this.stateManager.weatherIndexHourly];
+    } else if (this.stateManager.weatherReadingModeIsDaily) {
+      weather = this.weatherData.daily[this.stateManager.weatherIndexDaily];
     }
 
     return weather;

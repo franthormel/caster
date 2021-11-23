@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 
-import { SettingsTemperature } from '../../../models/settings.enums';
+import {
+  SettingsDatasource,
+  SettingsTemperature,
+} from '../../../models/settings.enums';
 
 import { ImageCredits, SoftwareCredits } from '../../../models/credits.models';
 
@@ -20,12 +23,24 @@ import { StateManagerService } from '../../shared/services/state-manager.service
 export class SettingsComponent {
   constructor(private stateManager: StateManagerService) {}
 
+  changeDatasource(value: SettingsDatasource) {
+    this.stateManager.changeSettingsDatasource(value);
+  }
+
   changeTemperature(value: SettingsTemperature) {
     this.stateManager.changeSettingsTemperature(value);
   }
 
   toggleDegreeSign() {
-    this.stateManager.settingsToggleDegreeSign();
+    this.stateManager.toggleSettingsDegreeSign();
+  }
+
+  get datasource(): SettingsDatasource {
+    return this.stateManager.settingsDatasource;
+  }
+
+  get datasourceOptions(): SettingsDatasource[] {
+    return [SettingsDatasource.File, SettingsDatasource.Online];
   }
 
   get degreeSign(): boolean {

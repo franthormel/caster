@@ -30,11 +30,11 @@ export class WeatherContentMainComponent {
   ) {}
 
   changeToFeelsLikeViewMode() {
-    this.stateManager.changeDetailModeToFeelsLike();
+    this.stateManager.changeWeatherDetailModeToFeelsLike();
   }
 
   changeToTemperatureViewMode() {
-    this.stateManager.changeDetailModeToTemperature();
+    this.stateManager.changeWeatherDetailModeToTemperature();
   }
 
   get cloudiness(): number {
@@ -42,7 +42,7 @@ export class WeatherContentMainComponent {
   }
 
   get detailModeIsTemperature(): boolean {
-    return this.stateManager.detailModeIsTemperature;
+    return this.stateManager.weatherDetailModeIsTemperature;
   }
 
   get evening(): number {
@@ -125,7 +125,7 @@ export class WeatherContentMainComponent {
   }
 
   get showDailyDetailReading(): boolean {
-    return this.stateManager.readingModeIsDaily;
+    return this.stateManager.weatherReadingModeIsDaily;
   }
 
   get temperature(): string {
@@ -183,7 +183,7 @@ export class WeatherContentMainComponent {
   }
 
   private feelsLikeBasedOnMode(weather: WeatherReading): number {
-    if (this.stateManager.readingModeIsDaily) {
+    if (this.stateManager.weatherReadingModeIsDaily) {
       const reading = weather.feels_like as WeatherReadingDetailFeelsLike;
 
       return reading.day;
@@ -193,7 +193,7 @@ export class WeatherContentMainComponent {
   }
 
   private temperatureBasedOnMode(weather: WeatherReading): number {
-    if (this.stateManager.readingModeIsDaily) {
+    if (this.stateManager.weatherReadingModeIsDaily) {
       const reading = weather.temp as WeatherReadingDetailTemperature;
 
       return reading.day;
@@ -203,18 +203,18 @@ export class WeatherContentMainComponent {
   }
 
   private get detailModeIsFeelsLike(): boolean {
-    return this.stateManager.detailModeIsFeelsLike;
+    return this.stateManager.weatherDetailModeIsFeelsLike;
   }
 
   private get weatherReading(): WeatherReading {
     let weather!: WeatherReading;
 
-    if (this.stateManager.readingModeIsCurrent) {
+    if (this.stateManager.weatherReadingModeIsCurrent) {
       weather = this.weatherData.current;
-    } else if (this.stateManager.readingModeIsHourly) {
-      weather = this.weatherData.hourly[this.stateManager.indexHourly];
-    } else if (this.stateManager.readingModeIsDaily) {
-      weather = this.weatherData.daily[this.stateManager.indexDaily];
+    } else if (this.stateManager.weatherReadingModeIsHourly) {
+      weather = this.weatherData.hourly[this.stateManager.weatherIndexHourly];
+    } else if (this.stateManager.weatherReadingModeIsDaily) {
+      weather = this.weatherData.daily[this.stateManager.weatherIndexDaily];
     }
 
     return weather;

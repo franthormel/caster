@@ -22,20 +22,20 @@ describe('StateManagerService', () => {
   describe('methods()', () => {
     describe('indexHourly()', () => {
       it('should return a number', () => {
-        const result = service.indexHourly;
+        const result = service.weatherIndexHourly;
 
         expect(result).toBeInstanceOf(Number);
       });
 
       it('should return a number greater than or equal to 0', () => {
-        const result = service.indexHourly;
+        const result = service.weatherIndexHourly;
 
         expect(result).toBeGreaterThanOrEqual(0);
       });
 
       it('should return expected value after initialization', () => {
         const expected = 0;
-        const result = service.indexHourly;
+        const result = service.weatherIndexHourly;
 
         expect(result).toBe(expected);
       });
@@ -43,20 +43,20 @@ describe('StateManagerService', () => {
 
     describe('indexDaily()', () => {
       it('should return a number', () => {
-        const result = service.indexDaily;
+        const result = service.weatherIndexDaily;
 
         expect(result).toBeInstanceOf(Number);
       });
 
       it('should return a number greater than or equal to 0', () => {
-        const result = service.indexDaily;
+        const result = service.weatherIndexDaily;
 
         expect(result).toBeGreaterThanOrEqual(0);
       });
 
       it('should return expected value after initialization', () => {
         const expected = 0;
-        const result = service.indexDaily;
+        const result = service.weatherIndexDaily;
 
         expect(result).toBe(expected);
       });
@@ -64,31 +64,31 @@ describe('StateManagerService', () => {
 
     describe('indexHourlyIncrement()', () => {
       it('should increase value once if called once', () => {
-        service.indexHourlyIncrement();
+        service.incrementWeatherIndexHourly();
 
         const expected = 1;
-        const result = service.indexHourly;
+        const result = service.weatherIndexHourly;
 
         expect(result).toBe(expected);
       });
 
       it('should increase value twice if called twice', () => {
-        service.indexHourlyIncrement();
-        service.indexHourlyIncrement();
+        service.incrementWeatherIndexHourly();
+        service.incrementWeatherIndexHourly();
 
         const expected = 2;
-        const result = service.indexHourly;
+        const result = service.weatherIndexHourly;
 
         expect(result).toBe(expected);
       });
 
       it('should increase value thrice if called thrice', () => {
-        service.indexHourlyIncrement();
-        service.indexHourlyIncrement();
-        service.indexHourlyIncrement();
+        service.incrementWeatherIndexHourly();
+        service.incrementWeatherIndexHourly();
+        service.incrementWeatherIndexHourly();
 
         const expected = 3;
-        const result = service.indexHourly;
+        const result = service.weatherIndexHourly;
 
         expect(result).toBe(expected);
       });
@@ -96,37 +96,37 @@ describe('StateManagerService', () => {
 
     describe('indexHourlyDecrement()', () => {
       it('should decrease value once if called once', () => {
-        service.indexHourlyIncrement();
-        service.indexHourlyDecrement();
+        service.incrementWeatherIndexHourly();
+        service.decrementWeatherIndexHourly();
 
         const expected = 0;
-        const result = service.indexHourly;
+        const result = service.weatherIndexHourly;
 
         expect(result).toBe(expected);
       });
 
       it('should decrease value twice if called twice', () => {
-        service.indexHourlyIncrement();
-        service.indexHourlyIncrement();
-        service.indexHourlyDecrement();
-        service.indexHourlyDecrement();
+        service.incrementWeatherIndexHourly();
+        service.incrementWeatherIndexHourly();
+        service.decrementWeatherIndexHourly();
+        service.decrementWeatherIndexHourly();
 
         const expected = 0;
-        const result = service.indexHourly;
+        const result = service.weatherIndexHourly;
 
         expect(result).toBe(expected);
       });
 
       it('should decrease value thrice if called thrice', () => {
-        service.indexHourlyIncrement();
-        service.indexHourlyIncrement();
-        service.indexHourlyIncrement();
-        service.indexHourlyDecrement();
-        service.indexHourlyDecrement();
-        service.indexHourlyDecrement();
+        service.incrementWeatherIndexHourly();
+        service.incrementWeatherIndexHourly();
+        service.incrementWeatherIndexHourly();
+        service.decrementWeatherIndexHourly();
+        service.decrementWeatherIndexHourly();
+        service.decrementWeatherIndexHourly();
 
         const expected = 0;
-        const result = service.indexHourly;
+        const result = service.weatherIndexHourly;
 
         expect(result).toBe(expected);
       });
@@ -134,31 +134,31 @@ describe('StateManagerService', () => {
 
     describe('indexDailyIncrement()', () => {
       it('should increase value once if called once', () => {
-        service.indexDailyIncrement();
+        service.incrementWeatherIndexDaily();
 
         const expected = 1;
-        const result = service.indexDaily;
+        const result = service.weatherIndexDaily;
 
         expect(result).toBe(expected);
       });
 
       it('should increase value twice if called twice', () => {
-        service.indexDailyIncrement();
-        service.indexDailyIncrement();
+        service.incrementWeatherIndexDaily();
+        service.incrementWeatherIndexDaily();
 
         const expected = 2;
-        const result = service.indexDaily;
+        const result = service.weatherIndexDaily;
 
         expect(result).toBe(expected);
       });
 
       it('should increase value thrice if called thrice', () => {
-        service.indexDailyIncrement();
-        service.indexDailyIncrement();
-        service.indexDailyIncrement();
+        service.incrementWeatherIndexDaily();
+        service.incrementWeatherIndexDaily();
+        service.incrementWeatherIndexDaily();
 
         const expected = 3;
-        const result = service.indexDaily;
+        const result = service.weatherIndexDaily;
 
         expect(result).toBe(expected);
       });
@@ -166,37 +166,37 @@ describe('StateManagerService', () => {
 
     describe('indexDailyDecrement()', () => {
       it('should decrease value once if called once', () => {
-        service.indexDailyIncrement();
-        service.indexDailyDecrement();
+        service.incrementWeatherIndexDaily();
+        service.decrementWeatherIndexDaily();
 
         const expected = 0;
-        const result = service.indexDaily;
+        const result = service.weatherIndexDaily;
 
         expect(result).toBe(expected);
       });
 
       it('should decrease value twice if called twice', () => {
-        service.indexDailyIncrement();
-        service.indexDailyIncrement();
-        service.indexDailyDecrement();
-        service.indexDailyDecrement();
+        service.incrementWeatherIndexDaily();
+        service.incrementWeatherIndexDaily();
+        service.decrementWeatherIndexDaily();
+        service.decrementWeatherIndexDaily();
 
         const expected = 0;
-        const result = service.indexDaily;
+        const result = service.weatherIndexDaily;
 
         expect(result).toBe(expected);
       });
 
       it('should decrease value thrice if called thrice', () => {
-        service.indexDailyIncrement();
-        service.indexDailyIncrement();
-        service.indexDailyIncrement();
-        service.indexDailyDecrement();
-        service.indexDailyDecrement();
-        service.indexDailyDecrement();
+        service.incrementWeatherIndexDaily();
+        service.incrementWeatherIndexDaily();
+        service.incrementWeatherIndexDaily();
+        service.decrementWeatherIndexDaily();
+        service.decrementWeatherIndexDaily();
+        service.decrementWeatherIndexDaily();
 
         const expected = 0;
-        const result = service.indexDaily;
+        const result = service.weatherIndexDaily;
 
         expect(result).toBe(expected);
       });
@@ -204,37 +204,37 @@ describe('StateManagerService', () => {
 
     describe('readingModeIsCurrent()', () => {
       it('should return a Boolean', () => {
-        const result = service.readingModeIsCurrent;
+        const result = service.weatherReadingModeIsCurrent;
 
         expect(result).toBeInstanceOf(Boolean);
       });
 
       it('should return true if set to the expected value', () => {
-        service.changeReadingModeToCurrent();
-        const result = service.readingModeIsCurrent;
+        service.changeWeatherReadingModeToCurrent();
+        const result = service.weatherReadingModeIsCurrent;
 
         expect(result).toBeTruthy();
       });
 
       it('should return true if set to the expected value from another value', () => {
-        service.changeReadingModeToDaily();
-        service.changeReadingModeToCurrent();
-        const result = service.readingModeIsCurrent;
+        service.changeWeatherReadingModeToDaily();
+        service.changeWeatherReadingModeToCurrent();
+        const result = service.weatherReadingModeIsCurrent;
 
         expect(result).toBeTruthy();
       });
 
       it('should return false if set to another value', () => {
-        service.changeReadingModeToDaily();
-        const result = service.readingModeIsCurrent;
+        service.changeWeatherReadingModeToDaily();
+        const result = service.weatherReadingModeIsCurrent;
 
         expect(result).toBeFalsy();
       });
 
       it('should return false if set to another value from expected value', () => {
-        service.changeReadingModeToCurrent();
-        service.changeReadingModeToHourly();
-        const result = service.readingModeIsCurrent;
+        service.changeWeatherReadingModeToCurrent();
+        service.changeWeatherReadingModeToHourly();
+        const result = service.weatherReadingModeIsCurrent;
 
         expect(result).toBeFalsy();
       });
@@ -242,37 +242,37 @@ describe('StateManagerService', () => {
 
     describe('readingModeIsHourly()', () => {
       it('should return a Boolean', () => {
-        const result = service.readingModeIsHourly;
+        const result = service.weatherReadingModeIsHourly;
 
         expect(result).toBeInstanceOf(Boolean);
       });
 
       it('should return true if set to the expected value', () => {
-        service.changeReadingModeToHourly();
-        const expected = service.readingModeIsHourly;
+        service.changeWeatherReadingModeToHourly();
+        const expected = service.weatherReadingModeIsHourly;
 
         expect(expected).toBeTruthy();
       });
 
       it('should return true if set to the expected value from another value', () => {
-        service.changeReadingModeToDaily();
-        service.changeReadingModeToHourly();
-        const expected = service.readingModeIsHourly;
+        service.changeWeatherReadingModeToDaily();
+        service.changeWeatherReadingModeToHourly();
+        const expected = service.weatherReadingModeIsHourly;
 
         expect(expected).toBeTruthy();
       });
 
       it('should return false if set to another value', () => {
-        service.changeReadingModeToDaily();
-        const expected = service.readingModeIsHourly;
+        service.changeWeatherReadingModeToDaily();
+        const expected = service.weatherReadingModeIsHourly;
 
         expect(expected).toBeFalsy();
       });
 
       it('should return false if set to another value from expected value', () => {
-        service.changeReadingModeToHourly();
-        service.changeReadingModeToCurrent();
-        const expected = service.readingModeIsHourly;
+        service.changeWeatherReadingModeToHourly();
+        service.changeWeatherReadingModeToCurrent();
+        const expected = service.weatherReadingModeIsHourly;
 
         expect(expected).toBeFalsy();
       });
@@ -280,37 +280,37 @@ describe('StateManagerService', () => {
 
     describe('readingModeIsDaily()', () => {
       it('should return a Boolean', () => {
-        const result = service.readingModeIsDaily;
+        const result = service.weatherReadingModeIsDaily;
 
         expect(result).toBeInstanceOf(Boolean);
       });
 
       it('should return true if set to the expected value', () => {
-        service.changeReadingModeToDaily();
-        const expected = service.readingModeIsDaily;
+        service.changeWeatherReadingModeToDaily();
+        const expected = service.weatherReadingModeIsDaily;
 
         expect(expected).toBeTruthy();
       });
 
       it('should return true if set to the expected value from another value', () => {
-        service.changeReadingModeToCurrent();
-        service.changeReadingModeToDaily();
-        const expected = service.readingModeIsDaily;
+        service.changeWeatherReadingModeToCurrent();
+        service.changeWeatherReadingModeToDaily();
+        const expected = service.weatherReadingModeIsDaily;
 
         expect(expected).toBeTruthy();
       });
 
       it('should return false if set to another value', () => {
-        service.changeReadingModeToCurrent();
-        const expected = service.readingModeIsDaily;
+        service.changeWeatherReadingModeToCurrent();
+        const expected = service.weatherReadingModeIsDaily;
 
         expect(expected).toBeFalsy();
       });
 
       it('should return false if set to another value from expected value', () => {
-        service.changeReadingModeToDaily();
-        service.changeReadingModeToHourly();
-        const expected = service.readingModeIsDaily;
+        service.changeWeatherReadingModeToDaily();
+        service.changeWeatherReadingModeToHourly();
+        const expected = service.weatherReadingModeIsDaily;
 
         expect(expected).toBeFalsy();
       });
@@ -318,37 +318,37 @@ describe('StateManagerService', () => {
 
     describe('detailModeIsFeelsLike()', () => {
       it('should return a Boolean', () => {
-        const result = service.detailModeIsFeelsLike;
+        const result = service.weatherDetailModeIsFeelsLike;
 
         expect(result).toBeInstanceOf(Boolean);
       });
 
       it('should return true if set to the expected value', () => {
-        service.changeDetailModeToFeelsLike();
-        const expected = service.detailModeIsFeelsLike;
+        service.changeWeatherDetailModeToFeelsLike();
+        const expected = service.weatherDetailModeIsFeelsLike;
 
         expect(expected).toBeTruthy();
       });
 
       it('should return true if set to the expected value from another value', () => {
-        service.changeDetailModeToTemperature();
-        service.changeDetailModeToFeelsLike();
-        const expected = service.detailModeIsFeelsLike;
+        service.changeWeatherDetailModeToTemperature();
+        service.changeWeatherDetailModeToFeelsLike();
+        const expected = service.weatherDetailModeIsFeelsLike;
 
         expect(expected).toBeTruthy();
       });
 
       it('should return false if set to another value', () => {
-        service.changeDetailModeToTemperature();
-        const expected = service.detailModeIsFeelsLike;
+        service.changeWeatherDetailModeToTemperature();
+        const expected = service.weatherDetailModeIsFeelsLike;
 
         expect(expected).toBeFalsy();
       });
 
       it('should return false if set to another value from expected value', () => {
-        service.changeDetailModeToFeelsLike();
-        service.changeDetailModeToTemperature();
-        const expected = service.detailModeIsFeelsLike;
+        service.changeWeatherDetailModeToFeelsLike();
+        service.changeWeatherDetailModeToTemperature();
+        const expected = service.weatherDetailModeIsFeelsLike;
 
         expect(expected).toBeFalsy();
       });
@@ -356,37 +356,37 @@ describe('StateManagerService', () => {
 
     describe('detailModeIsTemperature()', () => {
       it('should return a Boolean', () => {
-        const result = service.detailModeIsTemperature;
+        const result = service.weatherDetailModeIsTemperature;
 
         expect(result).toBeInstanceOf(Boolean);
       });
 
       it('should return true if set to the expected value', () => {
-        service.changeDetailModeToTemperature();
-        const expected = service.detailModeIsTemperature;
+        service.changeWeatherDetailModeToTemperature();
+        const expected = service.weatherDetailModeIsTemperature;
 
         expect(expected).toBeTruthy();
       });
 
       it('should return true if set to the expected value from another value', () => {
-        service.changeDetailModeToFeelsLike();
-        service.changeDetailModeToTemperature();
-        const expected = service.detailModeIsTemperature;
+        service.changeWeatherDetailModeToFeelsLike();
+        service.changeWeatherDetailModeToTemperature();
+        const expected = service.weatherDetailModeIsTemperature;
 
         expect(expected).toBeTruthy();
       });
 
       it('should return false if set to another value', () => {
-        service.changeDetailModeToFeelsLike();
-        const expected = service.detailModeIsTemperature;
+        service.changeWeatherDetailModeToFeelsLike();
+        const expected = service.weatherDetailModeIsTemperature;
 
         expect(expected).toBeFalsy();
       });
 
       it('should return false if set to another value from expected value', () => {
-        service.changeDetailModeToTemperature();
-        service.changeDetailModeToFeelsLike();
-        const expected = service.detailModeIsTemperature;
+        service.changeWeatherDetailModeToTemperature();
+        service.changeWeatherDetailModeToFeelsLike();
+        const expected = service.weatherDetailModeIsTemperature;
 
         expect(expected).toBeFalsy();
       });
@@ -394,7 +394,7 @@ describe('StateManagerService', () => {
 
     describe('readingMode()', () => {
       it('should return a String', () => {
-        const result = service.readingMode;
+        const result = service.weatherReadingMode;
 
         expect(result).toBeInstanceOf(String);
       });
@@ -458,7 +458,7 @@ describe('StateManagerService', () => {
 
     describe('settingsToggleDegreeSign()', () => {
       it('should return false after being toggled', () => {
-        service.settingsToggleDegreeSign();
+        service.toggleSettingsDegreeSign();
 
         const result = service.settingsDegreeSign;
 
@@ -466,8 +466,8 @@ describe('StateManagerService', () => {
       });
 
       it('should return true after being toggled', () => {
-        service.settingsToggleDegreeSign();
-        service.settingsToggleDegreeSign();
+        service.toggleSettingsDegreeSign();
+        service.toggleSettingsDegreeSign();
 
         const result = service.settingsDegreeSign;
 
@@ -477,44 +477,44 @@ describe('StateManagerService', () => {
 
     describe('indexAirPollution()', () => {
       it('should return a Number', () => {
-        const result = service.indexAirPollution;
+        const result = service.airPollutionIndex;
 
         expect(result).toBeInstanceOf(Number);
       });
 
       it('should return expected value after calling indexAirPollutionIncrement() once', () => {
-        service.indexAirPollutionIncrement();
+        service.incrementAirPollutionIndex();
 
-        const result = service.indexAirPollution;
+        const result = service.airPollutionIndex;
         const expected = 1;
 
         expect(result).toBe(expected);
       });
 
       it('should return expected value after calling indexAirPollutionIncrement() twice', () => {
-        service.indexAirPollutionIncrement();
-        service.indexAirPollutionIncrement();
+        service.incrementAirPollutionIndex();
+        service.incrementAirPollutionIndex();
 
-        const result = service.indexAirPollution;
+        const result = service.airPollutionIndex;
         const expected = 2;
 
         expect(result).toBe(expected);
       });
 
       it('should return expected value after calling indexAirPollutionDecrement() once', () => {
-        service.indexAirPollutionDecrement();
+        service.decrementAirPollutionIndex();
 
-        const result = service.indexAirPollution;
+        const result = service.airPollutionIndex;
         const expected = 0;
 
         expect(result).toBe(expected);
       });
 
       it('should return expected value after calling indexAirPollutionDecrement() twice', () => {
-        service.indexAirPollutionDecrement();
-        service.indexAirPollutionDecrement();
+        service.decrementAirPollutionIndex();
+        service.decrementAirPollutionIndex();
 
-        const result = service.indexAirPollution;
+        const result = service.airPollutionIndex;
         const expected = 0;
 
         expect(result).toBe(expected);

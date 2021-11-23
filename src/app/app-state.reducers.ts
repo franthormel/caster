@@ -63,6 +63,14 @@ const _appStateReducer = createReducer(
     },
   })),
 
+  on(settings.changeDatasource, (state, { datasource }) => ({
+    ...state,
+    settingsState: {
+      ...state.settingsState,
+      datasource: datasource,
+    },
+  })),
+
   on(settings.changeTemperature, (state, { temperature }) => ({
     ...state,
     settingsState: {

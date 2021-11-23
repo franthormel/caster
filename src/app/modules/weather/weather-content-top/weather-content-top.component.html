@@ -12,16 +12,16 @@
             <mat-menu #menuWeatherMode="matMenu"
                       class="text-no-select">
                 <mat-selection-list [multiple]="false">
-                    <mat-list-option (click)="stateManager.changeReadingModeToCurrent()"
-                                     [selected]="stateManager.readingModeIsCurrent">
+                    <mat-list-option (click)="stateManager.changeWeatherReadingModeToCurrent()"
+                                     [selected]="stateManager.weatherReadingModeIsCurrent">
                                      Current
                     </mat-list-option>
-                    <mat-list-option (click)="stateManager.changeReadingModeToHourly()"
-                                     [selected]="stateManager.readingModeIsHourly">
+                    <mat-list-option (click)="stateManager.changeWeatherReadingModeToHourly()"
+                                     [selected]="stateManager.weatherReadingModeIsHourly">
                                      Hourly
                     </mat-list-option>
-                    <mat-list-option (click)="stateManager.changeReadingModeToDaily()"
-                                     [selected]="stateManager.readingModeIsDaily">
+                    <mat-list-option (click)="stateManager.changeWeatherReadingModeToDaily()"
+                                     [selected]="stateManager.weatherReadingModeIsDaily">
                                      Daily
                     </mat-list-option>
                 </mat-selection-list>
