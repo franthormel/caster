@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { NavigationLink } from './models/navigation-link.models';
+import { SettingsTheme } from './models/settings.enums';
+import { StateManagerService } from './modules/shared/services/state-manager.service';
 
 import { ICONS } from './data/icons/index.data';
 import { ICONS_MOON } from './data/icons/moon.data';
@@ -25,11 +27,18 @@ export class AppComponent implements OnInit {
   constructor(
     private iconRegistry: MatIconRegistry,
     private router: Router,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private stateManager: StateManagerService
   ) {}
 
   ngOnInit() {
     this.registerAllIcons();
+  }
+
+  get backgroundImage(): string {
+    const image = this.decideImageToUse();
+
+    return `url(/assets/images/${image}.jpg) no-repeat fixed`;
   }
 
   get navigationLinks(): NavigationLink[] {
@@ -39,7 +48,7 @@ export class AppComponent implements OnInit {
   get title(): string {
     let title = 'CASTER';
 
-    for (const navigation of this.navigationLinks) {
+    for (const navigation of NAVIGATION_LINKS) {
       if (this.router.url === navigation.link) {
         title = navigation.name;
         break;
@@ -47,6 +56,19 @@ export class AppComponent implements OnInit {
     }
 
     return title;
+  }
+
+  private decideImageToUse(): string {
+    const theme = this.stateManager.settingsTheme;
+    let value = '';
+
+    if (theme === SettingsTheme.Light) {
+      value = 'light';
+    } else if (theme === SettingsTheme.Dark) {
+      value = 'dark';
+    }
+
+    return value;
   }
 
   private fetchIconAsset(filename: string): string {
