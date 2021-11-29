@@ -8,22 +8,19 @@ a {
   @include global.padding-2hv;
 }
 
-.settings-tab {
-  @include global.padding-2hv;
-  margin-left: 100px;
+.settings-about {
+  text-align: center;
+  padding: 2vh;
 }
 
-.settings-option {
-  margin-bottom: 2em;
+.settings-about-header {
+  font-size: x-large;
+  font-weight: 800;
 }
 
-.settings-option-label {
-  font-weight: 600;
-}
-
-.settings-radio-button {
-  margin-right: 2em;
-  margin-bottom: 1em;
+.settings-about-subheader {
+  font-size: large;
+  font-weight: 400;
 }
 
 .settings-credits-header {
@@ -40,22 +37,26 @@ a {
 }
 
 .settings-credits-header-text {
-  font-size: 2em;
+  font-size: 25px;
   align-self: center;
   text-align: center;
 }
 
-.settings-about {
-  text-align: center;
-  padding: 2vh;
+.settings-option {
+  margin-bottom: 25px;
+  margin-left: 10px;
 }
 
-.settings-about-header {
-  font-size: x-large;
-  font-weight: 800;
+.settings-option-label {
+  font-weight: 600;
 }
 
-.settings-about-subheader {
-  font-size: large;
-  font-weight: 400;
+.settings-radio-button {
+  margin-right: 25px;
+  margin-bottom: 10px;
+}
+
+.settings-tab {
+  @include global.padding-2hv;
+  margin-left: 100px;
 }

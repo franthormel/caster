@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import {
   SettingsDatasource,
   SettingsTemperature,
+  SettingsTheme,
 } from '../../../models/settings.enums';
 
 import { ImageCredits, SoftwareCredits } from '../../../models/credits.models';
@@ -31,8 +32,20 @@ export class SettingsComponent {
     this.stateManager.changeSettingsTemperature(value);
   }
 
+  changeTheme(value: SettingsTheme) {
+    this.stateManager.changeSettingsTheme(value);
+  }
+
   toggleDegreeSign() {
     this.stateManager.toggleSettingsDegreeSign();
+  }
+
+  get creditsImages(): ImageCredits[] {
+    return IMAGE_CREDITS_LIGHT.concat(IMAGE_CREDITS_DARK);
+  }
+
+  get creditsSoftware(): SoftwareCredits[] {
+    return SOFTWARE_CREDITS;
   }
 
   get datasource(): SettingsDatasource {
@@ -66,11 +79,11 @@ export class SettingsComponent {
     ];
   }
 
-  get creditsImages(): ImageCredits[] {
-    return IMAGE_CREDITS_LIGHT.concat(IMAGE_CREDITS_DARK);
+  get theme(): SettingsTheme {
+    return this.stateManager.settingsTheme;
   }
 
-  get creditsSoftware(): SoftwareCredits[] {
-    return SOFTWARE_CREDITS;
+  get themeOptions(): SettingsTheme[] {
+    return [SettingsTheme.Light, SettingsTheme.Dark];
   }
 }

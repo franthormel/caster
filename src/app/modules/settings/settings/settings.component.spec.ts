@@ -1,7 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { StoreModule } from '@ngrx/store';
 
-import { SettingsTemperature } from '../../../models/settings.enums';
+import {
+  SettingsTemperature,
+  SettingsTheme,
+} from '../../../models/settings.enums';
 
 import { appStateReducer } from '../../../app-state.reducers';
 import { SettingsComponent } from './settings.component';
@@ -28,6 +31,18 @@ describe('SettingsComponent', () => {
   });
 
   describe('methods', () => {
+    describe('changeTheme()', () => {
+      beforeEach(() => {
+        spyOn(component, 'changeTheme');
+
+        component.changeTheme(SettingsTheme.Dark);
+      });
+
+      it('should be called when invoked', () => {
+        expect(component.changeTheme).toHaveBeenCalled();
+      });
+    });
+
     describe('changeTemperature()', () => {
       beforeEach(() => {
         spyOn(component, 'changeTemperature');
@@ -95,6 +110,22 @@ describe('SettingsComponent', () => {
     describe('creditsSoftware()', () => {
       it('should return an Array', () => {
         const result = component.creditsSoftware;
+
+        expect(result).toBeInstanceOf(Array);
+      });
+    });
+
+    describe('theme()', () => {
+      it('should return a String', () => {
+        const result = component.theme;
+
+        expect(result).toBeInstanceOf(String);
+      });
+    });
+
+    describe('themeOptions()', () => {
+      it('should return an Array', () => {
+        const result = component.themeOptions;
 
         expect(result).toBeInstanceOf(Array);
       });

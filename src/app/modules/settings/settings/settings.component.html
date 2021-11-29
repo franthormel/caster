@@ -2,6 +2,18 @@
     <mat-tab-group color="accent">
         <mat-tab class="settings-tab" label="General" >
             <section class="settings-option">
+                <p class="settings-option-label">Datasource</p>
+                <mat-radio-group [ngModel]="datasource"
+                                 matTooltip="Choose where readings will come from">
+                    <mat-radio-button *ngFor="let option of datasourceOptions"
+                                      class="settings-radio-button"
+                                      (click)="changeDatasource(option)"
+                                      [value]="option">
+                                      {{option}}
+                    </mat-radio-button>
+                </mat-radio-group>
+            </section>
+            <section class="settings-option">
                 <p class="settings-option-label">Temperature unit</p>
                 <mat-radio-group [ngModel]="temperature"
                                  matTooltip="Change unit of measurement for temperature readings">
@@ -14,12 +26,12 @@
                 </mat-radio-group>
             </section>
             <section class="settings-option">
-                <p class="settings-option-label">Source of data</p>
-                <mat-radio-group [ngModel]="datasource"
-                                 matTooltip="Choose where readings will come from">
-                    <mat-radio-button *ngFor="let option of datasourceOptions"
+                <p class="settings-option-label">Theme</p>
+                <mat-radio-group [ngModel]="theme"
+                                 matTooltip="Change color palette">
+                    <mat-radio-button *ngFor="let option of themeOptions"
                                       class="settings-radio-button"
-                                      (click)="changeDatasource(option)"
+                                      (click)="changeTheme(option)"
                                       [value]="option">
                                       {{option}}
                     </mat-radio-button>
