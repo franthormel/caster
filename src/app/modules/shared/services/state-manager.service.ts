@@ -16,6 +16,7 @@ import {
 import {
   SettingsDatasource,
   SettingsTemperature,
+  SettingsTheme,
 } from '../../../models/settings.enums';
 
 @Injectable({
@@ -36,7 +37,7 @@ export class StateManagerService {
 
   changeLocationsFile(file: number) {
     if (this.locationsFile !== file) {
-      this.store.dispatch(locations.changeLocationsFile({ file: file }));
+      this.store.dispatch(locations.changeLocationsFile({ file }));
     }
   }
 
@@ -72,17 +73,19 @@ export class StateManagerService {
 
   changeSettingsDatasource(datasource: SettingsDatasource) {
     if (!this.settingsDatasourceIs(datasource)) {
-      this.store.dispatch(
-        settings.changeDatasource({ datasource: datasource })
-      );
+      this.store.dispatch(settings.changeDatasource({ datasource }));
     }
   }
 
   changeSettingsTemperature(temperature: SettingsTemperature) {
     if (!this.settingsTemperatureIs(temperature)) {
-      this.store.dispatch(
-        settings.changeTemperature({ temperature: temperature })
-      );
+      this.store.dispatch(settings.changeTemperature({ temperature }));
+    }
+  }
+
+  changeSettingsTheme(theme: SettingsTheme) {
+    if (!this.settingsThemeIs(theme)) {
+      this.store.dispatch(settings.changeTheme({ theme }));
     }
   }
 
@@ -146,6 +149,10 @@ export class StateManagerService {
     return this.appState.settingsState.temperature;
   }
 
+  get settingsTheme(): SettingsTheme {
+    return this.appState.settingsState.theme;
+  }
+
   get weatherDetailModeIsFeelsLike(): boolean {
     return this.weatherDetailModeIs(WeatherDetailMode.FeelsLike);
   }
@@ -178,16 +185,12 @@ export class StateManagerService {
     return this.weatherReadingModeIs(WeatherReadingMode.Hourly);
   }
 
-  private changeWeatherDetailMode(mode: WeatherDetailMode) {
-    this.store.dispatch(
-      weather.changeDetailMode({
-        detailMode: mode,
-      })
-    );
+  private changeWeatherDetailMode(detailMode: WeatherDetailMode) {
+    this.store.dispatch(weather.changeDetailMode({ detailMode }));
   }
 
-  private changeWeatherReadingMode(value: WeatherReadingMode) {
-    this.store.dispatch(weather.changeReadingMode({ readingMode: value }));
+  private changeWeatherReadingMode(readingMode: WeatherReadingMode) {
+    this.store.dispatch(weather.changeReadingMode({ readingMode }));
   }
 
   private initState() {
@@ -204,6 +207,10 @@ export class StateManagerService {
 
   private settingsTemperatureIs(temperature: SettingsTemperature): boolean {
     return this.appState.settingsState.temperature === temperature;
+  }
+
+  private settingsThemeIs(theme: SettingsTheme): boolean {
+    return this.appState.settingsState.theme === theme;
   }
 
   private weatherDetailModeIs(mode: WeatherDetailMode): boolean {

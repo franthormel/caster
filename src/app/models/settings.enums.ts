@@ -8,3 +8,9 @@ export enum SettingsDatasource {
   File = 'File',
   Online = 'Online',
 }
+
+export enum SettingsTheme {
+  // TODO 'System' or 'Time-related'
+  Light = 'Dark',
+  Dark = 'Dark',
+}
