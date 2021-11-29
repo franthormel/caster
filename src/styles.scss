@@ -27,7 +27,8 @@
 }
 
 @mixin transparent-bg {
-  background: rgba(255, 255, 255, 0.5);
+  // TODO Make this responsive if theme is light or dark since the current configuration values work great for light but looks less effective for dark theme
+  background: rgba(255, 255, 255, 0.5); // Use an `a` value of 0.2 for DARK and 0.5 for LIGHT
 }
 
 html,
@@ -36,9 +37,10 @@ body {
   margin: 0;
 }
 
+// TODO Move to app component
 html {
   background: no-repeat fixed;
-  background-image: url("/assets/images/background.jpg");
+  background-image: url("/assets/images/light.jpg");
   background-size: cover;
 }
 

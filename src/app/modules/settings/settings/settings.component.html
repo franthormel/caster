@@ -1,13 +1,12 @@
-<section class="settings">
-    <mat-tab-group>
-        <mat-tab class="settings-tab" label="General">
+<section class="settings mat-app-background">
+    <mat-tab-group color="accent">
+        <mat-tab class="settings-tab" label="General" >
             <section class="settings-option">
                 <p class="settings-option-label">Temperature unit</p>
                 <mat-radio-group [ngModel]="temperature"
                                  matTooltip="Change unit of measurement for temperature readings">
                     <mat-radio-button *ngFor="let option of temperatureOptions"
                                       class="settings-radio-button"
-                                      color="primary"
                                       (click)="changeTemperature(option)"
                                       [value]="option">
                                       {{option}}
@@ -20,7 +19,6 @@
                                  matTooltip="Choose where readings will come from">
                     <mat-radio-button *ngFor="let option of datasourceOptions"
                                       class="settings-radio-button"
-                                      color="primary"
                                       (click)="changeDatasource(option)"
                                       [value]="option">
                                       {{option}}
@@ -30,8 +28,7 @@
             <section class="settings-option">
                 <mat-slide-toggle [ngModel]="degreeSign"
                                   (change)="toggleDegreeSign()"
-                                  [matTooltip]="degreeSignTooltip"
-                                  color="primary">
+                                  [matTooltip]="degreeSignTooltip">
                     Show degree° sign
                 </mat-slide-toggle>
             </section>
