@@ -48,9 +48,9 @@ describe('AppComponent', () => {
       });
     });
 
-    describe('imageBackground()', () => {
+    describe('theme()', () => {
       it('should return an Object', () => {
-        const result = app.imageBackground;
+        const result = app.theme;
 
         expect(result).toBeInstanceOf(Object);
       });

@@ -9,10 +9,11 @@ import { StateManagerService } from './state-manager.service';
 export class KlassManagerService {
   constructor(private stateManager: StateManagerService) {}
 
-  get imageBackground(): { [klass: string]: boolean } {
-    // ALERT Make sure that the klasses to be the same in the SCSS
+  get theme(): { [klass: string]: boolean } {
     return {
-      'bg-dark': this.stateManager.settingsThemeIs(SettingsTheme.Dark),
+      'bg-dark theme-dark': this.stateManager.settingsThemeIs(
+        SettingsTheme.Dark
+      ),
       'bg-light': this.stateManager.settingsThemeIs(SettingsTheme.Light),
     };
   }

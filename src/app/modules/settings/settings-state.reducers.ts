@@ -11,10 +11,9 @@ export interface SettingsState {
   theme: SettingsTheme;
 }
 
-// NOTE when changing base theme, also change the initial value of the state
 export const initialSettingsState: SettingsState = {
   datasource: SettingsDatasource.File,
   showDegreeSign: true,
   temperature: SettingsTemperature.Celsius,
-  theme: SettingsTheme.Light,
+  theme: SettingsTheme.Dark,
 };

@@ -20,17 +20,17 @@ describe('KlassManagerService', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('background()', () => {
+  describe('transparentBackground()', () => {
     it('should return an Object', () => {
-      const result = service.imageBackground;
+      const result = service.transparentBackground;
 
       expect(result).toBeInstanceOf(Object);
     });
   });
 
-  describe('transparentBackground()', () => {
+  describe('theme()', () => {
     it('should return an Object', () => {
-      const result = service.transparentBackground;
+      const result = service.theme;
 
       expect(result).toBeInstanceOf(Object);
     });

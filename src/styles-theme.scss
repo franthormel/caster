@@ -155,3 +155,10 @@ $dark-theme: mat.define-dark-theme(
 @include mat.all-component-themes($light-theme);
 
 @include locations.card-background-color($light-theme);
+
+.theme-dark {
+  @include mat.core-color($dark-theme);
+  @include mat.all-component-colors($dark-theme);
+
+  color: $dark-primary-text;
+}

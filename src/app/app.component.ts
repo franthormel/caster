@@ -34,10 +34,6 @@ export class AppComponent implements OnInit {
     this.registerAllIcons();
   }
 
-  get imageBackground(): { [klass: string]: boolean } {
-    return this.klassManager.imageBackground;
-  }
-
   get navigationLinks(): NavigationLink[] {
     return NAVIGATION_LINKS;
   }
@@ -53,6 +49,10 @@ export class AppComponent implements OnInit {
     }
 
     return title;
+  }
+
+  get theme(): { [klass: string]: boolean } {
+    return this.klassManager.theme;
   }
 
   private fetchIconAsset(filename: string): string {

@@ -1,3 +1,4 @@
+import { OverlayContainer } from '@angular/cdk/overlay';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
@@ -32,8 +33,12 @@ export class StateManagerService {
 
   private appState!: AppState;
 
-  constructor(private store: Store<{ appState: AppState }>) {
+  constructor(
+    private overlayContainer: OverlayContainer,
+    private store: Store<{ appState: AppState }>
+  ) {
     this.initState();
+    this.controlOverlayTheme(this.settingsTheme);
   }
 
   changeLocationsFile(file: number) {
@@ -86,6 +91,7 @@ export class StateManagerService {
 
   changeSettingsTheme(theme: SettingsTheme) {
     if (!this.settingsThemeIs(theme)) {
+      this.controlOverlayTheme(theme);
       this.store.dispatch(settings.changeTheme({ theme }));
     }
   }
@@ -196,6 +202,16 @@ export class StateManagerService {
 
   private changeWeatherReadingMode(readingMode: WeatherReadingMode) {
     this.store.dispatch(weather.changeReadingMode({ readingMode }));
+  }
+
+  private controlOverlayTheme(theme: SettingsTheme) {
+    if (theme === SettingsTheme.Dark) {
+      // ALERT Always make sure that the CSS class name is the same as the one defined in styles-theme.scss
+      const dark = 'theme-dark';
+      const html = this.overlayContainer.getContainerElement();
+
+      html.classList.add(dark);
+    }
   }
 
   private initState() {
