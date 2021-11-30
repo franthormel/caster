@@ -16,24 +16,24 @@
 }
 
 @mixin text-no-select {
-  $select: none;
-
-  -webkit-touch-callout: $select;
-  -webkit-user-select: $select;
-  -khtml-user-select: $select;
-  -moz-user-select: $select;
-  -ms-user-select: $select;
-  user-select: $select;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-@mixin transparent-bg {
-  // TODO Make this responsive if theme is light or dark since the current configuration values work great for light but looks less effective for dark theme
-  background: rgba(
-    255,
-    255,
-    255,
-    0.5
-  ); // Use an `a` value of 0.2 for DARK and 0.5 for LIGHT
+@for $i from 1 through 3 {
+  @each $side in left, bottom, right {
+    $margin: margin-#{$side}-z#{$i};
+
+    .#{$margin} {
+      $margin: $i * 10;
+
+      margin-#{$side}: #{$margin}px;
+    }
+  }
 }
 
 html,
@@ -42,20 +42,18 @@ body {
   margin: 0;
 }
 
-.text-no-select {
-  @include text-no-select;
-}
-
 .font-weight-f600 {
   font-weight: 600;
 }
 
-@for $i from 1 through 3 {
-  @each $side in left, bottom, right {
-    $margin: margin-#{$side}-z#{$i};
+.text-no-select {
+  @include text-no-select;
+}
 
-    .#{$margin} {
-      @include margin-side($side, $i);
-    }
-  }
+.transparent-bg-light {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.transparent-bg-dark {
+  background: rgba(255, 255, 255, 0.2);
 }

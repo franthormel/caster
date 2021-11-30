@@ -12,6 +12,7 @@ import { AirPollutionComponent } from './air-pollution.component';
 import { DataManagerService } from '../../shared/services/data-manager.service';
 import { DialogHandlerService } from '../../shared/services/dialog-handler.service';
 import { EpochConverterService } from '../../shared/services/epoch-converter.service';
+import { KlassManagerService } from '../../shared/services/klass-manager.service';
 import { StateManagerService } from '../../shared/services/state-manager.service';
 import { AirQualityService } from '../air-quality.service';
 
@@ -39,6 +40,7 @@ describe('AirPollutionComponent', () => {
         DataManagerService,
         DialogHandlerService,
         EpochConverterService,
+        KlassManagerService,
         StateManagerService,
       ],
     }).compileComponents();
@@ -111,6 +113,14 @@ describe('AirPollutionComponent', () => {
         const result = component.time;
 
         expect(result).toBeInstanceOf(String);
+      });
+    });
+
+    describe('transparentBackground()', () => {
+      it('should return an Object', () => {
+        const result = component.transparentBackground;
+
+        expect(result).toBeInstanceOf(Object);
       });
     });
   });

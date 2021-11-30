@@ -4,6 +4,7 @@ import { WeatherGeolocationDisplay } from '../../../models/geolocation/geolocati
 import { WeatherGeolocation } from '../../../models/geolocation/geolocation.models';
 import { DataManagerService } from '../../shared/services/data-manager.service';
 import { DialogHandlerService } from '../../shared/services/dialog-handler.service';
+import { KlassManagerService } from '../../shared/services/klass-manager.service';
 import { StateManagerService } from '../../shared/services/state-manager.service';
 import { StringManagerService } from '../../shared/services/string-manager.service';
 
@@ -20,6 +21,7 @@ export class LocationsComponent implements OnInit {
   constructor(
     private dataManager: DataManagerService,
     private dialogHandler: DialogHandlerService,
+    private klassManger: KlassManagerService,
     private stateManager: StateManagerService,
     private stringManager: StringManagerService
   ) {}
@@ -65,6 +67,10 @@ export class LocationsComponent implements OnInit {
 
   get searchable(): boolean {
     return this.search !== '';
+  }
+
+  get transparentBackground(): { [klass: string]: boolean } {
+    return this.klassManger.transparentBackground;
   }
 
   private initData() {

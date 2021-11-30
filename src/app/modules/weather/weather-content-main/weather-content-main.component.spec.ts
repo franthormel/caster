@@ -7,6 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { appStateReducer } from '../../../app-state.reducers';
 import { WEATHER_DATA } from '../../../tests/weather.testing';
 
+import { KlassManagerService } from '../../shared/services/klass-manager.service';
 import { StateManagerService } from '../../shared/services/state-manager.service';
 import { StringManagerService } from '../../shared/services/string-manager.service';
 import { TemperatureConverterService } from '../temperature-converter.service';
@@ -26,9 +27,10 @@ describe('WeatherContentMainComponent', () => {
         MatIconModule,
       ],
       providers: [
+        KlassManagerService,
+        StateManagerService,
         StringManagerService,
         TemperatureConverterService,
-        StateManagerService,
       ],
     }).compileComponents();
   });
@@ -244,6 +246,14 @@ describe('WeatherContentMainComponent', () => {
 
       it('should be called when invoked', () => {
         expect(component.changeToTemperatureViewMode).toHaveBeenCalled();
+      });
+    });
+
+    describe('transparentBackground', () => {
+      it('should return an Object', () => {
+        const result = component.transparentBackground;
+
+        expect(result).toBeInstanceOf(Object);
       });
     });
   });

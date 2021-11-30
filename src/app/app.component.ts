@@ -4,13 +4,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { NavigationLink } from './models/navigation-link.models';
-import { SettingsTheme } from './models/settings.enums';
-import { StateManagerService } from './modules/shared/services/state-manager.service';
 
 import { ICONS } from './data/icons/index.data';
 import { ICONS_MOON } from './data/icons/moon.data';
 import { ICONS_WEATHER } from './data/icons/weather.data';
 import { NAVIGATION_LINKS } from './data/navigation-links.data';
+import { KlassManagerService } from './modules/shared/services/klass-manager.service';
 
 @Component({
   selector: 'app-root',
@@ -26,21 +25,17 @@ export class AppComponent implements OnInit {
 
   constructor(
     private iconRegistry: MatIconRegistry,
+    private klassManager: KlassManagerService,
     private router: Router,
-    private sanitizer: DomSanitizer,
-    private stateManager: StateManagerService
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit() {
     this.registerAllIcons();
   }
 
-  get classTheme(): { [klass: string]: boolean } {
-    // ALERT Make sure that the klasses to be the same in the SCSS
-    return {
-      'bg-light': this.stateManager.settingsThemeIs(SettingsTheme.Light),
-      'bg-dark': this.stateManager.settingsThemeIs(SettingsTheme.Dark),
-    };
+  get imageBackground(): { [klass: string]: boolean } {
+    return this.klassManager.imageBackground;
   }
 
   get navigationLinks(): NavigationLink[] {

@@ -7,6 +7,7 @@ import { appStateReducer } from '../../../app-state.reducers';
 
 import { DataManagerService } from '../../shared/services/data-manager.service';
 import { DialogHandlerService } from '../../shared/services/dialog-handler.service';
+import { KlassManagerService } from '../../shared/services/klass-manager.service';
 import { StateManagerService } from '../../shared/services/state-manager.service';
 import { StringManagerService } from '../../shared/services/string-manager.service';
 
@@ -27,6 +28,7 @@ describe('LocationsComponent', () => {
       providers: [
         DataManagerService,
         DialogHandlerService,
+        KlassManagerService,
         StateManagerService,
         StringManagerService,
       ],
@@ -153,6 +155,14 @@ describe('LocationsComponent', () => {
         const result = component.searchable;
 
         expect(result).toBeFalsy();
+      });
+    });
+
+    describe('transparentBackground', () => {
+      it('should return an Object', () => {
+        const result = component.transparentBackground;
+
+        expect(result).toBeInstanceOf(Object);
       });
     });
   });

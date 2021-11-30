@@ -4,7 +4,7 @@ import { StoreModule } from '@ngrx/store';
 
 import { appStateReducer } from './app-state.reducers';
 import { AppComponent } from './app.component';
-import { StateManagerService } from './modules/shared/services/state-manager.service';
+import { KlassManagerService } from './modules/shared/services/klass-manager.service';
 
 describe('AppComponent', () => {
   let app: AppComponent;
@@ -17,7 +17,7 @@ describe('AppComponent', () => {
         RouterTestingModule,
         StoreModule.forRoot({ appState: appStateReducer }),
       ],
-      providers: [StateManagerService],
+      providers: [KlassManagerService],
     }).compileComponents();
   });
 
@@ -48,9 +48,9 @@ describe('AppComponent', () => {
       });
     });
 
-    describe('classTheme()', () => {
+    describe('imageBackground()', () => {
       it('should return an Object', () => {
-        const result = app.classTheme;
+        const result = app.imageBackground;
 
         expect(result).toBeInstanceOf(Object);
       });

@@ -5,7 +5,8 @@
 </ng-container>
 
 <section *ngIf="!loading"
-         class="air-pollution">
+         class="air-pollution"
+         [ngClass]="transparentBackground">
     <section class="air-pollution-controls">
         <button mat-icon-button
                 aria-label="Previous day button"
