@@ -23,6 +23,7 @@ import {
   providedIn: 'root',
 })
 export class StateManagerService {
+  // TODO Make the values dynamic
   private readonly MAX = {
     HOURLY: 47,
     DAILY: 7,
@@ -125,6 +126,10 @@ export class StateManagerService {
     }
   }
 
+  settingsThemeIs(theme: SettingsTheme): boolean {
+    return this.appState.settingsState.theme === theme;
+  }
+
   toggleSettingsDegreeSign() {
     this.store.dispatch(settings.toggleDegreeSign());
   }
@@ -207,10 +212,6 @@ export class StateManagerService {
 
   private settingsTemperatureIs(temperature: SettingsTemperature): boolean {
     return this.appState.settingsState.temperature === temperature;
-  }
-
-  private settingsThemeIs(theme: SettingsTheme): boolean {
-    return this.appState.settingsState.theme === theme;
   }
 
   private weatherDetailModeIs(mode: WeatherDetailMode): boolean {

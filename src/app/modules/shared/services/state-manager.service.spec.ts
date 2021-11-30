@@ -2,7 +2,10 @@ import { TestBed } from '@angular/core/testing';
 import { StoreModule } from '@ngrx/store';
 
 import { appStateReducer } from '../../../app-state.reducers';
-import { SettingsTemperature, SettingsTheme } from '../../../models/settings.enums';
+import {
+  SettingsTemperature,
+  SettingsTheme,
+} from '../../../models/settings.enums';
 import { StateManagerService } from './state-manager.service';
 
 describe('StateManagerService', () => {
@@ -535,7 +538,38 @@ describe('StateManagerService', () => {
           const expected = theme;
 
           expect(result).toBe(expected);
-        };
+        }
+      });
+    });
+
+    describe('settingsThemeIs()', () => {
+      it('should return a Boolean', () => {
+        const result = service.settingsThemeIs(SettingsTheme.Dark);
+
+        expect(result).toBeInstanceOf(Boolean);
+      });
+
+      it('should return true when expected', () => {
+        const themes: SettingsTheme[] = [
+          SettingsTheme.Dark,
+          SettingsTheme.Light,
+        ];
+
+        for (const theme of themes) {
+          service.changeSettingsTheme(theme);
+
+          const result = service.settingsThemeIs(theme);
+
+          expect(result).toBeTruthy();
+        }
+      });
+
+      it('should return false when expected', () => {
+        service.changeSettingsTheme(SettingsTheme.Light);
+
+        const result = service.settingsThemeIs(SettingsTheme.Dark);
+
+        expect(result).toBeFalsy();
       });
     });
   });

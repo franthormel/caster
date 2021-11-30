@@ -1,5 +1,17 @@
 @use "../styles.scss" as global;
 
+// NOTE Define any custom image in this list that you need as a background here.
+// ALERT Make sure that the files are in the assets folder
+$images: light, dark;
+
+@each $image in $images {
+  .bg-#{$image} {
+    background: no-repeat fixed;
+    background-image: url("/assets/images/#{$image}.jpg");
+    background-size: cover;
+  }
+}
+
 .sidenav {
   width: 11rem;
 }

@@ -35,10 +35,12 @@ export class AppComponent implements OnInit {
     this.registerAllIcons();
   }
 
-  get backgroundImage(): string {
-    const image = this.decideImageToUse();
-
-    return `url(/assets/images/${image}.jpg) no-repeat fixed`;
+  get classTheme(): { [klass: string]: boolean } {
+    // ALERT Make sure that the klasses to be the same in the SCSS
+    return {
+      'bg-light': this.stateManager.settingsThemeIs(SettingsTheme.Light),
+      'bg-dark': this.stateManager.settingsThemeIs(SettingsTheme.Dark),
+    };
   }
 
   get navigationLinks(): NavigationLink[] {
@@ -56,19 +58,6 @@ export class AppComponent implements OnInit {
     }
 
     return title;
-  }
-
-  private decideImageToUse(): string {
-    const theme = this.stateManager.settingsTheme;
-    let value = '';
-
-    if (theme === SettingsTheme.Light) {
-      value = 'light';
-    } else if (theme === SettingsTheme.Dark) {
-      value = 'dark';
-    }
-
-    return value;
   }
 
   private fetchIconAsset(filename: string): string {
