@@ -1,7 +1,7 @@
 export enum WeatherReadingMode {
-  Current = "Current",
-  Hourly = "Hourly",
-  Daily = "Daily",
+  Current = 'Current',
+  Hourly = 'Hourly',
+  Daily = 'Daily',
 }
 
 export enum WeatherDetailMode {

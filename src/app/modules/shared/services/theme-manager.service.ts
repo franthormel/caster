@@ -19,7 +19,7 @@ export class ThemeManagerService {
   get theme(): { [klass: string]: boolean } {
     return {
       'bg-dark theme-dark': this.themeIsDark,
-      'bg-light': this.themeIsLight,
+      'bg-light theme-light': this.themeIsLight,
     };
   }
 

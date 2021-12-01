@@ -15,5 +15,5 @@ export const initialSettingsState: SettingsState = {
   datasource: SettingsDatasource.File,
   showDegreeSign: true,
   temperature: SettingsTemperature.Celsius,
-  theme: SettingsTheme.Dark,
+  theme: SettingsTheme.Light,
 };

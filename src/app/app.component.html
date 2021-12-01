@@ -8,16 +8,16 @@
                      class="sidenav-toolbar">
                      CASTER
         </mat-toolbar>
-        <mat-nav-list>
-            <a *ngFor="let navigation of navigationLinks"
-               mat-list-item
-               [routerLink]="navigation.link"
-               (click)="drawer.close()"
-               routerLinkActive="font-weight-f600">
-               &nbsp;
-               {{navigation.name}}
-            </a>
-        </mat-nav-list>
+        <mat-selection-list [multiple]="false">
+            <mat-list-option *ngFor="let navigation of navigationLinks"
+                             (click)="drawer.close()"
+                             [routerLink]="navigation.link"
+                             [selected]="routeActive.isActive"
+                             routerLinkActive="font-weight-f600"
+                             #routeActive="routerLinkActive">
+                             &nbsp; {{navigation.name}}
+            </mat-list-option>
+        </mat-selection-list>
     </mat-sidenav>
     <mat-sidenav-content>
         <mat-toolbar color="primary" class="mat-elevation-z4">

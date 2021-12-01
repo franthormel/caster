@@ -159,4 +159,10 @@ $dark-theme: mat.define-dark-theme(
 .theme-dark {
   @include mat.core-color($dark-theme);
   @include mat.all-component-colors($dark-theme);
+
+  color: $dark-primary-text;
+}
+
+.theme-light {
+  color: $light-primary-text;
 }
