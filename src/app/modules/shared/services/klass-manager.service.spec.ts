@@ -35,4 +35,12 @@ describe('KlassManagerService', () => {
       expect(result).toBeInstanceOf(Object);
     });
   });
+
+  describe('anchorLink', () => {
+    it('should return an Object', () => {
+      const result = service.anchorLink;
+
+      expect(result).toBeInstanceOf(Object);
+    });
+  });
 });

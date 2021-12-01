@@ -1,0 +1,13 @@
+a {
+  text-decoration: none;
+}
+
+.a-link-dark,
+.a-link-dark:visited {
+  color: #5ea9fe;
+}
+
+.a-link-light,
+.a-link-light:visited {
+  color: #005fcc;
+}

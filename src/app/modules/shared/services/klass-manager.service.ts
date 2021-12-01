@@ -9,23 +9,32 @@ import { StateManagerService } from './state-manager.service';
 export class KlassManagerService {
   constructor(private stateManager: StateManagerService) {}
 
+  get anchorLink(): { [klass: string]: boolean } {
+    return {
+      'a-link-dark': this.themeIsDark,
+      'a-link-light': this.themeIsLight,
+    };
+  }
+
   get theme(): { [klass: string]: boolean } {
     return {
-      'bg-dark theme-dark': this.stateManager.settingsThemeIs(
-        SettingsTheme.Dark
-      ),
-      'bg-light': this.stateManager.settingsThemeIs(SettingsTheme.Light),
+      'bg-dark theme-dark': this.themeIsDark,
+      'bg-light': this.themeIsLight,
     };
   }
 
   get transparentBackground(): { [klass: string]: boolean } {
     return {
-      'transparent-bg-dark': this.stateManager.settingsThemeIs(
-        SettingsTheme.Dark
-      ),
-      'transparent-bg-light': this.stateManager.settingsThemeIs(
-        SettingsTheme.Light
-      ),
+      'transparent-bg-dark': this.themeIsDark,
+      'transparent-bg-light': this.themeIsLight,
     };
+  }
+
+  private get themeIsDark(): boolean {
+    return this.stateManager.settingsThemeIs(SettingsTheme.Dark);
+  }
+
+  private get themeIsLight(): boolean {
+    return this.stateManager.settingsThemeIs(SettingsTheme.Light);
   }
 }

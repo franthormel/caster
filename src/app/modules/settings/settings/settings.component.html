@@ -51,10 +51,9 @@
                      src="/assets/images/logo_credits.svg"/>
                 <span class="settings-credits-header-text">
                     Data source provided by
-                    <a href="https://openweathermap.org/"
-                       target="_blank">
-                        OpenWeatherMap
-                    </a>
+                    <shared-anchor-link href="https://openweathermap.org/" 
+                                        text="OpenWeatherMap">
+                    </shared-anchor-link>
                 </span>
             </section>
             <mat-divider></mat-divider>
@@ -65,10 +64,9 @@
                         <mat-list-item  *ngIf="credit.enabled">
                             <span>
                                 {{credit.name}} on 
-                                <a [href]="credit.url"
-                                   target="_blank">
-                                   {{credit.source}}
-                                </a>
+                                <shared-anchor-link [href]="credit.url" 
+                                                    [text]="credit.source">
+                                </shared-anchor-link>
                             </span>
                         </mat-list-item>
                     </ng-container>
@@ -78,13 +76,12 @@
         <mat-tab class="settings-tab" label="About">
                 <section class="settings-about">
                     <p class="settings-about-header">
-                        CASTER 1.0.0
+                        CASTER 1.0.10
                     </p>
                     <p class="settings-about-subheader">
-                        <a href="https://github.com/pendraic/caster" 
-                           target="_blank">
-                           Francis Anthony Carmel © 2021
-                        </a>
+                        <shared-anchor-link href="https://github.com/pendraic/caster"
+                                            text="Francis Anthony Carmel © 2021">
+                        </shared-anchor-link>
                     </p>
                 </section>
             <mat-divider></mat-divider>
@@ -94,10 +91,9 @@
                     <ng-container *ngFor="let credit of creditsSoftware">
                         <mat-list-item  *ngIf="credit.enabled">
                             <span>
-                                <a [href]="credit.url"
-                                   target="_blank">
-                                   {{credit.name}} {{credit.version}}
-                                </a>
+                                <shared-anchor-link [href]="credit.url"
+                                                    text="{{credit.name}} {{credit.version}}">
+                                </shared-anchor-link>
                                 ({{credit.type}})
                             </span>
                         </mat-list-item>

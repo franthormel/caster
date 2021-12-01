@@ -1,9 +1,5 @@
 @use "../../../../styles.scss" as global;
 
-a {
-  text-decoration: none;
-}
-
 .settings {
   @include global.padding-2hv;
 }
