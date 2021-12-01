@@ -5,16 +5,11 @@ import { Injectable } from '@angular/core';
 })
 export class StringManagerService {
   capitalizeFirstLetter(text: string): string {
-    let value = '';
-
-    if (text.length > 0) {
-      const firstLetter = text[0].toUpperCase();
-      const restOfTheWord = text.substring(1, text.length);
-
-      value = `${firstLetter}${restOfTheWord}`;
+    if (text.length === 0) {
+      return '';
     }
 
-    return value;
+    return `${text[0].toUpperCase()}${text.substring(1, text.length)}`;
   }
 
   isUppercase(line: string): boolean {

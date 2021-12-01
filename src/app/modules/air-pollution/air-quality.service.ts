@@ -6,6 +6,10 @@ import { AirQualityIndex } from '../../models/air-pollution/air-pollution.enums'
 })
 export class AirQualityService {
   describe(index: number): string {
-    return AirQualityIndex[index];
+    return this.validAqi(index) ? AirQualityIndex[index] : AirQualityIndex[0];
+  }
+
+  private validAqi(index: number): boolean {
+    return index >= 1 && index <= 5;
   }
 }

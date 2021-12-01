@@ -24,10 +24,10 @@ export class WeatherContentTopComponent {
   @Input() weatherData!: WeatherData;
 
   constructor(
+    public stateManager: StateManagerService,
     private dialogHandler: DialogHandlerService,
     private epochConverter: EpochConverterService,
-    private moonphase: MoonPhaseService,
-    public stateManager: StateManagerService
+    private moonphase: MoonPhaseService
   ) {}
 
   dailyNext() {
@@ -47,7 +47,7 @@ export class WeatherContentTopComponent {
   }
 
   showAlertDialog() {
-    this.dialogHandler.showWeatherAlert(this.alerts);
+    this.dialogHandler.showWeatherAlert(this.alerts, true);
   }
 
   get alertsAreAvailable(): boolean {
@@ -90,7 +90,6 @@ export class WeatherContentTopComponent {
     if (this.currentModeIsCurrent) {
       value = this.epochConverter.toTime(this.currentWeather.sunrise!);
     }
-
     return value;
   }
 
@@ -137,7 +136,6 @@ export class WeatherContentTopComponent {
     if (this.currentModeIsDaily) {
       value = this.epochConverter.toTime(this.currentDailyWeather.sunrise!);
     }
-
     return value;
   }
 
