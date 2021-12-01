@@ -24,9 +24,10 @@ export class WeatherContentBottomComponent {
   ) {}
 
   get dewPoint(): string {
-    let value = this.temperatureConverter
-      .convertTemperature(this.weatherReading.dew_point)
-      .toString();
+    const temperature = this.temperatureConverter.convertTemperature(
+      this.weatherReading.dew_point
+    );
+    let value = temperature.toString();
 
     if (this.stateManager.settingsDegreeSign) {
       value = `${value}°`;
@@ -123,16 +124,18 @@ export class WeatherContentBottomComponent {
    * This isn't available for daily forecasts
    */
   get visibility(): string {
-    let value = '';
     const visibility = this.weatherReading.visibility;
+    let value = '';
 
-    if (visibility && visibility > 1000) {
-      let visibilityKm = visibility / 1000;
-      visibilityKm = Math.trunc(visibilityKm);
+    if (visibility !== undefined) {
+      if (visibility > 1000) {
+        let visibilityKm = visibility / 1000;
+        visibilityKm = Math.trunc(visibilityKm);
 
-      value = `${visibilityKm} km`;
-    } else if (visibility) {
-      value = `${visibility} m`;
+        value = `${visibilityKm} km`;
+      } else {
+        value = `${visibility} m`;
+      }
     }
 
     return value;
@@ -142,8 +145,8 @@ export class WeatherContentBottomComponent {
     let precipitationVolume: number | string = 0;
 
     if (this.weatherData.minutely !== undefined) {
-      let total = 0;
       const length = this.weatherData.minutely.length;
+      let total = 0;
 
       for (const minute of this.weatherData.minutely) {
         total += minute.precipitation;

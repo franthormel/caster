@@ -51,7 +51,7 @@ export class LocationsComponent implements OnInit {
     let collection: WeatherGeolocationDisplay[] = [];
 
     this.chooseLocations.forEach((geolocation, index) => {
-      const entry = {
+      const entry: WeatherGeolocationDisplay = {
         index: index,
         country: geolocation.country,
         name: geolocation.name,

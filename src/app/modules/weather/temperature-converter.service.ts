@@ -28,11 +28,6 @@ export class TemperatureConverterService {
       case SettingsTemperature.Fahrenheit:
         value = this.convertKelvinToFahrenheit(kelvin);
         break;
-      case SettingsTemperature.Kelvin:
-        value;
-        break;
-      default:
-        value;
     }
 
     return value;

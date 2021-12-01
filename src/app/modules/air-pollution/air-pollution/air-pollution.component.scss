@@ -1,14 +1,16 @@
 @use "../../../../styles.scss" as global;
 
 .air-pollution {
+  @include global.padding-2hv;
+
   width: 50%;
   margin: 3vh auto;
   border-radius: 3px;
-  @include global.padding-2hv;
 }
 
 .air-pollution-controls {
   @include global.horizontally-apart;
+
   width: 40%;
   margin: auto;
 }
@@ -26,6 +28,7 @@
 
 .air-pollution-components-header {
   @include global.horizontally-apart;
+
   font-weight: 600;
 }
 

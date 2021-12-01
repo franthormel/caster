@@ -1,6 +1,6 @@
 <mat-accordion>
     <mat-expansion-panel *ngFor="let alert of alerts; index as i"
-                         [expanded]="isExpanded(i)">
+                         [expanded]="i === 0">
         <mat-expansion-panel-header>
             <mat-panel-title>
                 {{alert.event}} from {{alert.sender_name}}

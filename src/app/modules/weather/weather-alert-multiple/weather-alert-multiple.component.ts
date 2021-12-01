@@ -13,8 +13,4 @@ export class WeatherAlertMultipleComponent {
   @Input() alerts: WeatherAlert[] = [];
 
   constructor(public epochConverter: EpochConverterService) {}
-
-  isExpanded(i: number): boolean {
-    return i === 0;
-  }
 }

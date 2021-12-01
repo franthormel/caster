@@ -11,7 +11,10 @@ export class EpochConverterService {
 
   toDateTime(time: number): string {
     const date = this.toDate(time);
-    return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+    const localeDate = date.toLocaleDateString();
+    const localeTime = date.toLocaleTimeString();
+
+    return `${localeDate} ${localeTime}`;
   }
 
   toTime(time: number): string {
@@ -19,7 +22,10 @@ export class EpochConverterService {
   }
 
   toTimerange(alert: WeatherAlert): string {
-    return `${this.toDateTime(alert.start)} — ${this.toDateTime(alert.end)}`;
+    const alertTimeStart = this.toDateTime(alert.start);
+    const alertTimeEnd = this.toDateTime(alert.end);
+
+    return `${alertTimeStart} — ${alertTimeEnd}`;
   }
 
   displayDateTime(point: number, compare: number, offset: number = 0): string {
