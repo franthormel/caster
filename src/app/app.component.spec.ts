@@ -4,7 +4,7 @@ import { StoreModule } from '@ngrx/store';
 
 import { appStateReducer } from './app-state.reducers';
 import { AppComponent } from './app.component';
-import { KlassManagerService } from './modules/shared/services/klass-manager.service';
+import { ThemeManagerService } from './modules/shared/services/theme-manager.service';
 
 describe('AppComponent', () => {
   let app: AppComponent;
@@ -17,7 +17,7 @@ describe('AppComponent', () => {
         RouterTestingModule,
         StoreModule.forRoot({ appState: appStateReducer }),
       ],
-      providers: [KlassManagerService],
+      providers: [ThemeManagerService],
     }).compileComponents();
   });
 

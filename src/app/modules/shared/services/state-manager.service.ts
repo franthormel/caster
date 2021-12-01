@@ -206,7 +206,7 @@ export class StateManagerService {
 
   private controlOverlayTheme(theme: SettingsTheme) {
     if (theme === SettingsTheme.Dark) {
-      // ALERT Always make sure that the CSS class name is the same as the one defined in styles-theme.scss
+      // NOTE Always make sure that the CSS class name is the same as the one defined in styles-theme.scss
       const dark = 'theme-dark';
       const html = this.overlayContainer.getContainerElement();
 

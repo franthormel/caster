@@ -9,12 +9,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { AirPollutionComponent } from './air-pollution.component';
+import { AirQualityService } from '../air-quality.service';
 import { DataManagerService } from '../../shared/services/data-manager.service';
 import { DialogHandlerService } from '../../shared/services/dialog-handler.service';
 import { EpochConverterService } from '../../shared/services/epoch-converter.service';
-import { KlassManagerService } from '../../shared/services/klass-manager.service';
 import { StateManagerService } from '../../shared/services/state-manager.service';
-import { AirQualityService } from '../air-quality.service';
+import { ThemeManagerService } from '../../shared/services/theme-manager.service';
 
 import { appStateReducer } from '../../../app-state.reducers';
 import { AIR_POLLUTION } from '../../../tests/air-pollution.testing';
@@ -40,8 +40,8 @@ describe('AirPollutionComponent', () => {
         DataManagerService,
         DialogHandlerService,
         EpochConverterService,
-        KlassManagerService,
         StateManagerService,
+        ThemeManagerService,
       ],
     }).compileComponents();
   });

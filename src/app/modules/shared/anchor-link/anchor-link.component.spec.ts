@@ -3,7 +3,7 @@ import { StoreModule } from '@ngrx/store';
 
 import { appStateReducer } from '../../../app-state.reducers';
 import { AnchorLinkComponent } from './anchor-link.component';
-import { KlassManagerService } from '../services/klass-manager.service';
+import { ThemeManagerService } from '../services/theme-manager.service';
 
 describe('AnchorLinkComponent', () => {
   let component: AnchorLinkComponent;
@@ -12,8 +12,8 @@ describe('AnchorLinkComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AnchorLinkComponent],
-      providers: [KlassManagerService],
       imports: [StoreModule.forRoot({ appState: appStateReducer })],
+      providers: [ThemeManagerService],
     }).compileComponents();
   });
 

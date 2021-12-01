@@ -1,7 +1,7 @@
 @use "../styles.scss" as global;
 
 // NOTE Define any custom image in this list that you need as a background here.
-// ALERT Make sure that the files are in the assets folder
+// NOTE Make sure that the files are in the assets folder
 $images: light, dark;
 
 @each $image in $images {

@@ -10,8 +10,8 @@ import { AirQualityService } from '../air-quality.service';
 import { DataManagerService } from '../../shared/services/data-manager.service';
 import { DialogHandlerService } from '../../shared/services/dialog-handler.service';
 import { EpochConverterService } from '../../shared/services/epoch-converter.service';
-import { KlassManagerService } from '../../shared/services/klass-manager.service';
 import { StateManagerService } from '../../shared/services/state-manager.service';
+import { ThemeManagerService } from '../../shared/services/theme-manager.service';
 
 import { fadeInElement } from '../../../animations';
 
@@ -32,8 +32,8 @@ export class AirPollutionComponent implements OnInit {
     private dataManager: DataManagerService,
     private dialogHandler: DialogHandlerService,
     private epochConverter: EpochConverterService,
-    private klassManager: KlassManagerService,
-    private stateManager: StateManagerService
+    private stateManager: StateManagerService,
+    private themeManager: ThemeManagerService
   ) {}
 
   ngOnInit(): void {
@@ -103,7 +103,7 @@ export class AirPollutionComponent implements OnInit {
   }
 
   get transparentBackground(): { [klass: string]: boolean } {
-    return this.klassManager.transparentBackground;
+    return this.themeManager.transparentBackground;
   }
 
   private collectAllData(): Observable<[AirPollution, WeatherData]> {

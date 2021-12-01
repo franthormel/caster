@@ -5,13 +5,12 @@ import { StoreModule } from '@ngrx/store';
 
 import { appStateReducer } from '../../../app-state.reducers';
 
+import { LocationsComponent } from './locations.component';
 import { DataManagerService } from '../../shared/services/data-manager.service';
 import { DialogHandlerService } from '../../shared/services/dialog-handler.service';
-import { KlassManagerService } from '../../shared/services/klass-manager.service';
 import { StateManagerService } from '../../shared/services/state-manager.service';
 import { StringManagerService } from '../../shared/services/string-manager.service';
-
-import { LocationsComponent } from './locations.component';
+import { ThemeManagerService } from '../../shared/services/theme-manager.service';
 
 describe('LocationsComponent', () => {
   let component: LocationsComponent;
@@ -28,7 +27,7 @@ describe('LocationsComponent', () => {
       providers: [
         DataManagerService,
         DialogHandlerService,
-        KlassManagerService,
+        ThemeManagerService,
         StateManagerService,
         StringManagerService,
       ],

@@ -2,18 +2,18 @@ import { TestBed } from '@angular/core/testing';
 import { StoreModule } from '@ngrx/store';
 import { appStateReducer } from 'src/app/app-state.reducers';
 
-import { KlassManagerService } from './klass-manager.service';
+import { ThemeManagerService } from './theme-manager.service';
 import { StateManagerService } from './state-manager.service';
 
-describe('KlassManagerService', () => {
-  let service: KlassManagerService;
+describe('ThemeManagerService', () => {
+  let service: ThemeManagerService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [StoreModule.forRoot({ appState: appStateReducer })],
       providers: [StateManagerService],
     });
-    service = TestBed.inject(KlassManagerService);
+    service = TestBed.inject(ThemeManagerService);
   });
 
   it('should be created', () => {

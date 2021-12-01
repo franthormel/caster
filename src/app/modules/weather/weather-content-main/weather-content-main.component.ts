@@ -10,9 +10,9 @@ import { WeatherReading } from '../../../models/weather/weather-reading.models';
 import { StateManagerService } from '../../shared/services/state-manager.service';
 import { StringManagerService } from '../../shared/services/string-manager.service';
 import { TemperatureConverterService } from '../temperature-converter.service';
+import { ThemeManagerService } from '../../shared/services/theme-manager.service';
 
 import { fadeInElement } from '../../../animations';
-import { KlassManagerService } from '../../shared/services/klass-manager.service';
 
 @Component({
   selector: 'app-weather-content-main',
@@ -25,10 +25,10 @@ export class WeatherContentMainComponent {
   @Input() weatherLocation!: string;
 
   constructor(
-    private klassManager: KlassManagerService,
     private stateManager: StateManagerService,
     private stringFormatter: StringManagerService,
-    private temperatureConverter: TemperatureConverterService
+    private temperatureConverter: TemperatureConverterService,
+    private themeManager: ThemeManagerService
   ) {}
 
   changeToFeelsLikeViewMode() {
@@ -145,7 +145,7 @@ export class WeatherContentMainComponent {
   }
 
   get transparentBackground(): { [klass: string]: boolean } {
-    return this.klassManager.transparentBackground;
+    return this.themeManager.transparentBackground;
   }
 
   get underlineFeelsLike(): boolean {

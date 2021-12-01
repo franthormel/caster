@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { KlassManagerService } from '../services/klass-manager.service';
+import { ThemeManagerService } from '../services/theme-manager.service';
 
 @Component({
   selector: 'shared-anchor-link',
@@ -11,9 +11,9 @@ export class AnchorLinkComponent {
   @Input() href!: string;
   @Input() text!: string;
 
-  constructor(private klassManager: KlassManagerService) {}
+  constructor(private themeManager: ThemeManagerService) {}
 
   get anchorLink(): { [klass: string]: boolean } {
-    return this.klassManager.anchorLink;
+    return this.themeManager.anchorLink;
   }
 }

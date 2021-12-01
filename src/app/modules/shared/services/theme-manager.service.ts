@@ -6,7 +6,7 @@ import { StateManagerService } from './state-manager.service';
 @Injectable({
   providedIn: 'root',
 })
-export class KlassManagerService {
+export class ThemeManagerService {
   constructor(private stateManager: StateManagerService) {}
 
   get anchorLink(): { [klass: string]: boolean } {

@@ -9,7 +9,7 @@ import { ICONS } from './data/icons/index.data';
 import { ICONS_MOON } from './data/icons/moon.data';
 import { ICONS_WEATHER } from './data/icons/weather.data';
 import { NAVIGATION_LINKS } from './data/navigation-links.data';
-import { KlassManagerService } from './modules/shared/services/klass-manager.service';
+import { ThemeManagerService } from './modules/shared/services/theme-manager.service';
 
 @Component({
   selector: 'app-root',
@@ -25,9 +25,9 @@ export class AppComponent implements OnInit {
 
   constructor(
     private iconRegistry: MatIconRegistry,
-    private klassManager: KlassManagerService,
     private router: Router,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private themeManager: ThemeManagerService
   ) {}
 
   ngOnInit() {
@@ -52,7 +52,7 @@ export class AppComponent implements OnInit {
   }
 
   get theme(): { [klass: string]: boolean } {
-    return this.klassManager.theme;
+    return this.themeManager.theme;
   }
 
   private fetchIconAsset(filename: string): string {

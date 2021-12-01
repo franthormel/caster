@@ -4,9 +4,9 @@ import { WeatherGeolocationDisplay } from '../../../models/geolocation/geolocati
 import { WeatherGeolocation } from '../../../models/geolocation/geolocation.models';
 import { DataManagerService } from '../../shared/services/data-manager.service';
 import { DialogHandlerService } from '../../shared/services/dialog-handler.service';
-import { KlassManagerService } from '../../shared/services/klass-manager.service';
 import { StateManagerService } from '../../shared/services/state-manager.service';
 import { StringManagerService } from '../../shared/services/string-manager.service';
+import { ThemeManagerService } from '../../shared/services/theme-manager.service';
 
 @Component({
   selector: 'app-locations',
@@ -21,9 +21,9 @@ export class LocationsComponent implements OnInit {
   constructor(
     private dataManager: DataManagerService,
     private dialogHandler: DialogHandlerService,
-    private klassManger: KlassManagerService,
     private stateManager: StateManagerService,
-    private stringManager: StringManagerService
+    private stringManager: StringManagerService,
+    private themeManager: ThemeManagerService
   ) {}
 
   ngOnInit(): void {
@@ -70,7 +70,7 @@ export class LocationsComponent implements OnInit {
   }
 
   get transparentBackground(): { [klass: string]: boolean } {
-    return this.klassManger.transparentBackground;
+    return this.themeManager.transparentBackground;
   }
 
   private initData() {
