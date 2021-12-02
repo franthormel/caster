@@ -22,7 +22,7 @@ export const SOFTWARE_CREDITS: SoftwareCredits[] = [
     enabled: true,
     url: 'https://ngrx.io/',
     type: 'State management',
-    version: '12.5.1',
+    version: '13.0.1',
   },
   {
     name: 'RxJS',
