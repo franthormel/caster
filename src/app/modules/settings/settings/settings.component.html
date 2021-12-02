@@ -4,6 +4,7 @@
             <section class="settings-option">
                 <p class="settings-option-label">Datasource</p>
                 <mat-radio-group [ngModel]="datasource"
+                                 [disabled]="true"
                                  matTooltip="Choose where readings will come from">
                     <mat-radio-button *ngFor="let option of datasourceOptions"
                                       class="settings-radio-button"
