@@ -19,13 +19,13 @@
         </button>
     </mat-form-field>
     <section>
-        <mat-card *ngFor="let location of locations; index as id"
+        <mat-card *ngFor="let location of locations"
                   matRipple
-                  [ngClass]="{'mat-elevation-z3' : locationIsSelected(id)}"
+                  [ngClass]="{'mat-elevation-z3' : locationIsSelected(location.index)}"
                   class="locations-card"
-                  (click)="locationClicked(id)">
+                  (click)="locationClicked(location.index)">
             <mat-card-header>
-                <mat-icon *ngIf="locationIsSelected(id)"
+                <mat-icon *ngIf="locationIsSelected(location.index)"
                           mat-card-avatar>
                           check_circle
                 </mat-icon>

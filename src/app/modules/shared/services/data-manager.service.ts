@@ -11,7 +11,7 @@ import { StateManagerService } from './state-manager.service';
   providedIn: 'root',
 })
 export class DataManagerService {
-  private readonly DATA_URL = {
+  private readonly URLS = {
     FILE: '/assets/data/',
     ONLINE: {
       AIR: 'http://api.openweathermap.org/data/2.5/air_pollution/forecast',
@@ -53,7 +53,7 @@ export class DataManagerService {
   }
 
   private chooseGeolocationFile(index: number): string {
-    return `${this.DATA_URL.FILE}geolocations/${index}.json`;
+    return `${this.URLS.FILE}geolocations/${index}.json`;
   }
 
   private httpGetAirPollution(url: string): Observable<AirPollution> {
@@ -79,10 +79,10 @@ export class DataManagerService {
   }
 
   private get weatherFile(): string {
-    return `${this.DATA_URL.FILE}weather/${this.stateManager.locationsFile}.json`;
+    return `${this.URLS.FILE}weather/${this.stateManager.locationsFile}.json`;
   }
 
   private get airPollutionFile(): string {
-    return `${this.DATA_URL.FILE}air_pollution/${this.stateManager.locationsFile}.json`;
+    return `${this.URLS.FILE}air_pollution/${this.stateManager.locationsFile}.json`;
   }
 }

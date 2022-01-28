@@ -10,7 +10,6 @@ export enum SettingsDatasource {
 }
 
 export enum SettingsTheme {
-  // TODO 'System' or 'Time-related'
   Light = 'Light',
   Dark = 'Dark',
 }
